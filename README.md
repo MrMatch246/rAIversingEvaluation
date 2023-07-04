@@ -1,5 +1,5 @@
 # rAIversingEvaluation
-Storage for Eval Runs 
+Storage for Eval Runs  
 File names and their meaning:
 
 Binary.json : The "actual" case where the binary was stripped and then processed
