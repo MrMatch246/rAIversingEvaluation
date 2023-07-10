@@ -1,0 +1,849 @@
+{
+    "functions": {
+        "putc": {
+            "renaming": {},
+            "code": "\n\n\nint putc(int __c,FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = putc(__c,__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "putc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102130",
+            "calling": [
+                "FUN_00102e20",
+                "FUN_001024f0",
+                "FUN_00102380"
+            ],
+            "imported": false,
+            "current_name": "putc"
+        },
+        "fflush": {
+            "renaming": {},
+            "code": "\n\n\nint fflush(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fflush(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fflush"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102180",
+            "calling": [
+                "FUN_00102e20",
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "fflush"
+        },
+        "_FINI_0": {
+            "renaming": {},
+            "code": "\nvoid _FINI_0(void)\n\n{\n  if (DAT_00105120 != '\\0') {\n    return;\n  }\n  __cxa_finalize(PTR_LOOP_00105100);\n  FUNC_00102430();\n  DAT_00105120 = 1;\n  return;\n}\n\n",
+            "called": [
+                "__cxa_finalize",
+                "FUN_00102430"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001024a0",
+            "calling": [],
+            "imported": false,
+            "current_name": "_FINI_0"
+        },
+        "ftell": {
+            "renaming": {},
+            "code": "\n\n\nlong ftell(FILE *__stream)\n\n{\n  long lVar1;\n  \n  lVar1 = ftell(__stream);\n  return lVar1;\n}\n\n",
+            "called": [
+                "ftell"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102150",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "ftell"
+        },
+        "dcgettext": {
+            "renaming": {},
+            "code": "\nvoid dcgettext(void)\n\n{\n  dcgettext();\n  return;\n}\n\n",
+            "called": [
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102090",
+            "calling": [
+                "FUN_0010225e",
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "dcgettext"
+        },
+        "bfd_set_error_program_name": {
+            "renaming": {},
+            "code": "\nvoid bfd_set_error_program_name(void)\n\n{\n  bfd_set_error_program_name();\n  return;\n}\n\n",
+            "called": [
+                "bfd_set_error_program_name"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021b0",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "bfd_set_error_program_name"
+        },
+        "fputc": {
+            "renaming": {},
+            "code": "\n\n\nint fputc(int __c,FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fputc(__c,__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fputc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102120",
+            "calling": [
+                "FUN_0010225e"
+            ],
+            "imported": false,
+            "current_name": "fputc"
+        },
+        "strchr": {
+            "renaming": {},
+            "code": "\n\n\nchar * strchr(char *__s,int __c)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strchr(__s,__c);\n  return pcVar1;\n}\n\n",
+            "called": [
+                "strchr"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020c0",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "strchr"
+        },
+        "FUN_0010225e": {
+            "renaming": {
+                "FUN_0010225e": "print_usage_0010225e",
+                "param_1": "outputFile",
+                "param_2": "exitCode",
+                "__format": "bugReportFormat",
+                "puVar1": "demanglersPtr",
+                "_libiberty_demanglers": "demanglers",
+                "dcgettext": "getBugReportFormat"
+            },
+            "code": "\n\n\nvoid printUsage_0010225e(FILE *outputFile,int exitCode)\n\n{\n  char *bugReportFormat;\n  undefined8 *demanglersPtr;\n  \n  fprintf(outputFile,\"Usage: %s [options] [mangled names]\\n\",DAT_0010d148);\n  fprintf(outputFile,\"Options are:\\n  [-_|--strip-underscore]     Ignore first leading underscore%s\\n\",\n          \"\");\n  fprintf(outputFile,\"  [-n|--no-strip-underscore]  Do not ignore a leading underscore%s\\n\",\n          \" (default)\");\n  fwrite(\"  [-p|--no-params]            Do not display function arguments\\n  [-i|--no-verbose]           Do not show implementation details (if any)\\n  [-R|--recurse-limit]        Enable a limit on recursion whilst demangling.  [Default]\\n  ]-r|--no-recurse-limit]     Disable a limit on recursion whilst demangling\\n  [-t|--types]                Also attempt to demangle type encodings\\n  [-s|--format \"\n         ,1,0x184,outputFile);\n  fprintf(outputFile,\"{%s\",demanglers);\n  demanglersPtr = (undefined8 *)&libiberty_demanglers;\n  while (*(int *)(demanglersPtr + 4) != 0) {\n    fprintf(outputFile,\",%s\",demanglersPtr[3]);\n    demanglersPtr = demanglersPtr + 3;\n  }\n  fputc(0x7d,outputFile);\n  fwrite(&DAT_001035e8,1,2,outputFile);\n  fwrite(\"  [@<file>]                   Read extra options from <file>\\n  [-h|--help]                 Display this information\\n  [-v|--version]              Show the version information\\nDemangled names are displayed to stdout.\\nIf a name cannot be demangled it is just echoed to stdout.\\nIf no names are provided on the command line, stdin is read.\\n\"\n         ,1,0x150,outputFile);\n  if (exitCode == 0) {\n    bugReportFormat = (char *)dcgettext(0,\"Report bugs to %s.\\n\",5);\n    fprintf(outputFile,bugReportFormat,\"<https://sourceware.org/bugzilla/>\");\n  }\n                    \n  exit(exitCode);\n}\n\n",
+            "called": [
+                "fputc",
+                "exit",
+                "exit",
+                "memmove",
+                "fwrite",
+                "fprintf",
+                "dcgettext",
+                "bfd_set_error_program_name"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010225e",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "print_usage_0010225e"
+        },
+        "_DT_INIT": {
+            "renaming": {},
+            "code": "\nvoid _DT_INIT(void)\n\n{\n  __gmon_start__();\n  return;\n}\n\n",
+            "called": [
+                "__gmon_start__"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102000",
+            "calling": [],
+            "imported": false,
+            "current_name": "_DT_INIT"
+        },
+        "fseek": {
+            "renaming": {},
+            "code": "\n\n\nint fseek(FILE *__stream,long __off,int __whence)\n\n{\n  int iVar1;\n  \n  iVar1 = fseek(__stream,__off,__whence);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fseek"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102190",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "fseek"
+        },
+        "cplus_demangle": {
+            "renaming": {},
+            "code": "\nvoid cplus_demangle(void)\n\n{\n  cplus_demangle();\n  return;\n}\n\n",
+            "called": [
+                "cplus_demangle"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021a0",
+            "calling": [
+                "FUN_00102380"
+            ],
+            "imported": false,
+            "current_name": "cplus_demangle"
+        },
+        "FUN_001024f0": {
+            "renaming": {
+                "FUN_001024f0": "demangle_cpp_symbols_001024f0",
+                "param_1": "argc",
+                "param_2": "argv",
+                "pbVar1": "ptrByte1",
+                "bVar2": "byteVar2",
+                "bVar3": "boolVar3",
+                "bVar4": "boolVar4",
+                "bVar5": "boolVar5",
+                "bVar6": "byteVar6",
+                "iVar7": "intVar7",
+                "uVar8": "uintVar8",
+                "iVar9": "loopVar",
+                "__stream": "fileStream",
+                "__n": "size",
+                "__s": "stringBuffer",
+                "sVar10": "readResult",
+                "__ptr": "outputBuffer",
+                "lVar11": "longVar11",
+                "plVar12": "argList",
+                "__src": "sourceList",
+                "plVar13": "ptrList",
+                "uVar14": "undefinedVar14",
+                "pcVar15": "charPtr15",
+                "pbVar16": "bytePtr16",
+                "lVar17": "longVar17",
+                "ppuVar18": "pointerToPointerVar18",
+                "lVar19": "longVar19",
+                "pbVar20": "bytePtr20",
+                "unaff_R13": "unaffReg13",
+                "local_110": "localVar110",
+                "local_10c": "localVar10c",
+                "local_108": "localVar108",
+                "local_100": "localVar100",
+                "local_c8": "fileStat"
+            },
+            "code": "\n\n\nundefined8 demangle_cpp_symbols_001024f0(int argc,long *argv)\n\n{\n  byte *ptrByte1;\n  byte byteVar2;\n  bool boolVar3;\n  bool boolVar4;\n  bool boolVar5;\n  byte byteVar6;\n  int intVar7;\n  uint uintVar8;\n  int loopVar;\n  FILE *fileStream;\n  size_t size;\n  byte *stringBuffer;\n  size_t readResult;\n  byte *outputBuffer;\n  long longVar11;\n  long *argList;\n  long *sourceList;\n  long *ptrList;\n  undefined8 undefinedVar14;\n  char *charPtr15;\n  byte *bytePtr16;\n  long longVar17;\n  undefined **pointerToPointerVar18;\n  long longVar19;\n  byte *bytePtr20;\n  ulong unaffReg13;\n  int localVar110;\n  int localVar10c;\n  size_t localVar108;\n  long localVar100;\n  stat fileStat;\n  \n  DAT_0010d148 = *argv;\n  xmalloc_set_program_name();\n  bfd_set_error_program_name(DAT_0010d148);\n  argList = argv;\n  if (1 < argc) {\n    localVar10c = 2000;\n    unaffReg13 = 1;\n    localVar110 = 0;\n    do {\n      loopVar = (int)unaffReg13;\n      longVar17 = (long)loopVar;\n      if (*(char *)argList[longVar17] == '@') {\n        localVar10c = localVar10c + -1;\n        if (localVar10c == 0) goto LAB_00102bdd;\n        charPtr15 = (char *)argList[longVar17] + 1;\n        intVar7 = stat(charPtr15,&fileStat);\n        if (intVar7 < 0) goto LAB_00102900;\n        if ((fileStat.st_mode & 0xf000) == 0x4000) {\n          longVar17 = *argList;\n          charPtr15 = \"%s: error: @-file refers to a directory\\n\";\n          do {\n            fprintf(_stderr,charPtr15,longVar17);\n            xexit(1);\nLAB_00102bdd:\n            longVar17 = *argList;\n            charPtr15 = \"%s: error: too many @-files encountered\\n\";\n          } while( true );\n        }\n        fileStream = fopen(charPtr15,\"r\");\n        if (fileStream == (FILE *)0x0) goto LAB_00102900;\n        intVar7 = fseek(fileStream,0,2);\n        if (((intVar7 == -1) || (size = ftell(fileStream), size == 0xffffffffffffffff)) ||\n           (intVar7 = fseek(fileStream,0,0), intVar7 == -1)) {\nLAB_001029a0:\n          fclose(fileStream);\n          if (loopVar + 1 < argc) goto LAB_0010290d;\n          break;\n        }\n        stringBuffer = (byte *)xmalloc(size + 1);\n        readResult = fread(stringBuffer,1,size,fileStream);\n        if ((size != readResult) && (intVar7 = ferror(fileStream), intVar7 != 0)) {\n          free(stringBuffer);\n          goto LAB_001029a0;\n        }\n        stringBuffer[readResult] = 0;\n        byteVar6 = *stringBuffer;\n        bytePtr16 = stringBuffer;\n        if (byteVar6 != 0) {\nLAB_00102680:\n          if (((&_sch_istable)[(ulong)byteVar6 * 2] & 0x40) != 0) goto LAB_00102670;\n          strlen((char *)stringBuffer);\n          outputBuffer = (byte *)xmalloc();\n          sourceList = (long *)0x0;\n          intVar7 = 0;\n          boolVar3 = false;\n          boolVar5 = false;\n          boolVar4 = false;\n          localVar100 = 0;\n          bytePtr16 = stringBuffer;\n          do {\n            while (((&_sch_istable)[(ulong)*bytePtr16 * 2] & 0x40) != 0) {\n              bytePtr16 = bytePtr16 + 1;\n            }\n            if ((intVar7 == 0) || (intVar7 + -1 <= (int)localVar100)) {\n              if (sourceList == (long *)0x0) {\n                intVar7 = 8;\n                sourceList = (long *)xmalloc(0x40);\n              }\n              else {\n                intVar7 = intVar7 * 2;\n                sourceList = (long *)xrealloc(sourceList,(long)intVar7 << 3);\n              }\n              ptrList = sourceList + localVar100;\n              *ptrList = 0;\n            }\n            else {\n              ptrList = sourceList + localVar100;\n            }\n            byteVar6 = *bytePtr16;\n            bytePtr20 = outputBuffer;\n            while (byteVar6 != 0) {\n              while( true ) {\n                if ((((&_sch_istable)[(ulong)byteVar6 * 2] & 0x40) != 0) &&\n                   (!(bool)(boolVar5 | boolVar4 | boolVar3))) {\n                  boolVar4 = false;\n                  boolVar3 = false;\n                  boolVar5 = false;\n                  goto LAB_0010276f;\n                }\n                if (!boolVar4) break;\n                bytePtr16 = bytePtr16 + 1;\n                *bytePtr20 = byteVar6;\n                bytePtr20 = bytePtr20 + 1;\n                boolVar4 = false;\n                byteVar6 = *bytePtr16;\n                if (byteVar6 == 0) goto LAB_0010276f;\n              }\n              if (byteVar6 == 0x5c) {\n                boolVar4 = true;\n              }\n              else if (boolVar5) {\n                if (byteVar6 == 0x27) {\n                  boolVar5 = false;\n                }\n                else {\nLAB_001028e1:\n                  *bytePtr20 = byteVar6;\n                  bytePtr20 = bytePtr20 + 1;\n                }\n              }\n              else if (boolVar3) {\n                if (byteVar6 != 0x22) goto LAB_001028e1;\n                boolVar3 = false;\n              }\n              else if (byteVar6 == 0x27) {\n                boolVar5 = true;\n              }\n              else {\n                if (byteVar6 != 0x22) goto LAB_001028e1;\n                boolVar3 = true;\n              }\n              ptrByte1 = bytePtr16 + 1;\n              bytePtr16 = bytePtr16 + 1;\n              byteVar6 = *ptrByte1;\n            }\nLAB_0010276f:\n            *bytePtr20 = 0;\n            longVar11 = xstrdup(outputBuffer);\n            *ptrList = longVar11;\n            sourceList[localVar100 + 1] = 0;\n            byteVar6 = *bytePtr16;\n            byteVar2 = (&_sch_istable)[(ulong)byteVar6 * 2];\n            while ((byteVar2 & 0x40) != 0) {\n              byteVar6 = bytePtr16[1];\n              bytePtr16 = bytePtr16 + 1;\n              byteVar2 = (&_sch_istable)[(ulong)byteVar6 * 2];\n            }\n            localVar100 = localVar100 + 1;\n          } while (byteVar6 != 0);\n          free(outputBuffer);\n          ptrList = argList;\n          if (argv == argList) goto LAB_00102adb;\n          goto LAB_00102807;\n        }\nLAB_00102abe:\n        sourceList = (long *)xmalloc(8);\n        *sourceList = 0;\n        if (argv == argList) {\nLAB_00102adb:\n          if (*argList == 0) {\n            intVar7 = 0;\n          }\n          else {\n            longVar11 = 1;\n            do {\n              intVar7 = (int)longVar11;\n              ptrList = argList + longVar11;\n              longVar11 = longVar11 + 1;\n            } while (*ptrList != 0);\n          }\n          longVar19 = 0;\n          ptrList = (long *)xmalloc((long)(intVar7 + 1) << 3);\n          longVar11 = *argList;\n          while (longVar11 != 0) {\n            undefinedVar14 = xstrdup();\n            *(undefined8 *)((long)ptrList + longVar19) = undefinedVar14;\n            longVar19 = longVar19 + 8;\n            longVar11 = *(long *)((long)argList + longVar19);\n          }\n          *(undefined8 *)((long)ptrList + longVar19) = 0;\nLAB_00102807:\n          argList = ptrList;\n          if (*sourceList == 0) goto LAB_00102ba3;\n          longVar11 = 0;\n          do {\n            longVar11 = longVar11 + 1;\n          } while (sourceList[longVar11] != 0);\n          localVar108 = longVar11 * 8;\n        }\n        else {\nLAB_00102ba3:\n          longVar11 = 0;\n          localVar108 = 0;\n        }\n        free((void *)argList[longVar17]);\n        argList = (long *)xrealloc(argList,(longVar11 + 1 + (long)argc) * 8);\n        intVar7 = argc + -1 + (int)longVar11;\n        memmove(argList + longVar17 + longVar11,argList + longVar17 + 1,(long)(argc - loopVar) << 3);\n        memcpy(argList + longVar17,sourceList,localVar108);\n        free(sourceList);\n        free(stringBuffer);\n        fclose(fileStream);\n        uintVar8 = localVar110 + 1;\n        unaffReg13 = longVar17 * 8;\n        argc = intVar7;\n        if (intVar7 <= (int)uintVar8) break;\n      }\n      else {\nLAB_00102900:\n        if (argc <= loopVar + 1) break;\nLAB_0010290d:\n        uintVar8 = loopVar + 1;\n        localVar110 = loopVar;\n      }\n      unaffReg13 = (ulong)uintVar8;\n    } while( true );\n  }\n  pointerToPointerVar18 = &PTR_s_strip_underscore_00104be0;\n  while (loopVar = getopt_long(argc,argList,\"_hinprRs:tv\",&PTR_s_strip_underscore_00104be0,0),\n        loopVar != -1) {\n    switch(loopVar) {\n    case 0x3f:\nswitchD_001029f9_caseD_3f:\n      print_usage_0010225e(_stderr,1);\n    case 0x5f:\nswitchD_001029f9_caseD_5f:\n      _DAT_0010d140 = 1;\n      break;\n    default:\n      do {\n        loopVar = getopt_long(argc,argList,\"_hinprRs:tv\",&PTR_s_strip_underscore_00104be0,0);\n        if (loopVar == -1) goto LAB_00102a6c;\n        switch(loopVar) {\n        case 0x3f:\n          goto switchD_001029f9_caseD_3f;\n        case 0x52:\n          goto switchD_001029f9_caseD_52;\n        case 0x5f:\n          goto switchD_001029f9_caseD_5f;\n        case 0x68:\n          goto switchD_001029f9_caseD_68;\n        case 0x69:\n          goto switchD_001029f9_caseD_69;\n        case 0x6e:\n          goto switchD_001029f9_caseD_6e;\n        case 0x70:\n          goto switchD_001029f9_caseD_70;\n        case 0x72:\n          goto switchD_001029f9_caseD_72;\n        case 0x73:\n          goto switchD_001029f9_caseD_73;\n        case 0x74:\n          goto switchD_001029f9_caseD_74;\n        case 0x76:\n          goto switchD_001029f9_caseD_76;\n        }\n      } while( true );\n    case 0x52:\nswitchD_001029f9_caseD_52:\n      DAT_00105108 = DAT_00105108 & 0xfffbffff;\n      break;\n    case 0x68:\nswitchD_001029f9_caseD_68:\n      print_usage_0010225e(_stdout,0);\n    case 0x74:\nswitchD_001029f9_caseD_74:\n      DAT_00105108 = DAT_00105108 | 0x10;\n      break;\n    case 0x69:\nswitchD_001029f9_caseD_69:\n      DAT_00105108 = DAT_00105108 & 0xfffffff7;\n      break;\n    case 0x6e:\nswitchD_001029f9_caseD_6e:\n      _DAT_0010d140 = 0;\n      break;\n    case 0x70:\nswitchD_001029f9_caseD_70:\n      DAT_00105108 = DAT_00105108 & 0xfffffffe;\n      break;\n    case 0x72:\nswitchD_001029f9_caseD_72:\n      DAT_00105108 = DAT_00105108 | 0x40000;\n      break;\n    case 0x73:\nswitchD_001029f9_caseD_73:\n      loopVar = cplus_demangle_name_to_style(_optarg);\n      if (loopVar == 0) {\n        fprintf(_stderr,\"%s: unknown demangling style `%s\\'\\n\",DAT_0010d148,_optarg);\n        return 1;\n      }\n      cplus_demangle_set_style(loopVar);\n      break;\n    case 0x76:\nswitchD_001029f9_caseD_76:\n      printf(\"GNU %s %s\\n\",\"c++filt\",\"(GNU Binutils for Debian) 2.40\");\n      charPtr15 = (char *)dcgettext(0,\"Copyright (C) 2023 Free Software Foundation, Inc.\\n\",5);\n      printf(charPtr15);\n      charPtr15 = (char *)dcgettext(0,\n                                  \"This program is free software; you may redistribute it under the terms of\\nthe GNU General Public License version 3 or (at your option) any later version.\\nThis program has absolutely no warranty.\\n\"\n                                  ,5);\n      printf(charPtr15);\n                    \n      exit(0);\n    }\n  }\nLAB_00102a6c:\n  if (_optind < argc) {\n    do {\n      print_symbol_or_string_00102380(argList[_optind]);\n      putc(10,_stdout);\n      _optind = _optind + 1;\n    } while (_optind < argc);\n  }\n  else {\n    if (_current_demangling_style == 0x8000) {\nLAB_00102c76:\n      pointerToPointerVar18 = (undefined **)&stdout;\n      do {\n        unaffReg13 = 0;\n        uintVar8 = getc(_stdin);\n        while( true ) {\n          argList = (long *)(unaffReg13 & 0xffffffff);\n          if (uintVar8 == 0xffffffff) goto LAB_00102d0d;\n          if ((((&_sch_istable)[(ulong)(uintVar8 & 0xff) * 2] & 0x8c) == 0) &&\n             (charPtr15 = strchr(\"_$.\",uintVar8), charPtr15 == (char *)0x0)) {\n            if ((int)argList != 0) goto LAB_00102d6f;\n            goto LAB_00102d47;\n          }\n          if (unaffReg13 == 0x7ffe) break;\n          (&DAT_00105140)[unaffReg13] = (char)uintVar8;\n          unaffReg13 = unaffReg13 + 1;\n          uintVar8 = getc(_stdin);\n        }\n        argList = (long *)0x7ffe;\nLAB_00102d6f:\n        *(undefined *)(argList + 0x20a28) = 0;\n        print_symbol_or_string_00102380(&DAT_00105140);\nLAB_00102d47:\n        putc(uintVar8,_stdout);\n        if (uintVar8 == 10) {\n          fflush(_stdout);\n        }\n      } while( true );\n    }\n    if (_current_demangling_style < 0x8001) {\n      if (((_current_demangling_style == 0x100) || (_current_demangling_style == 0x4000)) ||\n         (_current_demangling_style == 4)) goto LAB_00102c76;\n    }\n    else if ((_current_demangling_style - 0x10000U & 0xfffeffff) == 0) goto LAB_00102c76;\n    handle_internal_error_00102e20(\"Internal error: no symbol alphabet for current style\");\nLAB_00102d0d:\n    if ((int)unaffReg13 != 0) {\n      *(undefined *)(argList + 0x20a28) = 0;\n      print_symbol_or_string_00102380();\n    }\n    fflush((FILE *)*pointerToPointerVar18);\n  }\n  return 0;\nLAB_00102670:\n  byteVar6 = bytePtr16[1];\n  bytePtr16 = bytePtr16 + 1;\n  if (byteVar6 == 0) goto LAB_00102abe;\n  goto LAB_00102680;\n}\n\n",
+            "called": [
+                "xstrdup",
+                "fseek",
+                "memmove",
+                "xrealloc",
+                "cplus_demangle_set_style",
+                "cplus_demangle_name_to_style",
+                "fclose",
+                "FUN_00102e20",
+                "bfd_set_error_program_name",
+                "xmalloc",
+                "strlen",
+                "FUN_0010225e",
+                "printf",
+                "getc",
+                "fprintf",
+                "fopen",
+                "ferror",
+                "stat",
+                "dcgettext",
+                "FUN_00102380",
+                "putc",
+                "fflush",
+                "xmalloc_set_program_name",
+                "ftell",
+                "xexit",
+                "exit",
+                "fread",
+                "strchr",
+                "memcpy",
+                "free",
+                "getopt_long"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001024f0",
+            "calling": [
+                "entry"
+            ],
+            "imported": false,
+            "current_name": "demangle_cpp_symbols_001024f0"
+        },
+        "printf": {
+            "renaming": {},
+            "code": "\n\n\nint printf(char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = printf(__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "printf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020d0",
+            "calling": [
+                "FUN_001024f0",
+                "FUN_00102380"
+            ],
+            "imported": false,
+            "current_name": "printf"
+        },
+        "_INIT_0": {
+            "renaming": {},
+            "code": "\nvoid _INIT_0(void)\n\n{\n  FUNC_00102460();\n  return;\n}\n\n",
+            "called": [
+                "FUN_00102460"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001024e0",
+            "calling": [],
+            "imported": false,
+            "current_name": "_INIT_0"
+        },
+        "strlen": {
+            "renaming": {},
+            "code": "\n\n\nsize_t strlen(char *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = strlen(__s);\n  return sVar1;\n}\n\n",
+            "called": [
+                "strlen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020a0",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "strlen"
+        },
+        "cplus_demangle_set_style": {
+            "renaming": {},
+            "code": "\nvoid cplus_demangle_set_style(void)\n\n{\n  cplus_demangle_set_style();\n  return;\n}\n\n",
+            "called": [
+                "cplus_demangle_set_style"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102070",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "cplus_demangle_set_style"
+        },
+        "xmalloc": {
+            "renaming": {},
+            "code": "\nvoid xmalloc(void)\n\n{\n  xmalloc();\n  return;\n}\n\n",
+            "called": [
+                "xmalloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020f0",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "xmalloc"
+        },
+        "FUN_00102230": {
+            "renaming": {
+                "FUN_00102230": "print_formatted_data_00102230",
+                "param_1": "inputData",
+                "in_AL": "byteIndex",
+                "__ptr": "demangledString",
+                "unaff_RBX": "stringStart"
+            },
+            "code": "\n\n\nvoid printFormattedData_00102230(ulong inputData)\n\n{\n  byte byteIndex;\n  void *demangledString;\n  char *stringStart;\n  \n  if (stringStart[byteIndex] == '_') {\n    inputData = (ulong)((int)inputData + 1);\n  }\n  demangledString = (void *)cplus_demangle(stringStart + inputData,DAT_00105108);\n  if (demangledString != (void *)0x0) {\n    if (*stringStart == '.') {\n      putc(0x2e,_stdout);\n    }\n    printf(\"%s\",demangledString);\n    free(demangledString);\n    return;\n  }\n  printf(\"%s\");\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102230",
+            "calling": [
+                "FUN_00102380"
+            ],
+            "imported": false,
+            "current_name": "print_formatted_data_00102230"
+        },
+        "FUN_00102430": {
+            "renaming": {
+                "FUN_00102430": "FUNC_00102430"
+            },
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00102443) */\n/* WARNING: Removing unreachable block (ram,0x0010244f) */\n\nvoid FUNC_00102430(void)\n\n{\n  return;\n}\n\n",
+            "called": [
+                "_ITM_deregisterTMCloneTable"
+            ],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00102430",
+            "calling": [
+                "_FINI_0"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00102430"
+        },
+        "free": {
+            "renaming": {},
+            "code": "\n\n\nvoid free(void *__ptr)\n\n{\n  free(__ptr);\n  return;\n}\n\n",
+            "called": [
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102040",
+            "calling": [
+                "FUN_001024f0",
+                "FUN_00102380"
+            ],
+            "imported": false,
+            "current_name": "free"
+        },
+        "xrealloc": {
+            "renaming": {},
+            "code": "\nvoid xrealloc(void)\n\n{\n  xrealloc();\n  return;\n}\n\n",
+            "called": [
+                "xrealloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020e0",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "xrealloc"
+        },
+        "xexit": {
+            "renaming": {},
+            "code": "\nvoid xexit(void)\n\n{\n  xexit();\n  return;\n}\n\n",
+            "called": [
+                "xexit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021e0",
+            "calling": [
+                "FUN_00102e20",
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "xexit"
+        },
+        "xmalloc_set_program_name": {
+            "renaming": {},
+            "code": "\nvoid xmalloc_set_program_name(void)\n\n{\n  xmalloc_set_program_name();\n  return;\n}\n\n",
+            "called": [
+                "xmalloc_set_program_name"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102100",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "xmalloc_set_program_name"
+        },
+        "__cxa_finalize": {
+            "renaming": {},
+            "code": "\nvoid __cxa_finalize(void)\n\n{\n  __cxa_finalize();\n  return;\n}\n\n",
+            "called": [
+                "__cxa_finalize"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102220",
+            "calling": [
+                "_FINI_0"
+            ],
+            "imported": false,
+            "current_name": "__cxa_finalize"
+        },
+        "fopen": {
+            "renaming": {},
+            "code": "\n\n\nFILE * fopen(char *__filename,char *__modes)\n\n{\n  FILE *pFVar1;\n  \n  pFVar1 = fopen(__filename,__modes);\n  return pFVar1;\n}\n\n",
+            "called": [
+                "fopen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021d0",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "fopen"
+        },
+        "stat": {
+            "renaming": {},
+            "code": "\n\n\nint stat(char *__file,stat *__buf)\n\n{\n  int iVar1;\n  \n  iVar1 = stat(__file,__buf);\n  return iVar1;\n}\n\n",
+            "called": [
+                "stat"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102160",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "stat"
+        },
+        "_DT_FINI": {
+            "renaming": {},
+            "code": "\nvoid _DT_FINI(void)\n\n{\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102f00",
+            "calling": [],
+            "imported": false,
+            "current_name": "_DT_FINI"
+        },
+        "getopt_long": {
+            "renaming": {},
+            "code": "\nvoid getopt_long(void)\n\n{\n  getopt_long();\n  return;\n}\n\n",
+            "called": [
+                "getopt_long"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020b0",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "getopt_long"
+        },
+        "fclose": {
+            "renaming": {},
+            "code": "\n\n\nint fclose(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fclose(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fclose"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102080",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "fclose"
+        },
+        "xstrdup": {
+            "renaming": {},
+            "code": "\nvoid xstrdup(void)\n\n{\n  xstrdup();\n  return;\n}\n\n",
+            "called": [
+                "xstrdup"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102110",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "xstrdup"
+        },
+        "fwrite": {
+            "renaming": {},
+            "code": "\n\n\nsize_t fwrite(void *__ptr,size_t __size,size_t __n,FILE *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fwrite(__ptr,__size,__n,__s);\n  return sVar1;\n}\n\n",
+            "called": [
+                "fwrite"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102200",
+            "calling": [
+                "FUN_00102e20",
+                "FUN_0010225e"
+            ],
+            "imported": false,
+            "current_name": "fwrite"
+        },
+        "cplus_demangle_name_to_style": {
+            "renaming": {},
+            "code": "\nvoid cplus_demangle_name_to_style(void)\n\n{\n  cplus_demangle_name_to_style();\n  return;\n}\n\n",
+            "called": [
+                "cplus_demangle_name_to_style"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102030",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "cplus_demangle_name_to_style"
+        },
+        "fprintf": {
+            "renaming": {},
+            "code": "\n\n\nint fprintf(FILE *__stream,char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = fprintf(__stream,__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102140",
+            "calling": [
+                "FUN_00102e20",
+                "FUN_0010225e",
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "fprintf"
+        },
+        "fread": {
+            "renaming": {},
+            "code": "\n\n\nsize_t fread(void *__ptr,size_t __size,size_t __n,FILE *__stream)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fread(__ptr,__size,__n,__stream);\n  return sVar1;\n}\n\n",
+            "called": [
+                "fread"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102060",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "fread"
+        },
+        "ferror": {
+            "renaming": {},
+            "code": "\n\n\nint ferror(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = ferror(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "ferror"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102050",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "ferror"
+        },
+        "exit": {
+            "renaming": {},
+            "code": "\n\n\nvoid exit(int __status)\n\n{\n                    \n  exit(__status);\n}\n\n",
+            "called": [
+                "exit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021f0",
+            "calling": [
+                "FUN_0010225e",
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "exit"
+        },
+        "entry": {
+            "renaming": {},
+            "code": "\nvoid processEntry entry(undefined8 param_1,undefined8 param_2)\n\n{\n  undefined auStack_8 [8];\n  \n  __libc_start_main(demangle_cpp_symbols_001024f0,param_2,&stack0x00000008,0,0,param_1,auStack_8);\n  do {\n                    /* WARNING: Do nothing block with infinite loop */\n  } while( true );\n}\n\n",
+            "called": [
+                "__libc_start_main",
+                "FUN_001024f0"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102400",
+            "calling": [],
+            "imported": false,
+            "current_name": "entry"
+        },
+        "memcpy": {
+            "renaming": {},
+            "code": "\n\n\nvoid * memcpy(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memcpy(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "memcpy"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102170",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "memcpy"
+        },
+        "memmove": {
+            "renaming": {},
+            "code": "\n\n\nvoid * memmove(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memmove(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "memmove"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021c0",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "memmove"
+        },
+        "FUN_00102e20": {
+            "renaming": {
+                "FUN_00102e20": "handle_internal_error_00102e20",
+                "_stdout": "outputStream",
+                "_stderr": "errorStream",
+                "fwrite": "writeToErrorStream",
+                "putc": "putCharacterToErrorStream",
+                "xexit": "exitWithError"
+            },
+            "code": "\n\n\nvoid handleInternalError_00102e20(void)\n\n{\n  fflush(outputStream);\n  fprintf(errorStream,\"%s: \",DAT_0010d148);\n  fwrite(\"Internal error: no symbol alphabet for current style\",1,0x34,errorStream);\n  putc(10,errorStream);\n  xexit(1);\n  return;\n}\n\n",
+            "called": [
+                "putc",
+                "fflush",
+                "xexit",
+                "fprintf",
+                "fwrite"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102e20",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "handle_internal_error_00102e20"
+        },
+        "getc": {
+            "renaming": {},
+            "code": "\n\n\nint getc(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = getc(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "getc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102210",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "getc"
+        },
+        "FUN_00102380": {
+            "renaming": {
+                "FUN_00102380": "print_symbol_or_string_00102380",
+                "param_1": "symbolOrString",
+                "param_2": "unusedParam1",
+                "param_3": "unusedParam2",
+                "param_4": "unusedParam3",
+                "uVar1": "isSymbolOrString",
+                "__ptr": "demangledString",
+                "uVar2": "symbolOrStringOffset"
+            },
+            "code": "\n\n\nvoid printSymbolOrString_00102380(char *symbolOrString,undefined8 unusedParam1,undefined8 unusedParam2,undefined8 unusedParam3)\n\n{\n  uint isSymbolOrString;\n  void *demangledString;\n  ulong symbolOrStringOffset;\n  \n  isSymbolOrString = (uint)(*symbolOrString == '.' || *symbolOrString == '$');\n  symbolOrStringOffset = (ulong)isSymbolOrString;\n  if ((_DAT_0010d140 != 0) && (symbolOrString[isSymbolOrString] == '_')) {\n    symbolOrStringOffset = (ulong)(isSymbolOrString + 1);\n  }\n  demangledString = (void *)cplus_demangle(symbolOrString + symbolOrStringOffset,DAT_00105108);\n  if (demangledString != (void *)0x0) {\n    if (*symbolOrString == '.') {\n      putc(0x2e,_stdout);\n    }\n    printf(\"%s\",demangledString);\n    free(demangledString);\n    return;\n  }\n  printf(\"%s\",symbolOrString,unusedParam3);\n  return;\n}\n\n",
+            "called": [
+                "putc",
+                "printf",
+                "free",
+                "cplus_demangle",
+                "FUN_00102230"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102380",
+            "calling": [
+                "FUN_001024f0"
+            ],
+            "imported": false,
+            "current_name": "print_symbol_or_string_00102380"
+        },
+        "FUN_00102020": {
+            "renaming": {
+                "FUN_00102020": "execute_indirect_jump_00102020"
+            },
+            "code": "\nvoid executeIndirectJump_00102020(void)\n\n{\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)(undefined *)0x0)();\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102020",
+            "calling": [],
+            "imported": false,
+            "current_name": "execute_indirect_jump_00102020"
+        },
+        "FUN_00102460": {
+            "renaming": {
+                "FUN_00102460": "FUNC_00102460"
+            },
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00102484) */\n/* WARNING: Removing unreachable block (ram,0x00102490) */\n\nvoid FUNC_00102460(void)\n\n{\n  return;\n}\n\n",
+            "called": [
+                "_ITM_registerTMCloneTable"
+            ],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00102460",
+            "calling": [
+                "_INIT_0"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00102460"
+        }
+    },
+    "used_tokens": 6672,
+    "layers": [
+        [
+            "FUN_0010225e",
+            "FUN_00102230",
+            "FUN_00102e20",
+            "FUN_00102380",
+            "FUN_00102020"
+        ],
+        [
+            "FUN_001024f0"
+        ]
+    ],
+    "locked_functions": []
+}

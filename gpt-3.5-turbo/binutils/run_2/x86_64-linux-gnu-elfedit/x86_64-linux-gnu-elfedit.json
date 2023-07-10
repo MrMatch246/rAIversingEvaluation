@@ -1,0 +1,2154 @@
+{
+    "functions": {
+        "fflush": {
+            "renaming": {},
+            "code": "\n\n\nint fflush(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fflush(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fflush"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021c0",
+            "calling": [
+                "error",
+                "warn"
+            ],
+            "imported": false,
+            "current_name": "fflush"
+        },
+        "_FINI_0": {
+            "renaming": {},
+            "code": "\nvoid _FINI_0(void)\n\n{\n  if (DAT_00109320 != '\\0') {\n    return;\n  }\n  __cxa_finalize(PTR_LOOP_00109148);\n  FUNC_00103b30();\n  DAT_00109320 = 1;\n  return;\n}\n\n",
+            "called": [
+                "__cxa_finalize",
+                "FUN_00103b30"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103ba0",
+            "calling": [],
+            "imported": false,
+            "current_name": "_FINI_0"
+        },
+        "FUN_0010358d": {
+            "renaming": {
+                "FUN_0010358d": "process_archive_0010358d",
+                "param_1": "param1",
+                "param_2": "filePtr",
+                "param_3": "flag",
+                "lVar1": "length",
+                "pcVar2": "errorMessage",
+                "iVar3": "result",
+                "uVar4": "archiveResult",
+                "uVar5": "translation",
+                "sVar6": "readBytes",
+                "uVar7": "errorTranslation",
+                "uVar8": "fileSize",
+                "sVar9": "filenameLength",
+                "__s": "corruptionMarker",
+                "sVar10": "archiveNameLength",
+                "sVar11": "filenameLength2",
+                "__s_00": "combinedName",
+                "pcVar12": "archivePtr",
+                "pcVar13": "filePtr2",
+                "uVar14": "resultStatus",
+                "local_208": "fileStat",
+                "local_178": "memory1",
+                "local_160": "memory2",
+                "local_148": "memory3",
+                "local_d8": "memory4",
+                "local_c0": "memory5",
+                "local_a8": "memory6",
+                "local_98": "memberOffset",
+                "local_90": "currentOffset",
+                "local_88": "flag2",
+                "local_80": "headerBuffer",
+                "local_50": "archiveHeader",
+                "local_46": "headerValue"
+            },
+            "code": "\nuint processArchive_0010358d(undefined8 param1,FILE *filePtr,char flag)\n\n{\n  long length;\n  char *errorMessage;\n  int result;\n  uint archiveResult;\n  undefined8 translation;\n  size_t readBytes;\n  undefined8 errorTranslation;\n  ulong fileSize;\n  size_t filenameLength;\n  char *corruptionMarker;\n  size_t archiveNameLength;\n  size_t filenameLength2;\n  char *combinedName;\n  char *archivePtr;\n  FILE *corruptionMarkertream;\n  char *filePtr2;\n  uint resultStatus;\n  stat fileStat;\n  undefined memory1 [24];\n  undefined memory2 [16];\n  undefined8 memory3;\n  undefined memory4 [16];\n  undefined memory5 [16];\n  undefined8 memory6;\n  long memberOffset;\n  long currentOffset;\n  int flag2;\n  undefined headerBuffer [48];\n  char archiveHeader [10];\n  short headerValue;\n  \n  memory3 = 0;\n  memory4 = ZEXT816(0);\n  memory5 = ZEXT816(0);\n  memory1._0_16_ = ZEXT816(0);\n  memory2 = ZEXT816(0);\n  memory6 = 0;\n  result = fileno(filePtr);\n  result = fstat(result,&fileStat);\n  if ((result < 0) ||\n     (result = parse_archive_001025ab(memory4,param1,filePtr,fileStat.st_size,flag), result != 0)) {\nLAB_001036cc:\n    resultStatus = 1;\nLAB_00103a46:\n    if ((FILE *)memory1._8_8_ != (FILE *)0x0) {\n      fclose((FILE *)memory1._8_8_);\n    }\n    clear_memory_00102f65(memory1);\n    clear_memory_00102f65(memory4);\n  }\n  else {\n    resultStatus = 0;\n    while (result = fseek(filePtr,currentOffset,0), result == 0) {\n      readBytes = fread(headerBuffer,1,0x3c,filePtr);\n      if (readBytes != 0x3c) {\n        if (readBytes == 0) goto LAB_00103a46;\n        filePtr2 = \"%s: failed to read archive header\\n\";\nLAB_001036b8:\n        translation = dcgettext(0,filePtr2,5);\n        error(translation,param1);\n        goto LAB_001036cc;\n      }\n      if (headerValue != 0xa60) {\n        translation = memory4._0_8_;\n        errorTranslation = dcgettext(0,\"%s: did not find a valid archive header\\n\",5);\n        error(errorTranslation,translation);\n        goto LAB_001036cc;\n      }\n      currentOffset = currentOffset + 0x3c;\n      fileSize = strtoul(archiveHeader,(char **)0x0,10);\n      DAT_00109438 = (fileSize + 1) - (ulong)((fileSize & 1) == 0);\n      filePtr2 = (char *)get_archive_member_name_001029a5(memory4,memory1);\n      if (filePtr2 == (char *)0x0) {\n        filePtr2 = \"%s: bad archive file name\\n\";\n        goto LAB_001036b8;\n      }\n      filenameLength = strlen(filePtr2);\n      corruptionMarker = (char *)dcgettext(0,\"<corrupt>\",5);\n      archivePtr = (char *)memory4._0_8_;\n      archiveNameLength = strlen((char *)memory4._0_8_);\n      filenameLength2 = strlen(filePtr2);\n      readBytes = archiveNameLength + filenameLength2 + 3;\n      if (flag2 == 0) {\n        combinedName = (char *)malloc(readBytes);\n        if (combinedName == (char *)0x0) goto LAB_001037d3;\n        snprintf(combinedName,readBytes,\"%s(%s)\",archivePtr,filePtr2);\n      }\n      else if (memberOffset == 0) {\n        combinedName = (char *)malloc(readBytes);\n        if (combinedName == (char *)0x0) {\nLAB_001037d3:\n          translation = dcgettext(0,\"Out of memory\\n\",5);\n          error(translation);\n          translation = dcgettext(0,\"%s: bad archive file name\\n\",5);\n          error(translation,param1);\n          free(filePtr2);\n          goto LAB_001036cc;\n        }\n        snprintf(combinedName,readBytes,\"%s[%s]\",archivePtr,filePtr2);\n      }\n      else {\n        errorMessage = (char *)memory1._0_8_;\n        length = archiveNameLength + filenameLength2 + 5;\n        if ((char *)memory1._0_8_ == (char *)0x0) {\n          readBytes = strlen(corruptionMarker);\n          readBytes = length + readBytes;\n          combinedName = (char *)malloc(readBytes);\n          errorMessage = corruptionMarker;\n        }\n        else {\n          readBytes = strlen((char *)memory1._0_8_);\n          readBytes = length + readBytes;\n          combinedName = (char *)malloc(readBytes);\n        }\n        if (combinedName == (char *)0x0) goto LAB_001037d3;\n        snprintf(combinedName,readBytes,\"%s[%s(%s)]\",archivePtr,errorMessage,filePtr2);\n      }\n      if (flag == '\\0') {\n        free(filePtr2);\n        currentOffset = currentOffset + DAT_00109438;\n        archiveResult = parse_elf_header_00104de0(combinedName,filePtr);\n        resultStatus = resultStatus | archiveResult;\n      }\n      else {\n        if (memberOffset == 0) {\n          archivePtr = (char *)extract_filename_00102cc4(param1,filePtr2,filenameLength);\n          free(filePtr2);\n          if (archivePtr != (char *)0x0) {\n            corruptionMarkertream = fopen(archivePtr,\"r+b\");\n            if (corruptionMarkertream != (FILE *)0x0) {\n              archiveResult = parse_elf_header_00104de0(combinedName,corruptionMarkertream);\n              resultStatus = resultStatus | archiveResult;\n              fclose(corruptionMarkertream);\n              free(archivePtr);\n              goto LAB_00103a39;\n            }\n            translation = dcgettext(0,\"Input file \\'%s\\' is not readable\\n\",5);\n            error(translation,archivePtr);\n            free(archivePtr);\n          }\n          free(combinedName);\n          goto LAB_001036cc;\n        }\n        free(filePtr2);\n        result = fseek((FILE *)memory1._8_8_,memberOffset + 0x3c,0);\n        if (result != 0) {\n          translation = memory1._0_8_;\n          errorTranslation = dcgettext(0,\"%s: failed to seek to archive member\\n\",5);\n          error(errorTranslation,translation);\n          free(combinedName);\n          goto LAB_001036cc;\n        }\n        archiveResult = parse_elf_header_00104de0(combinedName,memory1._8_8_);\n        resultStatus = resultStatus | archiveResult;\n      }\nLAB_00103a39:\n      free(combinedName);\n    }\n    translation = dcgettext(0,\"%s: failed to seek to next archive header\\n\",5);\n    resultStatus = 1;\n    error(translation,param1);\n  }\n  return resultStatus;\n}\n\n",
+            "called": [
+                "FUN_00104de0",
+                "strtoul",
+                "snprintf",
+                "fopen",
+                "fstat",
+                "dcgettext",
+                "strlen",
+                "fclose",
+                "fseek",
+                "FUN_00102f65",
+                "FUN_001029a5",
+                "malloc",
+                "fread",
+                "free",
+                "error",
+                "FUN_00102cc4",
+                "FUN_001025ab",
+                "fileno"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010358d",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "process_archive_0010358d"
+        },
+        "FUN_00104d30": {
+            "renaming": {
+                "FUN_00104d30": "get_machine_type_00104d30",
+                "param_1": "machineType",
+                "iVar1": "result",
+                "iVar2": "comparisonResult",
+                "uVar3": "errorMessage"
+            },
+            "code": "\nint getMachineType_00104d30(char *machineType)\n\n{\n  int result;\n  int comparisonResult;\n  undefined8 errorMessage;\n  \n  result = strcasecmp(machineType,\"i386\");\n  if (result == 0) {\n    result = 3;\n  }\n  else {\n    result = strcasecmp(machineType,\"iamcu\");\n    if (result == 0) {\n      return 6;\n    }\n    comparisonResult = strcasecmp(machineType,\"l1om\");\n    result = 0xb4;\n    if (comparisonResult != 0) {\n      result = strcasecmp(machineType,\"k1om\");\n      if (result == 0) {\n        return 0xb5;\n      }\n      result = strcasecmp(machineType,\"x86_64\");\n      if (result == 0) {\n        result = 0x3e;\n      }\n      else {\n        result = strcasecmp(machineType,\"x86-64\");\n        if (result == 0) {\n          result = 0x3e;\n        }\n        else {\n          result = strcasecmp(machineType,\"none\");\n          if (result != 0) {\n            errorMessage = dcgettext(0,\"Unknown machine type: %s\\n\",5);\n            error(errorMessage,machineType);\n            result = -1;\n          }\n        }\n      }\n    }\n  }\n  return result;\n}\n\n",
+            "called": [
+                "FUN_0010234b",
+                "strcasecmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104d30",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "get_machine_type_00104d30"
+        },
+        "realloc": {
+            "renaming": {},
+            "code": "\n\n\nvoid * realloc(void *__ptr,size_t __size)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = realloc(__ptr,__size);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "realloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021e0",
+            "calling": [
+                "FUN_00103449"
+            ],
+            "imported": false,
+            "current_name": "realloc"
+        },
+        "fseek": {
+            "renaming": {},
+            "code": "\n\n\nint fseek(FILE *__stream,long __off,int __whence)\n\n{\n  int iVar1;\n  \n  iVar1 = fseek(__stream,__off,__whence);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fseek"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021d0",
+            "calling": [
+                "FUN_001028be",
+                "FUN_00104de0",
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_001025ab",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "fseek"
+        },
+        "FUN_001028be": {
+            "renaming": {
+                "FUN_001028be": "parse_archive_header_001028be",
+                "param_1": "archive",
+                "uVar1": "original_value",
+                "iVar2": "seek_result",
+                "uVar3": "header_size",
+                "uVar4": "error_message",
+                "sVar5": "read_result",
+                "uVar6": "filename",
+                "pcVar7": "error_format"
+            },
+            "code": "\nundefined8 parse_archive_header_001028be(undefined8 *archive)\n\n{\n  undefined original_value;\n  int seek_result;\n  ulong header_size;\n  undefined8 error_message;\n  size_t read_result;\n  undefined8 filename;\n  char *error_format;\n  \n  original_value = *(undefined *)((long)archive + 0x92);\n  *(undefined *)((long)archive + 0x92) = 0;\n  header_size = strtoul((char *)(archive + 0x11),(char **)0x0,10);\n  *(undefined *)((long)archive + 0x92) = original_value;\n  if ((long)header_size < 0) {\n    filename = *archive;\n    error_message = dcgettext(0,\"%s: invalid archive header size: %ld\\n\",5);\n    error(error_message,filename,header_size);\n  }\n  else {\n    header_size = header_size + 1 & 0xfffffffffffffffe;\n    archive[9] = header_size + 0x3c + archive[9];\n    seek_result = fseek((FILE *)archive[1],header_size,1);\n    if (seek_result == 0) {\n      read_result = fread(archive + 0xb,1,0x3c,(FILE *)archive[1]);\n      if ((read_result == 0x3c) || (read_result == 0)) {\n        return 1;\n      }\n      filename = *archive;\n      error_format = \"%s: failed to read archive header following archive index\\n\";\n    }\n    else {\n      filename = *archive;\n      error_format = \"%s: failed to skip archive symbol table\\n\";\n    }\n    error_message = dcgettext(0,error_format,5);\n    error(error_message,filename);\n  }\n  return 0;\n}\n\n",
+            "called": [
+                "strtoul",
+                "fseek",
+                "fread",
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001028be",
+            "calling": [
+                "FUN_001025ab"
+            ],
+            "imported": false,
+            "current_name": "parse_archive_header_001028be"
+        },
+        "FUN_00103b60": {
+            "renaming": {
+                "FUN_00103b60": "FUNC_00103b60"
+            },
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00103b84) */\n/* WARNING: Removing unreachable block (ram,0x00103b90) */\n\nvoid FUNC_00103b60(void)\n\n{\n  return;\n}\n\n",
+            "called": [
+                "_ITM_registerTMCloneTable"
+            ],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00103b60",
+            "calling": [
+                "_INIT_0"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00103b60"
+        },
+        "_INIT_0": {
+            "renaming": {},
+            "code": "\nvoid _INIT_0(void)\n\n{\n  FUNC_00103b60();\n  return;\n}\n\n",
+            "called": [
+                "FUN_00103b60"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103be0",
+            "calling": [],
+            "imported": false,
+            "current_name": "_INIT_0"
+        },
+        "strncmp": {
+            "renaming": {},
+            "code": "\n\n\nint strncmp(char *__s1,char *__s2,size_t __n)\n\n{\n  int iVar1;\n  \n  iVar1 = strncmp(__s1,__s2,__n);\n  return iVar1;\n}\n\n",
+            "called": [
+                "strncmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102070",
+            "calling": [
+                "FUN_001027fd"
+            ],
+            "imported": false,
+            "current_name": "strncmp"
+        },
+        "strlen": {
+            "renaming": {},
+            "code": "\n\n\nsize_t strlen(char *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = strlen(__s);\n  return sVar1;\n}\n\n",
+            "called": [
+                "strlen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020e0",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_00103160",
+                "FUN_00103006",
+                "FUN_00103186",
+                "FUN_001027fd",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "strlen"
+        },
+        "FUN_00103160": {
+            "renaming": {
+                "FUN_00103160": "copy_string_00103160",
+                "param_1": "inputString",
+                "sVar1": "stringLength",
+                "pcVar2": "copiedString",
+                "lVar3": "lengthWithNull",
+                "bVar4": "byteCounter"
+            },
+            "code": "\nvoid copyString_00103160(char *inputString)\n\n{\n  size_t stringLength;\n  char *copiedString;\n  long lengthWithNull;\n  byte byteCounter;\n  \n  byteCounter = 0;\n  stringLength = strlen(inputString);\n  lengthWithNull = stringLength + 1;\n  copiedString = (char *)extract_file_name_from_path_00105370(lengthWithNull);\n  for (; lengthWithNull != 0; lengthWithNull = lengthWithNull + -1) {\n    *copiedString = *inputString;\n    inputString = inputString + (ulong)byteCounter * -2 + 1;\n    copiedString = copiedString + (ulong)byteCounter * -2 + 1;\n  }\n  return;\n}\n\n",
+            "called": [
+                "FUN_00105370",
+                "strlen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103160",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001029a5"
+            ],
+            "imported": false,
+            "current_name": "copy_string_00103160",
+            "code_backup": "\nvoid FUN_00103160(char *param_1)\n\n{\n  size_t sVar1;\n  char *pcVar2;\n  long lVar3;\n  byte bVar4;\n  \n  bVar4 = 0;\n  sVar1 = strlen(param_1);\n  lVar3 = sVar1 + 1;\n  pcVar2 = (char *)FUNC_00105370(lVar3);\n  for (; lVar3 != 0; lVar3 = lVar3 + -1) {\n    *pcVar2 = *param_1;\n    param_1 = param_1 + (ulong)bVar4 * -2 + 1;\n    pcVar2 = pcVar2 + (ulong)bVar4 * -2 + 1;\n  }\n  return;\n}\n\n"
+        },
+        "vfprintf": {
+            "renaming": {},
+            "code": "\n\n\nint vfprintf(FILE *__s,char *__format,__gnuc_va_list __arg)\n\n{\n  int iVar1;\n  \n  iVar1 = vfprintf(__s,__format,__arg);\n  return iVar1;\n}\n\n",
+            "called": [
+                "vfprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102230",
+            "calling": [
+                "error",
+                "warn"
+            ],
+            "imported": false,
+            "current_name": "vfprintf"
+        },
+        "FUN_0010354e": {
+            "renaming": {
+                "FUN_0010354e": "write_data_0010354e",
+                "param_1": "dataBuffer",
+                "param_2": "dataValue",
+                "param_3": "dataLength",
+                "uVar1": "errorString",
+                "iVar2": "lengthIndex",
+                "uVar3": "lengthValue"
+            },
+            "code": "\nvoid writeData_0010354e(long dataBuffer,ulong dataValue,uint dataLength)\n\n{\n  undefined8 errorString;\n  int lengthIndex;\n  ulong lengthValue;\n  \n  lengthValue = (ulong)dataLength;\n  if (8 < dataLength) {\n    errorString = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n    error(errorString,dataLength);\n                    \n    abort();\n  }\n  while (lengthIndex = (int)lengthValue, lengthValue = (ulong)(lengthIndex - 1), lengthIndex != 0) {\n    *(char *)(dataBuffer + lengthValue) = (char)dataValue;\n    dataValue = dataValue >> 8;\n  }\n  return;\n}\n\n",
+            "called": [
+                "abort",
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010354e",
+            "calling": [
+                "FUN_00104de0"
+            ],
+            "imported": false,
+            "current_name": "write_data_0010354e"
+        },
+        "FUN_00103ab3": {
+            "renaming": {
+                "FUN_00103ab3": "FUNC_00103ab3"
+            },
+            "code": "\nvoid FUNC_00103ab3(void)\n\n{\n  return;\n}\n\n",
+            "called": [],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00103ab3",
+            "calling": [
+                "caseD_3",
+                "FUN_00103a90"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00103ab3"
+        },
+        "FUN_00104da0": {
+            "renaming": {
+                "FUN_00104da0": "get_type_id_00104da0",
+                "param_1": "type",
+                "iVar1": "typeID",
+                "iVar2": "cmpResult",
+                "uVar3": "errorMsg"
+            },
+            "code": "\nint getTypeID_00104da0(char *type)\n\n{\n  int typeID;\n  int cmpResult;\n  undefined8 errorMsg;\n  \n  typeID = strcasecmp(type,\"rel\");\n  if (typeID == 0) {\n    typeID = 1;\n  }\n  else {\n    cmpResult = strcasecmp(type,\"exec\");\n    typeID = 2;\n    if (cmpResult != 0) {\n      typeID = strcasecmp(type,\"dyn\");\n      if (typeID == 0) {\n        typeID = 3;\n      }\n      else {\n        typeID = strcasecmp(type,\"none\");\n        if (typeID != 0) {\n          errorMsg = dcgettext(0,\"Unknown type: %s\\n\",5);\n          error(errorMsg,type);\n          typeID = -1;\n        }\n      }\n    }\n  }\n  return typeID;\n}\n\n",
+            "called": [
+                "strcasecmp",
+                "error",
+                "dcgettext",
+                "FUN_001023ce"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104da0",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "get_type_id_00104da0"
+        },
+        "__errno_location": {
+            "renaming": {},
+            "code": "\n\n\nint * __errno_location(void)\n\n{\n  int *piVar1;\n  \n  piVar1 = __errno_location();\n  return piVar1;\n}\n\n",
+            "called": [
+                "__errno_location"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102060",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001024ec"
+            ],
+            "imported": false,
+            "current_name": "__errno_location"
+        },
+        "FUN_001032de": {
+            "renaming": {
+                "FUN_001032de": "display_usage_info_001032de",
+                "param_1": "filePtr",
+                "param_2": "errorStatus",
+                "puVar1": "ptr1",
+                "__ptr": "stringPtr",
+                "pcVar2": "messagePtr",
+                "puVar3": "ptr3"
+            },
+            "code": "\nvoid displayUsageInfo_001032de(FILE *filePtr,int errorStatus)\n\n{\n  undefined8 *ptr1;\n  void *stringPtr;\n  char *messagePtr;\n  undefined4 *ptr3;\n  \n  ptr3 = &DAT_00108ca0;\n  stringPtr = (void *)reconstruct_string_00103186(&DAT_00106137,0);\n  do {\n    ptr1 = (undefined8 *)(ptr3 + 6);\n    ptr3 = ptr3 + 4;\n    stringPtr = (void *)process_string_00103006(stringPtr,stringPtr,&DAT_001061ef,*ptr1,0);\n  } while (ptr3 != (undefined4 *)&DAT_00108d90);\n  messagePtr = (char *)dcgettext(0,\"Usage: %s <option(s)> elffile(s)\\n\",5);\n  fprintf(filePtr,messagePtr,\"elfedit\");\n  messagePtr = (char *)dcgettext(0,\" Update the ELF header of ELF files\\n\",5);\n  fprintf(filePtr,messagePtr);\n  messagePtr = (char *)dcgettext(0,\" The options are:\\n\",5);\n  fprintf(filePtr,messagePtr);\n  messagePtr = (char *)dcgettext(0,\n                             \"  --input-mach [none|i386|iamcu|l1om|k1om|x86_64]\\n                              Set input machine type\\n  --output-mach [none|i386|iamcu|l1om|k1om|x86_64]\\n                              Set output machine type\\n  --input-type [none|rel|exec|dyn]\\n                              Set input file type\\n  --output-type [none|rel|exec|dyn]\\n                              Set output file type\\n  --input-osabi [%s]\\n                              Set input OSABI\\n  --output-osabi [%s]\\n                              Set output OSABI\\n  --input-abiversion [0-255]  Set input ABIVERSION\\n  --output-abiversion [0-255] Set output ABIVERSION\\n\"\n                             ,5);\n  fprintf(filePtr,messagePtr,stringPtr,stringPtr);\n  messagePtr = (char *)dcgettext(0,\n                             \"  --enable-x86-feature [ibt|shstk|lam_u48|lam_u57]\\n                              Enable x86 feature\\n  --disable-x86-feature [ibt|shstk|lam_u48|lam_u57]\\n                              Disable x86 feature\\n\"\n                             ,5);\n  fprintf(filePtr,messagePtr);\n  messagePtr = (char *)dcgettext(0,\n                             \"  -h --help                   Display this information\\n  -v --version                Display the version number of %s\\n\"\n                             ,5);\n  fprintf(filePtr,messagePtr,\"elfedit\");\n  if (errorStatus == 0) {\n    messagePtr = (char *)dcgettext(0,\"Report bugs to %s\\n\",5);\n    fprintf(filePtr,messagePtr,\"<https://sourceware.org/bugzilla/>\");\n  }\n  free(stringPtr);\n                    \n  exit(errorStatus);\n}\n\n",
+            "called": [
+                "FUN_00103006",
+                "free",
+                "exit",
+                "FUN_00103186",
+                "dcgettext",
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001032de",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "display_usage_info_001032de"
+        },
+        "strcasecmp": {
+            "renaming": {},
+            "code": "\n\n\nint strcasecmp(char *__s1,char *__s2)\n\n{\n  int iVar1;\n  \n  iVar1 = strcasecmp(__s1,__s2);\n  return iVar1;\n}\n\n",
+            "called": [
+                "strcasecmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102040",
+            "calling": [
+                "FUN_0010234b",
+                "FUN_001022c0",
+                "FUN_00104da0",
+                "FUN_00104c60",
+                "FUN_00104ce0",
+                "FUN_00104d30"
+            ],
+            "imported": false,
+            "current_name": "strcasecmp"
+        },
+        "FUN_00104de0": {
+            "renaming": {
+                "FUN_00104de0": "parse_elf_header_00104de0",
+                "param_1": "errorMessage",
+                "param_2": "file",
+                "__off": "filePosition",
+                "sVar2": "readResult",
+                "uVar3": "returnValue",
+                "pcVar4": "errorFormat",
+                "uVar5": "inputClass",
+                "uVar6": "unmatchedValue",
+                "iVar1": "seekResult"
+            },
+            "code": "\n\n\nundefined8 parseELFHeader_00104de0(undefined8 errorMessage,FILE *file)\n\n{\n  int seekResult;\n  long filePosition;\n  size_t readResult;\n  undefined8 returnValue;\n  char *errorFormat;\n  uint inputClass;\n  uint unmatchedValue;\n  \n  filePosition = ftell(file);\n  readResult = fread(&DAT_001093e0,0x10,1,file);\n  if ((readResult == 1) && (_DAT_001093e0 == 0x464c457f)) {\n    DAT_001093b8 = write_data_0010354e;\n    if (DAT_001093e5 != '\\x02') {\n      DAT_001093b8 = write_data_00103ad0;\n    }\n    DAT_001093c0 = extract_data_0010347f;\n    if (DAT_001093e5 != '\\x02') {\n      DAT_001093c0 = extract_data_00103a90;\n    }\n    if ((char)_DAT_001093e4 == '\\x01') {\n      readResult = fread(&DAT_00109390,0x24,1,file);\n      if (readResult != 1) goto code_r0x00102558;\n      DAT_00109418 = (*DAT_001093c0)(&DAT_00109390,2);\n      DAT_0010941a = (*DAT_001093c0)(&DAT_00109392,2);\n      _DAT_00109408 = (*DAT_001093c0)(&DAT_00109394,4);\n      _DAT_001093f0 = (*DAT_001093c0)(&DAT_00109398,4);\n      DAT_001093f8 = (*DAT_001093c0)(&DAT_0010939c,4);\n      _DAT_00109400 = (*DAT_001093c0)(&DAT_001093a0,4);\n      _DAT_00109410 = (*DAT_001093c0)(&DAT_001093a4,4);\n      _DAT_0010941c = (*DAT_001093c0)(&DAT_001093a8,2);\n      _DAT_00109420 = (*DAT_001093c0)(&DAT_001093aa,2);\n      DAT_00109424 = (*DAT_001093c0)(&DAT_001093ac,2);\n      _DAT_00109428 = (*DAT_001093c0)(&DAT_001093ae,2);\n      _DAT_0010942c = (*DAT_001093c0)(&DAT_001093b0,2);\n      _DAT_00109430 = (*DAT_001093c0)(&DAT_001093b2,2);\n      _DAT_00109380 = _DAT_001093e0;\n      uRam0000000000109384 = _DAT_001093e4;\n      _DAT_00109388 = _DAT_001093e8;\n      uRam000000000010938c = uRam00000000001093ec;\n    }\n    else {\n      if ((char)_DAT_001093e4 != '\\x02') {\n        returnValue = handle_read_elf_header_error_00102558();\n        return returnValue;\n      }\n      readResult = fread(&DAT_00109350,0x30,1,file);\n      if (readResult != 1) goto code_r0x00102558;\n      DAT_00109418 = (*DAT_001093c0)(&DAT_00109350,2);\n      DAT_0010941a = (*DAT_001093c0)(&DAT_00109352,2);\n      _DAT_00109408 = (*DAT_001093c0)(&DAT_00109354,4);\n      _DAT_001093f0 = (*DAT_001093c0)(&DAT_00109358,8);\n      DAT_001093f8 = (*DAT_001093c0)(&DAT_00109360,8);\n      _DAT_00109400 = (*DAT_001093c0)(&DAT_00109368,8);\n      _DAT_00109410 = (*DAT_001093c0)(&DAT_00109370,4);\n      _DAT_0010941c = (*DAT_001093c0)(&DAT_00109374,2);\n      _DAT_00109420 = (*DAT_001093c0)(&DAT_00109376,2);\n      DAT_00109424 = (*DAT_001093c0)(&DAT_00109378,2);\n      _DAT_00109428 = (*DAT_001093c0)(&DAT_0010937a,2);\n      _DAT_0010942c = (*DAT_001093c0)(&DAT_0010937c,2);\n      _DAT_00109430 = (*DAT_001093c0)(&DAT_0010937e,2);\n      _DAT_00109340 = _DAT_001093e0;\n      uRam0000000000109344 = _DAT_001093e4;\n      _DAT_00109348 = _DAT_001093e8;\n      uRam000000000010934c = uRam00000000001093ec;\n    }\n    seekResult = fseek(file,filePosition,0);\n    if (seekResult != 0) {\n      returnValue = dcgettext(0,\"%s: Failed to seek to ELF header\\n\",5);\n      error(returnValue,errorMessage);\n    }\n    inputClass = _DAT_001093e4 >> 0x10 & 0xff;\n    if ((char)inputClass == '\\x01') {\n      inputClass = (uint)DAT_0010941a;\n      if (inputClass == DAT_0010916c) {\n        return 0;\n      }\n      unmatchedValue = _DAT_001093e4 & 0xff;\n      if (DAT_00109170 == 0xffffffff) {\n        if (DAT_0010941a == 6) {\n          DAT_00109170 = 1;\n        }\n        else if (DAT_0010941a < 7) {\n          DAT_00109170 = (DAT_0010941a != 3) + 1 + (uint)(DAT_0010941a != 3);\n        }\n        else {\n          DAT_00109170 = 3 - ((ushort)(DAT_0010941a - 0xb4) < 2);\n        }\n      }\n      if ((unmatchedValue == DAT_00109170) || (DAT_00109170 == 3)) {\n        if ((unmatchedValue == DAT_00109168) || (DAT_00109168 == 3)) {\n          if ((inputClass == DAT_00109174) || (DAT_00109174 == 0xffffffff)) {\n            inputClass = (uint)DAT_00109418;\n            if ((DAT_00109164 == 0xffffffff) || (inputClass == DAT_00109164)) {\n              inputClass = _DAT_001093e4 >> 0x18;\n              if ((DAT_0010915c == 0xffffffff) || (inputClass == DAT_0010915c)) {\n                inputClass = _DAT_001093e8 & 0xff;\n                if ((inputClass == DAT_00109154) || (DAT_00109154 == 0xffffffff)) {\n                  if ((char)unmatchedValue == '\\x01') {\n                    if (DAT_0010916c != 0xffffffff) {\n                      (*DAT_001093b8)(&DAT_00109392,(long)(int)DAT_0010916c,2);\n                    }\n                    if (DAT_00109160 != -1) {\n                      (*DAT_001093b8)(&DAT_00109390,(long)DAT_00109160,2);\n                    }\n                    if (DAT_00109158 != -1) {\n                      uRam0000000000109384 =\n                           CONCAT13((char)DAT_00109158,(undefined3)uRam0000000000109384);\n                    }\n                    if (DAT_00109150 != -1) {\n                      _DAT_00109388 = CONCAT31(DAT_00109388_1,(char)DAT_00109150);\n                    }\n                    readResult = fwrite(&DAT_00109380,0x34,1,file);\n                    if (readResult == 1) {\n                      return 0;\n                    }\n                    returnValue = update_elf_header_failed_001024ec();\n                    return returnValue;\n                  }\n                  if ((char)unmatchedValue != '\\x02') {\n                    \n                    abort();\n                  }\n                  if (DAT_0010916c != 0xffffffff) {\n                    (*DAT_001093b8)(&DAT_00109352,(long)(int)DAT_0010916c,2);\n                  }\n                  if (DAT_00109160 != -1) {\n                    (*DAT_001093b8)(&DAT_00109350,(long)DAT_00109160,2);\n                  }\n                  if (DAT_00109158 != -1) {\n                    uRam0000000000109344 =\n                         CONCAT13((char)DAT_00109158,(undefined3)uRam0000000000109344);\n                  }\n                  if (DAT_00109150 != -1) {\n                    _DAT_00109348 = CONCAT31(DAT_00109348_1,(char)DAT_00109150);\n                  }\n                  readResult = fwrite(&DAT_00109340,0x40,1,file);\n                  if (readResult == 1) {\n                    return 0;\n                  }\n                  returnValue = update_elf_header_failed_001024ec();\n                  return returnValue;\n                }\n                errorFormat = \"%s: Unmatched EI_ABIVERSION: %d is not %d\\n\";\n                unmatchedValue = DAT_00109154;\n              }\n              else {\n                errorFormat = \"%s: Unmatched EI_OSABI: %d is not %d\\n\";\n                unmatchedValue = DAT_0010915c;\n              }\n            }\n            else {\n              errorFormat = \"%s: Unmatched e_type: %d is not %d\\n\";\n              unmatchedValue = DAT_00109164;\n            }\n          }\n          else {\n            errorFormat = \"%s: Unmatched e_machine: %d is not %d\\n\";\n            unmatchedValue = DAT_00109174;\n          }\n          returnValue = dcgettext(0,errorFormat,5);\n          error(returnValue,errorMessage,inputClass,unmatchedValue);\n          return 1;\n        }\n        errorFormat = \"%s: Unmatched output EI_CLASS: %d is not %d\\n\";\n        inputClass = DAT_00109168;\n      }\n      else {\n        errorFormat = \"%s: Unmatched input EI_CLASS: %d is not %d\\n\";\n        inputClass = DAT_00109170;\n      }\n      returnValue = dcgettext(0,errorFormat,5);\n      error(returnValue,errorMessage,unmatchedValue,inputClass);\n    }\n    else {\n      returnValue = dcgettext(0,\"%s: Unsupported EI_VERSION: %d is not %d\\n\",5);\n      error(returnValue,errorMessage,inputClass,1);\n    }\n  }\n  else {\ncode_r0x00102558:\n    returnValue = dcgettext(0,\"%s: Failed to read ELF header\\n\",5);\n    error(returnValue,errorMessage);\n  }\n  return 1;\n}\n\n",
+            "called": [
+                "ftell",
+                "FUN_0010347f",
+                "fwrite",
+                "dcgettext",
+                "FUN_00102558",
+                "FUN_00103ad0",
+                "fseek",
+                "abort",
+                "FUN_001024ec",
+                "fread",
+                "FUN_0010354e",
+                "FUN_00103a90",
+                "error",
+                "FUN_00102434"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104de0",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "parse_elf_header_00104de0"
+        },
+        "strcmp": {
+            "renaming": {},
+            "code": "\n\n\nint strcmp(char *__s1,char *__s2)\n\n{\n  int iVar1;\n  \n  iVar1 = strcmp(__s1,__s2);\n  return iVar1;\n}\n\n",
+            "called": [
+                "strcmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102150",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001029a5"
+            ],
+            "imported": false,
+            "current_name": "strcmp"
+        },
+        "__cxa_finalize": {
+            "renaming": {},
+            "code": "\nvoid __cxa_finalize(void)\n\n{\n  __cxa_finalize();\n  return;\n}\n\n",
+            "called": [
+                "__cxa_finalize"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001022b0",
+            "calling": [
+                "_FINI_0"
+            ],
+            "imported": false,
+            "current_name": "__cxa_finalize"
+        },
+        "FUN_00102558": {
+            "renaming": {
+                "FUN_00102558": "handle_read_elf_header_error_00102558",
+                "uVar1": "errorMessage"
+            },
+            "code": "\nundefined8 handleReadElfHeaderError_00102558(void)\n\n{\n  undefined8 errorMessage;\n  \n  errorMessage = dcgettext(0,\"%s: Failed to read ELF header\\n\",5);\n  error(errorMessage);\n  return 1;\n}\n\n",
+            "called": [
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102558",
+            "calling": [
+                "FUN_00104de0"
+            ],
+            "imported": false,
+            "current_name": "handle_read_elf_header_error_00102558"
+        },
+        "FUN_00103449": {
+            "renaming": {
+                "FUN_00103449": "allocate_or_resize_memory_00103449",
+                "param_1": "memory_block",
+                "param_2": "size",
+                "__size": "allocated_size",
+                "pvVar1": "new_memory_block"
+            },
+            "code": "\nvoid allocate_or_resize_memory_00103449(void *memory_block,size_t size)\n\n{\n  size_t allocated_size;\n  void *new_memory_block;\n  \n  allocated_size = 1;\n  if (size != 0) {\n    allocated_size = size;\n  }\n  if (memory_block == (void *)0x0) {\n    new_memory_block = malloc(allocated_size);\n  }\n  else {\n    new_memory_block = realloc(memory_block,allocated_size);\n  }\n  if (new_memory_block == (void *)0x0) {\n    allocate_memory_00102fc7(allocated_size);\n  }\n  return;\n}\n\n",
+            "called": [
+                "malloc",
+                "realloc",
+                "FUN_00102fc7"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103449",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "allocate_or_resize_memory_00103449"
+        },
+        "FUN_00102fc7": {
+            "renaming": {
+                "FUN_00102fc7": "allocate_memory_00102fc7",
+                "param_1": "inputSize",
+                "cVar1": "exitFlag",
+                "pvVar2": "currentMemory",
+                "sVar3": "stringLength",
+                "uVar4": "tempVar",
+                "pcVar5": "allocatedMemory",
+                "ppcVar6": "currentString",
+                "extraout_RDX": "extraOutputRDX",
+                "lVar7": "totalLength",
+                "__s": "formatString",
+                "__ptr": "filePointer",
+                "pcVar8": "outputString",
+                "bVar9": "byteFlag",
+                "extraout_XMM0_Qa": "extraOutputXMM0_Qa",
+                "uStack_f8": "stackVarF8",
+                "ppcVar10": "stackVar10",
+                "ppcVar11": "stackVar11",
+                "apcStack_e0": "stackArray",
+                "uStack_c0": "stackVarC0",
+                "lStack_b8": "stackVarB8",
+                "uStack_b0": "stackVarB0",
+                "uStack_28": "stackVar28"
+            },
+            "code": "\n\n\nchar * allocateMemory_00102fc7(undefined8 inputSize)\n\n{\n  char exitFlag;\n  void *currentMemory;\n  size_t stringLength;\n  ulong tempVar;\n  char *allocatedMemory;\n  char **currentString;\n  undefined8 extraOutputRDX;\n  long totalLength;\n  char *formatString;\n  FILE *filePointer;\n  char *outputString;\n  byte byteFlag;\n  undefined8 extraOutputXMM0_Qa;\n  uint stackVarF8;\n  char **stackVar10;\n  char **stackVar11;\n  char *stackArray [4];\n  undefined8 stackVarC0;\n  long stackVarB8;\n  undefined8 stackVarB0;\n  undefined8 stackVar28;\n  \n  byteFlag = 0;\n  currentMemory = sbrk(0);\n  stackVarB8 = (long)currentMemory + -0x10a0e0;\n  stackArray[3] = \"\";\n  formatString = \"\\n%s%sout of memory allocating %lu bytes after a total of %lu bytes\\n\";\n  filePointer = _stderr;\n  stackVarC0 = inputSize;\n  fprintf(_stderr,\"\\n%s%sout of memory allocating %lu bytes after a total of %lu bytes\\n\");\n  exitFlag = exit_program_00102fbc();\n  if (exitFlag != '\\0') {\n    stackVarB0 = extraOutputXMM0_Qa;\n  }\n  totalLength = 0;\n  stackVarF8 = 0x10;\n  outputString = formatString;\n  stackVar10 = (char **)register0x00000020;\n  stackArray[2] = (char *)extraOutputRDX;\n  stackVar28 = inputSize;\n  do {\n    stringLength = strlen(outputString);\n    totalLength = totalLength + stringLength;\n    if (stackVarF8 < 0x30) {\n      tempVar = (ulong)stackVarF8;\n      stackVarF8 = stackVarF8 + 8;\n      currentString = (char **)((long)stackArray + tempVar);\n      stackVar11 = stackVar10;\n    }\n    else {\n      stackVar11 = stackVar10 + 1;\n      currentString = stackVar10;\n    }\n    outputString = *currentString;\n    stackVar10 = stackVar11;\n  } while (outputString != (char *)0x0);\n  allocatedMemory = (char *)extract_file_name_from_path_00105370(totalLength + 1);\n  stackVarF8 = 0x10;\n  outputString = allocatedMemory;\n  stackVar10 = (char **)register0x00000020;\n  do {\n    stringLength = strlen(formatString);\n    for (; stringLength != 0; stringLength = stringLength - 1) {\n      *outputString = *formatString;\n      formatString = formatString + (ulong)byteFlag * -2 + 1;\n      outputString = outputString + (ulong)byteFlag * -2 + 1;\n    }\n    if (stackVarF8 < 0x30) {\n      tempVar = (ulong)stackVarF8;\n      stackVarF8 = stackVarF8 + 8;\n      currentString = (char **)((long)stackArray + tempVar);\n      stackVar11 = stackVar10;\n    }\n    else {\n      stackVar11 = stackVar10 + 1;\n      currentString = stackVar10;\n    }\n    formatString = *currentString;\n    stackVar10 = stackVar11;\n  } while (formatString != (char *)0x0);\n  *outputString = '\\0';\n  free(filePointer);\n  return allocatedMemory;\n}\n\n",
+            "called": [
+                "sbrk",
+                "fprintf",
+                "FUN_00102fbc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102fc7",
+            "calling": [
+                "FUN_00103449",
+                "FUN_00102cbc"
+            ],
+            "imported": false,
+            "current_name": "allocate_memory_00102fc7",
+            "code_backup": "\n\n\nchar * FUN_00102fc7(undefined8 param_1)\n\n{\n  char cVar1;\n  void *pvVar2;\n  size_t sVar3;\n  ulong uVar4;\n  char *pcVar5;\n  char **ppcVar6;\n  undefined8 extraout_RDX;\n  long lVar7;\n  char *__s;\n  FILE *__ptr;\n  char *pcVar8;\n  byte bVar9;\n  undefined8 extraout_XMM0_Qa;\n  uint uStack_f8;\n  char **ppcVar10;\n  char **ppcVar11;\n  char *apcStack_e0 [4];\n  undefined8 uStack_c0;\n  long lStack_b8;\n  undefined8 uStack_b0;\n  undefined8 uStack_28;\n  \n  bVar9 = 0;\n  pvVar2 = sbrk(0);\n  lStack_b8 = (long)pvVar2 + -0x10a0e0;\n  apcStack_e0[3] = \"\";\n  __s = \"\\n%s%sout of memory allocating %lu bytes after a total of %lu bytes\\n\";\n  __ptr = _stderr;\n  uStack_c0 = param_1;\n  fprintf(_stderr,\"\\n%s%sout of memory allocating %lu bytes after a total of %lu bytes\\n\");\n  cVar1 = exit_program_00102fbc();\n  if (cVar1 != '\\0') {\n    uStack_b0 = extraout_XMM0_Qa;\n  }\n  lVar7 = 0;\n  uStack_f8 = 0x10;\n  pcVar8 = __s;\n  ppcVar10 = (char **)register0x00000020;\n  apcStack_e0[2] = (char *)extraout_RDX;\n  uStack_28 = param_1;\n  do {\n    sVar3 = strlen(pcVar8);\n    lVar7 = lVar7 + sVar3;\n    if (uStack_f8 < 0x30) {\n      uVar4 = (ulong)uStack_f8;\n      uStack_f8 = uStack_f8 + 8;\n      ppcVar6 = (char **)((long)apcStack_e0 + uVar4);\n      ppcVar11 = ppcVar10;\n    }\n    else {\n      ppcVar11 = ppcVar10 + 1;\n      ppcVar6 = ppcVar10;\n    }\n    pcVar8 = *ppcVar6;\n    ppcVar10 = ppcVar11;\n  } while (pcVar8 != (char *)0x0);\n  pcVar5 = (char *)FUNC_00105370(lVar7 + 1);\n  uStack_f8 = 0x10;\n  pcVar8 = pcVar5;\n  ppcVar10 = (char **)register0x00000020;\n  do {\n    sVar3 = strlen(__s);\n    for (; sVar3 != 0; sVar3 = sVar3 - 1) {\n      *pcVar8 = *__s;\n      __s = __s + (ulong)bVar9 * -2 + 1;\n      pcVar8 = pcVar8 + (ulong)bVar9 * -2 + 1;\n    }\n    if (uStack_f8 < 0x30) {\n      uVar4 = (ulong)uStack_f8;\n      uStack_f8 = uStack_f8 + 8;\n      ppcVar6 = (char **)((long)apcStack_e0 + uVar4);\n      ppcVar11 = ppcVar10;\n    }\n    else {\n      ppcVar11 = ppcVar10 + 1;\n      ppcVar6 = ppcVar10;\n    }\n    __s = *ppcVar6;\n    ppcVar10 = ppcVar11;\n  } while (__s != (char *)0x0);\n  *pcVar8 = '\\0';\n  free(__ptr);\n  return pcVar5;\n}\n\n"
+        },
+        "FUN_00103a90": {
+            "renaming": {
+                "FUN_00103a90": "extract_data_00103a90",
+                "param_1": "data",
+                "param_2": "length",
+                "uVar1": "result",
+                "uVar2": "errorMessage"
+            },
+            "code": "\nulong extractData_00103a90(ulong *data,ulong length)\n\n{\n  ulong result;\n  undefined8 errorMessage;\n  \n  switch(length & 0xffffffff) {\n  default:\n    errorMessage = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n    error(errorMessage,length & 0xffffffff);\n                    \n    abort();\n  case 1:\n    return (ulong)*(byte *)data;\n  case 2:\n    return (ulong)*(ushort *)data;\n  case 3:\n    result = FUNC_00103ab3(data,length,\n                         (ulong)*(byte *)((long)data + 1) << 8 |\n                         (ulong)*(byte *)((long)data + 2) << 0x10);\n    return result;\n  case 4:\n    return (ulong)*(uint *)data;\n  case 5:\n    result = FUNC_00103ab3(data,length,(ulong)*(byte *)((long)data + 4) << 0x20);\n    return result;\n  case 6:\n    result = FUNC_00103ab3(data,length,\n                         (ulong)*(byte *)((long)data + 4) << 0x20 |\n                         (ulong)*(byte *)((long)data + 5) << 0x28);\n    return result;\n  case 7:\n    result = FUNC_00103ab3(data,length,\n                         (ulong)*(byte *)((long)data + 4) << 0x20 |\n                         (ulong)*(byte *)((long)data + 5) << 0x28 | (ulong)*(uint *)data);\n    return result;\n  case 8:\n    return *data;\n  }\n}\n\n",
+            "called": [
+                "FUN_00103ab3",
+                "caseD_0",
+                "caseD_3"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103a90",
+            "calling": [
+                "FUN_00104de0"
+            ],
+            "imported": false,
+            "current_name": "extract_data_00103a90"
+        },
+        "_DT_FINI": {
+            "renaming": {},
+            "code": "\nvoid _DT_FINI(void)\n\n{\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00105394",
+            "calling": [],
+            "imported": false,
+            "current_name": "_DT_FINI"
+        },
+        "FUN_001025ab": {
+            "renaming": {
+                "FUN_001025ab": "parse_archive_001025ab",
+                "param_1": "output",
+                "param_2": "filename",
+                "param_3": "file",
+                "param_4": "maxSize",
+                "__ptr": "ptr",
+                "uVar1": "var1",
+                "cVar2": "var2",
+                "iVar3": "var3",
+                "pcVar4": "var4",
+                "sVar5": "var5",
+                "uVar6": "var6",
+                "pcVar7": "var7"
+            },
+            "code": "\nundefined4 parseArchive_001025ab(char **output,char *filename,FILE *file,long maxSize,undefined4 param_5)\n\n{\n  char **ptr;\n  undefined var1;\n  char var2;\n  int var3;\n  char *var4;\n  size_t var5;\n  undefined8 var6;\n  char *var7;\n  \n  var4 = strdup(filename);\n  output[2] = (char *)0x0;\n  *(undefined4 *)((long)output + 0x54) = 0;\n  *output = var4;\n  output[1] = (char *)file;\n  output[5] = (char *)0x0;\n  output[6] = (char *)0x0;\n  *(undefined4 *)(output + 10) = param_5;\n  output[9] = (char *)0x8;\n  *(undefined (*) [16])(output + 3) = ZEXT816(0);\n  *(undefined (*) [16])(output + 7) = ZEXT816(0);\n  var3 = fseek(file,8,0);\n  var4 = \"%s: failed to seek to first archive header\\n\";\n  if (var3 != 0) goto LAB_00102658;\n  ptr = output + 0xb;\n  var5 = fread(ptr,1,0x3c,file);\n  if (var5 != 0x3c) {\n    if (var5 == 0) {\n      return 0;\n    }\n    var4 = \"%s: failed to read archive header\\n\";\n    goto LAB_00102658;\n  }\n  var2 = compare_strings_001027fd(ptr,\"/               \");\n  if (var2 == '\\0') {\n    var2 = compare_strings_001027fd(ptr,\"/SYM64/         \");\n    if (var2 != '\\0') {\n      *(undefined4 *)((long)output + 0x54) = 1;\n      var3 = parse_archive_header_001028be(output,8);\n      goto joined_r0x001026dd;\n    }\n  }\n  else {\n    var3 = parse_archive_header_001028be(output,4);\njoined_r0x001026dd:\n    if (var3 == 0) {\n      return 1;\n    }\n  }\n  var2 = compare_strings_001027fd(ptr);\n  if (var2 == '\\0') {\n    return 0;\n  }\n  var1 = *(undefined *)((long)output + 0x92);\n  *(undefined *)((long)output + 0x92) = 0;\n  var4 = (char *)strtoul((char *)(output + 0x11),(char **)0x0,10);\n  var7 = \"%s: long name table is too small, (size = %ld)\\n\";\n  output[7] = var4;\n  *(undefined *)((long)output + 0x92) = var1;\n  if ((char *)0x7 < var4) {\n    if (((long)var4 <= maxSize) && (-1 < (long)var4)) {\n      output[9] = var4 + 0x3c + (long)output[9];\n      var7 = (char *)malloc((size_t)(var4 + 1));\n      output[6] = var7;\n      if (var7 == (char *)0x0) {\n        var6 = dcgettext(0,\"Out of memory reading long symbol names in archive\\n\",5);\n        error(var6);\n        return 1;\n      }\n      var5 = fread(var7,(size_t)var4,1,file);\n      if (var5 == 1) {\n        if ((*(byte *)(output + 7) & 1) != 0) {\n          getc(file);\n        }\n        output[6][(long)output[7]] = '\\0';\n        return 0;\n      }\n      free(output[6]);\n      var4 = \"%s: failed to read long symbol name string table\\n\";\n      output[6] = (char *)0x0;\nLAB_00102658:\n      var6 = dcgettext(0,var4,5);\n      error(var6,filename);\n      return 1;\n    }\n    var7 = \"%s: long name table is too big, (size = %#lx)\\n\";\n  }\n  var6 = dcgettext(0,var7,5);\n  error(var6,filename,var4);\n  return 1;\n}\n\n",
+            "called": [
+                "fseek",
+                "strtoul",
+                "FUN_001028be",
+                "strdup",
+                "malloc",
+                "fread",
+                "free",
+                "error",
+                "dcgettext",
+                "FUN_001027fd",
+                "getc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001025ab",
+            "calling": [
+                "FUN_001029a5",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "parse_archive_001025ab"
+        },
+        "FUN_00102434": {
+            "renaming": {
+                "FUN_00102434": "update_elf_header_00102434",
+                "unaff_RBX": "file",
+                "uVar1": "errorMessage",
+                "sVar2": "writeResult",
+                "pcVar3": "errorFormat",
+                "dcgettext": "getLocalizedMessage",
+                "error": "printErrorMessage"
+            },
+            "code": "\nundefined8 updateELFHeader_00102434(void)\n\n{\n  undefined8 errorMessage;\n  size_t writeResult;\n  FILE *file;\n  char *errorFormat;\n  \n  errorMessage = dcgettext(0,\"%s: Failed to seek to ELF header\\n\",5);\n  printErrorMessage(errorMessage);\n  if (DAT_001093e6 == '\\x01') {\n    if (DAT_0010941a == DAT_0010916c) {\n      return 0;\n    }\n    if (DAT_00109170 == 0xffffffff) {\n      if (DAT_0010941a == 6) {\n        DAT_00109170 = 1;\n      }\n      else if (DAT_0010941a < 7) {\n        DAT_00109170 = (DAT_0010941a != 3) + 1 + (uint)(DAT_0010941a != 3);\n      }\n      else {\n        DAT_00109170 = 3 - ((ushort)(DAT_0010941a - 0xb4) < 2);\n      }\n    }\n    if ((DAT_001093e4 == DAT_00109170) || (DAT_00109170 == 3)) {\n      if ((DAT_001093e4 == DAT_00109168) || (DAT_00109168 == 3)) {\n        if ((DAT_0010941a == DAT_00109174) || (DAT_00109174 == 0xffffffff)) {\n          if ((DAT_00109164 == 0xffffffff) || (DAT_00109418 == DAT_00109164)) {\n            if ((DAT_0010915c == 0xffffffff) || (DAT_001093e7 == DAT_0010915c)) {\n              if ((DAT_001093e8 == DAT_00109154) || (DAT_00109154 == 0xffffffff)) {\n                if (DAT_001093e4 == 1) {\n                  if (DAT_0010916c != 0xffffffff) {\n                    (*DAT_001093b8)(&DAT_00109392,(long)(int)DAT_0010916c,2);\n                  }\n                  if (DAT_00109160 != -1) {\n                    (*DAT_001093b8)(&DAT_00109390,(long)DAT_00109160,2);\n                  }\n                  if (DAT_00109158 != -1) {\n                    DAT_00109387 = (undefined)DAT_00109158;\n                  }\n                  if (DAT_00109150 != -1) {\n                    DAT_00109388 = (undefined)DAT_00109150;\n                  }\n                  writeResult = fwrite(&DAT_00109380,0x34,1,file);\n                  if (writeResult == 1) {\n                    return 0;\n                  }\n                  errorMessage = update_elf_header_failed_001024ec();\n                  return errorMessage;\n                }\n                if (DAT_001093e4 != 2) {\n                    \n                  abort();\n                }\n                if (DAT_0010916c != 0xffffffff) {\n                  (*DAT_001093b8)(&DAT_00109352,(long)(int)DAT_0010916c,2);\n                }\n                if (DAT_00109160 != -1) {\n                  (*DAT_001093b8)(&DAT_00109350,(long)DAT_00109160,2);\n                }\n                if (DAT_00109158 != -1) {\n                  DAT_00109347 = (undefined)DAT_00109158;\n                }\n                if (DAT_00109150 != -1) {\n                  DAT_00109348 = (undefined)DAT_00109150;\n                }\n                writeResult = fwrite(&DAT_00109340,0x40,1,file);\n                if (writeResult == 1) {\n                  return 0;\n                }\n                errorMessage = update_elf_header_failed_001024ec();\n                return errorMessage;\n              }\n              errorFormat = \"%s: Unmatched EI_ABIVERSION: %d is not %d\\n\";\n            }\n            else {\n              errorFormat = \"%s: Unmatched EI_OSABI: %d is not %d\\n\";\n            }\n          }\n          else {\n            errorFormat = \"%s: Unmatched e_type: %d is not %d\\n\";\n          }\n        }\n        else {\n          errorFormat = \"%s: Unmatched e_machine: %d is not %d\\n\";\n        }\n        errorMessage = dcgettext(0,errorFormat,5);\n        printErrorMessage(errorMessage);\n        return 1;\n      }\n      errorFormat = \"%s: Unmatched output EI_CLASS: %d is not %d\\n\";\n    }\n    else {\n      errorFormat = \"%s: Unmatched input EI_CLASS: %d is not %d\\n\";\n    }\n    errorMessage = dcgettext(0,errorFormat,5);\n    printErrorMessage(errorMessage);\n  }\n  else {\n    errorMessage = dcgettext(0,\"%s: Unsupported EI_VERSION: %d is not %d\\n\",5);\n    printErrorMessage(errorMessage);\n  }\n  return 1;\n}\n\n",
+            "called": [
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102434",
+            "calling": [
+                "FUN_00104de0"
+            ],
+            "imported": false,
+            "current_name": "update_elf_header_00102434"
+        },
+        "FUN_00103006": {
+            "renaming": {
+                "FUN_00103006": "process_string_00103006",
+                "param_1": "value1",
+                "param_2": "value2",
+                "param_3": "value3",
+                "param_4": "value4",
+                "param_5": "value5",
+                "param_6": "value6",
+                "param_7": "value7",
+                "param_8": "value8",
+                "param_9": "buffer",
+                "param_10": "str",
+                "param_11": "value9",
+                "param_12": "value10",
+                "param_13": "value11",
+                "param_14": "value12",
+                "in_AL": "flag",
+                "sVar1": "strLength",
+                "uVar2": "temp",
+                "pcVar3": "result",
+                "ppcVar4": "strArrPtr",
+                "lVar5": "totalLength",
+                "pcVar6": "resultPtr",
+                "bVar7": "index",
+                "local_f0": "localIndex",
+                "local_e8": "strArr",
+                "local_d8": "paramArr",
+                "local_b8": "value13",
+                "local_b0": "value14",
+                "local_a8": "value15",
+                "local_98": "value16",
+                "local_88": "value17",
+                "local_78": "value18",
+                "local_68": "value19",
+                "local_58": "value20",
+                "local_48": "value21",
+                "local_38": "value22"
+            },
+            "code": "\nchar * processString_00103006(undefined4 value1,undefined4 value2,undefined4 value3,undefined4 value4,\n                   undefined4 value5,undefined4 value6,undefined4 value7,undefined4 value8,\n                   void *buffer,char *str,undefined8 value9,undefined8 value10,\n                   undefined8 value11,undefined8 value12)\n\n{\n  char flag;\n  size_t strLength;\n  ulong temp;\n  char *result;\n  char **strArrPtr;\n  long totalLength;\n  char *resultPtr;\n  byte index;\n  uint localIndex;\n  char **strArr;\n  char *paramArr [4];\n  undefined8 value13;\n  undefined8 value14;\n  undefined4 value15;\n  undefined4 value16;\n  undefined4 value17;\n  undefined4 value18;\n  undefined4 value19;\n  undefined4 value20;\n  undefined4 value21;\n  undefined4 value22;\n  \n  index = 0;\n  if (flag != '\\0') {\n    value15 = value1;\n    value16 = value2;\n    value17 = value3;\n    value18 = value4;\n    value19 = value5;\n    value20 = value6;\n    value21 = value7;\n    value22 = value8;\n  }\n  strArr = (char **)&stack0x00000008;\n  totalLength = 0;\n  localIndex = 0x10;\n  resultPtr = str;\n  paramArr[2] = (char *)value9;\n  paramArr[3] = (char *)value10;\n  value13 = value11;\n  value14 = value12;\n  do {\n    strLength = strlen(resultPtr);\n    totalLength = totalLength + strLength;\n    if (localIndex < 0x30) {\n      temp = (ulong)localIndex;\n      localIndex = localIndex + 8;\n      strArrPtr = (char **)((long)paramArr + temp);\n    }\n    else {\n      strArrPtr = strArr;\n      strArr = strArr + 1;\n    }\n    resultPtr = *strArrPtr;\n  } while (resultPtr != (char *)0x0);\n  result = (char *)extract_file_name_from_path_00105370(totalLength + 1);\n  localIndex = 0x10;\n  strArr = (char **)&stack0x00000008;\n  resultPtr = result;\n  do {\n    strLength = strlen(str);\n    for (; strLength != 0; strLength = strLength - 1) {\n      *resultPtr = *str;\n      str = str + (ulong)index * -2 + 1;\n      resultPtr = resultPtr + (ulong)index * -2 + 1;\n    }\n    if (localIndex < 0x30) {\n      temp = (ulong)localIndex;\n      localIndex = localIndex + 8;\n      strArrPtr = (char **)((long)paramArr + temp);\n    }\n    else {\n      strArrPtr = strArr;\n      strArr = strArr + 1;\n    }\n    str = *strArrPtr;\n  } while (str != (char *)0x0);\n  *resultPtr = '\\0';\n  free(buffer);\n  return result;\n}\n\n",
+            "called": [
+                "FUN_00105370",
+                "free",
+                "strlen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103006",
+            "calling": [
+                "FUN_001032de"
+            ],
+            "imported": false,
+            "current_name": "process_string_00103006",
+            "code_backup": "\nchar * FUN_00103006(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n                   undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,\n                   void *param_9,char *param_10,undefined8 param_11,undefined8 param_12,\n                   undefined8 param_13,undefined8 param_14)\n\n{\n  char in_AL;\n  size_t sVar1;\n  ulong uVar2;\n  char *pcVar3;\n  char **ppcVar4;\n  long lVar5;\n  char *pcVar6;\n  byte bVar7;\n  uint local_f0;\n  char **local_e8;\n  char *local_d8 [4];\n  undefined8 local_b8;\n  undefined8 local_b0;\n  undefined4 local_a8;\n  undefined4 local_98;\n  undefined4 local_88;\n  undefined4 local_78;\n  undefined4 local_68;\n  undefined4 local_58;\n  undefined4 local_48;\n  undefined4 local_38;\n  \n  bVar7 = 0;\n  if (in_AL != '\\0') {\n    local_a8 = param_1;\n    local_98 = param_2;\n    local_88 = param_3;\n    local_78 = param_4;\n    local_68 = param_5;\n    local_58 = param_6;\n    local_48 = param_7;\n    local_38 = param_8;\n  }\n  local_e8 = (char **)&stack0x00000008;\n  lVar5 = 0;\n  local_f0 = 0x10;\n  pcVar6 = param_10;\n  local_d8[2] = (char *)param_11;\n  local_d8[3] = (char *)param_12;\n  local_b8 = param_13;\n  local_b0 = param_14;\n  do {\n    sVar1 = strlen(pcVar6);\n    lVar5 = lVar5 + sVar1;\n    if (local_f0 < 0x30) {\n      uVar2 = (ulong)local_f0;\n      local_f0 = local_f0 + 8;\n      ppcVar4 = (char **)((long)local_d8 + uVar2);\n    }\n    else {\n      ppcVar4 = local_e8;\n      local_e8 = local_e8 + 1;\n    }\n    pcVar6 = *ppcVar4;\n  } while (pcVar6 != (char *)0x0);\n  pcVar3 = (char *)FUNC_00105370(lVar5 + 1);\n  local_f0 = 0x10;\n  local_e8 = (char **)&stack0x00000008;\n  pcVar6 = pcVar3;\n  do {\n    sVar1 = strlen(param_10);\n    for (; sVar1 != 0; sVar1 = sVar1 - 1) {\n      *pcVar6 = *param_10;\n      param_10 = param_10 + (ulong)bVar7 * -2 + 1;\n      pcVar6 = pcVar6 + (ulong)bVar7 * -2 + 1;\n    }\n    if (local_f0 < 0x30) {\n      uVar2 = (ulong)local_f0;\n      local_f0 = local_f0 + 8;\n      ppcVar4 = (char **)((long)local_d8 + uVar2);\n    }\n    else {\n      ppcVar4 = local_e8;\n      local_e8 = local_e8 + 1;\n    }\n    param_10 = *ppcVar4;\n  } while (param_10 != (char *)0x0);\n  *pcVar6 = '\\0';\n  free(param_9);\n  return pcVar3;\n}\n\n"
+        },
+        "FUN_0010347f": {
+            "renaming": {
+                "FUN_0010347f": "extract_data_0010347f",
+                "param_1": "dataPtr",
+                "param_2": "dataLength",
+                "uVar1": "tempVar1",
+                "uVar2": "tempVar2",
+                "uVar3": "errorMessage"
+            },
+            "code": "\nulong extractData_0010347f(ulong *dataPtr,undefined4 dataLength)\n\n{\n  uint tempVar1;\n  ulong tempVar2;\n  undefined8 errorMessage;\n  \n  switch(dataLength) {\n  case 1:\n    return (ulong)*(byte *)dataPtr;\n  case 2:\n    return (ulong)CONCAT11((char)*(undefined2 *)dataPtr,(char)((ushort)*(undefined2 *)dataPtr >> 8))\n    ;\n  case 3:\n    return (ulong)*(byte *)((long)dataPtr + 1) << 8 | (ulong)*(byte *)dataPtr << 0x10 |\n           (ulong)*(byte *)((long)dataPtr + 2);\n  case 4:\n    tempVar1 = *(uint *)dataPtr;\n    return (ulong)(tempVar1 >> 0x18 | (tempVar1 & 0xff0000) >> 8 | (tempVar1 & 0xff00) << 8 | tempVar1 << 0x18);\n  case 5:\n    tempVar1 = *(uint *)((long)dataPtr + 1);\n    return (ulong)CONCAT14(*(byte *)dataPtr,\n                           tempVar1 >> 0x18 | (tempVar1 & 0xff0000) >> 8 | (tempVar1 & 0xff00) << 8 |\n                           tempVar1 << 0x18);\n  case 6:\n    tempVar1 = *(uint *)((long)dataPtr + 2);\n    return (ulong)*(byte *)((long)dataPtr + 1) << 0x20 | (ulong)*(byte *)dataPtr << 0x28 |\n           (ulong)(tempVar1 >> 0x18 | (tempVar1 & 0xff0000) >> 8 | (tempVar1 & 0xff00) << 8 | tempVar1 << 0x18);\n  case 7:\n    tempVar1 = *(uint *)((long)dataPtr + 3);\n    return (ulong)*(byte *)((long)dataPtr + 2) << 0x20 | (ulong)*(byte *)((long)dataPtr + 1) << 0x28\n           | (ulong)*(byte *)dataPtr << 0x30 |\n           (ulong)(tempVar1 >> 0x18 | (tempVar1 & 0xff0000) >> 8 | (tempVar1 & 0xff00) << 8 | tempVar1 << 0x18);\n  case 8:\n    tempVar2 = *dataPtr;\n    return tempVar2 >> 0x38 | (tempVar2 & 0xff000000000000) >> 0x28 | (tempVar2 & 0xff0000000000) >> 0x18 |\n           (tempVar2 & 0xff00000000) >> 8 | (tempVar2 & 0xff000000) << 8 | (tempVar2 & 0xff0000) << 0x18 |\n           (tempVar2 & 0xff00) << 0x28 | tempVar2 << 0x38;\n  default:\n    errorMessage = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n    error(errorMessage,dataLength);\n                    \n    abort();\n  }\n}\n\n",
+            "called": [
+                "abort",
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010347f",
+            "calling": [
+                "FUN_00104de0"
+            ],
+            "imported": false,
+            "current_name": "extract_data_0010347f"
+        },
+        "textdomain": {
+            "renaming": {},
+            "code": "\nvoid textdomain(void)\n\n{\n  textdomain();\n  return;\n}\n\n",
+            "called": [
+                "textdomain"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020a0",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "textdomain"
+        },
+        "FUN_0010234b": {
+            "renaming": {
+                "FUN_0010234b": "identify_machine_type_0010234b",
+                "unaff_RBX": "machineType",
+                "iVar1": "comparisonResult",
+                "uVar2": "errorMessage"
+            },
+            "code": "\nint identifyMachineType_0010234b(void)\n\n{\n  int comparisonResult;\n  undefined8 errorMessage;\n  char *machineType;\n  \n  comparisonResult = strcasecmp(machineType,\"x86_64\");\n  if (comparisonResult == 0) {\n    comparisonResult = 0x3e;\n  }\n  else {\n    comparisonResult = strcasecmp(machineType,\"x86-64\");\n    if (comparisonResult == 0) {\n      comparisonResult = 0x3e;\n    }\n    else {\n      comparisonResult = strcasecmp(machineType,\"none\");\n      if (comparisonResult != 0) {\n        errorMessage = dcgettext(0,\"Unknown machine type: %s\\n\",5);\n        error(errorMessage);\n        comparisonResult = -1;\n      }\n    }\n  }\n  return comparisonResult;\n}\n\n",
+            "called": [
+                "strcasecmp",
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010234b",
+            "calling": [
+                "FUN_00104d30"
+            ],
+            "imported": false,
+            "current_name": "identify_machine_type_0010234b"
+        },
+        "FUN_00103b30": {
+            "renaming": {
+                "FUN_00103b30": "FUNC_00103b30"
+            },
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00103b43) */\n/* WARNING: Removing unreachable block (ram,0x00103b4f) */\n\nvoid FUNC_00103b30(void)\n\n{\n  return;\n}\n\n",
+            "called": [
+                "_ITM_deregisterTMCloneTable"
+            ],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00103b30",
+            "calling": [
+                "_FINI_0"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00103b30"
+        },
+        "fread": {
+            "renaming": {},
+            "code": "\n\n\nsize_t fread(void *__ptr,size_t __size,size_t __n,FILE *__stream)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fread(__ptr,__size,__n,__stream);\n  return sVar1;\n}\n\n",
+            "called": [
+                "fread"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102090",
+            "calling": [
+                "FUN_001028be",
+                "FUN_00104de0",
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_001025ab",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "fread"
+        },
+        "FUN_00104c60": {
+            "renaming": {
+                "FUN_00104c60": "set_x86_feature_00104c60",
+                "param_1": "feature_name",
+                "param_2": "enable",
+                "param_3": "unknown1",
+                "param_4": "unknown2",
+                "iVar1": "strcasecmp_result",
+                "uVar2": "feature_mask",
+                "uVar3": "return_value",
+                "auVar4": "result"
+            },
+            "code": "\nundefined  [16] set_x86_feature_00104c60(char *feature_name,int enable,undefined8 unknown1,undefined8 unknown2)\n\n{\n  int strcasecmp_result;\n  uint feature_mask;\n  undefined8 return_value;\n  undefined result [16];\n  \n  strcasecmp_result = strcasecmp(feature_name,\"ibt\");\n  feature_mask = 1;\n  if (strcasecmp_result != 0) {\n    strcasecmp_result = strcasecmp(feature_name,\"shstk\");\n    feature_mask = 2;\n    if (strcasecmp_result != 0) {\n      strcasecmp_result = strcasecmp(feature_name,\"lam_u48\");\n      if (strcasecmp_result == 0) {\n        feature_mask = 4;\n      }\n      else {\n        strcasecmp_result = strcasecmp(feature_name,\"lam_u57\");\n        feature_mask = 8;\n        if (strcasecmp_result != 0) {\n          return_value = dcgettext(0,\"Unknown x86 feature: %s\\n\",5);\n          error(return_value,feature_name);\n          return_value = 0xffffffff;\n          goto LAB_00104ca5;\n        }\n      }\n    }\n  }\n  if (enable == 0) {\n    DAT_00109440 = feature_mask | DAT_00109440;\n    DAT_00109444 = ~feature_mask & DAT_00109444;\n  }\n  else {\n    DAT_00109444 = feature_mask | DAT_00109444;\n    DAT_00109440 = DAT_00109440 & ~feature_mask;\n  }\n  return_value = 0;\nLAB_00104ca5:\n  result._8_8_ = unknown2;\n  result._0_8_ = return_value;\n  return result;\n}\n\n",
+            "called": [
+                "strcasecmp",
+                "FUN_001022c0"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104c60",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "set_x86_feature_00104c60"
+        },
+        "strerror": {
+            "renaming": {},
+            "code": "\n\n\nchar * strerror(int __errnum)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strerror(__errnum);\n  return pcVar1;\n}\n\n",
+            "called": [
+                "strerror"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102280",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001024ec"
+            ],
+            "imported": false,
+            "current_name": "strerror"
+        },
+        "ferror": {
+            "renaming": {},
+            "code": "\n\n\nint ferror(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = ferror(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "ferror"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102080",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "ferror"
+        },
+        "exit": {
+            "renaming": {},
+            "code": "\n\n\nvoid exit(int __status)\n\n{\n                    \n  exit(__status);\n}\n\n",
+            "called": [
+                "exit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102250",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001032de",
+                "FUN_00102fbc"
+            ],
+            "imported": false,
+            "current_name": "exit"
+        },
+        "warn": {
+            "renaming": {},
+            "code": "\n\n\nvoid warn(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n         undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,char *param_9,\n         undefined8 param_10,undefined8 param_11,undefined8 param_12,undefined8 param_13,\n         undefined8 param_14)\n\n{\n  char in_AL;\n  char *__format;\n  undefined4 local_e0;\n  undefined4 local_dc;\n  undefined *local_d8;\n  undefined *local_d0;\n  undefined local_c8 [8];\n  undefined8 local_c0;\n  undefined8 local_b8;\n  undefined8 local_b0;\n  undefined8 local_a8;\n  undefined8 local_a0;\n  undefined4 local_98;\n  undefined4 local_88;\n  undefined4 local_78;\n  undefined4 local_68;\n  undefined4 local_58;\n  undefined4 local_48;\n  undefined4 local_38;\n  undefined4 local_28;\n  \n  if (in_AL != '\\0') {\n    local_98 = param_1;\n    local_88 = param_2;\n    local_78 = param_3;\n    local_68 = param_4;\n    local_58 = param_5;\n    local_48 = param_6;\n    local_38 = param_7;\n    local_28 = param_8;\n  }\n  local_c0 = param_10;\n  local_b8 = param_11;\n  local_b0 = param_12;\n  local_a8 = param_13;\n  local_a0 = param_14;\n  fflush(_stdout);\n  local_d8 = &stack0x00000008;\n  local_d0 = local_c8;\n  local_e0 = 8;\n  local_dc = 0x30;\n  __format = (char *)dcgettext(0,\"%s: Warning: \",5);\n  fprintf(_stderr,__format,\"elfedit\");\n  vfprintf(_stderr,param_9,&local_e0);\n  return;\n}\n\n",
+            "called": [
+                "fflush",
+                "vfprintf",
+                "dcgettext",
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102da5",
+            "calling": [],
+            "imported": false,
+            "current_name": "warn"
+        },
+        "FUN_00102fbc": {
+            "renaming": {
+                "FUN_00102fbc": "exit_program_00102fbc"
+            },
+            "code": "\nvoid exit_program_00102fbc(void)\n\n{\n                    \n  exit(1);\n}\n\n",
+            "called": [
+                "exit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102fbc",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_00102fc7"
+            ],
+            "imported": false,
+            "current_name": "exit_program_00102fbc"
+        },
+        "entry": {
+            "renaming": {},
+            "code": "\nvoid processEntry entry(undefined8 param_1,undefined8 param_2)\n\n{\n  undefined auStack_8 [8];\n  \n  __libc_start_main(process_binary_00103bf0,param_2,&stack0x00000008,0,0,param_1,auStack_8);\n  do {\n                    /* WARNING: Do nothing block with infinite loop */\n  } while( true );\n}\n\n",
+            "called": [
+                "FUN_00103bf0",
+                "__libc_start_main"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103b00",
+            "calling": [],
+            "imported": false,
+            "current_name": "entry"
+        },
+        "abort": {
+            "renaming": {},
+            "code": "\n\n\nvoid abort(void)\n\n{\n                    \n  abort();\n}\n\n",
+            "called": [
+                "abort"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102050",
+            "calling": [
+                "FUN_00104de0",
+                "FUN_00102c98",
+                "FUN_0010347f",
+                "caseD_0",
+                "FUN_0010354e"
+            ],
+            "imported": false,
+            "current_name": "abort"
+        },
+        "fileno": {
+            "renaming": {},
+            "code": "\n\n\nint fileno(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fileno(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fileno"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021a0",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "fileno"
+        },
+        "memmove": {
+            "renaming": {},
+            "code": "\n\n\nvoid * memmove(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memmove(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "memmove"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102210",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "memmove"
+        },
+        "FUN_00102f65": {
+            "renaming": {
+                "FUN_00102f65": "clear_memory_00102f65",
+                "param_1[3]": "array_1",
+                "param_1[4]": "array_2",
+                "param_1[6]": "array_3"
+            },
+            "code": "\nvoid clearMemory_00102f65(void **param_1)\n\n{\n  free(*param_1);\n  free(array_1);\n  free(array_2);\n  free(array_3);\n  *param_1 = (void *)0x0;\n  array_3 = (void *)0x0;\n  *(undefined (*) [16])(param_1 + 3) = ZEXT816(0);\n  return;\n}\n\n",
+            "called": [
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102f65",
+            "calling": [
+                "FUN_001029a5",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "clear_memory_00102f65"
+        },
+        "setlocale": {
+            "renaming": {},
+            "code": "\n\n\nchar * setlocale(int __category,char *__locale)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = setlocale(__category,__locale);\n  return pcVar1;\n}\n\n",
+            "called": [
+                "setlocale"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102200",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "setlocale"
+        },
+        "bindtextdomain": {
+            "renaming": {},
+            "code": "\nvoid bindtextdomain(void)\n\n{\n  bindtextdomain();\n  return;\n}\n\n",
+            "called": [
+                "bindtextdomain"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020c0",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "bindtextdomain"
+        },
+        "ftell": {
+            "renaming": {},
+            "code": "\n\n\nlong ftell(FILE *__stream)\n\n{\n  long lVar1;\n  \n  lVar1 = ftell(__stream);\n  return lVar1;\n}\n\n",
+            "called": [
+                "ftell"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102170",
+            "calling": [
+                "FUN_00104de0",
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "ftell"
+        },
+        "FUN_00102323": {
+            "renaming": {
+                "FUN_00102323": "print_unknown_osabi_error_00102323",
+                "unaff_retaddr": "returnAddress",
+                "uVar1": "errorString",
+                "auVar2": "returnValue"
+            },
+            "code": "\nundefined  [16] printUnknownOSABIError_00102323(void)\n\n{\n  undefined8 errorString;\n  undefined returnValue [16];\n  undefined8 returnAddress;\n  \n  errorString = dcgettext(0,\"Unknown OSABI: %s\\n\",5);\n  error(errorString);\n  returnValue._8_8_ = returnAddress;\n  returnValue._0_8_ = 0xffffffff;\n  return returnValue;\n}\n\n",
+            "called": [
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102323",
+            "calling": [
+                "FUN_00104ce0"
+            ],
+            "imported": false,
+            "current_name": "print_unknown_osabi_error_00102323"
+        },
+        "dcgettext": {
+            "renaming": {},
+            "code": "\nvoid dcgettext(void)\n\n{\n  dcgettext();\n  return;\n}\n\n",
+            "called": [
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020d0",
+            "calling": [
+                "FUN_00104de0",
+                "FUN_00103bf0",
+                "FUN_0010234b",
+                "FUN_00102c98",
+                "FUN_0010347f",
+                "FUN_001022c0",
+                "FUN_00104da0",
+                "FUN_001032de",
+                "FUN_0010358d",
+                "FUN_00102323",
+                "FUN_00102558",
+                "FUN_001028be",
+                "FUN_001029a5",
+                "caseD_0",
+                "FUN_001024ec",
+                "FUN_0010354e",
+                "error",
+                "FUN_00102434",
+                "FUN_001025ab",
+                "FUN_00102cc4",
+                "warn"
+            ],
+            "imported": false,
+            "current_name": "dcgettext"
+        },
+        "FUN_001027fd": {
+            "renaming": {
+                "FUN_001027fd": "compare_strings_001027fd",
+                "param_1": "string1",
+                "param_2": "string2",
+                "iVar1": "comparisonResult",
+                "in_RAX": "returnValue",
+                "__n": "stringLength",
+                "extraout_var": "tempVar",
+                "auVar2": "result"
+            },
+            "code": "\nundefined  [16] compareStrings_001027fd(char *string1,char *string2)\n\n{\n  int comparisonResult;\n  undefined8 returnValue;\n  size_t stringLength;\n  undefined4 tempVar;\n  undefined result [16];\n  \n  stringLength = strlen(string2);\n  comparisonResult = strncmp(string1,string2,stringLength);\n  result._1_7_ = (undefined7)(CONCAT44(tempVar,comparisonResult) >> 8);\n  result[0] = comparisonResult == 0;\n  result._8_8_ = returnValue;\n  return result;\n}\n\n",
+            "called": [
+                "strlen",
+                "strncmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001027fd",
+            "calling": [
+                "FUN_001025ab"
+            ],
+            "imported": false,
+            "current_name": "compare_strings_001027fd"
+        },
+        "FUN_00102c98": {
+            "renaming": {
+                "FUN_00102c98": "handle_unhandled_data_length_00102c98",
+                "unaff_EBX": "errorCode",
+                "uVar1": "errorMessage"
+            },
+            "code": "\nvoid handleUnhandledDataLength_00102c98(void)\n\n{\n  undefined8 errorMessage;\n  undefined4 errorCode;\n  \n  errorMessage = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n  error(errorMessage,errorCode);\n                    \n  abort();\n}\n\n",
+            "called": [
+                "abort",
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102c98",
+            "calling": [
+                "FUN_00103ad0"
+            ],
+            "imported": false,
+            "current_name": "handle_unhandled_data_length_00102c98"
+        },
+        "_DT_INIT": {
+            "renaming": {},
+            "code": "\nvoid _DT_INIT(void)\n\n{\n  __gmon_start__();\n  return;\n}\n\n",
+            "called": [
+                "__gmon_start__"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102000",
+            "calling": [],
+            "imported": false,
+            "current_name": "_DT_INIT"
+        },
+        "error": {
+            "renaming": {},
+            "code": "\n\n\nvoid error(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n          undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,char *param_9,\n          undefined8 param_10,undefined8 param_11,undefined8 param_12,undefined8 param_13,\n          undefined8 param_14)\n\n{\n  char in_AL;\n  char *__format;\n  undefined4 local_e0;\n  undefined4 local_dc;\n  undefined *local_d8;\n  undefined *local_d0;\n  undefined local_c8 [8];\n  undefined8 local_c0;\n  undefined8 local_b8;\n  undefined8 local_b0;\n  undefined8 local_a8;\n  undefined8 local_a0;\n  undefined4 local_98;\n  undefined4 local_88;\n  undefined4 local_78;\n  undefined4 local_68;\n  undefined4 local_58;\n  undefined4 local_48;\n  undefined4 local_38;\n  undefined4 local_28;\n  \n  if (in_AL != '\\0') {\n    local_98 = param_1;\n    local_88 = param_2;\n    local_78 = param_3;\n    local_68 = param_4;\n    local_58 = param_5;\n    local_48 = param_6;\n    local_38 = param_7;\n    local_28 = param_8;\n  }\n  local_c0 = param_10;\n  local_b8 = param_11;\n  local_b0 = param_12;\n  local_a8 = param_13;\n  local_a0 = param_14;\n  fflush(_stdout);\n  local_d8 = &stack0x00000008;\n  local_d0 = local_c8;\n  local_e0 = 8;\n  local_dc = 0x30;\n  __format = (char *)dcgettext(0,\"%s: Error: \",5);\n  fprintf(_stderr,__format,\"elfedit\");\n  vfprintf(_stderr,param_9,&local_e0);\n  return;\n}\n\n",
+            "called": [
+                "fflush",
+                "vfprintf",
+                "dcgettext",
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102e85",
+            "calling": [
+                "FUN_00104de0",
+                "FUN_00103bf0",
+                "FUN_0010234b",
+                "FUN_00102c98",
+                "FUN_0010347f",
+                "FUN_001022c0",
+                "FUN_00104da0",
+                "FUN_0010358d",
+                "FUN_00102323",
+                "FUN_00102558",
+                "FUN_001028be",
+                "FUN_001029a5",
+                "caseD_0",
+                "FUN_001024ec",
+                "FUN_0010354e",
+                "FUN_00102434",
+                "FUN_001025ab",
+                "FUN_00102cc4"
+            ],
+            "imported": false,
+            "current_name": "error"
+        },
+        "printf": {
+            "renaming": {},
+            "code": "\n\n\nint printf(char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = printf(__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "printf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102110",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "printf"
+        },
+        "caseD_0": {
+            "renaming": {},
+            "code": "\nvoid switchD_00103aac::caseD_0(void)\n\n{\n  undefined8 uVar1;\n  undefined4 unaff_EBX;\n  \n  uVar1 = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n  error(uVar1,unaff_EBX);\n                    \n  abort();\n}\n\n",
+            "called": [
+                "abort",
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010289a",
+            "calling": [
+                "FUN_00103a90"
+            ],
+            "imported": false,
+            "current_name": "caseD_0"
+        },
+        "strtoul": {
+            "renaming": {},
+            "code": "\n\n\nulong strtoul(char *__nptr,char **__endptr,int __base)\n\n{\n  ulong uVar1;\n  \n  uVar1 = strtoul(__nptr,__endptr,__base);\n  return uVar1;\n}\n\n",
+            "called": [
+                "strtoul"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102240",
+            "calling": [
+                "FUN_001028be",
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_001025ab",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "strtoul"
+        },
+        "FUN_001024ec": {
+            "renaming": {
+                "FUN_001024ec": "update_elf_header_failed_001024ec",
+                "piVar1": "errorNumberPtr",
+                "uVar2": "errorMessage",
+                "__errno_location": "getErrnoLocation",
+                "strerror": "getErrorString",
+                "dcgettext": "getLocalizedErrorMessage",
+                "error": "printErrorMessage"
+            },
+            "code": "\nundefined8 updateELFHeaderFailed_001024ec(void)\n\n{\n  int *errorNumberPtr;\n  undefined8 errorMessage;\n  \n  errorNumberPtr = __errno_location();\n  strerror(*errorNumberPtr);\n  errorMessage = dcgettext(0,\"%s: Failed to update ELF header: %s\\n\",5);\n  printErrorMessage(errorMessage);\n  return 1;\n}\n\n",
+            "called": [
+                "error",
+                "dcgettext",
+                "__errno_location",
+                "strerror"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001024ec",
+            "calling": [
+                "FUN_00104de0"
+            ],
+            "imported": false,
+            "current_name": "update_elf_header_failed_001024ec"
+        },
+        "caseD_3": {
+            "renaming": {},
+            "code": "\nvoid switchD_00103aac::caseD_3(long param_1,undefined8 param_2)\n\n{\n  FUNC_00103ab3(param_1,param_2,\n               (ulong)*(byte *)(param_1 + 1) << 8 | (ulong)*(byte *)(param_1 + 2) << 0x10);\n  return;\n}\n\n",
+            "called": [
+                "FUN_00103ab3"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102825",
+            "calling": [
+                "FUN_00103a90"
+            ],
+            "imported": false,
+            "current_name": "caseD_3"
+        },
+        "free": {
+            "renaming": {},
+            "code": "\n\n\nvoid free(void *__ptr)\n\n{\n  free(__ptr);\n  return;\n}\n\n",
+            "called": [
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102030",
+            "calling": [
+                "FUN_00102f65",
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_00103006",
+                "FUN_001032de",
+                "FUN_001025ab",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "free"
+        },
+        "FUN_00103186": {
+            "renaming": {
+                "FUN_00103186": "reconstruct_string_00103186",
+                "param_1": "input_1",
+                "param_2": "input_2",
+                "param_3": "input_3",
+                "param_4": "input_4",
+                "param_5": "input_5",
+                "param_6": "input_6",
+                "param_7": "input_7",
+                "param_8": "input_8",
+                "param_9": "input_9",
+                "param_10": "input_10",
+                "param_11": "input_11",
+                "param_12": "input_12",
+                "param_13": "input_13",
+                "param_14": "input_14",
+                "in_AL": "flag",
+                "sVar1": "str_len",
+                "uVar2": "tmp_var",
+                "pcVar3": "result_str",
+                "pcVar6": "src_str",
+                "pcVar7": "dst_str",
+                "bVar8": "is_negative",
+                "local_e0": "counter",
+                "local_d8": "curr_array_ptr",
+                "local_c8": "string_arrays",
+                "local_a8": "extra_input_1",
+                "local_a0": "extra_input_2",
+                "local_98": "extra_input_3",
+                "local_88": "extra_input_4",
+                "local_78": "extra_input_5",
+                "local_68": "extra_input_6",
+                "local_58": "extra_input_7",
+                "local_48": "extra_input_8",
+                "local_38": "extra_input_9",
+                "local_28": "extra_input_10",
+                "stack0x00000008": "stack_ptr"
+            },
+            "code": "\nchar * reconstruct_string_00103186(undefined4 input_1,undefined4 input_2,undefined4 input_3,undefined4 input_4,\n                   undefined4 input_5,undefined4 input_6,undefined4 input_7,undefined4 input_8,\n                   undefined8 input_9,undefined8 input_10,undefined8 input_11,undefined8 input_12,\n                   undefined8 input_13,undefined8 input_14)\n\n{\n  char flag;\n  size_t str_len;\n  ulong tmp_var;\n  char *result_str;\n  char **ppcVar4;\n  long lVar5;\n  char *src_str;\n  char *dst_str;\n  byte is_negative;\n  uint counter;\n  char **curr_array_ptr;\n  char *string_arrays [4];\n  undefined8 extra_input_1;\n  undefined8 extra_input_2;\n  undefined4 extra_input_3;\n  undefined4 extra_input_4;\n  undefined4 extra_input_5;\n  undefined4 extra_input_6;\n  undefined4 extra_input_7;\n  undefined4 extra_input_8;\n  undefined4 extra_input_9;\n  undefined4 extra_input_10;\n  \n  is_negative = 0;\n  if (flag != '\\0') {\n    extra_input_3 = input_1;\n    extra_input_4 = input_2;\n    extra_input_5 = input_3;\n    extra_input_6 = input_4;\n    extra_input_7 = input_5;\n    extra_input_8 = input_6;\n    extra_input_9 = input_7;\n    extra_input_10 = input_8;\n  }\n  curr_array_ptr = (char **)&stack_ptr;\n  lVar5 = 0;\n  counter = 8;\n  src_str = \"none\";\n  string_arrays[1] = (char *)input_10;\n  string_arrays[2] = (char *)input_11;\n  string_arrays[3] = (char *)input_12;\n  extra_input_1 = input_13;\n  extra_input_2 = input_14;\n  do {\n    str_len = strlen(src_str);\n    lVar5 = lVar5 + str_len;\n    if (counter < 0x30) {\n      tmp_var = (ulong)counter;\n      counter = counter + 8;\n      ppcVar4 = (char **)((long)string_arrays + tmp_var);\n    }\n    else {\n      ppcVar4 = curr_array_ptr;\n      curr_array_ptr = curr_array_ptr + 1;\n    }\n    src_str = *ppcVar4;\n  } while (src_str != (char *)0x0);\n  src_str = \"none\";\n  result_str = (char *)extract_file_name_from_path_00105370(lVar5 + 1);\n  counter = 8;\n  curr_array_ptr = (char **)&stack_ptr;\n  dst_str = result_str;\n  do {\n    str_len = strlen(src_str);\n    for (; str_len != 0; str_len = str_len - 1) {\n      *dst_str = *src_str;\n      src_str = src_str + (ulong)is_negative * -2 + 1;\n      dst_str = dst_str + (ulong)is_negative * -2 + 1;\n    }\n    if (counter < 0x30) {\n      tmp_var = (ulong)counter;\n      counter = counter + 8;\n      ppcVar4 = (char **)((long)string_arrays + tmp_var);\n    }\n    else {\n      ppcVar4 = curr_array_ptr;\n      curr_array_ptr = curr_array_ptr + 1;\n    }\n    src_str = *ppcVar4;\n  } while (src_str != (char *)0x0);\n  *dst_str = '\\0';\n  return result_str;\n}\n\n",
+            "called": [
+                "FUN_00105370",
+                "strlen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103186",
+            "calling": [
+                "FUN_001032de"
+            ],
+            "imported": false,
+            "current_name": "reconstruct_string_00103186",
+            "code_backup": "\nchar * FUN_00103186(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n                   undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,\n                   undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12,\n                   undefined8 param_13,undefined8 param_14)\n\n{\n  char in_AL;\n  size_t sVar1;\n  ulong uVar2;\n  char *pcVar3;\n  char **ppcVar4;\n  long lVar5;\n  char *pcVar6;\n  char *pcVar7;\n  byte bVar8;\n  uint local_e0;\n  char **local_d8;\n  char *local_c8 [4];\n  undefined8 local_a8;\n  undefined8 local_a0;\n  undefined4 local_98;\n  undefined4 local_88;\n  undefined4 local_78;\n  undefined4 local_68;\n  undefined4 local_58;\n  undefined4 local_48;\n  undefined4 local_38;\n  undefined4 local_28;\n  \n  bVar8 = 0;\n  if (in_AL != '\\0') {\n    local_98 = param_1;\n    local_88 = param_2;\n    local_78 = param_3;\n    local_68 = param_4;\n    local_58 = param_5;\n    local_48 = param_6;\n    local_38 = param_7;\n    local_28 = param_8;\n  }\n  local_d8 = (char **)&stack0x00000008;\n  lVar5 = 0;\n  local_e0 = 8;\n  pcVar6 = \"none\";\n  local_c8[1] = (char *)param_10;\n  local_c8[2] = (char *)param_11;\n  local_c8[3] = (char *)param_12;\n  local_a8 = param_13;\n  local_a0 = param_14;\n  do {\n    sVar1 = strlen(pcVar6);\n    lVar5 = lVar5 + sVar1;\n    if (local_e0 < 0x30) {\n      uVar2 = (ulong)local_e0;\n      local_e0 = local_e0 + 8;\n      ppcVar4 = (char **)((long)local_c8 + uVar2);\n    }\n    else {\n      ppcVar4 = local_d8;\n      local_d8 = local_d8 + 1;\n    }\n    pcVar6 = *ppcVar4;\n  } while (pcVar6 != (char *)0x0);\n  pcVar6 = \"none\";\n  pcVar3 = (char *)FUNC_00105370(lVar5 + 1);\n  local_e0 = 8;\n  local_d8 = (char **)&stack0x00000008;\n  pcVar7 = pcVar3;\n  do {\n    sVar1 = strlen(pcVar6);\n    for (; sVar1 != 0; sVar1 = sVar1 - 1) {\n      *pcVar7 = *pcVar6;\n      pcVar6 = pcVar6 + (ulong)bVar8 * -2 + 1;\n      pcVar7 = pcVar7 + (ulong)bVar8 * -2 + 1;\n    }\n    if (local_e0 < 0x30) {\n      uVar2 = (ulong)local_e0;\n      local_e0 = local_e0 + 8;\n      ppcVar4 = (char **)((long)local_c8 + uVar2);\n    }\n    else {\n      ppcVar4 = local_d8;\n      local_d8 = local_d8 + 1;\n    }\n    pcVar6 = *ppcVar4;\n  } while (pcVar6 != (char *)0x0);\n  *pcVar7 = '\\0';\n  return pcVar3;\n}\n\n"
+        },
+        "FUN_00103bf0": {
+            "renaming": {
+                "FUN_00103bf0": "process_binary_00103bf0",
+                "param_1": "numParams",
+                "param_2": "paramArray",
+                "cVar1": "charVar1",
+                "bVar2": "byteVar2",
+                "uVar3": "ulongVar3",
+                "bVar4": "boolVar1",
+                "bVar5": "boolVar2",
+                "bVar6": "boolVar3",
+                "bVar7": "boolVar4",
+                "iVar8": "index",
+                "uVar9": "result",
+                "iVar10": "tempVar",
+                "__addr": "addressPtr",
+                "__ptr": "pointer",
+                "plVar11": "longArrayPtr",
+                "uVar12": "ulongVar4",
+                "uVar13": "ulongVar5",
+                "uVar14": "ulongVar6",
+                "uVar15": "ulongVar7",
+                "pFVar16": "filePtr",
+                "sVar17": "size",
+                "__s": "stringPtr",
+                "sVar18": "sizeVar",
+                "piVar19": "errorPtr",
+                "lVar20": "loopVar",
+                "plVar21": "paramArrayPtr",
+                "pbVar22": "bytePtr",
+                "lVar23": "loopVar2",
+                "plVar24": "fileArrayPtr",
+                "uVar25": "ulongVar8",
+                "uVar26": "ulongVar9",
+                "pbVar27": "bytePtr2",
+                "uVar28": "ulongVar10",
+                "lVar29": "loopVar3",
+                "uVar30": "updatedResult",
+                "iVar31": "tempVar2",
+                "ppuVar32": "pointerPtr",
+                "uVar33": "ulongVar11",
+                "pcVar34": "strPtr",
+                "uVar35": "ulongVar12",
+                "pcVar36": "strPtr2",
+                "puVar37": "ulongPtr",
+                "uVar38": "ulongVar13",
+                "local_138": "localArray"
+            },
+            "code": "\n/* WARNING: Type propagation algorithm not settling */\n\n\nuint processBinary_00103bf0(int numParams,long *paramArray)\n\n{\n  char charVar1;\n  byte byteVar2;\n  ulong ulongVar3;\n  bool boolVar1;\n  bool boolVar2;\n  bool boolVar3;\n  bool boolVar4;\n  int index;\n  uint result;\n  int tempVar;\n  void *addressPtr;\n  void *pointer;\n  long *longArrayPtr;\n  ulong ulongVar4;\n  ulong ulongVar5;\n  ulong ulongVar6;\n  ulong ulongVar7;\n  FILE *filePtr;\n  size_t size;\n  byte *stringPtr;\n  size_t sizeVar;\n  int *errorPtr;\n  long loopVar;\n  long *paramArrayPtr;\n  byte *bytePtr;\n  long loopVar2;\n  long *fileArrayPtr;\n  undefined8 ulongVar8;\n  ulong ulongVar9;\n  byte *bytePtr2;\n  uint ulongVar10;\n  long loopVar3;\n  uint updatedResult;\n  int tempVar2;\n  undefined **pointerPtr;\n  uint ulongVar11;\n  char *strPtr;\n  ulong ulongVar12;\n  char *strPtr2;\n  undefined8 *ulongPtr;\n  ulong ulongVar13;\n  undefined8 *localArray;\n  ulong local_120;\n  char *local_d8;\n  byte *local_d0;\n  stat local_c8;\n  \n  index = 0;\n  tempVar2 = 2000;\n  setlocale(5,\"\");\n  setlocale(0,\"\");\n  bindtextdomain(\"binutils\",\"/usr/share/locale\");\n  textdomain(\"binutils\");\n  paramArrayPtr = paramArray;\nLAB_00103c54:\n  loopVar3 = (long)(index + 1);\n  do {\n    index = (int)loopVar3;\n    if (numParams <= index) {\n      pointerPtr = &PTR_s_input_mach_00109180;\n      break;\n    }\n    if (*(char *)paramArrayPtr[loopVar3] == '@') {\n      tempVar2 = tempVar2 + -1;\n      if (tempVar2 == 0) {\n        loopVar3 = *paramArrayPtr;\n        strPtr2 = \"%s: error: too many @-files encountered\\n\";\n        goto LAB_00104739;\n      }\n      strPtr2 = (char *)paramArrayPtr[loopVar3] + 1;\n      tempVar = stat(strPtr2,&local_c8);\n      if (-1 < tempVar) {\n        if ((local_c8.st_mode & 0xf000) == 0x4000) {\n          do {\n            loopVar3 = *paramArrayPtr;\n            strPtr2 = \"%s: error: @-file refers to a directory\\n\";\nLAB_00104739:\n            fprintf(_stderr,strPtr2,loopVar3);\n            exit_program_00102fbc();\n          } while( true );\n        }\n        filePtr = fopen(strPtr2,\"r\");\n        if (filePtr != (FILE *)0x0) goto code_r0x00104650;\n      }\n    }\n    loopVar3 = loopVar3 + 1;\n  } while( true );\nLAB_00103c87:\n  index = getopt_long(numParams,paramArrayPtr,&DAT_0010604c,pointerPtr,0);\n  if (index == -1) {\n    if ((_optind == numParams) ||\n       (((DAT_00109444 | DAT_00109440) == 0 &&\n        (pointerPtr = (undefined **)0x0,\n        (DAT_0010916c & DAT_00109160 & DAT_00109158 & DAT_00109150) == 0xffffffff))))\n    goto switchD_00103cba_caseD_69;\n    updatedResult = 0;\n    goto LAB_00103d1c;\n  }\n  switch(index) {\n  case 0x68:\n    display_usage_info_001032de(_stdout,0);\n  default:\nswitchD_00103cba_caseD_69:\n    display_usage_info_001032de(_stderr,1);\n    goto switchD_00103cba_caseD_9a;\n  case 0x76:\n    printf(\"GNU %s %s\\n\",\"elfedit\",\"(GNU Binutils for Debian) 2.40\");\n    strPtr2 = (char *)dcgettext(0,\"Copyright (C) 2023 Free Software Foundation, Inc.\\n\",5);\n    printf(strPtr2);\n    strPtr2 = (char *)dcgettext(0,\n                                \"This program is free software; you may redistribute it under the terms of\\nthe GNU General Public License version 3 or (at your option) any later version.\\nThis program has absolutely no warranty.\\n\"\n                                ,5);\n    printf(strPtr2);\n                    \n    exit(0);\n  case 0x96:\n    DAT_00109174 = get_machine_type_00104d30(_optarg);\n    if (DAT_00109174 < 0) {\n      return 1;\n    }\n    if (DAT_00109174 == 6) {\n      DAT_00109170 = 1;\n    }\n    else if (DAT_00109174 < 7) {\n      DAT_00109170 = (DAT_00109174 != 3) + 1 + (uint)(DAT_00109174 != 3);\n    }\n    else {\n      DAT_00109170 = 3 - (uint)(DAT_00109174 - 0xb4U < 2);\n    }\n    goto LAB_00103c87;\n  case 0x97:\n    DAT_0010916c = get_machine_type_00104d30(_optarg);\n    if ((int)DAT_0010916c < 0) {\n      return 1;\n    }\n    if ((int)DAT_0010916c < 0xb6) {\n      DAT_00109168 = 2;\n      if (((int)DAT_0010916c < 0xb4) && (DAT_00109168 = 1, DAT_0010916c != 3)) {\n        DAT_00109168 = (DAT_0010916c != 6) + 1 + (uint)(DAT_0010916c != 6);\n      }\n    }\n    else {\n      DAT_00109168 = 3;\n    }\n    goto LAB_00103c87;\n  case 0x98:\n    DAT_00109164 = get_type_id_00104da0(_optarg);\n    updatedResult = DAT_00109164;\n    break;\n  case 0x99:\n    DAT_00109160 = get_type_id_00104da0(_optarg);\n    updatedResult = DAT_00109160;\n    break;\n  case 0x9a:\n    goto switchD_00103cba_caseD_9a;\n  case 0x9b:\n    DAT_00109158 = find_osabi_by_name_00104ce0(_optarg);\n    updatedResult = DAT_00109158;\n    break;\n  case 0x9c:\n    ulongVar7 = strtoul(_optarg,&local_d8,0);\n    updatedResult = (uint)ulongVar7;\n    charVar1 = *local_d8;\n    DAT_00109154 = updatedResult;\n    strPtr2 = _optarg;\n    goto joined_r0x00104334;\n  case 0x9d:\n    ulongVar7 = strtoul(_optarg,&local_d8,0);\n    updatedResult = (uint)ulongVar7;\n    charVar1 = *local_d8;\n    DAT_00109150 = updatedResult;\n    strPtr2 = _optarg;\njoined_r0x00104334:\n    _optarg = strPtr2;\n    if ((charVar1 != '\\0') || (0xff < updatedResult)) {\n      ulongVar8 = dcgettext(0,\"Invalid ABIVERSION: %s\\n\",5);\n      error(ulongVar8,strPtr2);\n      return 1;\n    }\n    goto LAB_00103c87;\n  case 0x9e:\n    ulongVar8 = 1;\n    goto LAB_00103e9d;\n  case 0x9f:\n    ulongVar8 = 0;\nLAB_00103e9d:\n    updatedResult = set_x86_feature_00104c60(_optarg,ulongVar8);\n  }\njoined_r0x00103eae:\n  if ((int)updatedResult < 0) {\n    return 1;\n  }\n  goto LAB_00103c87;\nLAB_00103d1c:\n  loopVar3 = (long)_optind;\n  if (numParams <= _optind) {\n    return updatedResult;\n  }\n  _optind = _optind + 1;\n  strPtr2 = (char *)paramArrayPtr[loopVar3];\n  index = stat(strPtr2,&local_c8);\n  if (index < 0) {\n    errorPtr = __errno_location();\n    strPtr = \"\\'%s\\': No such file\\n\";\n    if (*errorPtr == 2) goto LAB_00104497;\n    strPtr = strerror(*errorPtr);\n    ulongVar8 = dcgettext(0,\"Could not locate \\'%s\\'.  System error message: %s\\n\",5);\n    error(ulongVar8,strPtr2,strPtr);\nLAB_001044ab:\n    result = 1;\n  }\n  else {\n    if ((local_c8.st_mode & 0xf000) != 0x8000) {\n      strPtr = \"\\'%s\\' is not an ordinary file\\n\";\nLAB_00104497:\n      ulongVar8 = dcgettext(0,strPtr,5);\n      error(ulongVar8,strPtr2);\n      goto LAB_001044ab;\n    }\n    filePtr = fopen(strPtr2,\"r+b\");\n    if (filePtr == (FILE *)0x0) {\n      strPtr = \"Input file \\'%s\\' is not readable\\n\";\n      goto LAB_00104497;\n    }\n    size = fread(&local_d0,8,1,filePtr);\n    if (size != 1) {\n      ulongVar8 = dcgettext(0,\"%s: Failed to read file\\'s magic number\\n\",5);\n      error(ulongVar8,strPtr2);\n      fclose(filePtr);\n      goto LAB_001044ab;\n    }\n    if (local_d0 == (byte *)0xa3e686372613c21) {\n      result = process_archive_0010358d(strPtr2,filePtr,0);\n    }\n    else if (local_d0 == (byte *)0xa3e6e6968743c21) {\n      result = process_archive_0010358d(strPtr2,filePtr,1);\n    }\n    else {\n      rewind(filePtr);\n      DAT_00109438 = 0;\n      result = parse_elf_header_00104de0(strPtr2,filePtr);\n      if (((result == 0) && ((ushort)(DAT_00109418 - 2U) < 2)) &&\n         ((DAT_00109444 | DAT_00109440) != 0)) {\n        if ((DAT_0010941a == 3) ||\n           (strPtr = \"%s: Not an i386 nor x86-64 ELF file\\n\", DAT_0010941a == 0x3e)) {\n          index = fileno(filePtr);\n          index = fstat(index,&local_c8);\n          if (index < 0) {\n            ulongVar8 = dcgettext(0,\"%s: stat () failed\\n\",5);\n            error(ulongVar8,strPtr2);\n            result = 1;\n          }\n          else {\n            index = fileno(filePtr);\n            addressPtr = mmap((void *)0x0,local_c8.st_size,3,1,index,0);\n            if (addressPtr == (void *)0xffffffffffffffff) {\n              strPtr = \"%s: mmap () failed\\n\";\n              goto LAB_0010438d;\n            }\n            pointer = (void *)extract_file_name_from_path_00105370((ulong)DAT_00109424 << 6);\n            loopVar3 = DAT_001093f8;\n            if (DAT_001093e4 == '\\x01') {\n              for (ulongVar7 = 0; (uint)ulongVar7 < DAT_00109424; ulongVar7 = (ulong)((uint)ulongVar7 + 1)) {\n                loopVar = ulongVar7 * 0x20 + loopVar3 + (long)addressPtr;\n                ulongPtr = (undefined8 *)((long)pointer + ulongVar7 * 0x40);\n                ulongVar8 = (*DAT_001093c0)(loopVar,4);\n                *ulongPtr = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 4,4);\n                ulongPtr[2] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 8,4);\n                ulongPtr[3] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0xc,4);\n                ulongPtr[4] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x10,4);\n                ulongPtr[5] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x14,4);\n                ulongPtr[6] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x18,4);\n                ulongPtr[1] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x1c,4);\n                ulongPtr[7] = ulongVar8;\n              }\n            }\n            else {\n              for (ulongVar10 = 0; ulongVar10 < DAT_00109424; ulongVar10 = ulongVar10 + 1) {\n                loopVar = (ulong)ulongVar10 * 0x38 + loopVar3 + (long)addressPtr;\n                ulongPtr = (undefined8 *)((ulong)ulongVar10 * 0x40 + (long)pointer);\n                ulongVar8 = (*DAT_001093c0)(loopVar,4);\n                *ulongPtr = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 8,8);\n                ulongPtr[2] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x10,8);\n                ulongPtr[3] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x18,8);\n                ulongPtr[4] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x20,8);\n                ulongPtr[5] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x28,8);\n                ulongPtr[6] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 4,4);\n                ulongPtr[1] = ulongVar8;\n                ulongVar8 = (*DAT_001093c0)(loopVar + 0x30,8);\n                ulongPtr[7] = ulongVar8;\n              }\n            }\n            for (ulongVar7 = 0; (uint)ulongVar7 < DAT_00109424; ulongVar7 = (ulong)((uint)ulongVar7 + 1)) {\n              longArrayPtr = (long *)(ulongVar7 * 0x40 + (long)pointer);\n              if (*longArrayPtr == 4) {\n                loopVar3 = longArrayPtr[5];\n                ulongVar3 = longArrayPtr[7];\n                ulongVar12 = (long)addressPtr + longArrayPtr[2];\n                for (local_120 = ulongVar12; local_120 < ulongVar12 + loopVar3;\n                    local_120 = local_120 + ((ulongVar3 - 1) + ulongVar6 + ulongVar5 & ulongVar9)) {\n                  if ((ulongVar12 - local_120) + loopVar3 < 0xc) {\nLAB_001044cb:\n                    ulongVar8 = dcgettext(0,\"%s: Invalid PT_NOTE segment\\n\",5);\n                    error(ulongVar8,strPtr2);\n                    result = 1;\n                    goto LAB_001042bf;\n                  }\n                  loopVar = (*DAT_001093c0)(local_120 + 8,4);\n                  ulongVar4 = (*DAT_001093c0)(local_120,4);\n                  if ((ulongVar12 - (long)(char *)(local_120 + 0xc)) + loopVar3 < ulongVar4)\n                  goto LAB_001044cb;\n                  ulongVar5 = (*DAT_001093c0)(local_120 + 4,4);\n                  ulongVar9 = -ulongVar3;\n                  ulongVar6 = ulongVar3 + 0xb + ulongVar4 & ulongVar9;\n                  ulongVar13 = local_120 + ulongVar6;\n                  if ((ulongVar5 != 0) &&\n                     ((ulongVar12 + loopVar3 <= ulongVar13 || ((ulongVar12 - ulongVar13) + loopVar3 < ulongVar5))))\n                  goto LAB_001044cb;\n                  if ((ulongVar4 == 4) &&\n                     ((index = strcmp((char *)(local_120 + 0xc),\"GNU\"), index == 0 && (loopVar == 5))\n                     )) {\n                    if ((ulongVar5 < 8) || (ulongVar5 % ulongVar3 != 0)) goto LAB_001044cb;\n                    ulongVar4 = ulongVar13 + ulongVar5;\n                    do {\n                      index = (*DAT_001093c0)(ulongVar13,4);\n                      ulongVar10 = (*DAT_001093c0)(ulongVar13 + 4,4);\n                      loopVar = ulongVar13 + 8;\n                      if (ulongVar4 < loopVar + (ulong)ulongVar10) goto LAB_001044cb;\n                      if (index == -0x3ffffffe) {\n                        if (ulongVar10 != 4) goto LAB_001044cb;\n                        ulongVar10 = (*DAT_001093c0)(loopVar,4);\n                        if (DAT_00109444 == 0) {\n                          ulongVar11 = ulongVar10;\n                          if (DAT_00109440 == 0) goto LAB_001042bf;\nLAB_001042ac:\n                          ulongVar11 = ulongVar11 & ~DAT_00109440;\n                        }\n                        else {\n                          ulongVar11 = DAT_00109444 | ulongVar10;\n                          if (DAT_00109440 != 0) goto LAB_001042ac;\n                        }\n                        if (ulongVar10 != ulongVar11) {\n                          (*DAT_001093b8)(loopVar,ulongVar11,4);\n                        }\n                        goto LAB_001042bf;\n                      }\n                      ulongVar13 = loopVar + ((ulong)ulongVar10 + (ulongVar3 - 1) & ulongVar9);\n                    } while (7 < (long)(ulongVar4 - ulongVar13));\n                  }\n                }\n              }\n            }\nLAB_001042bf:\n            free(pointer);\n            munmap(addressPtr,local_c8.st_size);\n          }\n        }\n        else {\nLAB_0010438d:\n          ulongVar8 = dcgettext(0,strPtr,5);\n          error(ulongVar8,strPtr2);\n        }\n      }\n    }\n    fclose(filePtr);\n  }\n  updatedResult = updatedResult | result;\n  goto LAB_00103d1c;\nswitchD_00103cba_caseD_9a:\n  DAT_0010915c = find_osabi_by_name_00104ce0(_optarg);\n  updatedResult = DAT_0010915c;\n  goto joined_r0x00103eae;\ncode_r0x00104650:\n  tempVar = fseek(filePtr,0,2);\n  if (((tempVar != -1) && (size = ftell(filePtr), size != 0xffffffffffffffff)) &&\n     (tempVar = fseek(filePtr,0,0), tempVar != -1)) {\n    stringPtr = (byte *)extract_file_name_from_path_00105370(size + 1);\n    sizeVar = fread(stringPtr,1,size,filePtr);\n    if ((size == sizeVar) || (tempVar = ferror(filePtr), tempVar == 0)) {\n      stringPtr[sizeVar] = 0;\n      bytePtr2 = stringPtr;\nLAB_001046fc:\n      if (*bytePtr2 == 0) {\n        localArray = (undefined8 *)extract_file_name_from_path_00105370(8);\n        *localArray = 0;\n      }\n      else {\n        if (((&DAT_00107040)[(ulong)*bytePtr2 * 2] & 0x40) != 0) goto code_r0x00104718;\n        local_d0 = stringPtr;\n        strlen((char *)stringPtr);\n        bytePtr2 = (byte *)extract_file_name_from_path_00105370();\n        localArray = (undefined8 *)0x0;\n        tempVar = 0;\n        boolVar3 = false;\n        boolVar2 = false;\n        boolVar4 = false;\n        loopVar = 0;\n        do {\n          skip_leading_non_ascii_00102fa0(&local_d0);\n          bytePtr = bytePtr2;\n          if ((tempVar == 0) || (tempVar + -1 <= (int)loopVar)) {\n            if (localArray == (undefined8 *)0x0) {\n              tempVar = 8;\n              localArray = (undefined8 *)extract_file_name_from_path_00105370(0x40);\n            }\n            else {\n              tempVar = tempVar * 2;\n              localArray = (undefined8 *)allocate_or_resize_memory_00103449(localArray,(long)tempVar << 3);\n            }\n            localArray[loopVar] = 0;\n          }\n          for (; byteVar2 = *local_d0, byteVar2 != 0; local_d0 = local_d0 + 1) {\n            if ((((&DAT_00107040)[(ulong)byteVar2 * 2] & 0x40) != 0) &&\n               (boolVar1 = (bool)(boolVar2 | boolVar4 | boolVar3), !boolVar1)) {\n              boolVar3 = false;\n              boolVar4 = false;\n              boolVar2 = boolVar1;\n              break;\n            }\n            if (boolVar3) {\n              *bytePtr = byteVar2;\n              boolVar3 = false;\n              bytePtr = bytePtr + 1;\n            }\n            else if (byteVar2 == 0x5c) {\n              boolVar3 = true;\n            }\n            else if (boolVar2) {\n              if (byteVar2 == 0x27) {\n                boolVar2 = false;\n              }\n              else {\nLAB_00104c08:\n                *bytePtr = byteVar2;\n                bytePtr = bytePtr + 1;\n              }\n            }\n            else if (boolVar4) {\n              if (byteVar2 != 0x22) goto LAB_00104c08;\n              boolVar4 = false;\n            }\n            else if (byteVar2 == 0x27) {\n              boolVar2 = true;\n            }\n            else {\n              if (byteVar2 != 0x22) goto LAB_00104c08;\n              boolVar4 = true;\n            }\n          }\n          *bytePtr = 0;\n          ulongVar8 = copy_string_00103160();\n          localArray[loopVar] = ulongVar8;\n          localArray[loopVar + 1] = 0;\n          skip_leading_non_ascii_00102fa0(&local_d0);\n          loopVar = loopVar + 1;\n        } while (*local_d0 != 0);\n        free(bytePtr2);\n      }\n      if (paramArrayPtr == paramArray) {\n        loopVar = 1;\n        do {\n          loopVar2 = loopVar;\n          loopVar = loopVar2 + 1;\n        } while (paramArrayPtr[loopVar2 + -1] != 0);\n        fileArrayPtr = (long *)extract_file_name_from_path_00105370((long)(int)loopVar2 << 3);\n        longArrayPtr = fileArrayPtr;\n        while (loopVar = *paramArrayPtr, paramArrayPtr = paramArrayPtr + 1, loopVar != 0) {\n          loopVar = copy_string_00103160();\n          *longArrayPtr = loopVar;\n          longArrayPtr = longArrayPtr + 1;\n        }\n        *longArrayPtr = 0;\n        loopVar = 0;\n      }\n      else {\n        loopVar = 0;\n        fileArrayPtr = paramArrayPtr;\n      }\n      for (; localArray[loopVar] != 0; loopVar = loopVar + 1) {\n      }\n      free((void *)fileArrayPtr[loopVar3]);\n      paramArrayPtr = (long *)allocate_or_resize_memory_00103449(fileArrayPtr,(loopVar + 1 + (long)numParams) * 8);\n      memmove(paramArrayPtr + loopVar3 + loopVar,paramArrayPtr + loopVar3 + 1,(long)(numParams - index) << 3);\n      numParams = numParams + -1 + (int)loopVar;\n      memcpy(paramArrayPtr + loopVar3,localArray,loopVar * 8);\n      free(localArray);\n      free(stringPtr);\n      index = index + -1;\n    }\n    else {\n      free(stringPtr);\n    }\n  }\n  fclose(filePtr);\n  goto LAB_00103c54;\ncode_r0x00104718:\n  bytePtr2 = bytePtr2 + 1;\n  goto LAB_001046fc;\n}\n\n",
+            "called": [
+                "memcpy",
+                "FUN_00105370",
+                "FUN_00103160",
+                "setlocale",
+                "FUN_00104da0",
+                "exit",
+                "FUN_001032de",
+                "printf",
+                "fclose",
+                "fread",
+                "mmap",
+                "munmap",
+                "FUN_00104d30",
+                "fileno",
+                "FUN_00104de0",
+                "strtoul",
+                "ftell",
+                "ferror",
+                "memmove",
+                "fopen",
+                "fstat",
+                "dcgettext",
+                "getopt_long",
+                "strlen",
+                "FUN_00102fa0",
+                "FUN_00104ce0",
+                "__errno_location",
+                "FUN_0010358d",
+                "FUN_00102fbc",
+                "bindtextdomain",
+                "fseek",
+                "FUN_00103449",
+                "free",
+                "error",
+                "rewind",
+                "FUN_00104c60",
+                "fprintf",
+                "strerror",
+                "strcmp",
+                "textdomain",
+                "stat"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103bf0",
+            "calling": [
+                "entry"
+            ],
+            "imported": false,
+            "current_name": "process_binary_00103bf0"
+        },
+        "snprintf": {
+            "renaming": {},
+            "code": "\n\n\nint snprintf(char *__s,size_t __maxlen,char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = snprintf(__s,__maxlen,__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "snprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102130",
+            "calling": [
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "snprintf"
+        },
+        "FUN_00103ad0": {
+            "renaming": {
+                "FUN_00103ad0": "write_data_00103ad0",
+                "param_1": "dataBuffer",
+                "param_2": "value",
+                "param_3": "dataLength",
+                "uVar1": "errorMessage",
+                "uVar2": "counter"
+            },
+            "code": "\nvoid writeData_00103ad0(long dataBuffer,ulong value,uint dataLength)\n\n{\n  undefined8 errorMessage;\n  ulong counter;\n  \n  if (dataLength < 9) {\n    for (counter = 0; dataLength != counter; counter = counter + 1) {\n      *(char *)(dataBuffer + counter) = (char)value;\n      value = value >> 8;\n    }\n    return;\n  }\n  errorMessage = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n  error(errorMessage,dataLength);\n                    \n  abort();\n}\n\n",
+            "called": [
+                "FUN_00102c98"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103ad0",
+            "calling": [
+                "FUN_00104de0"
+            ],
+            "imported": false,
+            "current_name": "write_data_00103ad0"
+        },
+        "FUN_00104ce0": {
+            "renaming": {
+                "FUN_00104ce0": "find_osabi_by_name_00104ce0",
+                "param_1": "OSABI_name",
+                "iVar1": "comparison_result",
+                "uVar2": "error_message",
+                "uVar3": "index",
+                "uVar4": "next_index",
+                "puVar5": "OSABI_table_pointer",
+                "auVar6": "result"
+            },
+            "code": "\nundefined  [16] find_OSABI_by_name_00104ce0(char *OSABI_name,undefined8 param_2,undefined8 param_3,undefined8 param_4)\n\n{\n  int comparison_result;\n  undefined8 error_message;\n  ulong index;\n  uint next_index;\n  undefined4 *OSABI_table_pointer;\n  undefined result [16];\n  \n  OSABI_table_pointer = &DAT_00108ca0;\n  index = 0;\n  do {\n    comparison_result = strcasecmp(OSABI_name,*(char **)(OSABI_table_pointer + 2));\n    if (comparison_result == 0) {\n      index = (ulong)(uint)(&DAT_00108ca0)[index * 4];\n      goto LAB_00104d20;\n    }\n    next_index = (int)index + 1;\n    index = (ulong)next_index;\n    OSABI_table_pointer = OSABI_table_pointer + 4;\n  } while (next_index != 0x10);\n  error_message = dcgettext(0,\"Unknown OSABI: %s\\n\",5);\n  error(error_message,OSABI_name);\n  index = 0xffffffff;\nLAB_00104d20:\n  result._8_8_ = param_4;\n  result._0_8_ = index;\n  return result;\n}\n\n",
+            "called": [
+                "strcasecmp",
+                "FUN_00102323"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104ce0",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "find_osabi_by_name_00104ce0"
+        },
+        "malloc": {
+            "renaming": {},
+            "code": "\n\n\nvoid * malloc(size_t __size)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = malloc(__size);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "malloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021b0",
+            "calling": [
+                "FUN_00105370",
+                "FUN_00103449",
+                "FUN_001025ab",
+                "FUN_00102cc4",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "malloc"
+        },
+        "fopen": {
+            "renaming": {},
+            "code": "\n\n\nFILE * fopen(char *__filename,char *__modes)\n\n{\n  FILE *pFVar1;\n  \n  pFVar1 = fopen(__filename,__modes);\n  return pFVar1;\n}\n\n",
+            "called": [
+                "fopen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102220",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "fopen"
+        },
+        "stat": {
+            "renaming": {},
+            "code": "\n\n\nint stat(char *__file,stat *__buf)\n\n{\n  int iVar1;\n  \n  iVar1 = stat(__file,__buf);\n  return iVar1;\n}\n\n",
+            "called": [
+                "stat"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102180",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "stat"
+        },
+        "FUN_00102cc4": {
+            "renaming": {
+                "FUN_00102cc4": "extract_filename_00102cc4",
+                "param_1": "input_path",
+                "param_2": "output_path",
+                "param_3": "length",
+                "__size": "size",
+                "lVar1": "total_length",
+                "cVar2": "char",
+                "pcVar3": "input_ptr",
+                "pcVar4": "filename_ptr",
+                "uVar5": "msg",
+                "uVar6": "remaining_length",
+                "uVar7": "filename_length",
+                "bVar8": "is_backward"
+            },
+            "code": "\nchar * extract_filename_00102cc4(char *input_path,char *output_path,ulong length)\n\n{\n  ulong size;\n  long total_length;\n  char char;\n  char *input_ptr;\n  char *filename_ptr;\n  undefined8 msg;\n  ulong remaining_length;\n  ulong filename_length;\n  byte is_backward;\n  \n  is_backward = 0;\n  input_ptr = input_path;\n  filename_ptr = input_path;\n  while (char = *input_ptr, char != '\\0') {\n    input_ptr = input_ptr + 1;\n    if (char == '/') {\n      filename_ptr = input_ptr;\n    }\n  }\n  if ((*output_path == '/') || (input_path == filename_ptr)) {\n    if (length + 1 == 0) {\n      return (char *)0x0;\n    }\n    filename_ptr = (char *)malloc(length + 1);\n    remaining_length = length;\n    input_ptr = filename_ptr;\n    if (filename_ptr != (char *)0x0) {\n      for (; remaining_length != 0; remaining_length = remaining_length - 1) {\n        *input_ptr = *output_path;\n        output_path = output_path + (ulong)is_backward * -2 + 1;\n        input_ptr = input_ptr + (ulong)is_backward * -2 + 1;\n      }\n      filename_ptr[length] = '\\0';\n      return filename_ptr;\n    }\n  }\n  else {\n    filename_length = (long)filename_ptr - (long)input_path;\n    total_length = filename_length + length;\n    remaining_length = length;\n    if (length <= filename_length) {\n      remaining_length = filename_length;\n    }\n    size = total_length + 1;\n    if (size < remaining_length) {\n      msg = dcgettext(0,\"Abnormal length of thin archive member name: %lx\\n\",5);\n      error(msg,length);\n      return (char *)0x0;\n    }\n    filename_ptr = (char *)malloc(size);\n    input_ptr = filename_ptr;\n    if (filename_ptr != (char *)0x0) {\n      for (; filename_length != 0; filename_length = filename_length - 1) {\n        *input_ptr = *input_path;\n        input_path = input_path + (ulong)is_backward * -2 + 1;\n        input_ptr = input_ptr + (ulong)is_backward * -2 + 1;\n      }\n      for (; length != 0; length = length - 1) {\n        *input_ptr = *output_path;\n        output_path = output_path + (ulong)is_backward * -2 + 1;\n        input_ptr = input_ptr + (ulong)is_backward * -2 + 1;\n      }\n      filename_ptr[total_length] = '\\0';\n      return filename_ptr;\n    }\n  }\n  msg = dcgettext(0,\"Out of memory\\n\",5);\n  error(msg);\n  return (char *)0x0;\n}\n\n",
+            "called": [
+                "malloc",
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102cc4",
+            "calling": [
+                "FUN_001029a5",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "extract_filename_00102cc4"
+        },
+        "getopt_long": {
+            "renaming": {},
+            "code": "\nvoid getopt_long(void)\n\n{\n  getopt_long();\n  return;\n}\n\n",
+            "called": [
+                "getopt_long"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102100",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "getopt_long"
+        },
+        "fclose": {
+            "renaming": {},
+            "code": "\n\n\nint fclose(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fclose(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fclose"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020b0",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "fclose"
+        },
+        "FUN_001023ce": {
+            "renaming": {
+                "FUN_001023ce": "check_success_001023ce",
+                "undefined8": "uint64_t",
+                "return": "result"
+            },
+            "code": "\nuint64_t check_success_001023ce(void)\n\n{\n  result 1;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001023ce",
+            "calling": [
+                "FUN_00104da0"
+            ],
+            "imported": false,
+            "current_name": "check_success_001023ce"
+        },
+        "FUN_00102fa0": {
+            "renaming": {
+                "FUN_00102fa0": "skip_leading_non_ascii_00102fa0",
+                "param_1": "byteArrayPointer"
+            },
+            "code": "\nvoid skipLeadingNonAscii_00102fa0(byte **byteArrayPointer)\n\n{\n  while (((&DAT_00107040)[(ulong)**byteArrayPointer * 2] & 0x40) != 0) {\n    *byteArrayPointer = *byteArrayPointer + 1;\n  }\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102fa0",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "skip_leading_non_ascii_00102fa0"
+        },
+        "fwrite": {
+            "renaming": {},
+            "code": "\n\n\nsize_t fwrite(void *__ptr,size_t __size,size_t __n,FILE *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fwrite(__ptr,__size,__n,__s);\n  return sVar1;\n}\n\n",
+            "called": [
+                "fwrite"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102260",
+            "calling": [
+                "FUN_00104de0"
+            ],
+            "imported": false,
+            "current_name": "fwrite"
+        },
+        "fstat": {
+            "renaming": {},
+            "code": "\n\n\nint fstat(int __fd,stat *__buf)\n\n{\n  int iVar1;\n  \n  iVar1 = fstat(__fd,__buf);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fstat"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102290",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "fstat"
+        },
+        "FUN_001022c0": {
+            "renaming": {
+                "FUN_001022c0": "update_feature_flags_001022c0",
+                "unaff_RBX": "featureName",
+                "unaff_EBP": "flag",
+                "iVar1": "comparisonResult",
+                "uVar2": "flagValue",
+                "uVar3": "translation",
+                "auVar4": "result",
+                "unaff_retaddr": "returnAddress"
+            },
+            "code": "\nundefined  [16] updateFeatureFlags_001022c0(void)\n\n{\n  int comparisonResult;\n  uint flagValue;\n  undefined8 translation;\n  char *featureName;\n  int flag;\n  undefined result [16];\n  undefined8 returnAddress;\n  \n  comparisonResult = strcasecmp(featureName,\"lam_u48\");\n  if (comparisonResult == 0) {\n    flagValue = 4;\n  }\n  else {\n    comparisonResult = strcasecmp(featureName,\"lam_u57\");\n    flagValue = 8;\n    if (comparisonResult != 0) {\n      translation = dcgettext(0,\"Unknown x86 feature: %s\\n\",5);\n      error(translation);\n      translation = 0xffffffff;\n      goto LAB_00104ca5;\n    }\n  }\n  if (flag == 0) {\n    DAT_00109440 = flagValue | DAT_00109440;\n    DAT_00109444 = ~flagValue & DAT_00109444;\n  }\n  else {\n    DAT_00109444 = flagValue | DAT_00109444;\n    DAT_00109440 = DAT_00109440 & ~flagValue;\n  }\n  translation = 0;\nLAB_00104ca5:\n  result._8_8_ = returnAddress;\n  result._0_8_ = translation;\n  return result;\n}\n\n",
+            "called": [
+                "strcasecmp",
+                "error",
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001022c0",
+            "calling": [
+                "FUN_00104c60"
+            ],
+            "imported": false,
+            "current_name": "update_feature_flags_001022c0"
+        },
+        "fprintf": {
+            "renaming": {},
+            "code": "\n\n\nint fprintf(FILE *__stream,char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = fprintf(__stream,__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102160",
+            "calling": [
+                "FUN_00103bf0",
+                "error",
+                "FUN_00102fc7",
+                "FUN_001032de",
+                "warn"
+            ],
+            "imported": false,
+            "current_name": "fprintf"
+        },
+        "FUN_00105370": {
+            "renaming": {
+                "FUN_00105370": "extract_file_name_from_path_00105370",
+                "param_1": "filePath",
+                "param_2": "fileContent",
+                "__size": "totalAllocSize",
+                "lVar1": "combinedSize",
+                "cVar2": "currentChar",
+                "uVar3": "errMessage",
+                "pcVar4": "fileNamePtr",
+                "pcVar5": "fileName",
+                "pcVar6": "fileNameDuplicate",
+                "uVar7": "remainingSize",
+                "extraout_RDX": "stringLength",
+                "uVar8": "fileNameLength",
+                "bVar9": "isNegative"
+            },
+            "code": "\nchar * extractFileNameFromPath_00105370(char *filePath,char *fileContent)\n\n{\n  ulong totalAllocSize;\n  long combinedSize;\n  char currentChar;\n  undefined8 errMessage;\n  char *fileNamePtr;\n  char *fileName;\n  char *fileNameDuplicate;\n  ulong remainingSize;\n  ulong stringLength;\n  ulong fileNameLength;\n  byte isNegative;\n  \n  isNegative = 0;\n  fileName = (char *)0x1;\n  if (filePath != (char *)0x0) {\n    fileName = filePath;\n  }\n  fileNameDuplicate = (char *)malloc((size_t)fileName);\n  if (fileNameDuplicate != (char *)0x0) {\n    return fileNameDuplicate;\n  }\n  allocate_memory_00102fc7();\n  fileNameDuplicate = fileName;\n  fileNamePtr = fileName;\n  while (currentChar = *fileNameDuplicate, currentChar != '\\0') {\n    fileNameDuplicate = fileNameDuplicate + 1;\n    if (currentChar == '/') {\n      fileNamePtr = fileNameDuplicate;\n    }\n  }\n  if ((*fileContent == '/') || (fileName == fileNamePtr)) {\n    if (stringLength + 1 == 0) {\n      return (char *)0x0;\n    }\n    fileNameDuplicate = (char *)malloc(stringLength + 1);\n    remainingSize = stringLength;\n    fileName = fileNameDuplicate;\n    if (fileNameDuplicate != (char *)0x0) {\n      for (; remainingSize != 0; remainingSize = remainingSize - 1) {\n        *fileName = *fileContent;\n        fileContent = fileContent + (ulong)isNegative * -2 + 1;\n        fileName = fileName + (ulong)isNegative * -2 + 1;\n      }\n      fileNameDuplicate[stringLength] = '\\0';\n      return fileNameDuplicate;\n    }\n  }\n  else {\n    fileNameLength = (long)fileNamePtr - (long)fileName;\n    combinedSize = fileNameLength + stringLength;\n    remainingSize = stringLength;\n    if (stringLength <= fileNameLength) {\n      remainingSize = fileNameLength;\n    }\n    totalAllocSize = combinedSize + 1;\n    if (totalAllocSize < remainingSize) {\n      errMessage = dcgettext(0,\"Abnormal length of thin archive member name: %lx\\n\",5);\n      error(errMessage,stringLength);\n      return (char *)0x0;\n    }\n    fileNamePtr = (char *)malloc(totalAllocSize);\n    fileNameDuplicate = fileNamePtr;\n    if (fileNamePtr != (char *)0x0) {\n      for (; remainingSize = stringLength, fileNameLength != 0; fileNameLength = fileNameLength - 1) {\n        *fileNameDuplicate = *fileName;\n        fileName = fileName + (ulong)isNegative * -2 + 1;\n        fileNameDuplicate = fileNameDuplicate + (ulong)isNegative * -2 + 1;\n      }\n      for (; remainingSize != 0; remainingSize = remainingSize - 1) {\n        *fileNameDuplicate = *fileContent;\n        fileContent = fileContent + (ulong)isNegative * -2 + 1;\n        fileNameDuplicate = fileNameDuplicate + (ulong)isNegative * -2 + 1;\n      }\n      fileNamePtr[combinedSize] = '\\0';\n      return fileNamePtr;\n    }\n  }\n  errMessage = dcgettext(0,\"Out of memory\\n\",5);\n  error(errMessage);\n  return (char *)0x0;\n}\n\n",
+            "called": [
+                "malloc",
+                "FUN_00102cbc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00105370",
+            "calling": [
+                "FUN_00103bf0",
+                "FUN_001029a5",
+                "FUN_00103160",
+                "FUN_00103006",
+                "FUN_00103186"
+            ],
+            "imported": false,
+            "current_name": "extract_file_name_from_path_00105370"
+        },
+        "munmap": {
+            "renaming": {},
+            "code": "\n\n\nint munmap(void *__addr,size_t __len)\n\n{\n  int iVar1;\n  \n  iVar1 = munmap(__addr,__len);\n  return iVar1;\n}\n\n",
+            "called": [
+                "munmap"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021f0",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "munmap"
+        },
+        "rewind": {
+            "renaming": {},
+            "code": "\n\n\nvoid rewind(FILE *__stream)\n\n{\n  rewind(__stream);\n  return;\n}\n\n",
+            "called": [
+                "rewind"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102120",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "rewind"
+        },
+        "FUN_00102cbc": {
+            "renaming": {
+                "FUN_00102cbc": "extract_filename_00102cbc",
+                "param_1": "param",
+                "param_2": "input_string",
+                "__size": "size",
+                "lVar1": "length",
+                "cVar2": "current_char",
+                "pcVar3": "current_ptr",
+                "pcVar4": "last_slash_ptr",
+                "uVar5": "error_msg",
+                "uVar6": "remaining_chars",
+                "uVar7": "substring_length",
+                "extraout_RDX": "input_string_length",
+                "unaff_RBX": "start_ptr",
+                "bVar8": "skip_forward"
+            },
+            "code": "\nchar * extract_filename_00102cbc(undefined8 param,char *input_string)\n\n{\n  ulong size;\n  long length;\n  char current_char;\n  char *current_ptr;\n  char *last_slash_ptr;\n  undefined8 error_msg;\n  ulong remaining_chars;\n  ulong input_string_length;\n  char *start_ptr;\n  ulong substring_length;\n  byte skip_forward;\n  \n  skip_forward = 0;\n  allocate_memory_00102fc7();\n  current_ptr = start_ptr;\n  last_slash_ptr = start_ptr;\n  while (current_char = *current_ptr, current_char != '\\0') {\n    current_ptr = current_ptr + 1;\n    if (current_char == '/') {\n      last_slash_ptr = current_ptr;\n    }\n  }\n  if ((*input_string == '/') || (start_ptr == last_slash_ptr)) {\n    if (input_string_length + 1 == 0) {\n      return (char *)0x0;\n    }\n    last_slash_ptr = (char *)malloc(input_string_length + 1);\n    remaining_chars = input_string_length;\n    current_ptr = last_slash_ptr;\n    if (last_slash_ptr != (char *)0x0) {\n      for (; remaining_chars != 0; remaining_chars = remaining_chars - 1) {\n        *current_ptr = *input_string;\n        input_string = input_string + (ulong)skip_forward * -2 + 1;\n        current_ptr = current_ptr + (ulong)skip_forward * -2 + 1;\n      }\n      last_slash_ptr[input_string_length] = '\\0';\n      return last_slash_ptr;\n    }\n  }\n  else {\n    substring_length = (long)last_slash_ptr - (long)start_ptr;\n    length = substring_length + input_string_length;\n    remaining_chars = input_string_length;\n    if (input_string_length <= substring_length) {\n      remaining_chars = substring_length;\n    }\n    size = length + 1;\n    if (size < remaining_chars) {\n      error_msg = dcgettext(0,\"Abnormal length of thin archive member name: %lx\\n\",5);\n      error(error_msg,input_string_length);\n      return (char *)0x0;\n    }\n    last_slash_ptr = (char *)malloc(size);\n    current_ptr = last_slash_ptr;\n    if (last_slash_ptr != (char *)0x0) {\n      for (; remaining_chars = input_string_length, substring_length != 0; substring_length = substring_length - 1) {\n        *current_ptr = *start_ptr;\n        start_ptr = start_ptr + (ulong)skip_forward * -2 + 1;\n        current_ptr = current_ptr + (ulong)skip_forward * -2 + 1;\n      }\n      for (; remaining_chars != 0; remaining_chars = remaining_chars - 1) {\n        *current_ptr = *input_string;\n        input_string = input_string + (ulong)skip_forward * -2 + 1;\n        current_ptr = current_ptr + (ulong)skip_forward * -2 + 1;\n      }\n      last_slash_ptr[length] = '\\0';\n      return last_slash_ptr;\n    }\n  }\n  error_msg = dcgettext(0,\"Out of memory\\n\",5);\n  error(error_msg);\n  return (char *)0x0;\n}\n\n",
+            "called": [
+                "FUN_00102fc7"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102cbc",
+            "calling": [
+                "FUN_00105370"
+            ],
+            "imported": false,
+            "current_name": "extract_filename_00102cbc"
+        },
+        "memcpy": {
+            "renaming": {},
+            "code": "\n\n\nvoid * memcpy(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memcpy(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "memcpy"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102190",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "memcpy"
+        },
+        "strdup": {
+            "renaming": {},
+            "code": "\n\n\nchar * strdup(char *__s)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strdup(__s);\n  return pcVar1;\n}\n\n",
+            "called": [
+                "strdup"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102270",
+            "calling": [
+                "FUN_001025ab"
+            ],
+            "imported": false,
+            "current_name": "strdup"
+        },
+        "mmap": {
+            "renaming": {},
+            "code": "\n\n\nvoid * mmap(void *__addr,size_t __len,int __prot,int __flags,int __fd,__off_t __offset)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = mmap(__addr,__len,__prot,__flags,__fd,__offset);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "mmap"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020f0",
+            "calling": [
+                "FUN_00103bf0"
+            ],
+            "imported": false,
+            "current_name": "mmap"
+        },
+        "sbrk": {
+            "renaming": {},
+            "code": "\n\n\nvoid * sbrk(intptr_t __delta)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = sbrk(__delta);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "sbrk"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102140",
+            "calling": [
+                "FUN_00102fc7"
+            ],
+            "imported": false,
+            "current_name": "sbrk"
+        },
+        "getc": {
+            "renaming": {},
+            "code": "\n\n\nint getc(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = getc(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "getc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001022a0",
+            "calling": [
+                "FUN_001025ab"
+            ],
+            "imported": false,
+            "current_name": "getc"
+        },
+        "FUN_00102020": {
+            "renaming": {
+                "FUN_00102020": "execute_function_00102020"
+            },
+            "code": "\nvoid execute_function_00102020(void)\n\n{\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)(undefined *)0x0)();\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102020",
+            "calling": [],
+            "imported": false,
+            "current_name": "execute_function_00102020"
+        },
+        "FUN_001029a5": {
+            "renaming": {
+                "FUN_001029a5": "get_archive_member_name_001029a5",
+                "param_1": "param1",
+                "param_2": "param2",
+                "uVar1": "uint1",
+                "uVar2": "uint2",
+                "uVar3": "uint3",
+                "uVar4": "uint4",
+                "uVar5": "uint5",
+                "iVar6": "int1",
+                "uVar7": "ulong1",
+                "uVar8": "ulong2",
+                "uVar9": "ulong3",
+                "uVar10": "ulong8",
+                "__stream": "fileStream",
+                "sVar11": "size",
+                "puVar12": "ptr1",
+                "lVar13": "long1",
+                "pcVar14": "ptr2",
+                "pcVar15": "ptr3",
+                "pcVar16": "ptr4",
+                "local_c0": "localVar1",
+                "local_b8": "statStruct"
+            },
+            "code": "\nundefined4 * getArchiveMemberName_001029a5(undefined8 *param1,char **param2)\n\n{\n  undefined uint1;\n  undefined4 uint2;\n  undefined4 uint3;\n  undefined4 uint4;\n  undefined4 uint5;\n  int int1;\n  ulong ulong1;\n  ulong ulong2;\n  ulong ulong3;\n  undefined8 ulong8;\n  FILE *fileStream;\n  size_t size;\n  undefined4 *ptr1;\n  long long1;\n  char *ptr2;\n  char *ptr3;\n  char *ptr4;\n  char *localVar1;\n  stat statStruct;\n  \n  if (*(char *)(param1 + 0xb) != '/') {\n    long1 = 0;\n    do {\n      if (*(char *)((long)param1 + long1 + 0x58) == '/') {\n        *(undefined *)((long)param1 + long1 + 0x58) = 0;\n        ptr1 = (undefined4 *)copy_string_00103160(param1 + 0xb);\n        return ptr1;\n      }\n      long1 = long1 + 1;\n    } while (long1 != 0x10);\n    ptr1 = (undefined4 *)extract_file_name_from_path_00105370(0x11);\n    uint2 = *(undefined4 *)(param1 + 0xb);\n    uint3 = *(undefined4 *)((long)param1 + 0x5c);\n    uint4 = *(undefined4 *)(param1 + 0xc);\n    uint5 = *(undefined4 *)((long)param1 + 100);\n    *(undefined *)(ptr1 + 4) = 0;\n    *ptr1 = uint2;\n    ptr1[1] = uint3;\n    ptr1[2] = uint4;\n    ptr1[3] = uint5;\n    return ptr1;\n  }\n  if ((param1[6] == 0) || (param1[7] == 0)) {\n    ptr3 = \"Archive member uses long names, but no longname table found\\n\";\nLAB_00102acd:\n    ulong8 = dcgettext(0,ptr3,5);\n    error(ulong8);\n    return (undefined4 *)0x0;\n  }\n  uint1 = *(undefined *)((long)param1 + 0x92);\n  param1[8] = 0;\n  *(undefined *)((long)param1 + 0x92) = 0;\n  ulong1 = strtoul((char *)((long)param1 + 0x59),&localVar1,10);\n  if (((*(int *)(param1 + 10) != 0) && (localVar1 != (char *)0x0)) && (*localVar1 == ':')) {\n    ulong2 = strtoul(localVar1 + 1,(char **)0x0,10);\n    param1[8] = ulong2;\n  }\n  ulong2 = param1[7];\n  *(undefined *)((long)param1 + 0x92) = uint1;\n  if (ulong2 < ulong1) {\n    ulong8 = dcgettext(0,\"Found long name index (%ld) beyond end of long name table\\n\",5);\n    error(ulong8,ulong1);\n    return (undefined4 *)0x0;\n  }\n  long1 = param1[6];\n  for (ulong3 = ulong1;\n      ((ulong2 != ulong3 && (*(char *)(long1 + ulong3) != '\\0')) &&\n      (*(char *)(long1 + ulong3) != '\\n')); ulong3 = ulong3 + 1) {\n  }\n  if ((ulong3 != 0) && (*(char *)(long1 + -1 + ulong3) == '/')) {\n    ulong3 = ulong3 - 1;\n  }\n  if (ulong3 < ulong2) {\n    ulong2 = ulong3;\n  }\n  *(undefined *)(long1 + ulong2) = 0;\n  if ((*(int *)(param1 + 10) == 0) || (param1[8] == 0)) goto LAB_00102c2d;\n  if (ulong2 <= ulong1) {\n    ptr3 = \"Invalid Thin archive member name\\n\";\n    goto LAB_00102acd;\n  }\n  ptr3 = (char *)extract_filename_00102cc4(*param1,param1[6] + ulong1,ulong2 - ulong1);\n  if (ptr3 != (char *)0x0) {\n    if ((*param2 == (char *)0x0) || (int1 = strcmp(*param2,ptr3), int1 != 0)) {\n      if ((FILE *)param2[1] != (FILE *)0x0) {\n        fclose((FILE *)param2[1]);\n        param2[1] = (char *)0x0;\n      }\n      clear_memory_00102f65(param2);\n      fileStream = fopen(ptr3,\"rb\");\n      if (fileStream != (FILE *)0x0) {\n        int1 = fileno(fileStream);\n        int1 = fstat(int1,&statStruct);\n        if ((-1 < int1) &&\n           (int1 = parse_archive_001025ab(param2,ptr3,fileStream,statStruct.st_size,0), int1 == 0))\n        goto LAB_00102b84;\n      }\n    }\n    else {\nLAB_00102b84:\n      int1 = fseek((FILE *)param2[1],param1[8],0);\n      if (int1 == 0) {\n        size = fread(param2 + 0xb,1,0x3c,(FILE *)param2[1]);\n        if (size == 0x3c) {\n          if (*(short *)((long)param2 + 0x92) == 0xa60) {\n            ptr1 = (undefined4 *)getArchiveMemberName_001029a5(param2,0);\n            if (ptr1 != (undefined4 *)0x0) {\n              free(ptr3);\n              return ptr1;\n            }\n            goto LAB_00102c25;\n          }\n          ptr2 = *param2;\n          ptr4 = \"%s: did not find a valid archive header\\n\";\n        }\n        else {\n          ptr2 = *param2;\n          ptr4 = \"%s: failed to read archive header\\n\";\n        }\n      }\n      else {\n        ptr2 = *param2;\n        ptr4 = \"%s: failed to seek to next file name\\n\";\n      }\n      ulong8 = dcgettext(0,ptr4,5);\n      error(ulong8,ptr2);\n    }\n  }\nLAB_00102c25:\n  free(ptr3);\nLAB_00102c2d:\n  ptr1 = (undefined4 *)copy_string_00103160(param1[6] + ulong1);\n  return ptr1;\n}\n\n",
+            "called": [
+                "strtoul",
+                "FUN_00105370",
+                "FUN_00103160",
+                "fopen",
+                "fstat",
+                "dcgettext",
+                "fclose",
+                "fseek",
+                "FUN_00102f65",
+                "FUN_001029a5",
+                "fread",
+                "free",
+                "error",
+                "strcmp",
+                "FUN_00102cc4",
+                "FUN_001025ab",
+                "fileno"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001029a5",
+            "calling": [
+                "FUN_001029a5",
+                "FUN_0010358d"
+            ],
+            "imported": false,
+            "current_name": "get_archive_member_name_001029a5"
+        }
+    },
+    "used_tokens": 34709,
+    "layers": [
+        [
+            "FUN_00104d30",
+            "FUN_001028be",
+            "FUN_0010354e",
+            "FUN_00104da0",
+            "FUN_00102558",
+            "FUN_00103a90",
+            "FUN_0010347f",
+            "FUN_0010234b",
+            "FUN_00104c60",
+            "FUN_00102fbc",
+            "FUN_00102f65",
+            "FUN_00102323",
+            "FUN_001027fd",
+            "FUN_00102c98",
+            "FUN_001024ec",
+            "FUN_00103ad0",
+            "FUN_00104ce0",
+            "FUN_00102cc4",
+            "FUN_001023ce",
+            "FUN_00102fa0",
+            "FUN_001022c0",
+            "FUN_00102020"
+        ],
+        [
+            "FUN_00104de0",
+            "FUN_001025ab",
+            "FUN_00102434"
+        ],
+        [
+            "FUN_00103160",
+            "FUN_00102fc7",
+            "FUN_00103006",
+            "FUN_00103186"
+        ],
+        [
+            "FUN_001032de",
+            "FUN_00103449",
+            "FUN_00105370",
+            "FUN_00102cbc"
+        ],
+        [
+            "FUN_001029a5"
+        ],
+        [
+            "FUN_0010358d"
+        ],
+        [
+            "FUN_00103bf0"
+        ]
+    ],
+    "locked_functions": []
+}

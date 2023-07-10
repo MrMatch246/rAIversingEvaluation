@@ -1,0 +1,1283 @@
+{
+    "functions": {
+        "putc": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint putc(int __c,FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* putc@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109100", 
+            "calling": [
+                "putc"
+            ], 
+            "imported": false, 
+            "current_name": "putc"
+        }, 
+        "fflush": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint fflush(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fflush@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109138", 
+            "calling": [
+                "fflush"
+            ], 
+            "imported": false, 
+            "current_name": "fflush"
+        }, 
+        "bfd_close": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_close(void)\n\n{\n  bfd_close();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_close"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102290", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_close"
+        }, 
+        "_init": {
+            "renaming": {}, 
+            "code": "\nint _init(EVP_PKEY_CTX *ctx)\n\n{\n  int iVar1;\n  \n  iVar1 = __gmon_start__();\n  return iVar1;\n}\n\n", 
+            "called": [
+                "__gmon_start__"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102000", 
+            "calling": [], 
+            "imported": false, 
+            "current_name": "_init"
+        }, 
+        "FUN_00103510": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid FUN_00103510(void)\n\n{\n  ulong uVar1;\n  uint uVar2;\n  ulong uVar3;\n  ulong uVar4;\n  char *unaff_R14;\n  undefined8 unaff_R15;\n  bool bVar5;\n  undefined8 in_stack_00000010;\n  undefined8 in_stack_00000038;\n  \ncode_r0x00103510:\n  uVar4 = 2;\njoined_r0x0010341b:\n  do {\n    if (print_filenames != '\\0') {\n      printf(\"%s: \",in_stack_00000010);\n    }\n    if (print_addresses == '\\0') {\n      unaff_R14[uVar4] = '\\0';\n      fputs(unaff_R14,_stdout);\n    }\n    else {\n      print_filename_and_address_part_0(unaff_R15);\n      unaff_R14[uVar4] = '\\0';\n      fputs(unaff_R14,_stdout);\n    }\n    while (uVar4 = get_char(), uVar4 != 0xffffffffffffffff) {\n      if (0xff < uVar4) {\nLAB_0010348e:\n        unget_part_char();\n        break;\n      }\n      if (uVar4 == 9) {\nLAB_00102438:\n        putc((int)uVar4,_stdout);\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x10) == 0) {\n          if (((encoding != 'S') || ((long)uVar4 < 0x80)) &&\n             ((include_all_whitespace == '\\0' ||\n              ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x40) == 0)))) goto LAB_0010348e;\n          goto LAB_00102438;\n        }\n        putc((int)uVar4,_stdout);\n      }\n    }\n    if (output_separator == (char *)0x0) {\n      putc(10,_stdout);\n    }\n    else {\n      fputs(output_separator,_stdout);\n    }\n    while (uVar4 = (ulong)string_min, unaff_R15 = in_stack_00000038, string_min != 0) {\n      uVar4 = get_char();\n      uVar2 = string_min;\n      if (uVar4 == 0xffffffffffffffff) goto LAB_001034be;\n      if (uVar4 < 0x100) {\n        if (uVar4 == 9) {\nLAB_001023f5:\n          *unaff_R14 = (char)uVar4;\n          if (uVar2 < 2) {\n            FUN_001034fa();\n            return;\n          }\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar4 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_001023f5;\n          }\n          *unaff_R14 = (char)uVar4;\n          if (uVar2 < 2) {\n            uVar4 = 1;\n            break;\n          }\n        }\n        uVar4 = get_char();\n        uVar2 = string_min;\n        if (uVar4 == 0xffffffffffffffff) goto LAB_001034be;\n        if (0xff < uVar4) goto code_r0x001034d5;\n        if (uVar4 == 9) {\nLAB_001023bb:\n          unaff_R14[1] = (char)uVar4;\n          if (uVar2 < 3) {\n            FUN_00103510();\n            return;\n          }\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar4 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_001023bb;\n          }\n          unaff_R14[1] = (char)uVar4;\n          if (uVar2 < 3) goto code_r0x00103510;\n        }\n        uVar4 = get_char();\n        uVar2 = string_min;\n        if (uVar4 == 0xffffffffffffffff) {\nLAB_001034be:\n          free(unaff_R14);\n          return;\n        }\n        if (0xff < uVar4) goto code_r0x001034d5;\n        if (uVar4 == 9) {\nLAB_00102381:\n          unaff_R14[2] = (char)uVar4;\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar4 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_00102381;\n          }\n          unaff_R14[2] = (char)uVar4;\n        }\n        if (3 < uVar2) {\n          uVar3 = 3;\n          do {\n            uVar1 = get_char();\n            if (uVar1 == 0xffffffffffffffff) goto LAB_001034be;\n            if (0xff < uVar1) goto code_r0x001034d5;\n            if (((uVar1 != 9) && ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x10) == 0)) &&\n               ((encoding != 'S' || ((long)uVar1 < 0x80)))) {\n              if (include_all_whitespace == '\\0') goto code_r0x001034d5;\n              if ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x40) == 0) {\n                FUN_001034d5();\n                return;\n              }\n            }\n            uVar2 = (int)uVar3 + 1;\n            uVar4 = (ulong)uVar2;\n            bVar5 = string_min <= uVar2;\n            unaff_R14[uVar3] = (char)uVar1;\n            uVar3 = uVar4;\n            if (bVar5) goto joined_r0x0010341b;\n          } while( true );\n        }\n        uVar4 = 3;\n        break;\n      }\ncode_r0x001034d5:\n      unget_part_char();\n    }\n  } while( true );\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": false, 
+            "entrypoint": "0x00103510", 
+            "calling": [
+                "FUN_0010259a"
+            ], 
+            "imported": false, 
+            "current_name": "FUN_00103510"
+        }, 
+        "usage": {
+            "renaming": {}, 
+            "code": "\nvoid usage(FILE *param_1,int param_2)\n\n{\n  long lVar1;\n  char *pcVar2;\n  long *__ptr;\n  long *plVar3;\n  \n  lVar1 = program_name;\n  pcVar2 = (char *)dcgettext(0,\"Usage: %s [option(s)] [file(s)]\\n\",5);\n  fprintf(param_1,pcVar2,lVar1);\n  pcVar2 = (char *)dcgettext(0,\" Display printable strings in [file(s)] (stdin by default)\\n\",5);\n  fprintf(param_1,pcVar2);\n  pcVar2 = (char *)dcgettext(0,\" The options are:\\n\",5);\n  fprintf(param_1,pcVar2);\n  pcVar2 = (char *)dcgettext(0,\n                             \"  -a - --all                Scan the entire file, not just the data section [default]\\n  -d --data                 Only scan the data sections in the file\\n\"\n                             ,5);\n  fprintf(param_1,pcVar2);\n  pcVar2 = (char *)dcgettext(0,\n                             \"  -f --print-file-name      Print the name of the file before each string\\n  -n <number>               Locate & print any sequence of at least <number>\\n    --bytes=<number>         displayable characters.  (The default is 4).\\n  -t --radix={o,d,x}        Print the location of the string in base 8, 10 or 16\\n  -w --include-all-whitespace Include all whitespace as valid string characters\\n  -o                        An alias for --radix=o\\n  -T --target=<BFDNAME>     Specify the binary file format\\n  -e --encoding={s,S,b,l,B,L} Select character size and endianness:\\n                            s = 7-bit, S = 8-bit, {b,l} = 16-bit, {B,L} = 32-bit\\n  --unicode={default|show|invalid|hex|escape|highlight}\\n  -U {d|s|i|x|e|h}          Specify how to treat UTF-8 encoded unicode characters\\n  -s --output-separator=<string> String used to separate strings in output.\\n  @<file>                   Read options from <file>\\n  -h --help                 Display this information\\n  -v -V --version           Print the program\\'s version number\\n\"\n                             ,5);\n  fprintf(param_1,pcVar2);\n  lVar1 = program_name;\n  if (program_name == 0) {\n    pcVar2 = (char *)dcgettext(0,\"Supported targets:\",5);\n    fprintf(param_1,pcVar2);\n  }\n  else {\n    pcVar2 = (char *)dcgettext(0,\"%s: supported targets:\",5);\n    fprintf(param_1,pcVar2,lVar1);\n  }\n  __ptr = (long *)bfd_target_list();\n  plVar3 = __ptr;\n  while( true ) {\n    lVar1 = *plVar3;\n    plVar3 = plVar3 + 1;\n    if (lVar1 == 0) break;\n    fprintf(param_1,\" %s\");\n  }\n  fputc(10,param_1);\n  free(__ptr);\n  if (param_2 == 0) {\n    pcVar2 = (char *)dcgettext(0,\"Report bugs to %s\\n\",5);\n    fprintf(param_1,pcVar2,\"<https://sourceware.org/bugzilla/>\");\n  }\n                    \n  exit(param_2);\n}\n\n", 
+            "called": [
+                "bfd_target_list", 
+                "exit", 
+                "fputc", 
+                "free", 
+                "fprintf", 
+                "dcgettext"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001030c0", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "usage"
+        }, 
+        "main": {
+            "renaming": {}, 
+            "code": "\n\n\n\nFILE * main(int param_1,long *param_2)\n\n{\n  byte *pbVar1;\n  byte bVar2;\n  byte bVar3;\n  char cVar4;\n  int iVar5;\n  uint uVar6;\n  int iVar7;\n  undefined4 uVar8;\n  FILE *__stream;\n  size_t sVar9;\n  size_t sVar10;\n  byte *__ptr;\n  long lVar11;\n  long *plVar12;\n  ulong uVar13;\n  long *__src;\n  undefined8 uVar14;\n  FILE *__stream_00;\n  int *piVar15;\n  long *plVar16;\n  undefined8 uVar17;\n  long *plVar18;\n  byte *pbVar19;\n  char *pcVar20;\n  undefined1 *puVar21;\n  long lVar22;\n  byte *pbVar23;\n  char *pcVar24;\n  bool bVar25;\n  long *unaff_R12;\n  undefined8 *puVar26;\n  bool bVar27;\n  bool bVar28;\n  long *local_140;\n  undefined8 local_138;\n  undefined8 local_128;\n  ulong local_120;\n  size_t local_118;\n  long local_110;\n  char *local_d8;\n  void *local_d0;\n  stat local_c8;\n  \n  setlocale(6,\"\");\n  bindtextdomain(\"binutils\",\"/usr/share/locale\");\n  textdomain(\"binutils\");\n  program_name = *param_2;\n  xmalloc_set_program_name();\n  bfd_set_error_program_name(program_name);\n  plVar16 = param_2;\n  if (param_1 < 2) goto LAB_00103fa6;\n  local_120 = 2000;\n  unaff_R12 = (long *)0x1;\n  local_138 = (long *)0x0;\n  plVar12 = param_2;\n  do {\n    iVar7 = (int)unaff_R12;\n    puVar21 = (undefined1 *)(long)iVar7;\n    local_140 = (long *)((long)puVar21 * 8);\n    plVar16 = plVar12;\n    if (*(char *)plVar12[(long)puVar21] == '@') {\n      uVar6 = (int)local_120 - 1;\n      local_120 = (ulong)uVar6;\n      if (uVar6 == 0) {\n        lVar11 = *plVar12;\n        pcVar20 = \"%s: error: too many @-files encountered\\n\";\n        goto LAB_001044b1;\n      }\n      pcVar20 = (char *)plVar12[(long)puVar21] + 1;\n      iVar5 = stat(pcVar20,&local_c8);\n      if (-1 < iVar5) {\n        if ((local_c8.st_mode & 0xf000) == 0x4000) {\n          do {\n            lVar11 = *plVar12;\n            pcVar20 = \"%s: error: @-file refers to a directory\\n\";\nLAB_001044b1:\n            fprintf(_stderr,pcVar20,lVar11);\n            xexit(1);\n          } while( true );\n        }\n        __stream = fopen(pcVar20,\"r\");\n        if (__stream != (FILE *)0x0) {\n          iVar5 = fseek(__stream,0,2);\n          if (((iVar5 != -1) && (sVar9 = ftell(__stream), sVar9 != 0xffffffffffffffff)) &&\n             (iVar5 = fseek(__stream,0,0), iVar5 != -1)) {\n            local_128 = (byte *)xmalloc(sVar9 + 1);\n            sVar10 = fread(local_128,1,sVar9,__stream);\n            if ((sVar9 == sVar10) || (iVar5 = ferror(__stream), iVar5 == 0)) {\n              local_128[sVar10] = 0;\n              bVar3 = *local_128;\n              pbVar19 = local_128;\n              while( true ) {\n                if (bVar3 == 0) goto LAB_001040fd;\n                if (((&_sch_istable)[(ulong)bVar3 * 2] & 0x40) == 0) break;\n                bVar3 = pbVar19[1];\n                pbVar19 = pbVar19 + 1;\n              }\n              sVar9 = strlen((char *)local_128);\n              __ptr = (byte *)xmalloc(sVar9 + 1);\n              __src = (long *)0x0;\n              iVar5 = 0;\n              local_110 = 0;\n              bVar25 = false;\n              bVar28 = false;\n              bVar27 = false;\n              pbVar19 = local_128;\n              do {\n                while (((&_sch_istable)[(ulong)*pbVar19 * 2] & 0x40) != 0) {\n                  pbVar19 = pbVar19 + 1;\n                }\n                if ((iVar5 == 0) || (iVar5 + -1 <= (int)local_110)) {\n                  if (__src == (long *)0x0) {\n                    iVar5 = 8;\n                    __src = (long *)xmalloc(0x40);\n                    plVar18 = __src + local_110;\n                    *plVar18 = 0;\n                  }\n                  else {\n                    iVar5 = iVar5 * 2;\n                    __src = (long *)xrealloc(__src,(long)iVar5 << 3);\n                    plVar18 = __src + local_110;\n                    *plVar18 = 0;\n                  }\n                }\n                else {\n                  plVar18 = __src + local_110;\n                }\n                bVar3 = *pbVar19;\n                pbVar23 = __ptr;\n                while (bVar3 != 0) {\n                  while( true ) {\n                    if ((((&_sch_istable)[(ulong)bVar3 * 2] & 0x40) != 0) &&\n                       (!(bool)(bVar28 | bVar27 | bVar25))) {\n                      bVar27 = false;\n                      bVar25 = false;\n                      bVar28 = false;\n                      goto LAB_00103d4f;\n                    }\n                    if (!bVar27) break;\n                    pbVar19 = pbVar19 + 1;\n                    *pbVar23 = bVar3;\n                    pbVar23 = pbVar23 + 1;\n                    bVar27 = false;\n                    bVar3 = *pbVar19;\n                    if (bVar3 == 0) goto LAB_00103d4f;\n                  }\n                  if (bVar3 == 0x5c) {\n                    bVar27 = true;\n                  }\n                  else if (bVar28) {\n                    if (bVar3 == 0x27) {\n                      bVar28 = false;\n                    }\n                    else {\nLAB_00103ec8:\n                      *pbVar23 = bVar3;\n                      pbVar23 = pbVar23 + 1;\n                    }\n                  }\n                  else if (bVar25) {\n                    if (bVar3 != 0x22) goto LAB_00103ec8;\n                    bVar25 = false;\n                  }\n                  else if (bVar3 == 0x27) {\n                    bVar28 = true;\n                  }\n                  else {\n                    if (bVar3 != 0x22) goto LAB_00103ec8;\n                    bVar25 = true;\n                  }\n                  pbVar1 = pbVar19 + 1;\n                  pbVar19 = pbVar19 + 1;\n                  bVar3 = *pbVar1;\n                }\nLAB_00103d4f:\n                *pbVar23 = 0;\n                lVar11 = xstrdup(__ptr);\n                *plVar18 = lVar11;\n                __src[local_110 + 1] = 0;\n                bVar3 = *pbVar19;\n                bVar2 = (&_sch_istable)[(ulong)bVar3 * 2];\n                while ((bVar2 & 0x40) != 0) {\n                  bVar3 = pbVar19[1];\n                  pbVar19 = pbVar19 + 1;\n                  bVar2 = (&_sch_istable)[(ulong)bVar3 * 2];\n                }\n                local_110 = local_110 + 1;\n                if (bVar3 == 0) {\n                  free(__ptr);\n                  if (plVar12 == param_2) goto LAB_0010411e;\n                  goto LAB_00103dea;\n                }\n              } while( true );\n            }\n            free(local_128);\n          }\n          fclose(__stream);\n        }\n      }\n    }\n    if (param_1 <= iVar7 + 1) {\nLAB_00103fa6:\n      include_all_whitespace = 0;\n      __stream = (FILE *)0x0;\n      print_addresses = 0;\n      puVar21 = long_options;\n      string_min = 4;\n      print_filenames = 0;\n      datasection_only = '\\0';\n      target = (long *)0x0;\n      encoding = 's';\n      output_separator = (long *)0x0;\n      pcVar20 = \"adfhHn:wot:e:T:s:U:Vv0123456789\";\nLAB_00103ff6:\n      while( true ) {\n        iVar7 = (int)unaff_R12;\n        iVar5 = getopt_long(param_1,plVar16,pcVar20);\n        if (iVar5 == -1) break;\n        plVar12 = (long *)pcVar20;\n        switch(iVar5) {\n        case 0x3f:\n          goto switchD_00104029_caseD_3f;\n        case 0x48:\n        case 0x68:\nswitchD_00104029_caseD_48:\n          usage(_stdout,0);\n          goto LAB_001044f5;\n        case 0x54:\nswitchD_00104201_caseD_54:\n          unaff_R12 = (long *)&optarg;\n          target = _optarg;\n          break;\n        case 0x55:\nswitchD_00104201_caseD_55:\n          unaff_R12 = _optarg;\n          iVar7 = strcmp((char *)_optarg,\"default\");\n          if ((iVar7 == 0) || (iVar7 = strcmp((char *)unaff_R12,\"d\"), iVar7 == 0)) {\n            unicode_display = 0;\n          }\n          else {\n            iVar7 = strcmp((char *)unaff_R12,\"locale\");\n            if ((iVar7 == 0) || (iVar7 = strcmp((char *)unaff_R12,\"l\"), iVar7 == 0)) {\n              unicode_display = 1;\n            }\n            else {\n              iVar7 = strcmp((char *)unaff_R12,\"escape\");\n              if ((iVar7 == 0) || (iVar7 = strcmp((char *)unaff_R12,\"e\"), iVar7 == 0)) {\n                unicode_display = 2;\n              }\n              else {\n                iVar7 = strcmp((char *)unaff_R12,\"invalid\");\n                if ((iVar7 == 0) || (iVar7 = strcmp((char *)unaff_R12,\"i\"), iVar7 == 0)) {\n                  unicode_display = 5;\n                }\n                else {\n                  iVar7 = strcmp((char *)unaff_R12,\"hex\");\n                  if ((iVar7 == 0) || (iVar7 = strcmp((char *)unaff_R12,\"x\"), iVar7 == 0)) {\n                    unicode_display = 3;\n                  }\n                  else {\n                    iVar7 = strcmp((char *)unaff_R12,\"highlight\");\n                    if ((iVar7 != 0) && (iVar7 = strcmp((char *)unaff_R12,\"h\"), iVar7 != 0)) {\n                      uVar14 = dcgettext(0,\"invalid argument to -U/--unicode: %s\",5);\n                      fatal(uVar14);\n                      report();\n                      xexit(1);\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                      halt_baddata();\n                    }\n                    unicode_display = 4;\n                  }\n                }\n              }\n            }\n          }\n          break;\n        case 0x56:\n        case 0x76:\nswitchD_00104029_caseD_56:\n          printf(\"GNU %s %s\\n\",\"strings\",\"(GNU Binutils for Debian) 2.40\");\n          pcVar20 = (char *)dcgettext(0,\"Copyright (C) 2023 Free Software Foundation, Inc.\\n\",5);\n          printf(pcVar20);\n          pcVar20 = (char *)dcgettext(0,\n                                      \"This program is free software; you may redistribute it under the terms of\\nthe GNU General Public License version 3 or (at your option) any later version.\\nThis program has absolutely no warranty.\\n\"\n                                      ,5);\n          printf(pcVar20);\n                    \n          exit(0);\n        case 0x61:\n          goto switchD_00104029_caseD_61;\n        case 100:\nswitchD_00104029_caseD_64:\n          datasection_only = '\\x01';\n          break;\n        case 0x65:\n          unaff_R12 = (long *)&optarg;\n          iVar7 = 0x109108;\n          if (*(char *)((long)_optarg + 1) != '\\0') goto switchD_00104029_caseD_3f;\n          encoding = *(char *)_optarg;\n          iVar5 = getopt_long(param_1,plVar16,pcVar20);\n          if (iVar5 == -1) goto LAB_0010407f;\n          switch(iVar5) {\n          case 0x3f:\n            goto switchD_00104029_caseD_3f;\n          case 0x48:\n          case 0x68:\n            goto switchD_00104029_caseD_48;\n          case 0x54:\n            goto switchD_00104201_caseD_54;\n          case 0x55:\n            goto switchD_00104201_caseD_55;\n          case 0x56:\n          case 0x76:\n            goto switchD_00104029_caseD_56;\n          case 0x61:\n            goto switchD_00104029_caseD_61;\n          case 100:\n            goto switchD_00104029_caseD_64;\n          case 0x65:\nswitchD_00104201_caseD_65:\n            if (*(char *)((long)_optarg + 1) != '\\0') goto switchD_00104029_caseD_3f;\n            encoding = *(char *)_optarg;\n            iVar5 = getopt_long(param_1,plVar16,pcVar20);\n            if (iVar5 == -1) goto LAB_0010407f;\n            switch(iVar5) {\n            case 0x3f:\n              goto switchD_00104029_caseD_3f;\n            default:\n              break;\n            case 0x48:\n            case 0x68:\n              goto switchD_00104029_caseD_48;\n            case 0x54:\n              goto switchD_00104201_caseD_54;\n            case 0x55:\n              goto switchD_00104201_caseD_55;\n            case 0x56:\n            case 0x76:\n              goto switchD_00104029_caseD_56;\n            case 0x61:\n              goto switchD_00104029_caseD_61;\n            case 100:\n              goto switchD_00104029_caseD_64;\n            case 0x65:\n              goto switchD_00104201_caseD_65;\n            case 0x66:\n              goto switchD_00104029_caseD_66;\n            case 0x6e:\n              goto switchD_00104201_caseD_6e;\n            case 0x6f:\n              goto switchD_00104029_caseD_6f;\n            case 0x73:\n              goto switchD_00104201_caseD_73;\n            case 0x74:\n              goto switchD_00104201_caseD_74;\n            case 0x77:\n              goto switchD_00104029_caseD_77;\n            }\n          case 0x66:\n            goto switchD_00104029_caseD_66;\n          case 0x6e:\n            goto switchD_00104201_caseD_6e;\n          case 0x6f:\n            goto switchD_00104029_caseD_6f;\n          case 0x73:\n            goto switchD_00104201_caseD_73;\n          case 0x74:\n            goto switchD_00104201_caseD_74;\n          case 0x77:\n            goto switchD_00104029_caseD_77;\n          }\n        default:\n          __stream = (FILE *)(ulong)_optind;\n          break;\n        case 0x66:\nswitchD_00104029_caseD_66:\n          print_filenames = 1;\n          break;\n        case 0x6e:\nswitchD_00104201_caseD_6e:\n          unaff_R12 = (long *)&optarg;\n          uVar13 = strtoul((char *)_optarg,&local_d8,0);\n          string_min = (int)uVar13;\n          if ((local_d8 != (char *)0x0) && (plVar12 = _optarg, *local_d8 != '\\0')) {\nLAB_001042e6:\n            uVar14 = dcgettext(0,\"invalid integer argument %s\",5);\n            fatal(uVar14,plVar12);\n            goto switchD_00104201_caseD_73;\n          }\n          break;\n        case 0x6f:\nswitchD_00104029_caseD_6f:\n          print_addresses = 1;\n          address_radix = 8;\n          break;\n        case 0x73:\nswitchD_00104201_caseD_73:\n          unaff_R12 = (long *)&optarg;\n          output_separator = _optarg;\n          pcVar20 = (char *)plVar12;\n          break;\n        case 0x74:\nswitchD_00104201_caseD_74:\n          unaff_R12 = (long *)&optarg;\n          iVar7 = 0x109108;\n          print_addresses = 1;\n          if (*(char *)((long)_optarg + 1) != '\\0') goto switchD_00104029_caseD_3f;\n          cVar4 = *(char *)_optarg;\n          if (cVar4 == 'o') {\n            address_radix = 8;\n          }\n          else if (cVar4 == 'x') {\n            address_radix = 0x10;\n          }\n          else {\n            if (cVar4 != 'd') goto switchD_00104029_caseD_3f;\n            address_radix = 10;\n          }\n          break;\n        case 0x77:\n          goto switchD_00104029_caseD_77;\n        }\n      }\nLAB_0010407f:\n      if (unicode_display != 0) {\n        encoding = 'S';\n      }\n      if ((int)__stream != 0) {\nLAB_001044f5:\n        pcVar20 = (char *)(plVar16 + (long)(int)__stream + -1);\n        uVar13 = strtoul((char *)(*(long *)pcVar20 + 1),&local_d8,0);\n        string_min = (int)uVar13;\n        if ((local_d8 != (char *)0x0) && (*local_d8 != '\\0')) {\n          plVar12 = (long *)(*(long *)pcVar20 + 1);\n          goto LAB_001042e6;\n        }\n      }\n      iVar7 = (int)unaff_R12;\n      if (string_min == 0) {\n        uVar14 = dcgettext(0,\"invalid minimum string length %d\",5);\n        fatal(uVar14,0);\nswitchD_00104029_caseD_61:\n        datasection_only = '\\0';\n        goto LAB_00103ff6;\n      }\n      if (0x31 < (byte)(encoding + 0xbeU)) goto switchD_00104029_caseD_3f;\n      uVar13 = 1L << (encoding + 0xbeU & 0x3f);\n      if ((uVar13 & 0x2000000020000) == 0) {\n        if ((uVar13 & 0x401) == 0) {\n          if ((uVar13 & 0x40100000000) == 0) goto switchD_00104029_caseD_3f;\n          encoding_bytes = 2;\n        }\n        else {\n          encoding_bytes = 4;\n        }\n      }\n      else {\n        encoding_bytes = 1;\n      }\n      iVar7 = bfd_init();\n      if (iVar7 == 0x118) {\n        pcVar20 = \"x86_64-pc-linux-gnu\";\n        uVar6 = bfd_set_default_target(\"x86_64-pc-linux-gnu\");\n        if ((char)uVar6 != '\\0') {\n          puVar21 = &optind;\n          if (param_1 <= (int)_optind) {\n            datasection_only = 0;\n            print_strings(\"{standard input}\",_stdin,0,0,0);\n            return (FILE *)0x0;\n          }\n          uVar13 = 0;\n          __stream = (FILE *)0x0;\n          plVar12 = (long *)(ulong)uVar6;\n          uVar6 = _optind;\n          local_140 = plVar16;\n          goto LAB_001043b8;\n        }\n        uVar8 = bfd_get_error();\n        puVar21 = (undefined1 *)bfd_errmsg(uVar8);\n        uVar14 = dcgettext(0,\"can\\'t set BFD default target to `%s\\': %s\",5);\n        fatal(uVar14,\"x86_64-pc-linux-gnu\",puVar21);\n      }\n      uVar14 = dcgettext(0,\"fatal error: libbfd ABI mismatch\",5);\n      fatal(uVar14);\n      plVar12 = plVar16;\nLAB_0010462b:\n      pcVar24 = \"Warning: \\'%s\\' is a directory\";\nLAB_00104637:\n      uVar14 = dcgettext(0,pcVar24,5);\n      non_fatal(uVar14,pcVar20);\n      uVar6 = 0;\n      do {\n        while( true ) {\n          uVar13 = (ulong)plVar12 & 0xffffffff;\n          __stream = (FILE *)(ulong)((uint)__stream | (uVar6 ^ 1) & 0xff);\n          while( true ) {\n            iVar7 = (int)uVar13;\n            uVar6 = *(uint *)puVar21 + 1;\n            *(uint *)puVar21 = uVar6;\n            if (param_1 <= (int)uVar6) {\n              plVar16 = plVar12;\n              if ((char)uVar13 != '\\0') {\n                return __stream;\n              }\n              goto switchD_00104029_caseD_3f;\n            }\nLAB_001043b8:\n            pcVar20 = (char *)local_140[(int)uVar6];\n            iVar7 = strcmp(pcVar20,\"-\");\n            if (iVar7 != 0) break;\n            datasection_only = '\\0';\n          }\n          iVar7 = stat(pcVar20,&local_c8);\n          if (iVar7 < 0) break;\n          if ((local_c8.st_mode & 0xf000) == 0x4000) goto LAB_0010462b;\n          if ((datasection_only == '\\0') ||\n             (plVar16 = (long *)bfd_openr(pcVar20,target), plVar16 == (long *)0x0)) {\nLAB_00104416:\n            __stream_00 = fopen(pcVar20,\"r\");\n            if (__stream_00 != (FILE *)0x0) {\n              print_strings(pcVar20,__stream_00,0,0,0);\n              iVar7 = fclose(__stream_00);\n              if (iVar7 != -1) goto LAB_00104454;\n            }\n            fprintf(_stderr,\"%s: \",program_name);\n            perror(pcVar20);\n            uVar6 = 0;\n          }\n          else {\n            cVar4 = bfd_check_format(plVar16,1);\n            if (cVar4 == '\\0') {\n              bfd_close();\n              local_138 = plVar16;\n              goto LAB_00104416;\n            }\n            puVar26 = (undefined8 *)plVar16[0x12];\n            local_138 = (long *)((ulong)plVar16 & 0xffffffffffffff00);\n            local_128 = (byte *)CONCAT44(local_128._4_4_,param_1);\n            for (; puVar26 != (undefined8 *)0x0; puVar26 = (undefined8 *)puVar26[1]) {\n              cVar4 = (char)local_138;\n              if (((*(uint *)((long)puVar26 + 0x24) & 0x103) == 0x103) &&\n                 (local_120 = puVar26[8], local_120 != 0)) {\n                cVar4 = bfd_malloc_and_get_section(plVar16,puVar26,&local_d0);\n                if (cVar4 == '\\0') {\n                  uVar8 = bfd_get_error();\n                  local_120 = bfd_errmsg(uVar8);\n                  uVar14 = *puVar26;\n                  uVar17 = dcgettext(0,\"%s: Reading section %s failed: %s\",5);\n                  non_fatal(uVar17,pcVar20,uVar14);\n                  cVar4 = (char)local_138;\n                }\n                else {\n                  print_strings(pcVar20,0,puVar26[0x10],local_120,local_d0);\n                  free(local_d0);\n                }\n              }\n              local_138 = (long *)CONCAT71(local_138._1_7_,cVar4);\n            }\n            plVar12 = (long *)((ulong)plVar12 & 0xff);\n            cVar4 = bfd_close(plVar16);\n            if (cVar4 == '\\0') {\n              iVar7 = bfd_get_error();\n              if (iVar7 == 0) {\n                uVar14 = dcgettext(0,\"cause of error unknown\",5);\n                fflush(_stdout);\n              }\n              else {\n                uVar14 = bfd_errmsg();\n                fflush(_stdout);\n              }\n              fprintf(_stderr,\"%s: %s: %s\\n\",program_name,pcVar20,uVar14);\n              goto LAB_00104416;\n            }\n            bVar28 = (char)local_138 == '\\0';\n            if (bVar28) goto LAB_00104416;\nLAB_00104454:\n            uVar6 = (uint)plVar12;\n          }\n        }\n        piVar15 = __errno_location();\n        pcVar24 = \"\\'%s\\': No such file\";\n        if (*piVar15 == 2) goto LAB_00104637;\n        pcVar24 = strerror(*piVar15);\n        uVar14 = dcgettext(0,\"Warning: could not locate \\'%s\\'.  reason: %s\",5);\n        non_fatal(uVar14,pcVar20,pcVar24);\n        uVar6 = 0;\n      } while( true );\n    }\n    uVar6 = iVar7 + 1;\n    local_138 = unaff_R12;\nLAB_00103eac:\n    unaff_R12 = (long *)(ulong)uVar6;\n  } while( true );\nswitchD_00104029_caseD_77:\n  include_all_whitespace = 1;\n  goto LAB_00103ff6;\nswitchD_00104029_caseD_3f:\n  usage(_stderr);\nLAB_001040fd:\n  __src = (long *)xmalloc(8);\n  *__src = 0;\n  if (plVar16 == param_2) {\nLAB_0010411e:\n    if (*plVar16 == 0) {\n      iVar5 = 0;\n    }\n    else {\n      lVar11 = 1;\n      do {\n        iVar5 = (int)lVar11;\n        plVar12 = plVar16 + lVar11;\n        lVar11 = lVar11 + 1;\n      } while (*plVar12 != 0);\n    }\n    lVar22 = 0;\n    plVar12 = (long *)xmalloc((long)(iVar5 + 1) << 3);\n    lVar11 = *plVar16;\n    while (lVar11 != 0) {\n      uVar14 = xstrdup();\n      *(undefined8 *)((long)plVar12 + lVar22) = uVar14;\n      lVar22 = lVar22 + 8;\n      lVar11 = *(long *)((long)plVar16 + lVar22);\n    }\n    *(undefined8 *)((long)plVar12 + lVar22) = 0;\nLAB_00103dea:\n    plVar16 = plVar12;\n    if (*__src != 0) {\n      lVar11 = 0;\n      do {\n        lVar11 = lVar11 + 1;\n      } while (__src[lVar11] != 0);\n      local_118 = lVar11 * 8;\n      iVar5 = param_1;\n      goto LAB_00103e18;\n    }\n  }\n  lVar11 = 0;\n  local_118 = 0;\n  iVar5 = param_1;\nLAB_00103e18:\n  free((void *)plVar16[(long)puVar21]);\n  plVar12 = (long *)xrealloc(plVar16,(lVar11 + 1 + (long)iVar5) * 8);\n  param_1 = iVar5 + -1 + (int)lVar11;\n  memmove(plVar12 + (long)((long)puVar21 + lVar11),(void *)((long)(plVar12 + 1) + (long)local_140),\n          (long)(iVar5 - iVar7) << 3);\n  memcpy((void *)((long)plVar12 + (long)local_140),__src,local_118);\n  free(__src);\n  free(local_128);\n  fclose(__stream);\n  uVar6 = (int)local_138 + 1;\n  unaff_R12 = local_140;\n  plVar16 = plVar12;\n  local_140 = __src;\n  if ((int)uVar6 < param_1) goto LAB_00103eac;\n  goto LAB_00103fa6;\n}\n\n", 
+            "called": [
+                "xexit", 
+                "fatal", 
+                "xmalloc", 
+                "getopt_long", 
+                "bfd_init", 
+                "textdomain", 
+                "stat", 
+                "xrealloc", 
+                "ferror", 
+                "strtoul", 
+                "bfd_openr", 
+                "fopen", 
+                "fseek", 
+                "xstrdup", 
+                "setlocale", 
+                "fclose", 
+                "memmove", 
+                "bfd_check_format", 
+                "xmalloc_set_program_name", 
+                "bfd_get_error", 
+                "bindtextdomain", 
+                "printf", 
+                "non_fatal", 
+                "free", 
+                "usage", 
+                "perror", 
+                "strcmp", 
+                "__errno_location", 
+                "bfd_set_error_program_name", 
+                "fread", 
+                "memcpy", 
+                "dcgettext", 
+                "bfd_malloc_and_get_section", 
+                "bfd_close", 
+                "fflush", 
+                "bfd_errmsg", 
+                "exit", 
+                "fprintf", 
+                "strlen", 
+                "print_strings", 
+                "ftell", 
+                "bfd_set_default_target", 
+                "strerror"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103aa0", 
+            "calling": [
+                "_start"
+            ], 
+            "imported": false, 
+            "current_name": "main"
+        }, 
+        "isatty": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint isatty(int __fd)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* isatty@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109038", 
+            "calling": [
+                "isatty"
+            ], 
+            "imported": false, 
+            "current_name": "isatty"
+        }, 
+        "fseek": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint fseek(FILE *__stream,long __off,int __whence)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fseek@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109140", 
+            "calling": [
+                "fseek"
+            ], 
+            "imported": false, 
+            "current_name": "fseek"
+        }, 
+        "strlen": {
+            "renaming": {}, 
+            "code": "\n\n\n\nsize_t strlen(char *__s)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strlen@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109090", 
+            "calling": [
+                "strlen"
+            ], 
+            "imported": false, 
+            "current_name": "strlen"
+        }, 
+        "unget_part_char.cold": {
+            "renaming": {}, 
+            "code": "\nvoid unget_part_char_cold(int param_1,int param_2,long param_3,long *param_4)\n\n{\n  int *in_RAX;\n  \n  *param_4 = *param_4 + (1 - param_3);\n  *in_RAX = param_1 + param_2;\n  return;\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001027e2", 
+            "calling": [
+                "unget_part_char"
+            ], 
+            "imported": false, 
+            "current_name": "unget_part_char.cold"
+        }, 
+        "xmalloc": {
+            "renaming": {}, 
+            "code": "\nvoid xmalloc(void)\n\n{\n  xmalloc();\n  return;\n}\n\n", 
+            "called": [
+                "xmalloc"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102170", 
+            "calling": [
+                "main", 
+                "print_strings"
+            ], 
+            "imported": false, 
+            "current_name": "xmalloc"
+        }, 
+        "vfprintf": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint vfprintf(FILE *__s,char *__format,__gnuc_va_list __arg)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* vfprintf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109180", 
+            "calling": [
+                "vfprintf"
+            ], 
+            "imported": false, 
+            "current_name": "vfprintf"
+        }, 
+        "__errno_location": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint * __errno_location(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __errno_location@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109018", 
+            "calling": [
+                "__errno_location"
+            ], 
+            "imported": false, 
+            "current_name": "__errno_location"
+        }, 
+        "bfd_set_default_target": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_set_default_target(void)\n\n{\n  bfd_set_default_target();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_set_default_target"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102080", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_set_default_target"
+        }, 
+        "bfd_get_error": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_get_error(void)\n\n{\n  bfd_get_error();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_get_error"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102160", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_get_error"
+        }, 
+        "xrealloc": {
+            "renaming": {}, 
+            "code": "\nvoid xrealloc(void)\n\n{\n  xrealloc();\n  return;\n}\n\n", 
+            "called": [
+                "xrealloc"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102130", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "xrealloc"
+        }, 
+        "xmalloc_set_program_name": {
+            "renaming": {}, 
+            "code": "\nvoid xmalloc_set_program_name(void)\n\n{\n  xmalloc_set_program_name();\n  return;\n}\n\n", 
+            "called": [
+                "xmalloc_set_program_name"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102180", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "xmalloc_set_program_name"
+        }, 
+        "display_utf8_char": {
+            "renaming": {}, 
+            "code": "\n\n\nuint display_utf8_char(byte *param_1)\n\n{\n  byte bVar1;\n  uint uVar2;\n  int iVar3;\n  uint uVar4;\n  uint uVar5;\n  byte *pbVar6;\n  \n  uVar4 = 2;\n  bVar1 = *param_1 & 0x30;\n  if ((bVar1 != 0x10) && (uVar4 = 3, bVar1 != 0x20)) {\n    uVar4 = (-(uint)(bVar1 == 0) & 0xfffffffe) + 4;\n  }\n  if (unicode_display == 3) {\n    pbVar6 = param_1 + uVar4;\n    putc(0x3c,_stdout);\n    printf(\"0x\");\n    do {\n      bVar1 = *param_1;\n      param_1 = param_1 + 1;\n      printf(\"%02x\",(ulong)bVar1);\n    } while (pbVar6 != param_1);\n    putc(0x3e,_stdout);\n    return uVar4;\n  }\n  if (unicode_display < 4) {\n    if (unicode_display == 1) {\n      printf(\"%.1s\",param_1);\n      return uVar4;\n    }\n    if (unicode_display == 2) {\nLAB_001029cd:\n      uVar2 = (uint)param_1[1];\n      uVar5 = (uint)*param_1;\n      if (uVar4 == 3) {\n        printf(\"\\\\u%02x%02x\",(ulong)((uVar5 & 0xf) << 4 | (int)uVar2 >> 2 & 0xfU),\n               (ulong)((uVar2 & 3) << 6 | param_1[2] & 0x3f));\n      }\n      else if (uVar4 == 4) {\n        printf(\"\\\\u%02x%02x%02x\",(ulong)((uVar5 & 7) << 6 | (int)uVar2 >> 2 & 0xfU),\n               (ulong)((uVar2 & 3) << 6 | (int)(uint)param_1[2] >> 2 & 0xfU),\n               (ulong)((param_1[2] & 3) << 6 | param_1[3] & 0x3f));\n      }\n      else {\n        printf(\"\\\\u%02x%02x\",(ulong)((int)(uint)*param_1 >> 2 & 7),\n               (ulong)((uVar5 & 3) << 6 | param_1[1] & 0x3f));\n      }\n      if (unicode_display != 4) {\n        return uVar4;\n      }\n      iVar3 = isatty(1);\n      if (iVar3 == 0) {\n        return uVar4;\n      }\n      printf(\"\\x1b[0m\");\n      return uVar4;\n    }\n  }\n  else if (unicode_display == 4) {\n    iVar3 = isatty(1);\n    if (iVar3 != 0) {\n      printf(\"\\x1b[31;47m\");\n    }\n    goto LAB_001029cd;\n  }\n  fwrite(\"ICE: unexpected unicode display type\\n\",1,0x25,_stderr);\n  return uVar4;\n}\n\n", 
+            "called": [
+                "printf", 
+                "fwrite", 
+                "isatty", 
+                "putc"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x0010293a", 
+            "calling": [
+                "print_unicode_stream_body", 
+                "print_strings"
+            ], 
+            "imported": false, 
+            "current_name": "display_utf8_char"
+        }, 
+        "frame_dummy": {
+            "renaming": {}, 
+            "code": "\nvoid frame_dummy(void)\n\n{\n  register_tm_clones();\n  return;\n}\n\n", 
+            "called": [
+                "register_tm_clones"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103a90", 
+            "calling": [], 
+            "imported": false, 
+            "current_name": "frame_dummy"
+        }, 
+        "print_strings.cold": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid print_strings_cold(ulong param_1)\n\n{\n  uint uVar1;\n  ushort in_AX;\n  ulong uVar2;\n  ulong uVar3;\n  uint in_R8D;\n  char *unaff_R14;\n  undefined8 unaff_R15;\n  bool bVar4;\n  undefined8 in_stack_00000010;\n  undefined8 in_stack_00000038;\n  \ncode_r0x00102330:\n  if ((encoding != 'S') || ((long)param_1 < 0x80)) {\n    if (include_all_whitespace == '\\0') goto code_r0x001034d5;\n    if ((in_AX & 0x40) == 0) {\n      FUN_001034d5();\n      return;\n    }\n  }\nLAB_00103400:\n  uVar2 = (ulong)in_R8D;\n  in_R8D = in_R8D + 1;\n  uVar3 = (ulong)in_R8D;\n  bVar4 = in_R8D < string_min;\n  unaff_R14[uVar2] = (char)param_1;\n  if (bVar4) goto LAB_001033b3;\n  do {\n    if (print_filenames != '\\0') {\n      printf(\"%s: \",in_stack_00000010);\n    }\n    if (print_addresses == '\\0') {\n      unaff_R14[uVar3] = '\\0';\n      fputs(unaff_R14,_stdout);\n    }\n    else {\n      print_filename_and_address_part_0(unaff_R15);\n      unaff_R14[uVar3] = '\\0';\n      fputs(unaff_R14,_stdout);\n    }\n    while (uVar3 = get_char(), uVar3 != 0xffffffffffffffff) {\n      if (0xff < uVar3) {\nLAB_0010348e:\n        unget_part_char();\n        break;\n      }\n      if (uVar3 == 9) {\nLAB_00102438:\n        putc((int)uVar3,_stdout);\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + uVar3 * 2) & 0x10) == 0) {\n          if (((encoding != 'S') || ((long)uVar3 < 0x80)) &&\n             ((include_all_whitespace == '\\0' ||\n              ((*(ushort *)(&_sch_istable + uVar3 * 2) & 0x40) == 0)))) goto LAB_0010348e;\n          goto LAB_00102438;\n        }\n        putc((int)uVar3,_stdout);\n      }\n    }\n    if (output_separator == (char *)0x0) {\n      putc(10,_stdout);\n    }\n    else {\n      fputs(output_separator,_stdout);\n    }\n    while (uVar3 = (ulong)string_min, unaff_R15 = in_stack_00000038, string_min != 0) {\n      uVar3 = get_char();\n      uVar1 = string_min;\n      if (uVar3 == 0xffffffffffffffff) goto LAB_001034be;\n      if (uVar3 < 0x100) {\n        if (uVar3 == 9) {\nLAB_001023f5:\n          *unaff_R14 = (char)uVar3;\n          if (uVar1 < 2) {\n            FUN_001034fa();\n            return;\n          }\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar3 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar3 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar3 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_001023f5;\n          }\n          *unaff_R14 = (char)uVar3;\n          if (uVar1 < 2) {\n            uVar3 = 1;\n            break;\n          }\n        }\n        uVar3 = get_char();\n        uVar1 = string_min;\n        if (uVar3 == 0xffffffffffffffff) goto LAB_001034be;\n        if (0xff < uVar3) goto code_r0x001034d5;\n        if (uVar3 == 9) {\nLAB_001023bb:\n          unaff_R14[1] = (char)uVar3;\n          if (uVar1 < 3) {\n            FUN_00103510();\n            return;\n          }\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar3 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar3 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar3 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_001023bb;\n          }\n          unaff_R14[1] = (char)uVar3;\n          if (uVar1 < 3) {\n            uVar3 = 2;\n            break;\n          }\n        }\n        uVar3 = get_char();\n        uVar1 = string_min;\n        if (uVar3 == 0xffffffffffffffff) goto LAB_001034be;\n        if (0xff < uVar3) goto code_r0x001034d5;\n        if (uVar3 == 9) {\nLAB_00102381:\n          unaff_R14[2] = (char)uVar3;\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar3 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar3 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar3 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_00102381;\n          }\n          unaff_R14[2] = (char)uVar3;\n        }\n        if (uVar1 < 4) {\n          uVar3 = 3;\n          break;\n        }\n        in_R8D = 3;\nLAB_001033b3:\n        param_1 = get_char();\n        if (param_1 == 0xffffffffffffffff) {\nLAB_001034be:\n          free(unaff_R14);\n          return;\n        }\n        if (param_1 < 0x100) {\n          if ((param_1 == 9) ||\n             (in_AX = *(ushort *)(&_sch_istable + param_1 * 2), (in_AX & 0x10) != 0))\n          goto LAB_00103400;\n          goto code_r0x00102330;\n        }\n      }\ncode_r0x001034d5:\n      unget_part_char();\n    }\n  } while( true );\n}\n\n", 
+            "called": [
+                "FUN_001034d5"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102330", 
+            "calling": [
+                "FUN_0010259a"
+            ], 
+            "imported": false, 
+            "current_name": "print_strings.cold"
+        }, 
+        "strcmp": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint strcmp(char *__s1,char *__s2)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strcmp@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001090f8", 
+            "calling": [
+                "strcmp"
+            ], 
+            "imported": false, 
+            "current_name": "strcmp"
+        }, 
+        "__cxa_finalize": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid __cxa_finalize(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __cxa_finalize@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001091c8", 
+            "calling": [
+                "__cxa_finalize"
+            ], 
+            "imported": false, 
+            "current_name": "__cxa_finalize"
+        }, 
+        "bfd_malloc_and_get_section": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_malloc_and_get_section(void)\n\n{\n  bfd_malloc_and_get_section();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_malloc_and_get_section"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001020b0", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_malloc_and_get_section"
+        }, 
+        "textdomain": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid textdomain(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* textdomain@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109058", 
+            "calling": [
+                "textdomain"
+            ], 
+            "imported": false, 
+            "current_name": "textdomain"
+        }, 
+        "fread": {
+            "renaming": {}, 
+            "code": "\n\n\n\nsize_t fread(void *__ptr,size_t __size,size_t __n,FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fread@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109048", 
+            "calling": [
+                "fread"
+            ], 
+            "imported": false, 
+            "current_name": "fread"
+        }, 
+        "bfd_init": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_init(void)\n\n{\n  bfd_init();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_init"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001021b0", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_init"
+        }, 
+        "strerror": {
+            "renaming": {}, 
+            "code": "\n\n\n\nchar * strerror(int __errnum)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strerror@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001091b8", 
+            "calling": [
+                "strerror"
+            ], 
+            "imported": false, 
+            "current_name": "strerror"
+        }, 
+        "FUN_0010282b": {
+            "renaming": {}, 
+            "code": "\nvoid FUN_0010282b(void)\n\n{\n  undefined4 *in_RAX;\n  undefined8 *in_RCX;\n  undefined8 unaff_RBX;\n  \n  tmp_0._0_1_ = (undefined)((ulong)unaff_RBX >> 8);\n  tmp_0._2_1_ = (undefined)((ulong)unaff_RBX >> 0x18);\n  tmp_0._1_1_ = (undefined)((ulong)unaff_RBX >> 0x10);\n  *in_RAX = 3;\n  *in_RCX = &tmp_0;\n  return;\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": false, 
+            "entrypoint": "0x0010282b", 
+            "calling": [
+                "unget_part_char"
+            ], 
+            "imported": false, 
+            "current_name": "FUN_0010282b"
+        }, 
+        "ferror": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint ferror(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* ferror@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109030", 
+            "calling": [
+                "ferror"
+            ], 
+            "imported": false, 
+            "current_name": "ferror"
+        }, 
+        "exit": {
+            "renaming": {}, 
+            "code": "\n\n\n\nvoid exit(int __status)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* exit@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109198", 
+            "calling": [
+                "exit"
+            ], 
+            "imported": false, 
+            "current_name": "exit"
+        }, 
+        "bfd_check_format": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_check_format(void)\n\n{\n  bfd_check_format();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_check_format"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102300", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_check_format"
+        }, 
+        "memmove": {
+            "renaming": {}, 
+            "code": "\n\n\n\nvoid * memmove(void *__dest,void *__src,size_t __n)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* memmove@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109158", 
+            "calling": [
+                "memmove"
+            ], 
+            "imported": false, 
+            "current_name": "memmove"
+        }, 
+        "is_valid_utf8": {
+            "renaming": {}, 
+            "code": "\nlong is_valid_utf8(byte *param_1,long param_2)\n\n{\n  byte bVar1;\n  long lVar2;\n  \n  bVar1 = *param_1;\n  if ((0xbf < bVar1) && (param_2 != 1)) {\n    lVar2 = 0;\n    if ((param_1[1] & 0xc0) == 0x80) {\n      if ((bVar1 & 0x20) == 0) {\n        return 2;\n      }\n      if ((param_2 != 2) && ((param_1[2] & 0xc0) == 0x80)) {\n        if ((bVar1 & 0x10) == 0) {\n          lVar2 = 3;\n        }\n        else {\n          lVar2 = 0;\n          if (param_2 != 3) {\n            return (ulong)((param_1[3] & 0xc0) == 0x80) << 2;\n          }\n        }\n      }\n    }\n    return lVar2;\n  }\n  return 0;\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001028b2", 
+            "calling": [
+                "print_strings"
+            ], 
+            "imported": false, 
+            "current_name": "is_valid_utf8"
+        }, 
+        "setlocale": {
+            "renaming": {}, 
+            "code": "\n\n\n\nchar * setlocale(int __category,char *__locale)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* setlocale@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109148", 
+            "calling": [
+                "setlocale"
+            ], 
+            "imported": false, 
+            "current_name": "setlocale"
+        }, 
+        "print_strings": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid print_strings(long param_1,long param_2,long param_3,int param_4,byte *param_5)\n\n{\n  byte *pbVar1;\n  byte bVar2;\n  char cVar3;\n  long lVar4;\n  uint uVar5;\n  int iVar6;\n  void *__ptr;\n  char *__s;\n  ulong uVar7;\n  ulong uVar8;\n  uint uVar9;\n  ulong uVar10;\n  uint uVar11;\n  bool bVar12;\n  long local_80;\n  byte *local_60;\n  int local_54;\n  long local_50 [2];\n  undefined local_3d [13];\n  \n  local_60 = param_5;\n  local_54 = param_4;\n  local_50[0] = param_3;\n  if (unicode_display == 0) {\n    __s = (char *)xmalloc(string_min + 1);\n    do {\n      while (lVar4 = local_50[0], uVar8 = (ulong)string_min, string_min == 0) {\njoined_r0x001034ef:\n        if (print_filenames != '\\0') {\n          printf(\"%s: \",param_1);\n        }\n        if (print_addresses == '\\0') {\n          __s[uVar8] = '\\0';\n          fputs(__s,_stdout);\n        }\n        else {\n          print_filename_and_address_part_0(lVar4);\n          __s[uVar8] = '\\0';\n          fputs(__s,_stdout);\n        }\n        while (uVar8 = get_char(param_2,local_50,&local_54,&local_60), uVar8 != 0xffffffffffffffff)\n        {\n          if (0xff < uVar8) {\nLAB_0010348e:\n            unget_part_char(uVar8,local_50,&local_54,&local_60);\n            break;\n          }\n          if (uVar8 == 9) {\nLAB_00102438:\n            putc((int)uVar8,_stdout);\n          }\n          else {\n            if ((*(ushort *)(&_sch_istable + uVar8 * 2) & 0x10) == 0) {\n              if (((encoding != 'S') || ((long)uVar8 < 0x80)) &&\n                 ((include_all_whitespace == '\\0' ||\n                  ((*(ushort *)(&_sch_istable + uVar8 * 2) & 0x40) == 0)))) goto LAB_0010348e;\n              goto LAB_00102438;\n            }\n            putc((int)uVar8,_stdout);\n          }\n        }\n        if (output_separator == (char *)0x0) {\n          putc(10,_stdout);\n        }\n        else {\n          fputs(output_separator,_stdout);\n        }\n      }\n      uVar7 = get_char(param_2,local_50,&local_54,&local_60);\n      uVar9 = string_min;\n      if (uVar7 == 0xffffffffffffffff) goto LAB_001034be;\n      if (uVar7 < 0x100) {\n        if (uVar7 == 9) {\nLAB_001023f5:\n          *__s = (char)uVar7;\n          if (uVar9 < 2) {\n            FUN_001034fa();\n            return;\n          }\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar7 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar7 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar7 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_001023f5;\n          }\n          *__s = (char)uVar7;\n          if (uVar9 < 2) {\n            uVar8 = 1;\n            goto joined_r0x001034ef;\n          }\n        }\n        uVar7 = get_char(param_2,local_50,&local_54,&local_60);\n        uVar9 = string_min;\n        if (uVar7 == 0xffffffffffffffff) goto LAB_001034be;\n        if (uVar7 < 0x100) {\n          if (uVar7 == 9) {\nLAB_001023bb:\n            __s[1] = (char)uVar7;\n            if (uVar9 < 3) {\n              FUN_00103510();\n              return;\n            }\n          }\n          else {\n            if ((*(ushort *)(&_sch_istable + uVar7 * 2) & 0x10) == 0) {\n              if (((encoding != 'S') || ((long)uVar7 < 0x80)) &&\n                 ((include_all_whitespace == '\\0' ||\n                  ((*(ushort *)(&_sch_istable + uVar7 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n              goto LAB_001023bb;\n            }\n            __s[1] = (char)uVar7;\n            if (uVar9 < 3) {\n              uVar8 = 2;\n              goto joined_r0x001034ef;\n            }\n          }\n          uVar7 = get_char(param_2,local_50,&local_54,&local_60);\n          uVar9 = string_min;\n          if (uVar7 == 0xffffffffffffffff) {\nLAB_001034be:\n            free(__s);\n            return;\n          }\n          if (uVar7 < 0x100) {\n            if (uVar7 == 9) {\nLAB_00102381:\n              __s[2] = (char)uVar7;\n            }\n            else {\n              if ((*(ushort *)(&_sch_istable + uVar7 * 2) & 0x10) == 0) {\n                if (((encoding != 'S') || ((long)uVar7 < 0x80)) &&\n                   ((include_all_whitespace == '\\0' ||\n                    ((*(ushort *)(&_sch_istable + uVar7 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n                goto LAB_00102381;\n              }\n              __s[2] = (char)uVar7;\n            }\n            if (uVar9 < 4) {\n              uVar8 = 3;\n            }\n            else {\n              uVar10 = 3;\n              do {\n                uVar7 = get_char(param_2,local_50,&local_54,&local_60);\n                if (uVar7 == 0xffffffffffffffff) goto LAB_001034be;\n                if (0xff < uVar7) goto code_r0x001034d5;\n                if (((uVar7 != 9) && ((*(ushort *)(&_sch_istable + uVar7 * 2) & 0x10) == 0)) &&\n                   ((encoding != 'S' || ((long)uVar7 < 0x80)))) {\n                  if (include_all_whitespace == '\\0') goto code_r0x001034d5;\n                  if ((*(ushort *)(&_sch_istable + uVar7 * 2) & 0x40) == 0) {\n                    FUN_001034d5();\n                    return;\n                  }\n                }\n                uVar9 = (int)uVar10 + 1;\n                uVar8 = (ulong)uVar9;\n                bVar12 = uVar9 < string_min;\n                __s[uVar10] = (char)uVar7;\n                uVar10 = uVar8;\n              } while (bVar12);\n            }\n            goto joined_r0x001034ef;\n          }\n        }\n      }\ncode_r0x001034d5:\n      unget_part_char(uVar7,local_50,&local_54,&local_60);\n    } while( true );\n  }\n  if (param_5 != (byte *)0x0) {\n    uVar8 = (ulong)param_4;\n    local_80 = param_3;\n    if (param_1 != 0) {\nLAB_0010249c:\n      uVar9 = string_min;\n      cVar3 = include_all_whitespace;\n      iVar6 = unicode_display;\n      if (((unicode_display != 0) && (encoding == 'S')) && (encoding_bytes == 1)) {\n        if (uVar8 != 0) {\n          uVar7 = 0;\n          uVar11 = 0;\n          uVar10 = 0;\n          do {\n            while( true ) {\n              bVar2 = param_5[uVar10];\n              if (bVar2 != 9) break;\nLAB_0010252e:\n              uVar5 = 1;\nLAB_00102533:\n              if (uVar11 == 0) {\n                uVar7 = uVar10;\n              }\n              uVar11 = uVar11 + 1;\n              if (uVar9 <= uVar11) goto LAB_001026a9;\n              uVar10 = uVar10 + uVar5;\n              if (uVar8 <= uVar10) goto LAB_00102551;\n            }\n            if ((*(ushort *)(&_sch_istable + (long)(int)(uint)bVar2 * 2) & 0x10) != 0) {\n              if (0x7e < bVar2) goto LAB_0010264e;\n              goto LAB_0010252e;\n            }\n            if (0x7f < bVar2) {\nLAB_0010264e:\n              if ((bVar2 < 0xc0) ||\n                 (uVar5 = is_valid_utf8(param_5 + uVar10,uVar8 - uVar10), uVar5 == 0))\n              goto LAB_0010269a;\n              if (iVar6 == 5) goto LAB_00102688;\n              goto LAB_00102533;\n            }\n            if (((cVar3 != '\\0') &&\n                ((*(ushort *)(&_sch_istable + (long)(int)(uint)bVar2 * 2) & 0x40) != 0)) &&\n               (bVar2 != 0x7f)) goto LAB_0010252e;\nLAB_0010269a:\n            uVar5 = 1;\nLAB_00102688:\n            uVar10 = uVar10 + uVar5;\n            if (uVar8 <= uVar10) goto LAB_001026a1;\n            uVar11 = 0;\n          } while( true );\n        }\n        goto LAB_00102551;\n      }\n    }\n    fwrite(\"ICE: bad arguments to print_unicode_buffer\\n\",1,0x2b,_stderr);\n  }\n  if (param_2 != 0) {\n    if (param_1 != 0) {\nLAB_0010255f:\n      lVar4 = local_50[0];\n      if (((unicode_display != 0) && (encoding == 'S')) && (encoding_bytes == 1)) {\n        __ptr = (void *)xmalloc(string_min * 4 + 1);\n        print_unicode_stream_body(param_1,lVar4,param_2,local_3d,0,__ptr);\n        free(__ptr);\n        return;\n      }\n    }\n    fwrite(\"ICE: bad arguments to print_unicode_stream\\n\",1,0x2b,_stderr);\n  }\n  return;\nLAB_001026a1:\n  if (uVar9 != 0) {\nLAB_00102551:\n    if (param_2 == 0) {\n      return;\n    }\n    goto LAB_0010255f;\n  }\nLAB_001026a9:\n  print_filename_and_address(param_1,local_80 + uVar7);\n  for (; pbVar1 = param_5 + uVar7, uVar7 < uVar8; uVar7 = uVar7 + uVar9) {\n    bVar2 = *pbVar1;\n    if (bVar2 == 9) {\nLAB_00102708:\n      putc((uint)bVar2,_stdout);\n      uVar9 = 1;\n    }\n    else {\n      if ((*(ushort *)(&_sch_istable + (long)(int)(uint)bVar2 * 2) & 0x10) == 0) {\n        if ((encoding != 'S') || (bVar2 < 0x80)) {\n          if ((include_all_whitespace != '\\0') &&\n             ((*(ushort *)(&_sch_istable + (long)(int)(uint)bVar2 * 2) & 0x40) != 0))\n          goto LAB_00102703;\n          break;\n        }\n      }\n      else {\nLAB_00102703:\n        if (bVar2 < 0x7f) goto LAB_00102708;\n      }\n      iVar6 = is_valid_utf8(pbVar1,uVar8 - uVar7);\n      if ((iVar6 == 0) || (unicode_display == 5)) break;\n      uVar9 = display_utf8_char(pbVar1);\n    }\n  }\n  if (output_separator == (char *)0x0) {\n    putc(10,_stdout);\n  }\n  else {\n    fputs(output_separator,_stdout);\n  }\n  local_80 = local_80 + uVar7;\n  uVar8 = uVar8 - uVar7;\n  param_5 = pbVar1;\n  goto LAB_0010249c;\n}\n\n", 
+            "called": [
+                "xmalloc", 
+                "print_filename_and_address", 
+                "print_unicode_stream_body", 
+                "free", 
+                "fwrite", 
+                "display_utf8_char", 
+                "is_valid_utf8", 
+                "putc", 
+                "fputs"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103240", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "print_strings"
+        }, 
+        "bindtextdomain": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid bindtextdomain(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* bindtextdomain@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109080", 
+            "calling": [
+                "bindtextdomain"
+            ], 
+            "imported": false, 
+            "current_name": "bindtextdomain"
+        }, 
+        "ftell": {
+            "renaming": {}, 
+            "code": "\n\n\n\nlong ftell(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* ftell@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109118", 
+            "calling": [
+                "ftell"
+            ], 
+            "imported": false, 
+            "current_name": "ftell"
+        }, 
+        "_start": {
+            "renaming": {}, 
+            "code": "\nvoid processEntry _start(undefined8 param_1,undefined8 param_2)\n\n{\n  undefined auStack_8 [8];\n  \n  __libc_start_main(main,param_2,&stack0x00000008,0,0,param_1,auStack_8);\n  do {\n                    /* WARNING: Do nothing block with infinite loop */\n  } while( true );\n}\n\n", 
+            "called": [
+                "main", 
+                "__libc_start_main"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001039b0", 
+            "calling": [], 
+            "imported": false, 
+            "current_name": "_start"
+        }, 
+        "dcgettext": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid dcgettext(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* dcgettext@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109088", 
+            "calling": [
+                "dcgettext"
+            ], 
+            "imported": false, 
+            "current_name": "dcgettext"
+        }, 
+        "bfd_set_error_program_name": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_set_error_program_name(void)\n\n{\n  bfd_set_error_program_name();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_set_error_program_name"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102250", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_set_error_program_name"
+        }, 
+        "fputc": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint fputc(int __c,FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fputc@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001090e8", 
+            "calling": [
+                "fputc"
+            ], 
+            "imported": false, 
+            "current_name": "fputc"
+        }, 
+        "print_filename_and_address.part.0": {
+            "renaming": {}, 
+            "code": "\nvoid print_filename_and_address_part_0(undefined8 param_1)\n\n{\n  if (address_radix == 10) {\n    printf(\"%7ld \",param_1);\n    return;\n  }\n  if (address_radix != 0x10) {\n    if (address_radix == 8) {\n      printf(\"%7lo \",param_1);\n      return;\n    }\n    return;\n  }\n  printf(\"%7lx \",param_1);\n  return;\n}\n\n", 
+            "called": [
+                "printf"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x0010286f", 
+            "calling": [
+                "print_filename_and_address.cold", 
+                "FUN_0010259a"
+            ], 
+            "imported": false, 
+            "current_name": "print_filename_and_address.part.0"
+        }, 
+        "get_unicode_byte": {
+            "renaming": {}, 
+            "code": "\nuint get_unicode_byte(_IO_FILE *param_1,long param_2,uint *param_3,int *param_4)\n\n{\n  byte *pbVar1;\n  uint uVar2;\n  \n  if (*param_3 != 0) {\n    uVar2 = *param_3 - 1;\n    *param_3 = uVar2;\n    return (uint)*(byte *)(param_2 + (ulong)uVar2);\n  }\n  *param_4 = *param_4 + 1;\n  pbVar1 = (byte *)param_1->_IO_read_ptr;\n  if (param_1->_IO_read_end <= pbVar1) {\n    uVar2 = __uflow(param_1);\n    return uVar2;\n  }\n  param_1->_IO_read_ptr = (char *)(pbVar1 + 1);\n  return (uint)*pbVar1;\n}\n\n", 
+            "called": [
+                "__uflow"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x0010290e", 
+            "calling": [
+                "print_unicode_stream_body"
+            ], 
+            "imported": false, 
+            "current_name": "get_unicode_byte"
+        }, 
+        "non_fatal": {
+            "renaming": {}, 
+            "code": "\nvoid non_fatal(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n              undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,\n              undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12,\n              undefined8 param_13,undefined8 param_14)\n\n{\n  char in_AL;\n  undefined4 local_d8;\n  undefined4 local_d4;\n  undefined *local_d0;\n  undefined *local_c8;\n  undefined local_b8 [8];\n  undefined8 local_b0;\n  undefined8 local_a8;\n  undefined8 local_a0;\n  undefined8 local_98;\n  undefined8 local_90;\n  undefined4 local_88;\n  undefined4 local_78;\n  undefined4 local_68;\n  undefined4 local_58;\n  undefined4 local_48;\n  undefined4 local_38;\n  undefined4 local_28;\n  undefined4 local_18;\n  \n  if (in_AL != '\\0') {\n    local_88 = param_1;\n    local_78 = param_2;\n    local_68 = param_3;\n    local_58 = param_4;\n    local_48 = param_5;\n    local_38 = param_6;\n    local_28 = param_7;\n    local_18 = param_8;\n  }\n  local_d0 = &stack0x00000008;\n  local_d8 = 8;\n  local_c8 = local_b8;\n  local_d4 = 0x30;\n  local_b0 = param_10;\n  local_a8 = param_11;\n  local_a0 = param_12;\n  local_98 = param_13;\n  local_90 = param_14;\n  report(param_9,&local_d8);\n  return;\n}\n\n", 
+            "called": [
+                "report"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103910", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "non_fatal"
+        }, 
+        "bfd_openr": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_openr(void)\n\n{\n  bfd_openr();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_openr"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001020c0", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_openr"
+        }, 
+        "printf": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint printf(char *__format,...)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* printf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001090a0", 
+            "calling": [
+                "printf"
+            ], 
+            "imported": false, 
+            "current_name": "printf"
+        }, 
+        "FUN_0010259a": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid FUN_0010259a(void)\n\n{\n  uint uVar1;\n  ulong uVar2;\n  ulong in_R8;\n  char *unaff_R14;\n  undefined8 unaff_R15;\n  bool bVar3;\n  uint param_7;\n  undefined8 param_8;\n  undefined8 param_11;\n  \n  do {\n    param_7 = (uint)in_R8;\n    printf(\"%s: \",param_8);\n    in_R8 = (ulong)param_7;\n    do {\n      if (print_addresses == '\\0') {\n        unaff_R14[in_R8] = '\\0';\n        fputs(unaff_R14,_stdout);\n      }\n      else {\n        param_7 = (uint)in_R8;\n        print_filename_and_address_part_0(unaff_R15);\n        unaff_R14[param_7] = '\\0';\n        fputs(unaff_R14,_stdout);\n      }\n      while (uVar2 = get_char(), uVar2 != 0xffffffffffffffff) {\n        if (0xff < uVar2) {\nLAB_0010348e:\n          unget_part_char();\n          break;\n        }\n        if (uVar2 == 9) {\nLAB_00102438:\n          putc((int)uVar2,_stdout);\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar2 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x40) == 0)))) goto LAB_0010348e;\n            goto LAB_00102438;\n          }\n          putc((int)uVar2,_stdout);\n        }\n      }\n      if (output_separator == (char *)0x0) {\n        putc(10,_stdout);\n      }\n      else {\n        fputs(output_separator,_stdout);\n      }\n      while (in_R8 = (ulong)string_min, string_min != 0) {\n        uVar2 = get_char();\n        uVar1 = string_min;\n        if (uVar2 == 0xffffffffffffffff) goto LAB_001034be;\n        if (uVar2 < 0x100) {\n          if (uVar2 == 9) {\nLAB_001023f5:\n            *unaff_R14 = (char)uVar2;\n            if (uVar1 < 2) {\n              FUN_001034fa();\n              return;\n            }\n          }\n          else {\n            if ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x10) == 0) {\n              if (((encoding != 'S') || ((long)uVar2 < 0x80)) &&\n                 ((include_all_whitespace == '\\0' ||\n                  ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n              goto LAB_001023f5;\n            }\n            *unaff_R14 = (char)uVar2;\n            if (uVar1 < 2) {\n              in_R8 = 1;\n              break;\n            }\n          }\n          uVar2 = get_char();\n          uVar1 = string_min;\n          if (uVar2 == 0xffffffffffffffff) goto LAB_001034be;\n          if (0xff < uVar2) goto code_r0x001034d5;\n          if (uVar2 == 9) {\nLAB_001023bb:\n            unaff_R14[1] = (char)uVar2;\n            if (uVar1 < 3) {\n              FUN_00103510();\n              return;\n            }\n          }\n          else {\n            if ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x10) == 0) {\n              if (((encoding != 'S') || ((long)uVar2 < 0x80)) &&\n                 ((include_all_whitespace == '\\0' ||\n                  ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n              goto LAB_001023bb;\n            }\n            unaff_R14[1] = (char)uVar2;\n            if (uVar1 < 3) {\n              in_R8 = 2;\n              break;\n            }\n          }\n          uVar2 = get_char();\n          uVar1 = string_min;\n          if (uVar2 == 0xffffffffffffffff) {\nLAB_001034be:\n            free(unaff_R14);\n            return;\n          }\n          if (0xff < uVar2) goto code_r0x001034d5;\n          if (uVar2 == 9) {\nLAB_00102381:\n            unaff_R14[2] = (char)uVar2;\n          }\n          else {\n            if ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x10) == 0) {\n              if (((encoding != 'S') || ((long)uVar2 < 0x80)) &&\n                 ((include_all_whitespace == '\\0' ||\n                  ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n              goto LAB_00102381;\n            }\n            unaff_R14[2] = (char)uVar2;\n          }\n          if (3 < uVar1) {\n            in_R8 = 3;\n            do {\n              param_7 = (uint)in_R8;\n              uVar2 = get_char();\n              if (uVar2 == 0xffffffffffffffff) goto LAB_001034be;\n              if (0xff < uVar2) goto code_r0x001034d5;\n              if (((uVar2 != 9) && ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x10) == 0)) &&\n                 ((encoding != 'S' || ((long)uVar2 < 0x80)))) {\n                if (include_all_whitespace == '\\0') goto code_r0x001034d5;\n                if ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x40) == 0) {\n                  FUN_001034d5();\n                  return;\n                }\n              }\n              in_R8 = (ulong)(param_7 + 1);\n              bVar3 = string_min <= param_7 + 1;\n              unaff_R14[param_7] = (char)uVar2;\n              if (bVar3) goto joined_r0x0010341b;\n            } while( true );\n          }\n          in_R8 = 3;\n          break;\n        }\ncode_r0x001034d5:\n        unget_part_char();\n      }\njoined_r0x0010341b:\n      unaff_R15 = param_11;\n    } while (print_filenames == '\\0');\n  } while( true );\n}\n\n", 
+            "called": [
+                "get_char", 
+                "FUN_001034fa", 
+                "printf", 
+                "print_strings.cold", 
+                "unget_part_char", 
+                "free", 
+                "FUN_0010259a", 
+                "FUN_001034d5", 
+                "print_filename_and_address.part.0", 
+                "FUN_00103510", 
+                "fputs", 
+                "putc"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": false, 
+            "entrypoint": "0x0010259a", 
+            "calling": [
+                "FUN_0010259a"
+            ], 
+            "imported": false, 
+            "current_name": "FUN_0010259a"
+        }, 
+        "get_char.cold": {
+            "renaming": {}, 
+            "code": "\nulong get_char_cold(void)\n\n{\n  ulong unaff_RBX;\n  \n  return unaff_RBX >> 0x18 & 0xff |\n         (unaff_RBX & 0xff) << 0x18 | (ulong)((uint)(unaff_RBX << 8) & 0xff0000) |\n         (ulong)((uint)(unaff_RBX >> 8) & 0xff00);\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102771", 
+            "calling": [
+                "get_char"
+            ], 
+            "imported": false, 
+            "current_name": "get_char.cold"
+        }, 
+        "fatal": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid fatal(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n          undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,\n          undefined8 param_9,undefined8 param_10,undefined8 param_11,undefined8 param_12,\n          undefined8 param_13,undefined8 param_14)\n\n{\n  char in_AL;\n  undefined4 local_d8;\n  undefined4 local_d4;\n  undefined *local_d0;\n  undefined *local_c8;\n  undefined local_b8 [8];\n  undefined8 local_b0;\n  undefined8 local_a8;\n  undefined8 local_a0;\n  undefined8 local_98;\n  undefined8 local_90;\n  undefined4 local_88;\n  undefined4 local_78;\n  undefined4 local_68;\n  undefined4 local_58;\n  undefined4 local_48;\n  undefined4 local_38;\n  undefined4 local_28;\n  undefined4 local_18;\n  \n  if (in_AL != '\\0') {\n    local_88 = param_1;\n    local_78 = param_2;\n    local_68 = param_3;\n    local_58 = param_4;\n    local_48 = param_5;\n    local_38 = param_6;\n    local_28 = param_7;\n    local_18 = param_8;\n  }\n  local_d0 = &stack0x00000008;\n  local_d8 = 8;\n  local_c8 = local_b8;\n  local_d4 = 0x30;\n  local_b0 = param_10;\n  local_a8 = param_11;\n  local_a0 = param_12;\n  local_98 = param_13;\n  local_90 = param_14;\n  report(param_9,&local_d8);\n  xexit(1);\n                    /* WARNING: Bad instruction - Truncating control flow here */\n  halt_baddata();\n}\n\n", 
+            "called": [
+                "xexit", 
+                "report"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00104a60", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "fatal"
+        }, 
+        "deregister_tm_clones": {
+            "renaming": {}, 
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x001039f3) */\n/* WARNING: Removing unreachable block (ram,0x001039ff) */\n\nvoid deregister_tm_clones(void)\n\n{\n  return;\n}\n\n", 
+            "called": [
+                "_ITM_deregisterTMCloneTable"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001039e0", 
+            "calling": [
+                "__do_global_dtors_aux"
+            ], 
+            "imported": false, 
+            "current_name": "deregister_tm_clones"
+        }, 
+        "__libc_start_main": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid __libc_start_main(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __libc_start_main@GLIBC_2.34 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109010", 
+            "calling": [
+                "_start"
+            ], 
+            "imported": false, 
+            "current_name": "__libc_start_main"
+        }, 
+        "get_char": {
+            "renaming": {}, 
+            "code": "\nulong get_char(_IO_FILE *param_1,long *param_2,int *param_3,byte **param_4)\n\n{\n  byte bVar1;\n  byte *pbVar2;\n  uint uVar3;\n  ulong uVar4;\n  ulong uVar5;\n  int iVar6;\n  int iVar7;\n  \n  iVar7 = encoding_bytes;\n  if (encoding_bytes < 1) {\n    uVar5 = 0;\n    if (encoding == 'L') {\n      uVar5 = get_char_cold();\n      return uVar5;\n    }\n    goto LAB_0010361f;\n  }\n  if (param_1 == (_IO_FILE *)0x0) {\n    uVar5 = 0;\n    iVar6 = 0;\n    do {\n      if (*param_3 == 0) {\n        return 0xffffffffffffffff;\n      }\n      iVar6 = iVar6 + 1;\n      *param_3 = *param_3 + -1;\n      pbVar2 = *param_4;\n      *param_4 = pbVar2 + 1;\n      bVar1 = *pbVar2;\n      *param_2 = *param_2 + 1;\n      uVar5 = uVar5 << 8 | (ulong)bVar1;\n    } while (iVar6 != iVar7);\n  }\n  else if (*param_3 == 0) {\n    pbVar2 = (byte *)param_1->_IO_read_ptr;\n    if (param_1->_IO_read_end <= pbVar2) {\n      uVar3 = __uflow(param_1);\n      uVar5 = (ulong)(uVar3 & 0xff);\n      if (uVar3 == 0xffffffff) {\n        return 0xffffffffffffffff;\n      }\n      goto LAB_001036aa;\n    }\n    param_1->_IO_read_ptr = (char *)(pbVar2 + 1);\n    uVar5 = (ulong)*pbVar2;\n    *param_2 = *param_2 + 1;\n    iVar6 = 0;\n    if (iVar7 == 1) goto LAB_00103610;\nLAB_00103574:\n    pbVar2 = (byte *)param_1->_IO_read_ptr;\n    if (pbVar2 < param_1->_IO_read_end) {\n      param_1->_IO_read_ptr = (char *)(pbVar2 + 1);\n      bVar1 = *pbVar2;\n      *param_2 = *param_2 + 1;\n      uVar5 = uVar5 << 8 | (ulong)bVar1;\n      if (encoding_bytes < 3) goto LAB_00103610;\nLAB_001035a1:\n      pbVar2 = (byte *)param_1->_IO_read_ptr;\n      if (pbVar2 < param_1->_IO_read_end) {\n        param_1->_IO_read_ptr = (char *)(pbVar2 + 1);\n        bVar1 = *pbVar2;\n        *param_2 = *param_2 + 1;\n        uVar5 = uVar5 << 8 | (ulong)bVar1;\n        if (encoding_bytes < 4) goto LAB_00103610;\n      }\n      else {\n        uVar3 = __uflow(param_1);\n        if (uVar3 == 0xffffffff) {\n          return 0xffffffffffffffff;\n        }\n        uVar4 = (ulong)(uVar3 & 0xff);\nLAB_00103717:\n        *param_2 = *param_2 + 1;\n        uVar5 = uVar5 << 8 | uVar4;\n        if (encoding_bytes < 4) goto LAB_00103610;\n        iVar6 = *param_3;\n      }\n      iVar7 = 3;\n      while( true ) {\n        if (iVar6 == 0) {\n          while (pbVar2 = (byte *)param_1->_IO_read_ptr, pbVar2 < param_1->_IO_read_end) {\n            iVar7 = iVar7 + 1;\n            param_1->_IO_read_ptr = (char *)(pbVar2 + 1);\n            bVar1 = *pbVar2;\n            *param_2 = *param_2 + 1;\n            uVar5 = uVar5 << 8 | (ulong)bVar1;\n            if (encoding_bytes <= iVar7) goto LAB_00103610;\n          }\n          uVar3 = __uflow(param_1);\n          if (uVar3 == 0xffffffff) {\n            return 0xffffffffffffffff;\n          }\n          uVar4 = (ulong)(uVar3 & 0xff);\n        }\n        else {\n          pbVar2 = *param_4;\n          *param_3 = iVar6 + -1;\n          *param_4 = pbVar2 + 1;\n          uVar4 = (ulong)*pbVar2;\n        }\n        *param_2 = *param_2 + 1;\n        iVar7 = iVar7 + 1;\n        uVar5 = uVar5 << 8 | uVar4;\n        if (encoding_bytes <= iVar7) break;\n        iVar6 = *param_3;\n      }\n    }\n    else {\n      uVar3 = __uflow(param_1);\n      if (uVar3 == 0xffffffff) {\n        return 0xffffffffffffffff;\n      }\n      uVar4 = (ulong)(uVar3 & 0xff);\nLAB_001036dd:\n      *param_2 = *param_2 + 1;\n      uVar5 = uVar5 << 8 | uVar4;\n      if (2 < encoding_bytes) {\n        iVar6 = *param_3;\n        if (iVar6 == 0) goto LAB_001035a1;\n        pbVar2 = *param_4;\n        *param_3 = iVar6 + -1;\n        *param_4 = pbVar2 + 1;\n        uVar4 = (ulong)*pbVar2;\n        goto LAB_00103717;\n      }\n    }\n  }\n  else {\n    pbVar2 = *param_4;\n    *param_3 = *param_3 + -1;\n    *param_4 = pbVar2 + 1;\n    uVar5 = (ulong)*pbVar2;\nLAB_001036aa:\n    *param_2 = *param_2 + 1;\n    if (1 < encoding_bytes) {\n      iVar6 = *param_3;\n      if (iVar6 == 0) goto LAB_00103574;\n      pbVar2 = *param_4;\n      *param_3 = iVar6 + -1;\n      *param_4 = pbVar2 + 1;\n      uVar4 = (ulong)*pbVar2;\n      goto LAB_001036dd;\n    }\n  }\nLAB_00103610:\n  if (encoding == 'L') {\n    uVar5 = get_char_cold();\n    return uVar5;\n  }\nLAB_0010361f:\n  if (encoding == 'l') {\n    uVar5 = uVar5 >> 8 & 0xff | (uVar5 & 0xff) << 8;\n  }\n  return uVar5;\n}\n\n", 
+            "called": [
+                "__uflow", 
+                "get_char.cold"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103520", 
+            "calling": [
+                "FUN_0010259a"
+            ], 
+            "imported": false, 
+            "current_name": "get_char"
+        }, 
+        "strtoul": {
+            "renaming": {}, 
+            "code": "\n\n\n\nulong strtoul(char *__nptr,char **__endptr,int __base)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strtoul@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109188", 
+            "calling": [
+                "strtoul"
+            ], 
+            "imported": false, 
+            "current_name": "strtoul"
+        }, 
+        "bfd_target_list": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_target_list(void)\n\n{\n  bfd_target_list();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_target_list"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102150", 
+            "calling": [
+                "usage"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_target_list"
+        }, 
+        "free": {
+            "renaming": {}, 
+            "code": "\n\n\n\nvoid free(void *__ptr)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* free@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109008", 
+            "calling": [
+                "free"
+            ], 
+            "imported": false, 
+            "current_name": "free"
+        }, 
+        "xexit": {
+            "renaming": {}, 
+            "code": "\nvoid xexit(void)\n\n{\n  xexit();\n  return;\n}\n\n", 
+            "called": [
+                "xexit"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102280", 
+            "calling": [
+                "main", 
+                "fatal"
+            ], 
+            "imported": false, 
+            "current_name": "xexit"
+        }, 
+        "FUN_001034fa": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid FUN_001034fa(void)\n\n{\n  ulong uVar1;\n  uint uVar2;\n  ulong uVar3;\n  ulong uVar4;\n  char *unaff_R14;\n  undefined8 unaff_R15;\n  bool bVar5;\n  undefined8 in_stack_00000010;\n  undefined8 in_stack_00000038;\n  \ncode_r0x001034fa:\n  uVar4 = 1;\njoined_r0x0010341b:\n  do {\n    if (print_filenames != '\\0') {\n      printf(\"%s: \",in_stack_00000010);\n    }\n    if (print_addresses == '\\0') {\n      unaff_R14[uVar4] = '\\0';\n      fputs(unaff_R14,_stdout);\n    }\n    else {\n      print_filename_and_address_part_0(unaff_R15);\n      unaff_R14[uVar4] = '\\0';\n      fputs(unaff_R14,_stdout);\n    }\n    while (uVar4 = get_char(), uVar4 != 0xffffffffffffffff) {\n      if (0xff < uVar4) {\nLAB_0010348e:\n        unget_part_char();\n        break;\n      }\n      if (uVar4 == 9) {\nLAB_00102438:\n        putc((int)uVar4,_stdout);\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x10) == 0) {\n          if (((encoding != 'S') || ((long)uVar4 < 0x80)) &&\n             ((include_all_whitespace == '\\0' ||\n              ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x40) == 0)))) goto LAB_0010348e;\n          goto LAB_00102438;\n        }\n        putc((int)uVar4,_stdout);\n      }\n    }\n    if (output_separator == (char *)0x0) {\n      putc(10,_stdout);\n    }\n    else {\n      fputs(output_separator,_stdout);\n    }\n    while (uVar4 = (ulong)string_min, unaff_R15 = in_stack_00000038, string_min != 0) {\n      uVar4 = get_char();\n      uVar2 = string_min;\n      if (uVar4 == 0xffffffffffffffff) goto LAB_001034be;\n      if (uVar4 < 0x100) {\n        if (uVar4 == 9) {\nLAB_001023f5:\n          *unaff_R14 = (char)uVar4;\n          if (uVar2 < 2) {\n            FUN_001034fa();\n            return;\n          }\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar4 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_001023f5;\n          }\n          *unaff_R14 = (char)uVar4;\n          if (uVar2 < 2) goto code_r0x001034fa;\n        }\n        uVar4 = get_char();\n        uVar2 = string_min;\n        if (uVar4 == 0xffffffffffffffff) goto LAB_001034be;\n        if (0xff < uVar4) goto code_r0x001034d5;\n        if (uVar4 == 9) {\nLAB_001023bb:\n          unaff_R14[1] = (char)uVar4;\n          if (uVar2 < 3) {\n            FUN_00103510();\n            return;\n          }\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar4 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_001023bb;\n          }\n          unaff_R14[1] = (char)uVar4;\n          if (uVar2 < 3) {\n            uVar4 = 2;\n            break;\n          }\n        }\n        uVar4 = get_char();\n        uVar2 = string_min;\n        if (uVar4 == 0xffffffffffffffff) {\nLAB_001034be:\n          free(unaff_R14);\n          return;\n        }\n        if (0xff < uVar4) goto code_r0x001034d5;\n        if (uVar4 == 9) {\nLAB_00102381:\n          unaff_R14[2] = (char)uVar4;\n        }\n        else {\n          if ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x10) == 0) {\n            if (((encoding != 'S') || ((long)uVar4 < 0x80)) &&\n               ((include_all_whitespace == '\\0' ||\n                ((*(ushort *)(&_sch_istable + uVar4 * 2) & 0x40) == 0)))) goto code_r0x001034d5;\n            goto LAB_00102381;\n          }\n          unaff_R14[2] = (char)uVar4;\n        }\n        if (3 < uVar2) {\n          uVar3 = 3;\n          do {\n            uVar1 = get_char();\n            if (uVar1 == 0xffffffffffffffff) goto LAB_001034be;\n            if (0xff < uVar1) goto code_r0x001034d5;\n            if (((uVar1 != 9) && ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x10) == 0)) &&\n               ((encoding != 'S' || ((long)uVar1 < 0x80)))) {\n              if (include_all_whitespace == '\\0') goto code_r0x001034d5;\n              if ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x40) == 0) {\n                FUN_001034d5();\n                return;\n              }\n            }\n            uVar2 = (int)uVar3 + 1;\n            uVar4 = (ulong)uVar2;\n            bVar5 = string_min <= uVar2;\n            unaff_R14[uVar3] = (char)uVar1;\n            uVar3 = uVar4;\n            if (bVar5) goto joined_r0x0010341b;\n          } while( true );\n        }\n        uVar4 = 3;\n        break;\n      }\ncode_r0x001034d5:\n      unget_part_char();\n    }\n  } while( true );\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": false, 
+            "entrypoint": "0x001034fa", 
+            "calling": [
+                "FUN_0010259a"
+            ], 
+            "imported": false, 
+            "current_name": "FUN_001034fa"
+        }, 
+        "fopen": {
+            "renaming": {}, 
+            "code": "\n\n\n\nFILE * fopen(char *__filename,char *__modes)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fopen@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109160", 
+            "calling": [
+                "fopen"
+            ], 
+            "imported": false, 
+            "current_name": "fopen"
+        }, 
+        "register_tm_clones": {
+            "renaming": {}, 
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00103a34) */\n/* WARNING: Removing unreachable block (ram,0x00103a40) */\n\nvoid register_tm_clones(void)\n\n{\n  return;\n}\n\n", 
+            "called": [
+                "_ITM_registerTMCloneTable"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103a10", 
+            "calling": [
+                "frame_dummy"
+            ], 
+            "imported": false, 
+            "current_name": "register_tm_clones"
+        }, 
+        "stat": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint stat(char *__file,stat *__buf)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* stat@GLIBC_2.33 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109128", 
+            "calling": [
+                "stat"
+            ], 
+            "imported": false, 
+            "current_name": "stat"
+        }, 
+        "getopt_long": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid getopt_long(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* getopt_long@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109098", 
+            "calling": [
+                "getopt_long"
+            ], 
+            "imported": false, 
+            "current_name": "getopt_long"
+        }, 
+        "print_filename_and_address.cold": {
+            "renaming": {}, 
+            "code": "\nvoid print_filename_and_address_cold(undefined8 param_1)\n\n{\n  printf(\"%s: \",param_1);\n  if (print_addresses == '\\0') {\n    return;\n  }\n  print_filename_and_address_part_0();\n  return;\n}\n\n", 
+            "called": [
+                "printf", 
+                "print_filename_and_address.part.0"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102853", 
+            "calling": [
+                "print_filename_and_address"
+            ], 
+            "imported": false, 
+            "current_name": "print_filename_and_address.cold"
+        }, 
+        "fclose": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint fclose(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fclose@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109070", 
+            "calling": [
+                "fclose"
+            ], 
+            "imported": false, 
+            "current_name": "fclose"
+        }, 
+        "xstrdup": {
+            "renaming": {}, 
+            "code": "\nvoid xstrdup(void)\n\n{\n  xstrdup();\n  return;\n}\n\n", 
+            "called": [
+                "xstrdup"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102190", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "xstrdup"
+        }, 
+        "bfd_errmsg": {
+            "renaming": {}, 
+            "code": "\nvoid bfd_errmsg(void)\n\n{\n  bfd_errmsg();\n  return;\n}\n\n", 
+            "called": [
+                "bfd_errmsg"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001022d0", 
+            "calling": [
+                "main"
+            ], 
+            "imported": false, 
+            "current_name": "bfd_errmsg"
+        }, 
+        "unget_part_char": {
+            "renaming": {}, 
+            "code": "\nvoid unget_part_char(undefined8 param_1,long *param_2,int *param_3,long *param_4)\n\n{\n  int iVar1;\n  long lVar2;\n  int iVar3;\n  \n  lVar2 = (long)encoding_bytes;\n  if (encoding_bytes < 2) {\n    return;\n  }\n  iVar3 = encoding_bytes + -1;\n  *param_2 = *param_2 - (long)iVar3;\n  iVar1 = *param_3;\n  if (iVar1 == 0) {\n    if (encoding != 'l') {\n      if (encoding < 'm') {\n        if (encoding == 'b') {\n          tmp_0._0_1_ = (undefined)param_1;\n          *param_3 = 1;\n        }\n        else if (encoding < 'c') {\n          if (encoding == 'B') {\n            tmp_0._1_2_ = (ushort)param_1 << 8 | (ushort)param_1 >> 8;\n            tmp_0._0_1_ = (undefined)((ulong)param_1 >> 0x10);\n            *param_3 = 3;\n          }\n          else if (encoding == 'L') {\n            FUN_0010282b();\n            return;\n          }\n        }\n      }\n      *param_4 = (long)&tmp_0;\n      return;\n    }\n    tmp_0._0_1_ = (undefined)((ulong)param_1 >> 8);\n    *param_3 = 1;\n    *param_4 = (long)&tmp_0;\n  }\n  else {\n    *param_4 = *param_4 + (1 - lVar2);\n    *param_3 = iVar3 + iVar1;\n  }\n  return;\n}\n\n", 
+            "called": [
+                "unget_part_char.cold", 
+                "FUN_0010282b"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103810", 
+            "calling": [
+                "FUN_0010259a", 
+                "FUN_001034d5"
+            ], 
+            "imported": false, 
+            "current_name": "unget_part_char"
+        }, 
+        "fwrite": {
+            "renaming": {}, 
+            "code": "\n\n\n\nsize_t fwrite(void *__ptr,size_t __size,size_t __n,FILE *__s)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fwrite@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001091a0", 
+            "calling": [
+                "fwrite"
+            ], 
+            "imported": false, 
+            "current_name": "fwrite"
+        }, 
+        "fprintf": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint fprintf(FILE *__stream,char *__format,...)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fprintf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109110", 
+            "calling": [
+                "fprintf"
+            ], 
+            "imported": false, 
+            "current_name": "fprintf"
+        }, 
+        "__uflow": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint __uflow(_IO_FILE *param_1)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __uflow@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109000", 
+            "calling": [
+                "__uflow"
+            ], 
+            "imported": false, 
+            "current_name": "__uflow"
+        }, 
+        "print_filename_and_address": {
+            "renaming": {}, 
+            "code": "\nvoid print_filename_and_address(undefined8 param_1,undefined8 param_2)\n\n{\n  if (print_filenames != '\\0') {\n    printf(\"%s: \",param_1);\n  }\n  if (print_addresses == '\\0') {\n    return;\n  }\n  print_filename_and_address_part_0(param_2);\n  return;\n}\n\n", 
+            "called": [
+                "print_filename_and_address.cold"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103890", 
+            "calling": [
+                "print_unicode_stream_body", 
+                "print_strings"
+            ], 
+            "imported": false, 
+            "current_name": "print_filename_and_address"
+        }, 
+        "print_unicode_stream_body": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid print_unicode_stream_body\n               (undefined8 param_1,long param_2,undefined8 param_3,long param_4,uint param_5,\n               long param_6)\n\n{\n  undefined uVar1;\n  uint uVar2;\n  uint uVar3;\n  int iVar4;\n  uint uVar5;\n  ulong uVar6;\n  undefined uVar7;\n  undefined uVar8;\n  uint uVar9;\n  undefined uVar10;\n  ulong local_80;\n  uint local_4c [3];\n  uint local_40;\n  byte local_3c;\n  byte local_3b;\n  byte local_3a;\n  byte local_39;\n  \n  uVar9 = 0;\n  local_40 = 0;\n  local_80 = 0;\n  uVar6 = 0;\n  local_4c[0] = param_5;\n  uVar2 = 0;\n  while (uVar5 = (uint)uVar6, uVar9 < string_min) {\n    uVar2 = get_unicode_byte(param_3,param_4,local_4c,&local_40);\n    if (uVar2 == 0xffffffff) break;\n    if (uVar2 < 0x100) {\n      uVar10 = (undefined)uVar2;\n      if (uVar2 == 9) {\n        if (uVar9 == 0) {\n          local_80 = (ulong)(local_40 - 1);\n        }\nLAB_00102c09:\n        uVar9 = uVar9 + 1;\n        *(undefined *)(param_6 + uVar6) = uVar10;\n        uVar6 = (ulong)(uVar5 + 1);\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + (long)(int)uVar2 * 2) & 0x10) == 0) {\n          if ((encoding != 'S') || ((int)uVar2 < 0x80)) {\n            if ((include_all_whitespace == '\\0') ||\n               ((*(ushort *)(&_sch_istable + (long)(int)uVar2 * 2) & 0x40) == 0)) goto LAB_00102b96;\n            goto LAB_00102bf3;\n          }\n          if (uVar9 == 0) {\n            local_80 = (ulong)(local_40 - 1);\n          }\n        }\n        else {\nLAB_00102bf3:\n          if (uVar9 == 0) {\n            local_80 = (ulong)(local_40 - 1);\n          }\n          if ((int)uVar2 < 0x7f) goto LAB_00102c09;\n        }\n        if ((int)uVar2 < 0xc0) goto LAB_00102b96;\n        uVar3 = get_unicode_byte(param_3,param_4,local_4c,&local_40);\n        if (uVar3 == 0xffffffff) {\nLAB_00102dee:\n          uVar2 = 0xffffffff;\n          break;\n        }\n        uVar7 = (undefined)uVar3;\n        if ((uVar3 & 0xc0) == 0x80) {\n          if ((uVar2 & 0x20) == 0) {\n            if (unicode_display == 5) goto LAB_00102c67;\n            uVar9 = uVar9 + 1;\n            *(undefined *)(param_6 + uVar6) = uVar10;\n            *(undefined *)(param_6 + (ulong)(uVar5 + 1)) = uVar7;\n            uVar6 = (ulong)(uVar5 + 2);\n            uVar2 = uVar3;\n          }\n          else {\n            uVar3 = get_unicode_byte(param_3,param_4,local_4c,&local_40);\n            if (uVar3 == 0xffffffff) goto LAB_00102dee;\n            uVar8 = (undefined)uVar3;\n            if ((uVar3 & 0xc0) == 0x80) {\n              if ((uVar2 & 0x10) == 0) {\n                if (unicode_display == 5) goto LAB_00102ce5;\n                uVar9 = uVar9 + 1;\n                *(undefined *)(param_6 + uVar6) = uVar10;\n                uVar6 = (ulong)(uVar5 + 3);\n                *(undefined *)(param_6 + (ulong)(uVar5 + 1)) = uVar7;\n                *(undefined *)(param_6 + (ulong)(uVar5 + 2)) = uVar8;\n                uVar2 = uVar3;\n              }\n              else {\n                uVar2 = get_unicode_byte(param_3,param_4,local_4c,&local_40);\n                if (uVar2 == 0xffffffff) goto LAB_00102dee;\n                uVar1 = (undefined)uVar2;\n                if ((uVar2 & 0xc0) == 0x80) {\n                  if (unicode_display == 5) {\n                    *(undefined *)(param_4 + (ulong)local_4c[0]) = uVar1;\n                    *(undefined *)(param_4 + (ulong)(local_4c[0] + 1)) = uVar7;\n                    *(undefined *)(param_4 + (ulong)(local_4c[0] + 2)) = uVar8;\n                    goto LAB_00102db9;\n                  }\n                  uVar9 = uVar9 + 1;\n                  *(undefined *)(param_6 + uVar6) = uVar10;\n                  *(undefined *)(param_6 + (ulong)(uVar5 + 1)) = uVar7;\n                  uVar6 = (ulong)(uVar5 + 4);\n                  *(undefined *)(param_6 + (ulong)(uVar5 + 2)) = uVar8;\n                  *(undefined *)(param_6 + (ulong)(uVar5 + 3)) = uVar1;\n                }\n                else {\n                  *(undefined *)(param_4 + (ulong)local_4c[0]) = uVar1;\n                  *(undefined *)(param_4 + (ulong)(local_4c[0] + 1)) = uVar8;\n                  *(undefined *)(param_4 + (ulong)(local_4c[0] + 2)) = uVar7;\nLAB_00102db9:\n                  local_4c[0] = local_4c[0] + 3;\n                  uVar6 = 0;\n                  uVar9 = 0;\n                }\n              }\n            }\n            else {\nLAB_00102ce5:\n              uVar6 = 0;\n              uVar9 = 0;\n              *(undefined *)(param_4 + (ulong)local_4c[0]) = uVar8;\n              *(undefined *)(param_4 + (ulong)(local_4c[0] + 1)) = uVar7;\n              local_4c[0] = local_4c[0] + 2;\n              uVar2 = uVar3;\n            }\n          }\n        }\n        else {\nLAB_00102c67:\n          uVar9 = 0;\n          *(undefined *)(param_4 + (ulong)local_4c[0]) = uVar7;\n          uVar6 = 0;\n          local_4c[0] = local_4c[0] + 1;\n          uVar2 = uVar3;\n        }\n      }\n    }\n    else {\nLAB_00102b96:\n      uVar9 = 0;\n      uVar6 = 0;\n    }\n  }\n  if (uVar9 < string_min) {\n    if (uVar2 != 0xffffffff) {\nLAB_0010308d:\n      print_unicode_stream_body\n                (param_1,(ulong)local_40 + param_2,param_3,param_4,local_4c[0],param_6);\n    }\n  }\n  else {\n    uVar2 = 0;\n    print_filename_and_address(param_1,local_80 + param_2);\n    while (uVar2 < uVar5) {\n      uVar6 = (ulong)uVar2;\n      if (*(byte *)(uVar6 + param_6) < 0x7f) {\n        uVar2 = uVar2 + 1;\n        putc((uint)*(byte *)(uVar6 + param_6),_stdout);\n      }\n      else {\n        iVar4 = display_utf8_char();\n        uVar2 = uVar2 + iVar4;\n      }\n    }\n    while( true ) {\n      uVar2 = get_unicode_byte(param_3,param_4,local_4c,&local_40);\n      if (uVar2 == 0xffffffff) break;\n      if (0xff < uVar2) {\nLAB_00103049:\n        if (output_separator == (char *)0x0) {\n          putc(10,_stdout);\n        }\n        else {\n          fputs(output_separator,_stdout);\n        }\n        goto LAB_0010308d;\n      }\n      if (uVar2 == 9) {\nLAB_00102ed4:\n        putc(uVar2,_stdout);\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + (long)(int)uVar2 * 2) & 0x10) == 0) {\n          if ((encoding != 'S') || ((int)uVar2 < 0x80)) {\n            if ((include_all_whitespace == '\\0') ||\n               ((*(ushort *)(&_sch_istable + (long)(int)uVar2 * 2) & 0x40) == 0)) goto LAB_00103049;\n            goto LAB_00102ecf;\n          }\n        }\n        else {\nLAB_00102ecf:\n          if ((int)uVar2 < 0x7f) goto LAB_00102ed4;\n        }\n        if ((int)uVar2 < 0xc0) goto LAB_00103049;\n        local_3c = (byte)uVar2;\n        iVar4 = get_unicode_byte(param_3,param_4,local_4c,&local_40);\n        if (iVar4 == -1) break;\n        local_3b = (byte)iVar4;\n        if ((local_3b & 0xc0) != 0x80) {\nLAB_00102f32:\n          uVar6 = (ulong)local_4c[0];\n          local_4c[0] = local_4c[0] + 1;\n          *(byte *)(param_4 + uVar6) = local_3b;\njoined_r0x00102f51:\n          if (output_separator == (char *)0x0) {\n            putc(10,_stdout);\n          }\n          else {\n            fputs(output_separator,_stdout);\n          }\n          goto LAB_0010308d;\n        }\n        if ((local_3c & 0x20) == 0) {\n          if (unicode_display != 5) goto LAB_0010300e;\n          goto LAB_00102f32;\n        }\n        iVar4 = get_unicode_byte(param_3,param_4,local_4c,&local_40);\n        if (iVar4 == -1) break;\n        local_3a = (byte)iVar4;\n        if ((local_3a & 0xc0) != 0x80) {\nLAB_00102f94:\n          *(byte *)(param_4 + (ulong)local_4c[0]) = local_3a;\n          uVar2 = local_4c[0] + 1;\n          local_4c[0] = local_4c[0] + 2;\nLAB_00102ff2:\n          *(byte *)(param_4 + (ulong)uVar2) = local_3b;\n          goto joined_r0x00102f51;\n        }\n        if ((local_3c & 0x10) != 0) {\n          iVar4 = get_unicode_byte(param_3,param_4,local_4c,&local_40);\n          if (iVar4 != -1) {\n            local_39 = (byte)iVar4;\n            if (((local_39 & 0xc0) == 0x80) && (unicode_display != 5)) goto LAB_0010300e;\n            *(byte *)(param_4 + (ulong)local_4c[0]) = local_39;\n            *(byte *)(param_4 + (ulong)(local_4c[0] + 1)) = local_3a;\n            uVar2 = local_4c[0] + 2;\n            local_4c[0] = local_4c[0] + 3;\n            goto LAB_00102ff2;\n          }\n          break;\n        }\n        if (unicode_display == 5) goto LAB_00102f94;\nLAB_0010300e:\n        display_utf8_char(&local_3c);\n      }\n    }\n    if (output_separator == (char *)0x0) {\n      putc(10,_stdout);\n    }\n    else {\n      fputs(output_separator,_stdout);\n    }\n  }\n  return;\n}\n\n", 
+            "called": [
+                "print_filename_and_address", 
+                "print_unicode_stream_body", 
+                "get_unicode_byte", 
+                "display_utf8_char", 
+                "fputs", 
+                "putc"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00102b11", 
+            "calling": [
+                "print_unicode_stream_body", 
+                "print_strings"
+            ], 
+            "imported": false, 
+            "current_name": "print_unicode_stream_body"
+        }, 
+        "FUN_001034d5": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid FUN_001034d5(void)\n\n{\n  ulong uVar1;\n  ulong uVar2;\n  uint uVar3;\n  ulong uVar4;\n  char *unaff_R14;\n  bool bVar5;\n  undefined8 in_stack_00000010;\n  undefined8 in_stack_00000038;\n  \ncode_r0x001034d5:\n  unget_part_char();\n  do {\n    uVar1 = (ulong)string_min;\n    if (string_min != 0) {\n      uVar1 = get_char();\n      uVar3 = string_min;\n      if (uVar1 == 0xffffffffffffffff) goto LAB_001034be;\n      if (0xff < uVar1) goto code_r0x001034d5;\n      if (uVar1 == 9) {\nLAB_001023f5:\n        *unaff_R14 = (char)uVar1;\n        if (uVar3 < 2) {\n          FUN_001034fa();\n          return;\n        }\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x10) == 0) {\n          if (((encoding == 'S') && (0x7f < (long)uVar1)) ||\n             ((include_all_whitespace != '\\0' &&\n              ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x40) != 0)))) goto LAB_001023f5;\n          goto code_r0x001034d5;\n        }\n        *unaff_R14 = (char)uVar1;\n        if (uVar3 < 2) {\n          uVar1 = 1;\n          goto joined_r0x001034ef;\n        }\n      }\n      uVar1 = get_char();\n      uVar3 = string_min;\n      if (uVar1 == 0xffffffffffffffff) goto LAB_001034be;\n      if (0xff < uVar1) goto code_r0x001034d5;\n      if (uVar1 == 9) {\nLAB_001023bb:\n        unaff_R14[1] = (char)uVar1;\n        if (uVar3 < 3) {\n          FUN_00103510();\n          return;\n        }\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x10) == 0) {\n          if (((encoding == 'S') && (0x7f < (long)uVar1)) ||\n             ((include_all_whitespace != '\\0' &&\n              ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x40) != 0)))) goto LAB_001023bb;\n          goto code_r0x001034d5;\n        }\n        unaff_R14[1] = (char)uVar1;\n        if (uVar3 < 3) {\n          uVar1 = 2;\n          goto joined_r0x001034ef;\n        }\n      }\n      uVar1 = get_char();\n      uVar3 = string_min;\n      if (uVar1 == 0xffffffffffffffff) {\nLAB_001034be:\n        free(unaff_R14);\n        return;\n      }\n      if (0xff < uVar1) goto code_r0x001034d5;\n      if (uVar1 == 9) {\nLAB_00102381:\n        unaff_R14[2] = (char)uVar1;\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x10) == 0) {\n          if (((encoding == 'S') && (0x7f < (long)uVar1)) ||\n             ((include_all_whitespace != '\\0' &&\n              ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x40) != 0)))) goto LAB_00102381;\n          goto code_r0x001034d5;\n        }\n        unaff_R14[2] = (char)uVar1;\n      }\n      if (uVar3 < 4) {\n        uVar1 = 3;\n      }\n      else {\n        uVar4 = 3;\n        do {\n          uVar2 = get_char();\n          if (uVar2 == 0xffffffffffffffff) goto LAB_001034be;\n          if (0xff < uVar2) goto code_r0x001034d5;\n          if (((uVar2 != 9) && ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x10) == 0)) &&\n             ((encoding != 'S' || ((long)uVar2 < 0x80)))) {\n            if (include_all_whitespace == '\\0') goto code_r0x001034d5;\n            if ((*(ushort *)(&_sch_istable + uVar2 * 2) & 0x40) == 0) {\n              FUN_001034d5();\n              return;\n            }\n          }\n          uVar3 = (int)uVar4 + 1;\n          uVar1 = (ulong)uVar3;\n          bVar5 = uVar3 < string_min;\n          unaff_R14[uVar4] = (char)uVar2;\n          uVar4 = uVar1;\n        } while (bVar5);\n      }\n    }\njoined_r0x001034ef:\n    if (print_filenames != '\\0') {\n      printf(\"%s: \",in_stack_00000010);\n    }\n    if (print_addresses == '\\0') {\n      unaff_R14[uVar1] = '\\0';\n      fputs(unaff_R14,_stdout);\n    }\n    else {\n      print_filename_and_address_part_0(in_stack_00000038);\n      unaff_R14[uVar1] = '\\0';\n      fputs(unaff_R14,_stdout);\n    }\n    while (uVar1 = get_char(), uVar1 != 0xffffffffffffffff) {\n      if (0xff < uVar1) {\nLAB_0010348e:\n        unget_part_char();\n        break;\n      }\n      if (uVar1 == 9) {\nLAB_00102438:\n        putc((int)uVar1,_stdout);\n      }\n      else {\n        if ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x10) == 0) {\n          if (((encoding != 'S') || ((long)uVar1 < 0x80)) &&\n             ((include_all_whitespace == '\\0' ||\n              ((*(ushort *)(&_sch_istable + uVar1 * 2) & 0x40) == 0)))) goto LAB_0010348e;\n          goto LAB_00102438;\n        }\n        putc((int)uVar1,_stdout);\n      }\n    }\n    if (output_separator == (char *)0x0) {\n      putc(10,_stdout);\n    }\n    else {\n      fputs(output_separator,_stdout);\n    }\n  } while( true );\n}\n\n", 
+            "called": [
+                "unget_part_char"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": false, 
+            "entrypoint": "0x001034d5", 
+            "calling": [
+                "print_strings.cold", 
+                "FUN_0010259a"
+            ], 
+            "imported": false, 
+            "current_name": "FUN_001034d5"
+        }, 
+        "memcpy": {
+            "renaming": {}, 
+            "code": "\n\n\n\nvoid * memcpy(void *__dest,void *__src,size_t __n)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* memcpy@GLIBC_2.14 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109130", 
+            "calling": [
+                "memcpy"
+            ], 
+            "imported": false, 
+            "current_name": "memcpy"
+        }, 
+        "__do_global_dtors_aux": {
+            "renaming": {}, 
+            "code": "\nvoid __do_global_dtors_aux(void)\n\n{\n  if (completed_0 != '\\0') {\n    return;\n  }\n  __cxa_finalize(__dso_handle);\n  deregister_tm_clones();\n  completed_0 = 1;\n  return;\n}\n\n", 
+            "called": [
+                "deregister_tm_clones", 
+                "__cxa_finalize"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00103a50", 
+            "calling": [], 
+            "imported": false, 
+            "current_name": "__do_global_dtors_aux"
+        }, 
+        "_fini": {
+            "renaming": {}, 
+            "code": "\nvoid _fini(void)\n\n{\n  return;\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00104af4", 
+            "calling": [], 
+            "imported": false, 
+            "current_name": "_fini"
+        }, 
+        "fputs": {
+            "renaming": {}, 
+            "code": "\n\n\n\nint fputs(char *__s,FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fputs@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001090b0", 
+            "calling": [
+                "fputs"
+            ], 
+            "imported": false, 
+            "current_name": "fputs"
+        }, 
+        "report": {
+            "renaming": {}, 
+            "code": "\n\n\nvoid report(char *param_1,__gnuc_va_list param_2)\n\n{\n  fflush(_stdout);\n  fprintf(_stderr,\"%s: \",program_name);\n  vfprintf(_stderr,param_1,param_2);\n  putc(10,_stderr);\n  return;\n}\n\n", 
+            "called": [
+                "vfprintf", 
+                "fprintf", 
+                "fflush", 
+                "putc"
+            ], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x001038b0", 
+            "calling": [
+                "fatal", 
+                "non_fatal"
+            ], 
+            "imported": false, 
+            "current_name": "report"
+        }, 
+        "perror": {
+            "renaming": {}, 
+            "code": "\n\n\n\nvoid perror(char *__s)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* perror@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": true, 
+            "entrypoint": "0x00109178", 
+            "calling": [
+                "perror"
+            ], 
+            "imported": false, 
+            "current_name": "perror"
+        }, 
+        "FUN_00102020": {
+            "renaming": {}, 
+            "code": "\nvoid FUN_00102020(void)\n\n{\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)(undefined *)0x0)();\n  return;\n}\n\n", 
+            "called": [], 
+            "skipped": false, 
+            "tags": [], 
+            "improved": false, 
+            "entrypoint": "0x00102020", 
+            "calling": [], 
+            "imported": false, 
+            "current_name": "FUN_00102020"
+        }
+    }, 
+    "locked_functions": [], 
+    "used_tokens": 0, 
+    "layers": []
+}

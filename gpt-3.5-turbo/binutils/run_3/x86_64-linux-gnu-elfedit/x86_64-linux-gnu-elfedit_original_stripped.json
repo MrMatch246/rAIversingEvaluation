@@ -1,0 +1,2853 @@
+{
+    "functions": {
+        "FUN_0010a158": {
+            "renaming": {},
+            "code": "\n\n\n\nsize_t fwrite(void *__ptr,size_t __size,size_t __n,FILE *__s)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fwrite@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a158",
+            "calling": [
+                "fwrite"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a158"
+        },
+        "FUN_001021b0": {
+            "renaming": {},
+            "code": "\n\n\nvoid * malloc(size_t __size)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = malloc(__size);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "malloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021b0",
+            "calling": [
+                "adjust_relative_path",
+                "setup_archive.constprop.0",
+                "xmalloc",
+                "process_archive",
+                "xrealloc"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021b0"
+        },
+        "FUN_00103b60": {
+            "renaming": {
+                "FUN_00103b60": "FUNC_00103b60"
+            },
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00103b84) */\n/* WARNING: Removing unreachable block (ram,0x00103b90) */\n\nvoid FUNC_00103b60(void)\n\n{\n  return;\n}\n\n",
+            "called": [
+                "_ITM_registerTMCloneTable"
+            ],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00103b60",
+            "calling": [
+                "frame_dummy"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00103b60"
+        },
+        "FUN_00102190": {
+            "renaming": {},
+            "code": "\n\n\nvoid * memcpy(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memcpy(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "memcpy"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102190",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102190"
+        },
+        "FUN_0010a150": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid exit(int __status)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* exit@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a150",
+            "calling": [
+                "exit"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a150"
+        },
+        "FUN_00103160": {
+            "renaming": {
+                "FUN_00103160": "copy_string_backwards_00103160",
+                "param_1": "original_string",
+                "sVar1": "string_length",
+                "pcVar2": "new_string",
+                "lVar3": "length_with_null",
+                "bVar4": "flag"
+            },
+            "code": "\nvoid copyStringBackwards_00103160(char *original_string)\n\n{\n  size_t string_length;\n  char *new_string;\n  long length_with_null;\n  byte flag;\n  \n  flag = 0;\n  string_length = strlen(original_string);\n  length_with_null = string_length + 1;\n  new_string = (char *)xmalloc(length_with_null);\n  for (; length_with_null != 0; length_with_null = length_with_null + -1) {\n    *new_string = *original_string;\n    original_string = original_string + (ulong)flag * -2 + 1;\n    new_string = new_string + (ulong)flag * -2 + 1;\n  }\n  return;\n}\n\n",
+            "called": [
+                "strlen",
+                "xmalloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103160",
+            "calling": [
+                "main",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "copy_string_backwards_00103160"
+        },
+        "FUN_00102070": {
+            "renaming": {},
+            "code": "\n\n\nint strncmp(char *__s1,char *__s2,size_t __n)\n\n{\n  int iVar1;\n  \n  iVar1 = strncmp(__s1,__s2,__n);\n  return iVar1;\n}\n\n",
+            "called": [
+                "strncmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102070",
+            "calling": [
+                "startswith"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102070"
+        },
+        "FUN_0010354e": {
+            "renaming": {
+                "FUN_0010354e": "fill_memory_with_byte_0010354e",
+                "param_1": "destinationMemoryAddress",
+                "param_2": "byteValue",
+                "param_3": "length",
+                "uVar1": "errorMessage",
+                "iVar2": "iterationCount",
+                "uVar3": "remainingLength"
+            },
+            "code": "\nvoid fillMemoryWithByte_0010354e(long destinationMemoryAddress,ulong byteValue,uint length)\n\n{\n  undefined8 errorMessage;\n  int iterationCount;\n  ulong remainingLength;\n  \n  remainingLength = (ulong)length;\n  if (8 < length) {\n    errorMessage = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n    error(errorMessage,length);\n                    \n    abort();\n  }\n  while (iterationCount = (int)remainingLength, remainingLength = (ulong)(iterationCount - 1), iterationCount != 0) {\n    *(char *)(destinationMemoryAddress + remainingLength) = (char)byteValue;\n    byteValue = byteValue >> 8;\n  }\n  return;\n}\n\n",
+            "called": [
+                "dcgettext",
+                "abort",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010354e",
+            "calling": [
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "fill_memory_with_byte_0010354e"
+        },
+        "FUN_00102110": {
+            "renaming": {},
+            "code": "\n\n\nint printf(char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = printf(__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "printf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102110",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102110"
+        },
+        "FUN_00104da0": {
+            "renaming": {
+                "FUN_00104da0": "get_type_00104da0",
+                "param_1": "type",
+                "iVar1": "result",
+                "iVar2": "comparison_result",
+                "uVar3": "errorMessage"
+            },
+            "code": "\nint getType_00104da0(char *type)\n\n{\n  int result;\n  int comparison_result;\n  undefined8 errorMessage;\n  \n  result = strcasecmp(type,\"rel\");\n  if (result == 0) {\n    result = 1;\n  }\n  else {\n    comparison_result = strcasecmp(type,\"exec\");\n    result = 2;\n    if (comparison_result != 0) {\n      result = strcasecmp(type,\"dyn\");\n      if (result == 0) {\n        result = 3;\n      }\n      else {\n        result = strcasecmp(type,\"none\");\n        if (result != 0) {\n          errorMessage = dcgettext(0,\"Unknown type: %s\\n\",5);\n          error(errorMessage,type);\n          result = -1;\n        }\n      }\n    }\n  }\n  return result;\n}\n\n",
+            "called": [
+                "dcgettext",
+                "strcasecmp",
+                "error",
+                "elf_type.cold"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104da0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "get_type_00104da0"
+        },
+        "FUN_0010a0d8": {
+            "renaming": {},
+            "code": "\n\n\n\nint stat(char *__file,stat *__buf)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* stat@GLIBC_2.33 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0d8",
+            "calling": [
+                "stat"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0d8"
+        },
+        "FUN_00102230": {
+            "renaming": {},
+            "code": "\n\n\nint vfprintf(FILE *__s,char *__format,__gnuc_va_list __arg)\n\n{\n  int iVar1;\n  \n  iVar1 = vfprintf(__s,__format,__arg);\n  return iVar1;\n}\n\n",
+            "called": [
+                "vfprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102230",
+            "calling": [
+                "error",
+                "warn"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102230"
+        },
+        "FUN_00103449": {
+            "renaming": {
+                "FUN_00103449": "allocate_memory_00103449",
+                "param_1": "inputPointer",
+                "param_2": "inputSize",
+                "__size": "allocationSize",
+                "pvVar1": "allocatedMemory"
+            },
+            "code": "\nvoid allocateMemory_00103449(void *inputPointer,size_t inputSize)\n\n{\n  size_t allocationSize;\n  void *allocatedMemory;\n  \n  allocationSize = 1;\n  if (inputSize != 0) {\n    allocationSize = inputSize;\n  }\n  if (inputPointer == (void *)0x0) {\n    allocatedMemory = malloc(allocationSize);\n  }\n  else {\n    allocatedMemory = realloc(inputPointer,allocationSize);\n  }\n  if (allocatedMemory == (void *)0x0) {\n    xmalloc_failed(allocationSize);\n  }\n  return;\n}\n\n",
+            "called": [
+                "malloc",
+                "realloc",
+                "xmalloc_failed"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103449",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "allocate_memory_00103449"
+        },
+        "FUN_00102fc7": {
+            "renaming": {
+                "FUN_00102fc7": "allocate_memory_and_copy_strings_00102fc7",
+                "param_1": "totalBytes",
+                "cVar1": "exitFlag",
+                "pvVar2": "currentBrk",
+                "sVar3": "stringLength",
+                "uVar4": "tempVar",
+                "pcVar5": "concatenatedString",
+                "ppcVar6": "stringArray",
+                "extraout_RDX": "extraoutRDX",
+                "lVar7": "totalLength",
+                "__s": "formatString",
+                "__ptr": "filePointer",
+                "pcVar8": "ptr",
+                "bVar9": "byteVar",
+                "extraout_XMM0_Qa": "extraoutXMM0Qa",
+                "uStack_f8": "stackVar_f8",
+                "ppcVar10": "stringArrayPtr",
+                "ppcVar11": "stringArrayPtr2",
+                "apcStack_e0": "stringStack",
+                "uStack_c0": "param_1_copy",
+                "lStack_b8": "currentBrkOffset",
+                "uStack_b0": "extraoutVar",
+                "uStack_28": "param_1_copy2"
+            },
+            "code": "\n\n\nchar * allocateMemoryAndCopyStrings_00102fc7(undefined8 totalBytes)\n\n{\n  char exitFlag;\n  void *currentBrk;\n  size_t stringLength;\n  ulong tempVar;\n  char *concatenatedString;\n  char **stringArray;\n  undefined8 extraoutRDX;\n  long totalLength;\n  char *formatString;\n  FILE *filePointer;\n  char *ptr;\n  byte byteVar;\n  undefined8 extraoutXMM0Qa;\n  uint stackVar_f8;\n  char **stringArrayPtr;\n  char **stringArrayPtr2;\n  char *stringStack [4];\n  undefined8 param_1_copy;\n  long currentBrkOffset;\n  undefined8 extraoutVar;\n  undefined8 param_1_copy2;\n  \n  byteVar = 0;\n  currentBrk = sbrk(0);\n  currentBrkOffset = (long)currentBrk + -0x10a0e0;\n  stringStack[3] = \"\";\n  formatString = \"\\n%s%sout of memory allocating %lu bytes after a total of %lu bytes\\n\";\n  filePointer = _stderr;\n  param_1_copy = totalBytes;\n  fprintf(_stderr,\"\\n%s%sout of memory allocating %lu bytes after a total of %lu bytes\\n\");\n  exitFlag = xexit_constprop_0();\n  if (exitFlag != '\\0') {\n    extraoutVar = extraoutXMM0Qa;\n  }\n  totalLength = 0;\n  stackVar_f8 = 0x10;\n  ptr = formatString;\n  stringArrayPtr = (char **)register0x00000020;\n  stringStack[2] = (char *)extraoutRDX;\n  param_1_copy2 = totalBytes;\n  do {\n    stringLength = strlen(ptr);\n    totalLength = totalLength + stringLength;\n    if (stackVar_f8 < 0x30) {\n      tempVar = (ulong)stackVar_f8;\n      stackVar_f8 = stackVar_f8 + 8;\n      stringArray = (char **)((long)stringStack + tempVar);\n      stringArrayPtr2 = stringArrayPtr;\n    }\n    else {\n      stringArrayPtr2 = stringArrayPtr + 1;\n      stringArray = stringArrayPtr;\n    }\n    ptr = *stringArray;\n    stringArrayPtr = stringArrayPtr2;\n  } while (ptr != (char *)0x0);\n  concatenatedString = (char *)xmalloc(totalLength + 1);\n  stackVar_f8 = 0x10;\n  ptr = concatenatedString;\n  stringArrayPtr = (char **)register0x00000020;\n  do {\n    stringLength = strlen(formatString);\n    for (; stringLength != 0; stringLength = stringLength - 1) {\n      *ptr = *formatString;\n      formatString = formatString + (ulong)byteVar * -2 + 1;\n      ptr = ptr + (ulong)byteVar * -2 + 1;\n    }\n    if (stackVar_f8 < 0x30) {\n      tempVar = (ulong)stackVar_f8;\n      stackVar_f8 = stackVar_f8 + 8;\n      stringArray = (char **)((long)stringStack + tempVar);\n      stringArrayPtr2 = stringArrayPtr;\n    }\n    else {\n      stringArrayPtr2 = stringArrayPtr + 1;\n      stringArray = stringArrayPtr;\n    }\n    formatString = *stringArray;\n    stringArrayPtr = stringArrayPtr2;\n  } while (formatString != (char *)0x0);\n  *ptr = '\\0';\n  free(filePointer);\n  return concatenatedString;\n}\n\n",
+            "called": [
+                "sbrk",
+                "fprintf",
+                "xexit.constprop.0"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102fc7",
+            "calling": [
+                "xmalloc.cold",
+                "xrealloc"
+            ],
+            "imported": false,
+            "current_name": "allocate_memory_and_copy_strings_00102fc7"
+        },
+        "FUN_0010a0f0": {
+            "renaming": {},
+            "code": "\n\n\n\nint fileno(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fileno@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0f0",
+            "calling": [
+                "fileno"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0f0"
+        },
+        "FUN_001025ab": {
+            "renaming": {
+                "FUN_001025ab": "extract_archive_001025ab",
+                "param_1": "outputFiles",
+                "param_2": "archivePath",
+                "param_3": "archiveFile",
+                "param_4": "maxFileSize",
+                "param_5": "fileFormat",
+                "__ptr": "buffer",
+                "uVar1": "previousChar",
+                "cVar2": "isMatch",
+                "iVar3": "result",
+                "pcVar4": "errorMessage",
+                "sVar5": "bytesRead",
+                "uVar6": "translatedString",
+                "pcVar7": "longSymbolNameTable"
+            },
+            "code": "\nundefined4 extractArchive_001025ab(char **outputFiles,char *archivePath,FILE *archiveFile,long maxFileSize,undefined4 fileFormat)\n\n{\n  char **buffer;\n  undefined previousChar;\n  char isMatch;\n  int result;\n  char *errorMessage;\n  size_t bytesRead;\n  undefined8 translatedString;\n  char *longSymbolNameTable;\n  \n  errorMessage = strdup(archivePath);\n  outputFiles[2] = (char *)0x0;\n  *(undefined4 *)((long)outputFiles + 0x54) = 0;\n  *outputFiles = errorMessage;\n  outputFiles[1] = (char *)archiveFile;\n  outputFiles[5] = (char *)0x0;\n  outputFiles[6] = (char *)0x0;\n  *(undefined4 *)(outputFiles + 10) = fileFormat;\n  outputFiles[9] = (char *)0x8;\n  *(undefined (*) [16])(outputFiles + 3) = ZEXT816(0);\n  *(undefined (*) [16])(outputFiles + 7) = ZEXT816(0);\n  result = fseek(archiveFile,8,0);\n  errorMessage = \"%s: failed to seek to first archive header\\n\";\n  if (result != 0) goto LAB_00102658;\n  buffer = outputFiles + 0xb;\n  bytesRead = fread(buffer,1,0x3c,archiveFile);\n  if (bytesRead != 0x3c) {\n    if (bytesRead == 0) {\n      return 0;\n    }\n    errorMessage = \"%s: failed to read archive header\\n\";\n    goto LAB_00102658;\n  }\n  isMatch = startswith(buffer,\"/               \");\n  if (isMatch == '\\0') {\n    isMatch = startswith(buffer,\"/SYM64/         \");\n    if (isMatch != '\\0') {\n      *(undefined4 *)((long)outputFiles + 0x54) = 1;\n      result = process_archive_index_and_symbols_constprop_0(outputFiles,8);\n      goto joined_r0x001026dd;\n    }\n  }\n  else {\n    result = process_archive_index_and_symbols_constprop_0(outputFiles,4);\njoined_r0x001026dd:\n    if (result == 0) {\n      return 1;\n    }\n  }\n  isMatch = startswith(buffer);\n  if (isMatch == '\\0') {\n    return 0;\n  }\n  previousChar = *(undefined *)((long)outputFiles + 0x92);\n  *(undefined *)((long)outputFiles + 0x92) = 0;\n  errorMessage = (char *)strtoul((char *)(outputFiles + 0x11),(char **)0x0,10);\n  longSymbolNameTable = \"%s: long name table is too small, (size = %ld)\\n\";\n  outputFiles[7] = errorMessage;\n  *(undefined *)((long)outputFiles + 0x92) = previousChar;\n  if ((char *)0x7 < errorMessage) {\n    if (((long)errorMessage <= maxFileSize) && (-1 < (long)errorMessage)) {\n      outputFiles[9] = errorMessage + 0x3c + (long)outputFiles[9];\n      longSymbolNameTable = (char *)malloc((size_t)(errorMessage + 1));\n      outputFiles[6] = longSymbolNameTable;\n      if (longSymbolNameTable == (char *)0x0) {\n        translatedString = dcgettext(0,\"Out of memory reading long symbol names in archive\\n\",5);\n        error(translatedString);\n        return 1;\n      }\n      bytesRead = fread(longSymbolNameTable,(size_t)errorMessage,1,archiveFile);\n      if (bytesRead == 1) {\n        if ((*(byte *)(outputFiles + 7) & 1) != 0) {\n          getc(archiveFile);\n        }\n        outputFiles[6][(long)outputFiles[7]] = '\\0';\n        return 0;\n      }\n      free(outputFiles[6]);\n      errorMessage = \"%s: failed to read long symbol name string table\\n\";\n      outputFiles[6] = (char *)0x0;\nLAB_00102658:\n      translatedString = dcgettext(0,errorMessage,5);\n      error(translatedString,archivePath);\n      return 1;\n    }\n    longSymbolNameTable = \"%s: long name table is too big, (size = %#lx)\\n\";\n  }\n  translatedString = dcgettext(0,longSymbolNameTable,5);\n  error(translatedString,archivePath,errorMessage);\n  return 1;\n}\n\n",
+            "called": [
+                "strdup",
+                "malloc",
+                "strtoul",
+                "dcgettext",
+                "fread",
+                "fseek",
+                "error",
+                "process_archive_index_and_symbols.constprop.0",
+                "startswith",
+                "getc",
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001025ab",
+            "calling": [
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "extract_archive_001025ab"
+        },
+        "FUN_0010a048": {
+            "renaming": {},
+            "code": "\n\n\n\nsize_t fread(void *__ptr,size_t __size,size_t __n,FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fread@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a048",
+            "calling": [
+                "fread"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a048"
+        },
+        "FUN_001020a0": {
+            "renaming": {},
+            "code": "\nvoid textdomain(void)\n\n{\n  textdomain();\n  return;\n}\n\n",
+            "called": [
+                "textdomain"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020a0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020a0"
+        },
+        "FUN_00102e85": {
+            "renaming": {
+                "FUN_00102e85": "print_error_message_00102e85",
+                "param_1": "errorParam1",
+                "param_2": "errorParam2",
+                "param_3": "errorParam3",
+                "param_4": "errorParam4",
+                "param_5": "errorParam5",
+                "param_6": "errorParam6",
+                "param_7": "errorParam7",
+                "param_8": "errorParam8",
+                "param_9": "errorMessage",
+                "param_10": "param10",
+                "param_11": "param11",
+                "param_12": "param12",
+                "param_13": "param13",
+                "param_14": "param14",
+                "in_AL": "flag",
+                "__format": "messageFormat",
+                "local_e0": "bufferSize",
+                "local_dc": "padding",
+                "local_d8": "source",
+                "local_d0": "destination",
+                "local_c8": "localBuffer",
+                "local_c0": "localParam10",
+                "local_b8": "localParam11",
+                "local_b0": "localParam12",
+                "local_a8": "localParam13",
+                "local_a0": "localParam14",
+                "local_98": "localParam1",
+                "local_88": "localParam2",
+                "local_78": "localParam3",
+                "local_68": "localParam4",
+                "local_58": "localParam5",
+                "local_48": "localParam6",
+                "local_38": "localParam7",
+                "local_28": "localParam8",
+                "_stdout": "standardOutput",
+                "_stderr": "standardError"
+            },
+            "code": "\n\n\nvoid printErrorMessage_00102e85(undefined4 errorParam1,undefined4 errorParam2,undefined4 errorParam3,undefined4 errorParam4,\n                 undefined4 errorParam5,undefined4 errorParam6,undefined4 errorParam7,undefined4 errorParam8,\n                 char *errorMessage,undefined8 param10,undefined8 param11,undefined8 param12,\n                 undefined8 param13,undefined8 param14)\n\n{\n  char flag;\n  char *messageFormat;\n  undefined4 bufferSize;\n  undefined4 padding;\n  undefined *source;\n  undefined *destination;\n  undefined localBuffer [8];\n  undefined8 localParam10;\n  undefined8 localParam11;\n  undefined8 localParam12;\n  undefined8 localParam13;\n  undefined8 localParam14;\n  undefined4 localParam1;\n  undefined4 localParam2;\n  undefined4 localParam3;\n  undefined4 localParam4;\n  undefined4 localParam5;\n  undefined4 localParam6;\n  undefined4 localParam7;\n  undefined4 localParam8;\n  \n  if (flag != '\\0') {\n    localParam1 = errorParam1;\n    localParam2 = errorParam2;\n    localParam3 = errorParam3;\n    localParam4 = errorParam4;\n    localParam5 = errorParam5;\n    localParam6 = errorParam6;\n    localParam7 = errorParam7;\n    localParam8 = errorParam8;\n  }\n  localParam10 = param10;\n  localParam11 = param11;\n  localParam12 = param12;\n  localParam13 = param13;\n  localParam14 = param14;\n  fflush(standardOutput);\n  source = &stack0x00000008;\n  destination = localBuffer;\n  bufferSize = 8;\n  padding = 0x30;\n  messageFormat = (char *)dcgettext(0,\"%s: Error: \",5);\n  fprintf(standardError,messageFormat,\"elfedit\");\n  vfprintf(standardError,errorMessage,&bufferSize);\n  return;\n}\n\n",
+            "called": [
+                "fflush",
+                "dcgettext",
+                "vfprintf",
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102e85",
+            "calling": [
+                "elf_x86_feature.cold",
+                "adjust_relative_path",
+                "main",
+                "elf_machine.cold",
+                "byte_put_little_endian.cold",
+                "FUN_001024ec",
+                "process_object.cold",
+                "elf_type",
+                "caseD_0",
+                "byte_put_big_endian",
+                "byte_get_big_endian",
+                "FUN_00102558",
+                "process_object",
+                "process_archive_index_and_symbols.constprop.0",
+                "setup_archive.constprop.0",
+                "elf_osabi.cold",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "print_error_message_00102e85"
+        },
+        "FUN_0010234b": {
+            "renaming": {
+                "FUN_0010234b": "get_machine_type_0010234b",
+                "unaff_RBX": "machineType",
+                "iVar1": "result",
+                "uVar2": "errorMessage"
+            },
+            "code": "\nint getMachineType_0010234b(void)\n\n{\n  int result;\n  undefined8 errorMessage;\n  char *machineType;\n  \n  result = strcasecmp(machineType,\"x86_64\");\n  if (result == 0) {\n    result = 0x3e;\n  }\n  else {\n    result = strcasecmp(machineType,\"x86-64\");\n    if (result == 0) {\n      result = 0x3e;\n    }\n    else {\n      result = strcasecmp(machineType,\"none\");\n      if (result != 0) {\n        errorMessage = dcgettext(0,\"Unknown machine type: %s\\n\",5);\n        error(errorMessage);\n        result = -1;\n      }\n    }\n  }\n  return result;\n}\n\n",
+            "called": [
+                "dcgettext",
+                "strcasecmp",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010234b",
+            "calling": [
+                "elf_machine"
+            ],
+            "imported": false,
+            "current_name": "get_machine_type_0010234b"
+        },
+        "FUN_0010a168": {
+            "renaming": {},
+            "code": "\n\n\n\nchar * strdup(char *__s)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strdup@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a168",
+            "calling": [
+                "strdup"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a168"
+        },
+        "FUN_001021c0": {
+            "renaming": {},
+            "code": "\n\n\nint fflush(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fflush(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fflush"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021c0",
+            "calling": [
+                "error",
+                "warn"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021c0"
+        },
+        "FUN_00104c60": {
+            "renaming": {
+                "FUN_00104c60": "process_x86_feature_00104c60",
+                "param_1": "feature_name",
+                "param_2": "enable",
+                "param_3": "reserved_1",
+                "param_4": "reserved_2",
+                "iVar1": "strcasecmp_result",
+                "uVar2": "feature_value",
+                "uVar3": "error_message",
+                "auVar4": "return_value",
+                "disable_x86_features": "disabled_features",
+                "enable_x86_features": "enabled_features"
+            },
+            "code": "\nundefined  [16] process_x86_feature_00104c60(char *feature_name,int enable,undefined8 reserved_1,undefined8 reserved_2)\n\n{\n  int strcasecmp_result;\n  uint feature_value;\n  undefined8 error_message;\n  undefined return_value [16];\n  \n  strcasecmp_result = strcasecmp(feature_name,\"ibt\");\n  feature_value = 1;\n  if (strcasecmp_result != 0) {\n    strcasecmp_result = strcasecmp(feature_name,\"shstk\");\n    feature_value = 2;\n    if (strcasecmp_result != 0) {\n      strcasecmp_result = strcasecmp(feature_name,\"lam_u48\");\n      if (strcasecmp_result == 0) {\n        feature_value = 4;\n      }\n      else {\n        strcasecmp_result = strcasecmp(feature_name,\"lam_u57\");\n        feature_value = 8;\n        if (strcasecmp_result != 0) {\n          error_message = dcgettext(0,\"Unknown x86 feature: %s\\n\",5);\n          error(error_message,feature_name);\n          error_message = 0xffffffff;\n          goto LAB_00104ca5;\n        }\n      }\n    }\n  }\n  if (enable == 0) {\n    disabled_features = feature_value | disabled_features;\n    enabled_features = ~feature_value & enabled_features;\n  }\n  else {\n    enabled_features = feature_value | enabled_features;\n    disabled_features = disabled_features & ~feature_value;\n  }\n  error_message = 0;\nLAB_00104ca5:\n  return_value._8_8_ = reserved_2;\n  return_value._0_8_ = error_message;\n  return return_value;\n}\n\n",
+            "called": [
+                "elf_x86_feature.cold",
+                "strcasecmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104c60",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "process_x86_feature_00104c60"
+        },
+        "FUN_00102080": {
+            "renaming": {},
+            "code": "\n\n\nint ferror(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = ferror(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "ferror"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102080",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102080"
+        },
+        "FUN_0010a040": {
+            "renaming": {},
+            "code": "\n\n\n\nint ferror(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* ferror@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a040",
+            "calling": [
+                "ferror"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a040"
+        },
+        "FUN_00102fbc": {
+            "renaming": {
+                "FUN_00102fbc": "exit_program_00102fbc"
+            },
+            "code": "\nvoid exit_program_00102fbc(void)\n\n{\n                    \n  exit(1);\n}\n\n",
+            "called": [
+                "exit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102fbc",
+            "calling": [
+                "main",
+                "xmalloc_failed"
+            ],
+            "imported": false,
+            "current_name": "exit_program_00102fbc"
+        },
+        "FUN_00102000": {
+            "renaming": {
+                "FUN_00102000": "initialize_gmon_00102000",
+                "ctx": "context",
+                "iVar1": "startAddress"
+            },
+            "code": "\nint initializeGmon_00102000(EVP_PKEY_CTX *context)\n\n{\n  int startAddress;\n  \n  startAddress = __gmon_start__();\n  return startAddress;\n}\n\n",
+            "called": [
+                "__gmon_start__"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102000",
+            "calling": [],
+            "imported": false,
+            "current_name": "initialize_gmon_00102000"
+        },
+        "FUN_00102120": {
+            "renaming": {},
+            "code": "\n\n\nvoid rewind(FILE *__stream)\n\n{\n  rewind(__stream);\n  return;\n}\n\n",
+            "called": [
+                "rewind"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102120",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102120"
+        },
+        "FUN_00103ba0": {
+            "renaming": {
+                "FUN_00103ba0": "initialize_00103ba0",
+                "completed_0": "isInitialized",
+                "__cxa_finalize": "finalizeCxa",
+                "__dso_handle": "dsoHandle",
+                "deregister_tm_clones": "deregisterTmClones"
+            },
+            "code": "\nvoid initialize_00103ba0(void)\n\n{\n  if (isInitialized != '\\0') {\n    return;\n  }\n  finalizeCxa(dsoHandle);\n  deregisterTmClones();\n  isInitialized = 1;\n  return;\n}\n\n",
+            "called": [
+                "__cxa_finalize",
+                "deregister_tm_clones"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103ba0",
+            "calling": [],
+            "imported": false,
+            "current_name": "initialize_00103ba0"
+        },
+        "FUN_0010a0e8": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid * memcpy(void *__dest,void *__src,size_t __n)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* memcpy@GLIBC_2.14 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0e8",
+            "calling": [
+                "memcpy"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0e8"
+        },
+        "FUN_00102240": {
+            "renaming": {},
+            "code": "\n\n\nulong strtoul(char *__nptr,char **__endptr,int __base)\n\n{\n  ulong uVar1;\n  \n  uVar1 = strtoul(__nptr,__endptr,__base);\n  return uVar1;\n}\n\n",
+            "called": [
+                "strtoul"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102240",
+            "calling": [
+                "main",
+                "process_archive_index_and_symbols.constprop.0",
+                "setup_archive.constprop.0",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102240"
+        },
+        "FUN_001027fd": {
+            "renaming": {
+                "FUN_001027fd": "string_compare_001027fd",
+                "param_1": "string1",
+                "param_2": "string2",
+                "__n": "length",
+                "extraout_var": "additionalVar",
+                "iVar1": "comparisonResult",
+                "auVar2": "result"
+            },
+            "code": "\nundefined  [16] stringCompare_001027fd(char *string1,char *string2)\n\n{\n  int comparisonResult;\n  undefined8 in_RAX;\n  size_t length;\n  undefined4 additionalVar;\n  undefined result [16];\n  \n  length = strlen(string2);\n  comparisonResult = strncmp(string1,string2,length);\n  result._1_7_ = (undefined7)(CONCAT44(additionalVar,comparisonResult) >> 8);\n  result[0] = comparisonResult == 0;\n  result._8_8_ = in_RAX;\n  return result;\n}\n\n",
+            "called": [
+                "strncmp",
+                "strlen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001027fd",
+            "calling": [
+                "setup_archive.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "string_compare_001027fd"
+        },
+        "FUN_00103b00": {
+            "renaming": {
+                "FUN_00103b00": "run_main_loop_00103b00",
+                "param_1": "arg1",
+                "param_2": "arg2",
+                "auStack_8": "auxStack"
+            },
+            "code": "\nvoid processEntry runMainLoop_00103b00(undefined8 arg1,undefined8 arg2)\n\n{\n  undefined auxStack [8];\n  \n  __libc_start_main(main,arg2,&stack0x00000008,0,0,arg1,auxStack);\n  do {\n                    /* WARNING: Do nothing block with infinite loop */\n  } while( true );\n}\n\n",
+            "called": [
+                "main",
+                "__libc_start_main"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103b00",
+            "calling": [],
+            "imported": false,
+            "current_name": "run_main_loop_00103b00"
+        },
+        "FUN_0010a178": {
+            "renaming": {},
+            "code": "\n\n\n\nint fstat(int __fd,stat *__buf)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fstat@GLIBC_2.33 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a178",
+            "calling": [
+                "fstat"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a178"
+        },
+        "FUN_0010a058": {
+            "renaming": {},
+            "code": "\n\n\n\nint fclose(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fclose@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a058",
+            "calling": [
+                "fclose"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a058"
+        },
+        "FUN_001020b0": {
+            "renaming": {},
+            "code": "\n\n\nint fclose(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fclose(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fclose"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020b0",
+            "calling": [
+                "main",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020b0"
+        },
+        "FUN_001021d0": {
+            "renaming": {},
+            "code": "\n\n\nint fseek(FILE *__stream,long __off,int __whence)\n\n{\n  int iVar1;\n  \n  iVar1 = fseek(__stream,__off,__whence);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fseek"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021d0",
+            "calling": [
+                "main",
+                "process_archive_index_and_symbols.constprop.0",
+                "process_object",
+                "setup_archive.constprop.0",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021d0"
+        },
+        "FUN_00102090": {
+            "renaming": {},
+            "code": "\n\n\nsize_t fread(void *__ptr,size_t __size,size_t __n,FILE *__stream)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fread(__ptr,__size,__n,__stream);\n  return sVar1;\n}\n\n",
+            "called": [
+                "fread"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102090",
+            "calling": [
+                "main",
+                "process_archive_index_and_symbols.constprop.0",
+                "process_object",
+                "setup_archive.constprop.0",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102090"
+        },
+        "FUN_0010a170": {
+            "renaming": {},
+            "code": "\n\n\n\nchar * strerror(int __errnum)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strerror@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a170",
+            "calling": [
+                "strerror"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a170"
+        },
+        "FUN_0010a050": {
+            "renaming": {},
+            "code": "\n\n\nvoid textdomain(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* textdomain@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a050",
+            "calling": [
+                "textdomain"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a050"
+        },
+        "FUN_0010a0f8": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid * malloc(size_t __size)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* malloc@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0f8",
+            "calling": [
+                "malloc"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0f8"
+        },
+        "FUN_00103186": {
+            "renaming": {
+                "FUN_00103186": "concatenate_strings_00103186",
+                "param_1": "input1",
+                "param_2": "input2",
+                "param_3": "input3",
+                "param_4": "input4",
+                "param_5": "input5",
+                "param_6": "input6",
+                "param_7": "input7",
+                "param_8": "input8",
+                "param_9": "ptrData1",
+                "param_10": "ptrData2",
+                "param_11": "ptrData3",
+                "param_12": "ptrData4",
+                "param_13": "ptrData5",
+                "param_14": "ptrData6",
+                "in_AL": "flag",
+                "sVar1": "strLen",
+                "uVar2": "strIndex",
+                "pcVar3": "resultString",
+                "ppcVar4": "stringPtr",
+                "lVar5": "totalLength",
+                "pcVar6": "currentString",
+                "pcVar7": "currentChar",
+                "bVar8": "increment",
+                "local_e0": "localIndex",
+                "local_d8": "localArrayPtr",
+                "local_c8": "localArray",
+                "local_a8": "ptrData5_old",
+                "local_a0": "ptrData6_old",
+                "local_98": "param_1_backup",
+                "local_88": "param_2_backup",
+                "local_78": "param_3_backup",
+                "local_68": "param_4_backup",
+                "local_58": "param_5_backup",
+                "local_48": "param_6_backup",
+                "local_38": "param_7_backup",
+                "local_28": "param_8_backup"
+            },
+            "code": "\nchar * concatenateStrings_00103186(undefined4 input1,undefined4 input2,undefined4 input3,undefined4 input4,\n                   undefined4 input5,undefined4 input6,undefined4 input7,undefined4 input8,\n                   undefined8 ptrData1,undefined8 ptrData2,undefined8 ptrData3,undefined8 ptrData4,\n                   undefined8 ptrData5,undefined8 ptrData6)\n\n{\n  char flag;\n  size_t strLen;\n  ulong strIndex;\n  char *resultString;\n  char **stringPtr;\n  long totalLength;\n  char *currentString;\n  char *currentChar;\n  byte increment;\n  uint localIndex;\n  char **localArrayPtr;\n  char *localArray [4];\n  undefined8 ptrData5_old;\n  undefined8 ptrData6_old;\n  undefined4 param_1_backup;\n  undefined4 param_2_backup;\n  undefined4 param_3_backup;\n  undefined4 param_4_backup;\n  undefined4 param_5_backup;\n  undefined4 param_6_backup;\n  undefined4 param_7_backup;\n  undefined4 param_8_backup;\n  \n  increment = 0;\n  if (flag != '\\0') {\n    param_1_backup = input1;\n    param_2_backup = input2;\n    param_3_backup = input3;\n    param_4_backup = input4;\n    param_5_backup = input5;\n    param_6_backup = input6;\n    param_7_backup = input7;\n    param_8_backup = input8;\n  }\n  localArrayPtr = (char **)&stack0x00000008;\n  totalLength = 0;\n  localIndex = 8;\n  currentString = \"none\";\n  localArray[1] = (char *)ptrData2;\n  localArray[2] = (char *)ptrData3;\n  localArray[3] = (char *)ptrData4;\n  ptrData5_old = ptrData5;\n  ptrData6_old = ptrData6;\n  do {\n    strLen = strlen(currentString);\n    totalLength = totalLength + strLen;\n    if (localIndex < 0x30) {\n      strIndex = (ulong)localIndex;\n      localIndex = localIndex + 8;\n      stringPtr = (char **)((long)localArray + strIndex);\n    }\n    else {\n      stringPtr = localArrayPtr;\n      localArrayPtr = localArrayPtr + 1;\n    }\n    currentString = *stringPtr;\n  } while (currentString != (char *)0x0);\n  currentString = \"none\";\n  resultString = (char *)xmalloc(totalLength + 1);\n  localIndex = 8;\n  localArrayPtr = (char **)&stack0x00000008;\n  currentChar = resultString;\n  do {\n    strLen = strlen(currentString);\n    for (; strLen != 0; strLen = strLen - 1) {\n      *currentChar = *currentString;\n      currentString = currentString + (ulong)increment * -2 + 1;\n      currentChar = currentChar + (ulong)increment * -2 + 1;\n    }\n    if (localIndex < 0x30) {\n      strIndex = (ulong)localIndex;\n      localIndex = localIndex + 8;\n      stringPtr = (char **)((long)localArray + strIndex);\n    }\n    else {\n      stringPtr = localArrayPtr;\n      localArrayPtr = localArrayPtr + 1;\n    }\n    currentString = *stringPtr;\n  } while (currentString != (char *)0x0);\n  *currentChar = '\\0';\n  return resultString;\n}\n\n",
+            "called": [
+                "strlen",
+                "xmalloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103186",
+            "calling": [
+                "usage"
+            ],
+            "imported": false,
+            "current_name": "concatenate_strings_00103186"
+        },
+        "FUN_00102130": {
+            "renaming": {},
+            "code": "\n\n\nint snprintf(char *__s,size_t __maxlen,char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = snprintf(__s,__maxlen,__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "snprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102130",
+            "calling": [
+                "process_archive"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102130"
+        },
+        "FUN_00102250": {
+            "renaming": {},
+            "code": "\n\n\nvoid exit(int __status)\n\n{\n                    \n  exit(__status);\n}\n\n",
+            "called": [
+                "exit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102250",
+            "calling": [
+                "main",
+                "usage",
+                "xexit.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102250"
+        },
+        "FUN_00102da5": {
+            "renaming": {
+                "FUN_00102da5": "print_warning_message_00102da5",
+                "param_1": "warningCode",
+                "param_2": "param2",
+                "param_3": "param3",
+                "param_4": "param4",
+                "param_5": "param5",
+                "param_6": "param6",
+                "param_7": "param7",
+                "param_8": "param8",
+                "param_9": "errorMessage",
+                "param_10": "param10",
+                "param_11": "param11",
+                "param_12": "param12",
+                "param_13": "param13",
+                "param_14": "param14",
+                "in_AL": "inputFlag",
+                "__format": "formatString",
+                "local_e0": "arraySize",
+                "local_dc": "charValue",
+                "local_d8": "localPtr1",
+                "local_d0": "localPtr2",
+                "local_c8": "localArray",
+                "local_c0": "localVar1",
+                "local_b8": "localVar2",
+                "local_b0": "localVar3",
+                "local_a8": "localVar4",
+                "local_a0": "localVar5",
+                "local_98": "localVar6",
+                "local_88": "localVar7",
+                "local_78": "localVar8",
+                "local_68": "localVar9",
+                "local_58": "localVar10",
+                "local_48": "localVar11",
+                "local_38": "localVar12",
+                "local_28": "localVar13"
+            },
+            "code": "\n\n\nvoid printWarningMessage_00102da5(undefined4 warningCode,undefined4 param2,undefined4 param3,undefined4 param4,\n                 undefined4 param5,undefined4 param6,undefined4 param7,undefined4 param8,\n                 char *errorMessage,undefined8 param10,undefined8 param11,undefined8 param12,\n                 undefined8 param13,undefined8 param14)\n\n{\n  char inputFlag;\n  char *formatString;\n  undefined4 arraySize;\n  undefined4 charValue;\n  undefined *localPtr1;\n  undefined *localPtr2;\n  undefined localArray [8];\n  undefined8 localVar1;\n  undefined8 localVar2;\n  undefined8 localVar3;\n  undefined8 localVar4;\n  undefined8 localVar5;\n  undefined4 localVar6;\n  undefined4 localVar7;\n  undefined4 localVar8;\n  undefined4 localVar9;\n  undefined4 localVar10;\n  undefined4 localVar11;\n  undefined4 localVar12;\n  undefined4 localVar13;\n  \n  if (inputFlag != '\\0') {\n    localVar6 = warningCode;\n    localVar7 = param2;\n    localVar8 = param3;\n    localVar9 = param4;\n    localVar10 = param5;\n    localVar11 = param6;\n    localVar12 = param7;\n    localVar13 = param8;\n  }\n  localVar1 = param10;\n  localVar2 = param11;\n  localVar3 = param12;\n  localVar4 = param13;\n  localVar5 = param14;\n  fflush(_stdout);\n  localPtr1 = &stack0x00000008;\n  localPtr2 = localArray;\n  arraySize = 8;\n  charValue = 0x30;\n  formatString = (char *)dcgettext(0,\"%s: Warning: \",5);\n  fprintf(_stderr,formatString,\"elfedit\");\n  vfprintf(_stderr,errorMessage,&arraySize);\n  return;\n}\n\n",
+            "called": [
+                "fflush",
+                "dcgettext",
+                "vfprintf",
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102da5",
+            "calling": [],
+            "imported": false,
+            "current_name": "print_warning_message_00102da5"
+        },
+        "FUN_0010a068": {
+            "renaming": {},
+            "code": "\n\n\nvoid bindtextdomain(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* bindtextdomain@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a068",
+            "calling": [
+                "bindtextdomain"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a068"
+        },
+        "FUN_001021e0": {
+            "renaming": {},
+            "code": "\n\n\nvoid * realloc(void *__ptr,size_t __size)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = realloc(__ptr,__size);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "realloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021e0",
+            "calling": [
+                "xrealloc"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021e0"
+        },
+        "FUN_0010a108": {
+            "renaming": {},
+            "code": "\n\n\n\nint fseek(FILE *__stream,long __off,int __whence)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fseek@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a108",
+            "calling": [
+                "fseek"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a108"
+        },
+        "FUN_001020c0": {
+            "renaming": {},
+            "code": "\nvoid bindtextdomain(void)\n\n{\n  bindtextdomain();\n  return;\n}\n\n",
+            "called": [
+                "bindtextdomain"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020c0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020c0"
+        },
+        "FUN_00105370": {
+            "renaming": {
+                "FUN_00105370": "extract_file_from_path_00105370",
+                "param_1": "file_path",
+                "param_2": "file_name",
+                "__size": "total_allocated_size",
+                "lVar1": "combined_size",
+                "cVar2": "current_char",
+                "uVar3": "error_message",
+                "pcVar4": "last_slash_ptr",
+                "pcVar5": "param1_ptr",
+                "pcVar6": "allocated_memory",
+                "uVar7": "bytes_remaining",
+                "uVar8": "file_name_length",
+                "bVar9": "flag"
+            },
+            "code": "\nchar * extractFileFromPath_00105370(char *file_path,char *file_name)\n\n{\n  ulong total_allocated_size;\n  long combined_size;\n  char current_char;\n  undefined8 error_message;\n  char *last_slash_ptr;\n  char *param1_ptr;\n  char *allocated_memory;\n  ulong bytes_remaining;\n  ulong extraout_RDX;\n  ulong file_name_length;\n  byte flag;\n  \n  flag = 0;\n  param1_ptr = (char *)0x1;\n  if (file_path != (char *)0x0) {\n    param1_ptr = file_path;\n  }\n  allocated_memory = (char *)malloc((size_t)param1_ptr);\n  if (allocated_memory != (char *)0x0) {\n    return allocated_memory;\n  }\n  xmalloc_failed();\n  allocated_memory = param1_ptr;\n  last_slash_ptr = param1_ptr;\n  while (current_char = *allocated_memory, current_char != '\\0') {\n    allocated_memory = allocated_memory + 1;\n    if (current_char == '/') {\n      last_slash_ptr = allocated_memory;\n    }\n  }\n  if ((*file_name == '/') || (param1_ptr == last_slash_ptr)) {\n    if (extraout_RDX + 1 == 0) {\n      return (char *)0x0;\n    }\n    allocated_memory = (char *)malloc(extraout_RDX + 1);\n    bytes_remaining = extraout_RDX;\n    param1_ptr = allocated_memory;\n    if (allocated_memory != (char *)0x0) {\n      for (; bytes_remaining != 0; bytes_remaining = bytes_remaining - 1) {\n        *param1_ptr = *file_name;\n        file_name = file_name + (ulong)flag * -2 + 1;\n        param1_ptr = param1_ptr + (ulong)flag * -2 + 1;\n      }\n      allocated_memory[extraout_RDX] = '\\0';\n      return allocated_memory;\n    }\n  }\n  else {\n    file_name_length = (long)last_slash_ptr - (long)param1_ptr;\n    combined_size = file_name_length + extraout_RDX;\n    bytes_remaining = extraout_RDX;\n    if (extraout_RDX <= file_name_length) {\n      bytes_remaining = file_name_length;\n    }\n    total_allocated_size = combined_size + 1;\n    if (total_allocated_size < bytes_remaining) {\n      error_message = dcgettext(0,\"Abnormal length of thin archive member name: %lx\\n\",5);\n      error(error_message,extraout_RDX);\n      return (char *)0x0;\n    }\n    last_slash_ptr = (char *)malloc(total_allocated_size);\n    allocated_memory = last_slash_ptr;\n    if (last_slash_ptr != (char *)0x0) {\n      for (; bytes_remaining = extraout_RDX, file_name_length != 0; file_name_length = file_name_length - 1) {\n        *allocated_memory = *param1_ptr;\n        param1_ptr = param1_ptr + (ulong)flag * -2 + 1;\n        allocated_memory = allocated_memory + (ulong)flag * -2 + 1;\n      }\n      for (; bytes_remaining != 0; bytes_remaining = bytes_remaining - 1) {\n        *allocated_memory = *file_name;\n        file_name = file_name + (ulong)flag * -2 + 1;\n        allocated_memory = allocated_memory + (ulong)flag * -2 + 1;\n      }\n      last_slash_ptr[combined_size] = '\\0';\n      return last_slash_ptr;\n    }\n  }\n  error_message = dcgettext(0,\"Out of memory\\n\",5);\n  error(error_message);\n  return (char *)0x0;\n}\n\n",
+            "called": [
+                "malloc",
+                "xmalloc.cold"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00105370",
+            "calling": [
+                "main",
+                "reconcat",
+                "xstrdup",
+                "concat.constprop.0",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "extract_file_from_path_00105370"
+        },
+        "FUN_0010a100": {
+            "renaming": {},
+            "code": "\n\n\n\nint fflush(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fflush@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a100",
+            "calling": [
+                "fflush"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a100"
+        },
+        "FUN_00102260": {
+            "renaming": {},
+            "code": "\n\n\nsize_t fwrite(void *__ptr,size_t __size,size_t __n,FILE *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fwrite(__ptr,__size,__n,__s);\n  return sVar1;\n}\n\n",
+            "called": [
+                "fwrite"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102260",
+            "calling": [
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102260"
+        },
+        "FUN_0010a180": {
+            "renaming": {},
+            "code": "\n\n\n\nint getc(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* getc@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a180",
+            "calling": [
+                "getc"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a180"
+        },
+        "FUN_00102020": {
+            "renaming": {
+                "FUN_00102020": "execute_indirect_jump_00102020"
+            },
+            "code": "\nvoid executeIndirectJump_00102020(void)\n\n{\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)(undefined *)0x0)();\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102020",
+            "calling": [],
+            "imported": false,
+            "current_name": "execute_indirect_jump_00102020"
+        },
+        "FUN_00102140": {
+            "renaming": {},
+            "code": "\n\n\nvoid * sbrk(intptr_t __delta)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = sbrk(__delta);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "sbrk"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102140",
+            "calling": [
+                "xmalloc_failed"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102140"
+        },
+        "FUN_0010a0a0": {
+            "renaming": {},
+            "code": "\n\n\n\nint snprintf(char *__s,size_t __maxlen,char *__format,...)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* snprintf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0a0",
+            "calling": [
+                "snprintf"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0a0"
+        },
+        "FUN_0010289a": {
+            "renaming": {
+                "FUN_0010289a": "handle_unhandled_data_length_0010289a",
+                "unaff_EBX": "ebx",
+                "uVar1": "errorMessage"
+            },
+            "code": "\nvoid switchD_00103aac::handleUnhandledDataLength_0010289a(void)\n\n{\n  undefined8 errorMessage;\n  undefined4 ebx;\n  \n  errorMessage = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n  error(errorMessage,ebx);\n                    \n  abort();\n}\n\n",
+            "called": [
+                "dcgettext",
+                "abort",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010289a",
+            "calling": [
+                "byte_get_little_endian"
+            ],
+            "imported": false,
+            "current_name": "handle_unhandled_data_length_0010289a"
+        },
+        "FUN_0010358d": {
+            "renaming": {
+                "FUN_0010358d": "process_archived_files_0010358d",
+                "param_1": "path_to_executable",
+                "param_2": "archive_file",
+                "param_3": "process_individually",
+                "lVar1": "string_length",
+                "pcVar2": "archive_name",
+                "iVar3": "return_value",
+                "uVar4": "archive_processing_result",
+                "uVar5": "error_message",
+                "sVar6": "bytes_read",
+                "uVar7": "error_message",
+                "uVar8": "file_size",
+                "sVar9": "archive_name_length",
+                "__s": "corrupt_archive",
+                "sVar10": "path_length",
+                "sVar11": "archive_name_length",
+                "__s_00": "file_path",
+                "pcVar12": "executable_name",
+                "__stream": "file_stream",
+                "pcVar13": "archive_file_name",
+                "uVar14": "return_result",
+                "local_208": "file_stat",
+                "local_178": "processed_files",
+                "local_160": "skipped_files",
+                "local_148": "unused_variable",
+                "local_d8": "archived_files",
+                "local_c0": "unused_variable",
+                "local_a8": "temporary_variable",
+                "local_98": "archive_offset",
+                "local_90": "current_offset",
+                "local_88": "archiving_method",
+                "local_80": "header_buffer",
+                "local_50": "file_number",
+                "local_46": "header_type"
+            },
+            "code": "\nuint process_archived_files_0010358d(undefined8 path_to_executable,FILE *archive_file,char process_individually)\n\n{\n  long string_length;\n  char *archive_name;\n  int return_value;\n  uint archive_processing_result;\n  undefined8 error_message;\n  size_t bytes_read;\n  undefined8 error_message;\n  ulong file_size;\n  size_t archive_name_length;\n  char *corrupt_archive;\n  size_t path_length;\n  size_t archive_name_length;\n  char *file_path;\n  char *executable_name;\n  FILE *file_stream;\n  char *archive_file_name;\n  uint return_result;\n  stat file_stat;\n  undefined processed_files [24];\n  undefined skipped_files [16];\n  undefined8 unused_variable;\n  undefined archived_files [16];\n  undefined unused_variable [16];\n  undefined8 temporary_variable;\n  long archive_offset;\n  long current_offset;\n  int archiving_method;\n  undefined header_buffer [48];\n  char file_number [10];\n  short header_type;\n  \n  unused_variable = 0;\n  archived_files = ZEXT816(0);\n  unused_variable = ZEXT816(0);\n  processed_files._0_16_ = ZEXT816(0);\n  skipped_files = ZEXT816(0);\n  temporary_variable = 0;\n  return_value = fileno(archive_file);\n  return_value = fstat(return_value,&file_stat);\n  if ((return_value < 0) ||\n     (return_value = setup_archive_constprop_0(archived_files,path_to_executable,archive_file,file_stat.st_size,process_individually),\n     return_value != 0)) {\nLAB_001036cc:\n    return_result = 1;\nLAB_00103a46:\n    if ((FILE *)processed_files._8_8_ != (FILE *)0x0) {\n      fclose((FILE *)processed_files._8_8_);\n    }\n    release_archive(processed_files);\n    release_archive(archived_files);\n  }\n  else {\n    return_result = 0;\n    while (return_value = fseek(archive_file,current_offset,0), return_value == 0) {\n      bytes_read = fread(header_buffer,1,0x3c,archive_file);\n      if (bytes_read != 0x3c) {\n        if (bytes_read == 0) goto LAB_00103a46;\n        archive_file_name = \"%s: failed to read archive header\\n\";\nLAB_001036b8:\n        error_message = dcgettext(0,archive_file_name,5);\n        error(error_message,path_to_executable);\n        goto LAB_001036cc;\n      }\n      if (header_type != 0xa60) {\n        error_message = archived_files._0_8_;\n        error_message = dcgettext(0,\"%s: did not find a valid archive header\\n\",5);\n        error(error_message,error_message);\n        goto LAB_001036cc;\n      }\n      current_offset = current_offset + 0x3c;\n      file_size = strtoul(file_number,(char **)0x0,10);\n      archive_file_size = (file_size + 1) - (ulong)((file_size & 1) == 0);\n      archive_file_name = (char *)get_archive_member_name(archived_files,processed_files);\n      if (archive_file_name == (char *)0x0) {\n        archive_file_name = \"%s: bad archive file name\\n\";\n        goto LAB_001036b8;\n      }\n      archive_name_length = strlen(archive_file_name);\n      corrupt_archive = (char *)dcgettext(0,\"<corrupt>\",5);\n      executable_name = (char *)archived_files._0_8_;\n      path_length = strlen((char *)archived_files._0_8_);\n      archive_name_length = strlen(archive_file_name);\n      bytes_read = path_length + archive_name_length + 3;\n      if (archiving_method == 0) {\n        file_path = (char *)malloc(bytes_read);\n        if (file_path == (char *)0x0) goto LAB_001037d3;\n        snprintf(file_path,bytes_read,\"%s(%s)\",executable_name,archive_file_name);\n      }\n      else if (archive_offset == 0) {\n        file_path = (char *)malloc(bytes_read);\n        if (file_path == (char *)0x0) {\nLAB_001037d3:\n          error_message = dcgettext(0,\"Out of memory\\n\",5);\n          error(error_message);\n          error_message = dcgettext(0,\"%s: bad archive file name\\n\",5);\n          error(error_message,path_to_executable);\n          free(archive_file_name);\n          goto LAB_001036cc;\n        }\n        snprintf(file_path,bytes_read,\"%s[%s]\",executable_name,archive_file_name);\n      }\n      else {\n        archive_name = (char *)processed_files._0_8_;\n        string_length = path_length + archive_name_length + 5;\n        if ((char *)processed_files._0_8_ == (char *)0x0) {\n          bytes_read = strlen(corrupt_archive);\n          bytes_read = string_length + bytes_read;\n          file_path = (char *)malloc(bytes_read);\n          archive_name = corrupt_archive;\n        }\n        else {\n          bytes_read = strlen((char *)processed_files._0_8_);\n          bytes_read = string_length + bytes_read;\n          file_path = (char *)malloc(bytes_read);\n        }\n        if (file_path == (char *)0x0) goto LAB_001037d3;\n        snprintf(file_path,bytes_read,\"%s[%s(%s)]\",executable_name,archive_name,archive_file_name);\n      }\n      if (process_individually == '\\0') {\n        free(archive_file_name);\n        current_offset = current_offset + archive_file_size;\n        archive_processing_result = process_object(file_path,archive_file);\n        return_result = return_result | archive_processing_result;\n      }\n      else {\n        if (archive_offset == 0) {\n          executable_name = (char *)adjust_relative_path(path_to_executable,archive_file_name,archive_name_length);\n          free(archive_file_name);\n          if (executable_name != (char *)0x0) {\n            file_stream = fopen(executable_name,\"r+b\");\n            if (file_stream != (FILE *)0x0) {\n              archive_processing_result = process_object(file_path,file_stream);\n              return_result = return_result | archive_processing_result;\n              fclose(file_stream);\n              free(executable_name);\n              goto LAB_00103a39;\n            }\n            error_message = dcgettext(0,\"Input file \\'%s\\' is not readable\\n\",5);\n            error(error_message,executable_name);\n            free(executable_name);\n          }\n          free(file_path);\n          goto LAB_001036cc;\n        }\n        free(archive_file_name);\n        return_value = fseek((FILE *)processed_files._8_8_,archive_offset + 0x3c,0);\n        if (return_value != 0) {\n          error_message = processed_files._0_8_;\n          error_message = dcgettext(0,\"%s: failed to seek to archive member\\n\",5);\n          error(error_message,error_message);\n          free(file_path);\n          goto LAB_001036cc;\n        }\n        archive_processing_result = process_object(file_path,processed_files._8_8_);\n        return_result = return_result | archive_processing_result;\n      }\nLAB_00103a39:\n      free(file_path);\n    }\n    error_message = dcgettext(0,\"%s: failed to seek to next archive header\\n\",5);\n    return_result = 1;\n    error(error_message,path_to_executable);\n  }\n  return return_result;\n}\n\n",
+            "called": [
+                "fopen",
+                "malloc",
+                "snprintf",
+                "adjust_relative_path",
+                "strtoul",
+                "fread",
+                "error",
+                "fseek",
+                "fileno",
+                "free",
+                "release_archive",
+                "fstat",
+                "dcgettext",
+                "strlen",
+                "fclose",
+                "process_object",
+                "setup_archive.constprop.0",
+                "get_archive_member_name"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010358d",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "process_archived_files_0010358d"
+        },
+        "FUN_00104d30": {
+            "renaming": {
+                "FUN_00104d30": "get_machine_type_00104d30",
+                "param_1": "machineType",
+                "iVar1": "result",
+                "iVar2": "comparisonResult",
+                "uVar3": "errorMessage"
+            },
+            "code": "\nint getMachineType_00104d30(char *machineType)\n\n{\n  int result;\n  int comparisonResult;\n  undefined8 errorMessage;\n  \n  result = strcasecmp(machineType,\"i386\");\n  if (result == 0) {\n    result = 3;\n  }\n  else {\n    result = strcasecmp(machineType,\"iamcu\");\n    if (result == 0) {\n      return 6;\n    }\n    comparisonResult = strcasecmp(machineType,\"l1om\");\n    result = 0xb4;\n    if (comparisonResult != 0) {\n      result = strcasecmp(machineType,\"k1om\");\n      if (result == 0) {\n        return 0xb5;\n      }\n      result = strcasecmp(machineType,\"x86_64\");\n      if (result == 0) {\n        result = 0x3e;\n      }\n      else {\n        result = strcasecmp(machineType,\"x86-64\");\n        if (result == 0) {\n          result = 0x3e;\n        }\n        else {\n          result = strcasecmp(machineType,\"none\");\n          if (result != 0) {\n            errorMessage = dcgettext(0,\"Unknown machine type: %s\\n\",5);\n            error(errorMessage,machineType);\n            result = -1;\n          }\n        }\n      }\n    }\n  }\n  return result;\n}\n\n",
+            "called": [
+                "elf_machine.cold",
+                "strcasecmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104d30",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "get_machine_type_00104d30"
+        },
+        "FUN_001020d0": {
+            "renaming": {},
+            "code": "\nvoid dcgettext(void)\n\n{\n  dcgettext();\n  return;\n}\n\n",
+            "called": [
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020d0",
+            "calling": [
+                "elf_x86_feature.cold",
+                "adjust_relative_path",
+                "main",
+                "elf_machine.cold",
+                "byte_put_little_endian.cold",
+                "error",
+                "FUN_001024ec",
+                "warn",
+                "process_object.cold",
+                "elf_type",
+                "caseD_0",
+                "byte_put_big_endian",
+                "byte_get_big_endian",
+                "FUN_00102558",
+                "process_object",
+                "process_archive_index_and_symbols.constprop.0",
+                "setup_archive.constprop.0",
+                "elf_osabi.cold",
+                "usage",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020d0"
+        },
+        "FUN_0010a118": {
+            "renaming": {},
+            "code": "\n\n\n\nint munmap(void *__addr,size_t __len)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* munmap@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a118",
+            "calling": [
+                "munmap"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a118"
+        },
+        "FUN_001021f0": {
+            "renaming": {},
+            "code": "\n\n\nint munmap(void *__addr,size_t __len)\n\n{\n  int iVar1;\n  \n  iVar1 = munmap(__addr,__len);\n  return iVar1;\n}\n\n",
+            "called": [
+                "munmap"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021f0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021f0"
+        },
+        "FUN_00102825": {
+            "renaming": {
+                "FUN_00102825": "decode_input_00102825",
+                "param_1": "input_address",
+                "param_2": "output_address"
+            },
+            "code": "\nvoid decode_input_00102825(long input_address,undefined8 output_address)\n\n{\n  FUNC_00103ab3(input_address,output_address,\n               (ulong)*(byte *)(input_address + 1) << 8 | (ulong)*(byte *)(input_address + 2) << 0x10);\n  return;\n}\n\n",
+            "called": [
+                "FUN_00103ab3"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102825",
+            "calling": [
+                "byte_get_little_endian"
+            ],
+            "imported": false,
+            "current_name": "decode_input_00102825"
+        },
+        "FUN_001028be": {
+            "renaming": {
+                "FUN_001028be": "verify_archive_header_001028be",
+                "param_1": "archive_data",
+                "uVar1": "previous_byte",
+                "iVar2": "file_operation_result",
+                "uVar3": "header_size",
+                "uVar4": "error_message",
+                "sVar5": "header_read_size",
+                "uVar6": "archive_name",
+                "pcVar7": "error_format_string"
+            },
+            "code": "\nundefined8 verify_archive_header_001028be(undefined8 *archive_data)\n\n{\n  undefined previous_byte;\n  int file_operation_result;\n  ulong header_size;\n  undefined8 error_message;\n  size_t header_read_size;\n  undefined8 archive_name;\n  char *error_format_string;\n  \n  previous_byte = *(undefined *)((long)archive_data + 0x92);\n  *(undefined *)((long)archive_data + 0x92) = 0;\n  header_size = strtoul((char *)(archive_data + 0x11),(char **)0x0,10);\n  *(undefined *)((long)archive_data + 0x92) = previous_byte;\n  if ((long)header_size < 0) {\n    archive_name = *archive_data;\n    error_message = dcgettext(0,\"%s: invalid archive header size: %ld\\n\",5);\n    error(error_message,archive_name,header_size);\n  }\n  else {\n    header_size = header_size + 1 & 0xfffffffffffffffe;\n    archive_data[9] = header_size + 0x3c + archive_data[9];\n    file_operation_result = fseek((FILE *)archive_data[1],header_size,1);\n    if (file_operation_result == 0) {\n      header_read_size = fread(archive_data + 0xb,1,0x3c,(FILE *)archive_data[1]);\n      if ((header_read_size == 0x3c) || (header_read_size == 0)) {\n        return 1;\n      }\n      archive_name = *archive_data;\n      error_format_string = \"%s: failed to read archive header following archive index\\n\";\n    }\n    else {\n      archive_name = *archive_data;\n      error_format_string = \"%s: failed to skip archive symbol table\\n\";\n    }\n    error_message = dcgettext(0,error_format_string,5);\n    error(error_message,archive_name);\n  }\n  return 0;\n}\n\n",
+            "called": [
+                "strtoul",
+                "dcgettext",
+                "fread",
+                "error",
+                "fseek"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001028be",
+            "calling": [
+                "setup_archive.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "verify_archive_header_001028be"
+        },
+        "FUN_0010a110": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid * realloc(void *__ptr,size_t __size)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* realloc@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a110",
+            "calling": [
+                "realloc"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a110"
+        },
+        "FUN_0010a078": {
+            "renaming": {},
+            "code": "\n\n\n\nsize_t strlen(char *__s)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strlen@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a078",
+            "calling": [
+                "strlen"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a078"
+        },
+        "FUN_00103ab3": {
+            "renaming": {
+                "FUN_00103ab3": "FUNC_00103ab3"
+            },
+            "code": "\nvoid FUNC_00103ab3(void)\n\n{\n  return;\n}\n\n",
+            "called": [],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00103ab3",
+            "calling": [
+                "byte_get_little_endian",
+                "byte_get_little_endian.cold"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00103ab3"
+        },
+        "FUN_001032de": {
+            "renaming": {
+                "FUN_001032de": "update_elf_header_001032de",
+                "param_1": "file",
+                "param_2": "errorCode",
+                "puVar1": "pointer1",
+                "__ptr": "concatenatedString",
+                "pcVar2": "localizedString",
+                "puVar3": "pointer3"
+            },
+            "code": "\nvoid updateElfHeader_001032de(FILE *file,int errorCode)\n\n{\n  undefined8 *pointer1;\n  void *concatenatedString;\n  char *localizedString;\n  undefined4 *pointer3;\n  \n  pointer3 = &osabis;\n  concatenatedString = (void *)concat_constprop_0(&DAT_00106137,0);\n  do {\n    pointer1 = (undefined8 *)(pointer3 + 6);\n    pointer3 = pointer3 + 4;\n    concatenatedString = (void *)reconcat(concatenatedString,concatenatedString,&DAT_001061ef,*pointer1,0);\n  } while (pointer3 != (undefined4 *)&DAT_00108d90);\n  localizedString = (char *)dcgettext(0,\"Usage: %s <option(s)> elffile(s)\\n\",5);\n  fprintf(file,localizedString,\"elfedit\");\n  localizedString = (char *)dcgettext(0,\" Update the ELF header of ELF files\\n\",5);\n  fprintf(file,localizedString);\n  localizedString = (char *)dcgettext(0,\" The options are:\\n\",5);\n  fprintf(file,localizedString);\n  localizedString = (char *)dcgettext(0,\n                             \"  --input-mach [none|i386|iamcu|l1om|k1om|x86_64]\\n                              Set input machine type\\n  --output-mach [none|i386|iamcu|l1om|k1om|x86_64]\\n                              Set output machine type\\n  --input-type [none|rel|exec|dyn]\\n                              Set input file type\\n  --output-type [none|rel|exec|dyn]\\n                              Set output file type\\n  --input-osabi [%s]\\n                              Set input OSABI\\n  --output-osabi [%s]\\n                              Set output OSABI\\n  --input-abiversion [0-255]  Set input ABIVERSION\\n  --output-abiversion [0-255] Set output ABIVERSION\\n\"\n                             ,5);\n  fprintf(file,localizedString,concatenatedString,concatenatedString);\n  localizedString = (char *)dcgettext(0,\n                             \"  --enable-x86-feature [ibt|shstk|lam_u48|lam_u57]\\n                              Enable x86 feature\\n  --disable-x86-feature [ibt|shstk|lam_u48|lam_u57]\\n                              Disable x86 feature\\n\"\n                             ,5);\n  fprintf(file,localizedString);\n  localizedString = (char *)dcgettext(0,\n                             \"  -h --help                   Display this information\\n  -v --version                Display the version number of %s\\n\"\n                             ,5);\n  fprintf(file,localizedString,\"elfedit\");\n  if (errorCode == 0) {\n    localizedString = (char *)dcgettext(0,\"Report bugs to %s\\n\",5);\n    fprintf(file,localizedString,\"<https://sourceware.org/bugzilla/>\");\n  }\n  free(concatenatedString);\n                    \n  exit(errorCode);\n}\n\n",
+            "called": [
+                "exit",
+                "dcgettext",
+                "reconcat",
+                "fprintf",
+                "concat.constprop.0",
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001032de",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "update_elf_header_001032de"
+        },
+        "FUN_00102150": {
+            "renaming": {},
+            "code": "\n\n\nint strcmp(char *__s1,char *__s2)\n\n{\n  int iVar1;\n  \n  iVar1 = strcmp(__s1,__s2);\n  return iVar1;\n}\n\n",
+            "called": [
+                "strcmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102150",
+            "calling": [
+                "main",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102150"
+        },
+        "FUN_00104de0": {
+            "renaming": {
+                "FUN_00104de0": "update_elf_header_00104de0",
+                "param_1": "param_file",
+                "param_2": "file",
+                "iVar1": "seek_result",
+                "__off": "offset",
+                "sVar2": "read_result",
+                "uVar3": "return_value",
+                "pcVar4": "error_message",
+                "uVar5": "elf_type",
+                "uVar6": "input_value"
+            },
+            "code": "\nundefined8 update_elf_header_00104de0(undefined8 param_file,FILE *file)\n\n{\n  int seek_result;\n  long offset;\n  size_t read_result;\n  undefined8 return_value;\n  char *error_message;\n  uint elf_type;\n  uint input_value;\n  \n  offset = ftell(file);\n  read_result = fread(elf_header,0x10,1,file);\n  if ((read_result == 1) && (elf_header._0_4_ == 0x464c457f)) {\n    byte_put = byte_put_big_endian;\n    if (elf_header[5] != '\\x02') {\n      byte_put = byte_put_little_endian;\n    }\n    byte_get = byte_get_big_endian;\n    if (elf_header[5] != '\\x02') {\n      byte_get = byte_get_little_endian;\n    }\n    if ((char)elf_header._4_4_ == '\\x01') {\n      read_result = fread(ehdr32 + 0x10,0x24,1,file);\n      if (read_result != 1) goto code_r0x00102558;\n      elf_header._56_2_ = (*byte_get)(0x109390,2);\n      elf_header._58_2_ = (*byte_get)(0x109392,2);\n      elf_header._40_8_ = (*byte_get)(0x109394,4);\n      elf_header._16_8_ = (*byte_get)(0x109398,4);\n      elf_header._24_8_ = (*byte_get)(0x10939c,4);\n      elf_header._32_8_ = (*byte_get)(0x1093a0,4);\n      elf_header._48_8_ = (*byte_get)(0x1093a4,4);\n      elf_header._60_4_ = (*byte_get)(0x1093a8,2);\n      elf_header._64_4_ = (*byte_get)(0x1093aa,2);\n      elf_header._68_4_ = (*byte_get)(0x1093ac,2);\n      elf_header._72_4_ = (*byte_get)(0x1093ae,2);\n      elf_header._76_4_ = (*byte_get)(0x1093b0,2);\n      elf_header._80_4_ = (*byte_get)(0x1093b2,2);\n      ehdr32._0_4_ = elf_header._0_4_;\n      ehdr32._4_4_ = elf_header._4_4_;\n      ehdr32._8_4_ = elf_header._8_4_;\n      ehdr32._12_4_ = elf_header._12_4_;\n    }\n    else {\n      if ((char)elf_header._4_4_ != '\\x02') {\n        return_value = read_elf_header_error_00102558();\n        return return_value;\n      }\n      read_result = fread(ehdr64 + 0x10,0x30,1,file);\n      if (read_result != 1) goto code_r0x00102558;\n      elf_header._56_2_ = (*byte_get)(0x109350,2);\n      elf_header._58_2_ = (*byte_get)(0x109352,2);\n      elf_header._40_8_ = (*byte_get)(0x109354,4);\n      elf_header._16_8_ = (*byte_get)(0x109358,8);\n      elf_header._24_8_ = (*byte_get)(0x109360,8);\n      elf_header._32_8_ = (*byte_get)(0x109368,8);\n      elf_header._48_8_ = (*byte_get)(0x109370,4);\n      elf_header._60_4_ = (*byte_get)(0x109374,2);\n      elf_header._64_4_ = (*byte_get)(0x109376,2);\n      elf_header._68_4_ = (*byte_get)(0x109378,2);\n      elf_header._72_4_ = (*byte_get)(0x10937a,2);\n      elf_header._76_4_ = (*byte_get)(0x10937c,2);\n      elf_header._80_4_ = (*byte_get)(0x10937e,2);\n      ehdr64._0_4_ = elf_header._0_4_;\n      ehdr64._4_4_ = elf_header._4_4_;\n      ehdr64._8_4_ = elf_header._8_4_;\n      ehdr64._12_4_ = elf_header._12_4_;\n    }\n    seek_result = fseek(file,offset,0);\n    if (seek_result != 0) {\n      return_value = dcgettext(0,\"%s: Failed to seek to ELF header\\n\",5);\n      error(return_value,param_file);\n    }\n    elf_type = (uint)elf_header._4_4_ >> 0x10 & 0xff;\n    if ((char)elf_type == '\\x01') {\n      elf_type = (uint)(ushort)elf_header._58_2_;\n      if (elf_type == output_elf_machine) {\n        return 0;\n      }\n      input_value = elf_header._4_4_ & 0xff;\n      if (input_elf_class == 0xffffffff) {\n        if (elf_header._58_2_ == 6) {\n          input_elf_class = 1;\n        }\n        else if ((ushort)elf_header._58_2_ < 7) {\n          input_elf_class = (elf_header._58_2_ != 3) + 1 + (uint)(elf_header._58_2_ != 3);\n        }\n        else {\n          input_elf_class = 3 - ((ushort)(elf_header._58_2_ - 0xb4) < 2);\n        }\n      }\n      if ((input_value == input_elf_class) || (input_elf_class == 3)) {\n        if ((input_value == output_elf_class) || (output_elf_class == 3)) {\n          if ((elf_type == input_elf_machine) || (input_elf_machine == 0xffffffff)) {\n            elf_type = (uint)(ushort)elf_header._56_2_;\n            if ((input_elf_type == 0xffffffff) || (elf_type == input_elf_type)) {\n              elf_type = (uint)elf_header._4_4_ >> 0x18;\n              if ((input_elf_osabi == 0xffffffff) || (elf_type == input_elf_osabi)) {\n                elf_type = elf_header._8_4_ & 0xff;\n                if ((elf_type == input_elf_abiversion) || (input_elf_abiversion == 0xffffffff)) {\n                  if ((char)input_value == '\\x01') {\n                    if (output_elf_machine != 0xffffffff) {\n                      (*byte_put)(0x109392,(long)(int)output_elf_machine,2);\n                    }\n                    if (output_elf_type != -1) {\n                      (*byte_put)(0x109390,(long)output_elf_type,2);\n                    }\n                    if (output_elf_osabi != -1) {\n                      ehdr32[7] = (char)output_elf_osabi;\n                    }\n                    if (output_elf_abiversion != -1) {\n                      ehdr32[8] = (char)output_elf_abiversion;\n                    }\n                    read_result = fwrite(ehdr32,0x34,1,file);\n                    if (read_result == 1) {\n                      return 0;\n                    }\n                    return_value = update_elf_header_00104de0_failure_001024ec();\n                    return return_value;\n                  }\n                  if ((char)input_value != '\\x02') {\n                    \n                    abort();\n                  }\n                  if (output_elf_machine != 0xffffffff) {\n                    (*byte_put)(0x109352,(long)(int)output_elf_machine,2);\n                  }\n                  if (output_elf_type != -1) {\n                    (*byte_put)(0x109350,(long)output_elf_type,2);\n                  }\n                  if (output_elf_osabi != -1) {\n                    ehdr64[7] = (char)output_elf_osabi;\n                  }\n                  if (output_elf_abiversion != -1) {\n                    ehdr64[8] = (char)output_elf_abiversion;\n                  }\n                  read_result = fwrite(ehdr64,0x40,1,file);\n                  if (read_result == 1) {\n                    return 0;\n                  }\n                  return_value = update_elf_header_00104de0_failure_001024ec();\n                  return return_value;\n                }\n                error_message = \"%s: Unmatched EI_ABIVERSION: %d is not %d\\n\";\n                input_value = input_elf_abiversion;\n              }\n              else {\n                error_message = \"%s: Unmatched EI_OSABI: %d is not %d\\n\";\n                input_value = input_elf_osabi;\n              }\n            }\n            else {\n              error_message = \"%s: Unmatched e_type: %d is not %d\\n\";\n              input_value = input_elf_type;\n            }\n          }\n          else {\n            error_message = \"%s: Unmatched e_machine: %d is not %d\\n\";\n            input_value = input_elf_machine;\n          }\n          return_value = dcgettext(0,error_message,5);\n          error(return_value,param_file,elf_type,input_value);\n          return 1;\n        }\n        error_message = \"%s: Unmatched output EI_CLASS: %d is not %d\\n\";\n        elf_type = output_elf_class;\n      }\n      else {\n        error_message = \"%s: Unmatched input EI_CLASS: %d is not %d\\n\";\n        elf_type = input_elf_class;\n      }\n      return_value = dcgettext(0,error_message,5);\n      error(return_value,param_file,input_value,elf_type);\n    }\n    else {\n      return_value = dcgettext(0,\"%s: Unsupported EI_VERSION: %d is not %d\\n\",5);\n      error(return_value,param_file,elf_type,1);\n    }\n  }\n  else {\ncode_r0x00102558:\n    return_value = dcgettext(0,\"%s: Failed to read ELF header\\n\",5);\n    error(return_value,param_file);\n  }\n  return 1;\n}\n\n",
+            "called": [
+                "byte_put_little_endian",
+                "fwrite",
+                "fread",
+                "ftell",
+                "error",
+                "FUN_001024ec",
+                "fseek",
+                "process_object.cold",
+                "byte_put_big_endian",
+                "byte_get_big_endian",
+                "dcgettext",
+                "byte_get_little_endian",
+                "abort",
+                "FUN_00102558"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104de0",
+            "calling": [
+                "main",
+                "process_archive"
+            ],
+            "imported": false,
+            "current_name": "update_elf_header_00104de0"
+        },
+        "FUN_0010a190": {
+            "renaming": {},
+            "code": "\n\n\nvoid __cxa_finalize(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __cxa_finalize@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a190",
+            "calling": [
+                "__cxa_finalize"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a190"
+        },
+        "FUN_00102270": {
+            "renaming": {},
+            "code": "\n\n\nchar * strdup(char *__s)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strdup(__s);\n  return pcVar1;\n}\n\n",
+            "called": [
+                "strdup"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102270",
+            "calling": [
+                "setup_archive.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102270"
+        },
+        "FUN_0010a070": {
+            "renaming": {},
+            "code": "\n\n\nvoid dcgettext(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* dcgettext@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a070",
+            "calling": [
+                "dcgettext"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a070"
+        },
+        "FUN_00102030": {
+            "renaming": {},
+            "code": "\n\n\nvoid free(void *__ptr)\n\n{\n  free(__ptr);\n  return;\n}\n\n",
+            "called": [
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102030",
+            "calling": [
+                "release_archive",
+                "main",
+                "reconcat",
+                "setup_archive.constprop.0",
+                "usage",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102030"
+        },
+        "FUN_00102558": {
+            "renaming": {
+                "FUN_00102558": "read_elf_header_error_00102558",
+                "uVar1": "errorText",
+                "dcgettext": "getErrorMessage",
+                "error": "printErrorMessage"
+            },
+            "code": "\nundefined8 readELFHeaderError_00102558(void)\n\n{\n  undefined8 errorText;\n  \n  errorText = getErrorMessage(0,\"%s: Failed to read ELF header\\n\",5);\n  printErrorMessage(errorText);\n  return 1;\n}\n\n",
+            "called": [
+                "dcgettext",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102558",
+            "calling": [
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "read_elf_header_error_00102558"
+        },
+        "FUN_00103a90": {
+            "renaming": {
+                "FUN_00103a90": "decode_data_00103a90",
+                "param_1": "data",
+                "param_2": "dataLength",
+                "uVar1": "result",
+                "uVar2": "errorMessage"
+            },
+            "code": "\nulong decodeData_00103a90(ulong *data,ulong dataLength)\n\n{\n  ulong result;\n  undefined8 errorMessage;\n  \n  switch(dataLength & 0xffffffff) {\n  default:\n    errorMessage = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n    error(errorMessage,dataLength & 0xffffffff);\n                    \n    abort();\n  case 1:\n    return (ulong)*(byte *)data;\n  case 2:\n    return (ulong)*(ushort *)data;\n  case 3:\n    result = FUNC_00103ab3(data,dataLength,\n                         (ulong)*(byte *)((long)data + 1) << 8 |\n                         (ulong)*(byte *)((long)data + 2) << 0x10);\n    return result;\n  case 4:\n    return (ulong)*(uint *)data;\n  case 5:\n    result = FUNC_00103ab3(data,dataLength,(ulong)*(byte *)((long)data + 4) << 0x20);\n    return result;\n  case 6:\n    result = FUNC_00103ab3(data,dataLength,\n                         (ulong)*(byte *)((long)data + 4) << 0x20 |\n                         (ulong)*(byte *)((long)data + 5) << 0x28);\n    return result;\n  case 7:\n    result = FUNC_00103ab3(data,dataLength,\n                         (ulong)*(byte *)((long)data + 4) << 0x20 |\n                         (ulong)*(byte *)((long)data + 5) << 0x28 | (ulong)*(uint *)data);\n    return result;\n  case 8:\n    return *data;\n  }\n}\n\n",
+            "called": [
+                "FUN_00103ab3",
+                "byte_get_little_endian.cold",
+                "caseD_0"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103a90",
+            "calling": [
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "decode_data_00103a90"
+        },
+        "FUN_0010a0b0": {
+            "renaming": {},
+            "code": "\n\n\n\nint strcmp(char *__s1,char *__s2)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strcmp@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0b0",
+            "calling": [
+                "strcmp"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0b0"
+        },
+        "FUN_00102434": {
+            "renaming": {
+                "FUN_00102434": "update_elf_header_00102434",
+                "unaff_RBX": "filePtr",
+                "pcVar3": "errorMsg",
+                "uVar1": "errorText",
+                "sVar2": "numBytesWritten",
+                "elf_header": "elfHeader",
+                "output_elf_machine": "outputElfMachine",
+                "input_elf_class": "inputElfClass",
+                "output_elf_class": "outputElfClass",
+                "input_elf_machine": "inputElfMachine",
+                "input_elf_type": "inputElfType",
+                "input_elf_osabi": "inputElfOsabi",
+                "elf_header[4]": "elfHeaderClass",
+                "elf_header[6]": "elfHeaderSupported",
+                "elf_header[7]": "elfHeaderOsabi",
+                "elf_header[8]": "elfHeaderAbiversion",
+                "output_elf_type": "outputElfType",
+                "output_elf_osabi": "outputElfOsabi",
+                "output_elf_abiversion": "outputElfAbiversion",
+                "ehdr32": "elfHeader32",
+                "ehdr64": "elfHeader64"
+            },
+            "code": "\nundefined8 updateElfHeader_00102434(void)\n\n{\n  undefined8 errorText;\n  size_t numBytesWritten;\n  FILE *filePtr;\n  char *errorMsg;\n  \n  errorText = dcgettext(0,\"%s: Failed to seek to ELF header\\n\",5);\n  error(errorText);\n  if (elfHeaderSupported == '\\x01') {\n    if ((ushort)elfHeader._58_2_ == outputElfMachine) {\n      return 0;\n    }\n    if (inputElfClass == 0xffffffff) {\n      if (elfHeader._58_2_ == 6) {\n        inputElfClass = 1;\n      }\n      else if ((ushort)elfHeader._58_2_ < 7) {\n        inputElfClass = (elfHeader._58_2_ != 3) + 1 + (uint)(elfHeader._58_2_ != 3);\n      }\n      else {\n        inputElfClass = 3 - ((ushort)(elfHeader._58_2_ - 0xb4) < 2);\n      }\n    }\n    if ((elfHeaderClass == inputElfClass) || (inputElfClass == 3)) {\n      if ((elfHeaderClass == outputElfClass) || (outputElfClass == 3)) {\n        if (((ushort)elfHeader._58_2_ == inputElfMachine) || (inputElfMachine == 0xffffffff)) {\n          if ((inputElfType == 0xffffffff) || ((ushort)elfHeader._56_2_ == inputElfType)) {\n            if ((inputElfOsabi == 0xffffffff) || (elfHeaderOsabi == inputElfOsabi)) {\n              if ((elfHeaderAbiversion == input_elf_abiversion) || (input_elf_abiversion == 0xffffffff)) {\n                if (elfHeaderClass == 1) {\n                  if (outputElfMachine != 0xffffffff) {\n                    (*byte_put)(0x109392,(long)(int)outputElfMachine,2);\n                  }\n                  if (outputElfType != -1) {\n                    (*byte_put)(0x109390,(long)outputElfType,2);\n                  }\n                  if (outputElfOsabi != -1) {\n                    elfHeader32[7] = (undefined)outputElfOsabi;\n                  }\n                  if (outputElfAbiversion != -1) {\n                    elfHeader32[8] = (undefined)outputElfAbiversion;\n                  }\n                  numBytesWritten = fwrite(elfHeader32,0x34,1,filePtr);\n                  if (numBytesWritten == 1) {\n                    return 0;\n                  }\n                  errorText = update_elfHeader_failure_001024ec();\n                  return errorText;\n                }\n                if (elfHeaderClass != 2) {\n                    \n                  abort();\n                }\n                if (outputElfMachine != 0xffffffff) {\n                  (*byte_put)(0x109352,(long)(int)outputElfMachine,2);\n                }\n                if (outputElfType != -1) {\n                  (*byte_put)(0x109350,(long)outputElfType,2);\n                }\n                if (outputElfOsabi != -1) {\n                  elfHeader64[7] = (undefined)outputElfOsabi;\n                }\n                if (outputElfAbiversion != -1) {\n                  elfHeader64[8] = (undefined)outputElfAbiversion;\n                }\n                numBytesWritten = fwrite(elfHeader64,0x40,1,filePtr);\n                if (numBytesWritten == 1) {\n                  return 0;\n                }\n                errorText = update_elfHeader_failure_001024ec();\n                return errorText;\n              }\n              errorMsg = \"%s: Unmatched EI_ABIVERSION: %d is not %d\\n\";\n            }\n            else {\n              errorMsg = \"%s: Unmatched EI_OSABI: %d is not %d\\n\";\n            }\n          }\n          else {\n            errorMsg = \"%s: Unmatched e_type: %d is not %d\\n\";\n          }\n        }\n        else {\n          errorMsg = \"%s: Unmatched e_machine: %d is not %d\\n\";\n        }\n        errorText = dcgettext(0,errorMsg,5);\n        error(errorText);\n        return 1;\n      }\n      errorMsg = \"%s: Unmatched output EI_CLASS: %d is not %d\\n\";\n    }\n    else {\n      errorMsg = \"%s: Unmatched input EI_CLASS: %d is not %d\\n\";\n    }\n    errorText = dcgettext(0,errorMsg,5);\n    error(errorText);\n  }\n  else {\n    errorText = dcgettext(0,\"%s: Unsupported EI_VERSION: %d is not %d\\n\",5);\n    error(errorText);\n  }\n  return 1;\n}\n\n",
+            "called": [
+                "dcgettext",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102434",
+            "calling": [
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "update_elf_header_00102434"
+        },
+        "FUN_00103006": {
+            "renaming": {
+                "FUN_00103006": "reverse_concatenate_00103006",
+                "param_1": "input1",
+                "param_2": "input2",
+                "param_3": "input3",
+                "param_4": "input4",
+                "param_5": "input5",
+                "param_6": "input6",
+                "param_7": "input7",
+                "param_8": "input8",
+                "param_9": "allocatedMemory",
+                "param_10": "stringArray",
+                "param_11": "inputArray1",
+                "param_12": "inputArray2",
+                "param_13": "inputVar1",
+                "param_14": "inputVar2",
+                "in_AL": "flag",
+                "sVar1": "stringLength",
+                "uVar2": "tempVar",
+                "pcVar3": "resultString",
+                "ppcVar4": "currentStringPointer",
+                "lVar5": "totalLength",
+                "pcVar6": "currentChar",
+                "bVar7": "flag2",
+                "local_f0": "stackSize",
+                "local_e8": "stringArrayPointer",
+                "local_d8": "inputArray",
+                "local_b8": "inputVar3",
+                "local_b0": "inputVar4",
+                "local_a8": "input1Copy",
+                "local_98": "input2Copy",
+                "local_88": "input3Copy",
+                "local_78": "input4Copy",
+                "local_68": "input5Copy",
+                "local_58": "input6Copy",
+                "local_48": "input7Copy",
+                "local_38": "input8Copy"
+            },
+            "code": "\nchar * reverseConcatenate_00103006(undefined4 input1,undefined4 input2,undefined4 input3,undefined4 input4,\n                   undefined4 input5,undefined4 input6,undefined4 input7,undefined4 input8,\n                   void *allocatedMemory,char *stringArray,undefined8 inputArray1,undefined8 inputArray2,\n                   undefined8 inputVar1,undefined8 inputVar2)\n\n{\n  char flag;\n  size_t stringLength;\n  ulong tempVar;\n  char *resultString;\n  char **currentStringPointer;\n  long totalLength;\n  char *currentChar;\n  byte flag2;\n  uint stackSize;\n  char **stringArrayPointer;\n  char *inputArray [4];\n  undefined8 inputVar3;\n  undefined8 inputVar4;\n  undefined4 input1Copy;\n  undefined4 input2Copy;\n  undefined4 input3Copy;\n  undefined4 input4Copy;\n  undefined4 input5Copy;\n  undefined4 input6Copy;\n  undefined4 input7Copy;\n  undefined4 input8Copy;\n  \n  flag2 = 0;\n  if (flag != '\\0') {\n    input1Copy = input1;\n    input2Copy = input2;\n    input3Copy = input3;\n    input4Copy = input4;\n    input5Copy = input5;\n    input6Copy = input6;\n    input7Copy = input7;\n    input8Copy = input8;\n  }\n  stringArrayPointer = (char **)&stack0x00000008;\n  totalLength = 0;\n  stackSize = 0x10;\n  currentChar = stringArray;\n  inputArray[2] = (char *)inputArray1;\n  inputArray[3] = (char *)inputArray2;\n  inputVar3 = inputVar1;\n  inputVar4 = inputVar2;\n  do {\n    stringLength = strlen(currentChar);\n    totalLength = totalLength + stringLength;\n    if (stackSize < 0x30) {\n      tempVar = (ulong)stackSize;\n      stackSize = stackSize + 8;\n      currentStringPointer = (char **)((long)inputArray + tempVar);\n    }\n    else {\n      currentStringPointer = stringArrayPointer;\n      stringArrayPointer = stringArrayPointer + 1;\n    }\n    currentChar = *currentStringPointer;\n  } while (currentChar != (char *)0x0);\n  resultString = (char *)xmalloc(totalLength + 1);\n  stackSize = 0x10;\n  stringArrayPointer = (char **)&stack0x00000008;\n  currentChar = resultString;\n  do {\n    stringLength = strlen(stringArray);\n    for (; stringLength != 0; stringLength = stringLength - 1) {\n      *currentChar = *stringArray;\n      stringArray = stringArray + (ulong)flag2 * -2 + 1;\n      currentChar = currentChar + (ulong)flag2 * -2 + 1;\n    }\n    if (stackSize < 0x30) {\n      tempVar = (ulong)stackSize;\n      stackSize = stackSize + 8;\n      currentStringPointer = (char **)((long)inputArray + tempVar);\n    }\n    else {\n      currentStringPointer = stringArrayPointer;\n      stringArrayPointer = stringArrayPointer + 1;\n    }\n    stringArray = *currentStringPointer;\n  } while (stringArray != (char *)0x0);\n  *currentChar = '\\0';\n  free(allocatedMemory);\n  return resultString;\n}\n\n",
+            "called": [
+                "strlen",
+                "xmalloc",
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103006",
+            "calling": [
+                "usage"
+            ],
+            "imported": false,
+            "current_name": "reverse_concatenate_00103006"
+        },
+        "FUN_0010347f": {
+            "renaming": {
+                "FUN_0010347f": "extract_data_0010347f",
+                "param_1": "dataPtr",
+                "param_2": "dataLength",
+                "uVar1": "tempVar1",
+                "uVar2": "tempVar2",
+                "uVar3": "errorMsg"
+            },
+            "code": "\nulong extractData_0010347f(ulong *dataPtr,undefined4 dataLength)\n\n{\n  uint tempVar1;\n  ulong tempVar2;\n  undefined8 errorMsg;\n  \n  switch(dataLength) {\n  case 1:\n    return (ulong)*(byte *)dataPtr;\n  case 2:\n    return (ulong)CONCAT11((char)*(undefined2 *)dataPtr,(char)((ushort)*(undefined2 *)dataPtr >> 8))\n    ;\n  case 3:\n    return (ulong)*(byte *)((long)dataPtr + 1) << 8 | (ulong)*(byte *)dataPtr << 0x10 |\n           (ulong)*(byte *)((long)dataPtr + 2);\n  case 4:\n    tempVar1 = *(uint *)dataPtr;\n    return (ulong)(tempVar1 >> 0x18 | (tempVar1 & 0xff0000) >> 8 | (tempVar1 & 0xff00) << 8 | tempVar1 << 0x18);\n  case 5:\n    tempVar1 = *(uint *)((long)dataPtr + 1);\n    return (ulong)CONCAT14(*(byte *)dataPtr,\n                           tempVar1 >> 0x18 | (tempVar1 & 0xff0000) >> 8 | (tempVar1 & 0xff00) << 8 |\n                           tempVar1 << 0x18);\n  case 6:\n    tempVar1 = *(uint *)((long)dataPtr + 2);\n    return (ulong)*(byte *)((long)dataPtr + 1) << 0x20 | (ulong)*(byte *)dataPtr << 0x28 |\n           (ulong)(tempVar1 >> 0x18 | (tempVar1 & 0xff0000) >> 8 | (tempVar1 & 0xff00) << 8 | tempVar1 << 0x18);\n  case 7:\n    tempVar1 = *(uint *)((long)dataPtr + 3);\n    return (ulong)*(byte *)((long)dataPtr + 2) << 0x20 | (ulong)*(byte *)((long)dataPtr + 1) << 0x28\n           | (ulong)*(byte *)dataPtr << 0x30 |\n           (ulong)(tempVar1 >> 0x18 | (tempVar1 & 0xff0000) >> 8 | (tempVar1 & 0xff00) << 8 | tempVar1 << 0x18);\n  case 8:\n    tempVar2 = *dataPtr;\n    return tempVar2 >> 0x38 | (tempVar2 & 0xff000000000000) >> 0x28 | (tempVar2 & 0xff0000000000) >> 0x18 |\n           (tempVar2 & 0xff00000000) >> 8 | (tempVar2 & 0xff000000) << 8 | (tempVar2 & 0xff0000) << 0x18 |\n           (tempVar2 & 0xff00) << 0x28 | tempVar2 << 0x38;\n  default:\n    errorMsg = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n    error(errorMsg,dataLength);\n                    \n    abort();\n  }\n}\n\n",
+            "called": [
+                "dcgettext",
+                "abort",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010347f",
+            "calling": [
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "extract_data_0010347f"
+        },
+        "FUN_001022a0": {
+            "renaming": {},
+            "code": "\n\n\nint getc(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = getc(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "getc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001022a0",
+            "calling": [
+                "setup_archive.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "FUN_001022a0"
+        },
+        "FUN_0010a008": {
+            "renaming": {},
+            "code": "\n\n\n\nint strcasecmp(char *__s1,char *__s2)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strcasecmp@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a008",
+            "calling": [
+                "strcasecmp"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a008"
+        },
+        "FUN_001020e0": {
+            "renaming": {},
+            "code": "\n\n\nsize_t strlen(char *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = strlen(__s);\n  return sVar1;\n}\n\n",
+            "called": [
+                "strlen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020e0",
+            "calling": [
+                "main",
+                "reconcat",
+                "xstrdup",
+                "startswith",
+                "concat.constprop.0",
+                "process_archive"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020e0"
+        },
+        "FUN_00103b30": {
+            "renaming": {
+                "FUN_00103b30": "FUNC_00103b30"
+            },
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00103b43) */\n/* WARNING: Removing unreachable block (ram,0x00103b4f) */\n\nvoid FUNC_00103b30(void)\n\n{\n  return;\n}\n\n",
+            "called": [
+                "_ITM_deregisterTMCloneTable"
+            ],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00103b30",
+            "calling": [
+                "__do_global_dtors_aux"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00103b30"
+        },
+        "FUN_0010a128": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid * memmove(void *__dest,void *__src,size_t __n)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* memmove@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a128",
+            "calling": [
+                "memmove"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a128"
+        },
+        "FUN_00102280": {
+            "renaming": {},
+            "code": "\n\n\nchar * strerror(int __errnum)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strerror(__errnum);\n  return pcVar1;\n}\n\n",
+            "called": [
+                "strerror"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102280",
+            "calling": [
+                "main",
+                "FUN_001024ec"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102280"
+        },
+        "FUN_0010a000": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid free(void *__ptr)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* free@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a000",
+            "calling": [
+                "free"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a000"
+        },
+        "FUN_0010a088": {
+            "renaming": {},
+            "code": "\n\n\nvoid getopt_long(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* getopt_long@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a088",
+            "calling": [
+                "getopt_long"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a088"
+        },
+        "FUN_00102f65": {
+            "renaming": {
+                "FUN_00102f65": "free_memory_blocks_00102f65",
+                "param_1": "memoryBlocks"
+            },
+            "code": "\nvoid freeMemoryBlocks_00102f65(void **memoryBlocks)\n\n{\n  free(*memoryBlocks);\n  free(memoryBlocks[3]);\n  free(memoryBlocks[4]);\n  free(memoryBlocks[6]);\n  *memoryBlocks = (void *)0x0;\n  memoryBlocks[6] = (void *)0x0;\n  *(undefined (*) [16])(memoryBlocks + 3) = ZEXT816(0);\n  return;\n}\n\n",
+            "called": [
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102f65",
+            "calling": [
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "free_memory_blocks_00102f65"
+        },
+        "FUN_0010a120": {
+            "renaming": {},
+            "code": "\n\n\n\nchar * setlocale(int __category,char *__locale)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* setlocale@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a120",
+            "calling": [
+                "setlocale"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a120"
+        },
+        "FUN_00102200": {
+            "renaming": {},
+            "code": "\n\n\nchar * setlocale(int __category,char *__locale)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = setlocale(__category,__locale);\n  return pcVar1;\n}\n\n",
+            "called": [
+                "setlocale"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102200",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102200"
+        },
+        "FUN_00102040": {
+            "renaming": {},
+            "code": "\n\n\nint strcasecmp(char *__s1,char *__s2)\n\n{\n  int iVar1;\n  \n  iVar1 = strcasecmp(__s1,__s2);\n  return iVar1;\n}\n\n",
+            "called": [
+                "strcasecmp"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102040",
+            "calling": [
+                "elf_x86_feature.cold",
+                "elf_machine.cold",
+                "elf_machine",
+                "elf_osabi",
+                "elf_x86_feature",
+                "elf_type"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102040"
+        },
+        "FUN_0010a080": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid * mmap(void *__addr,size_t __len,int __prot,int __flags,int __fd,__off_t __offset)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* mmap@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a080",
+            "calling": [
+                "mmap"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a080"
+        },
+        "FUN_00102160": {
+            "renaming": {},
+            "code": "\n\n\nint fprintf(FILE *__stream,char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = fprintf(__stream,__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102160",
+            "calling": [
+                "main",
+                "error",
+                "warn",
+                "usage",
+                "xmalloc_failed"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102160"
+        },
+        "FUN_00105394": {
+            "renaming": {
+                "FUN_00105394": "FUNC_00105394"
+            },
+            "code": "\nvoid FUNC_00105394(void)\n\n{\n  return;\n}\n\n",
+            "called": [],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00105394",
+            "calling": [],
+            "imported": false,
+            "current_name": "FUNC_00105394"
+        },
+        "FUN_00103be0": {
+            "renaming": {},
+            "code": "\nvoid register_tm_clones(void)\n\n{\n  register_tm_clones();\n  return;\n}\n\n",
+            "called": [
+                "register_tm_clones"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103be0",
+            "calling": [],
+            "imported": false,
+            "current_name": "FUN_00103be0"
+        },
+        "FUN_0010a0a8": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid * sbrk(intptr_t __delta)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* sbrk@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0a8",
+            "calling": [
+                "sbrk"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0a8"
+        },
+        "FUN_0010a0c0": {
+            "renaming": {},
+            "code": "\n\n\n\nint fprintf(FILE *__stream,char *__format,...)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fprintf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0c0",
+            "calling": [
+                "fprintf"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0c0"
+        },
+        "FUN_001020f0": {
+            "renaming": {},
+            "code": "\n\n\nvoid * mmap(void *__addr,size_t __len,int __prot,int __flags,int __fd,__off_t __offset)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = mmap(__addr,__len,__prot,__flags,__fd,__offset);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "mmap"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020f0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020f0"
+        },
+        "FUN_00102323": {
+            "renaming": {
+                "FUN_00102323": "detect_unknown_osabi_00102323",
+                "uVar1": "errorMsg",
+                "auVar2": "returnVal",
+                "unaff_retaddr": "returnValue"
+            },
+            "code": "\nundefined  [16] detectUnknownOSABI_00102323(void)\n\n{\n  undefined8 errorMsg;\n  undefined returnVal [16];\n  undefined8 returnValue;\n  \n  errorMsg = dcgettext(0,\"Unknown OSABI: %s\\n\",5);\n  error(errorMsg);\n  returnVal._8_8_ = returnValue;\n  returnVal._0_8_ = 0xffffffff;\n  return returnVal;\n}\n\n",
+            "called": [
+                "dcgettext",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102323",
+            "calling": [
+                "elf_osabi"
+            ],
+            "imported": false,
+            "current_name": "detect_unknown_osabi_00102323"
+        },
+        "FUN_001022b0": {
+            "renaming": {},
+            "code": "\nvoid __cxa_finalize(void)\n\n{\n  __cxa_finalize();\n  return;\n}\n\n",
+            "called": [
+                "__cxa_finalize"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001022b0",
+            "calling": [
+                "__do_global_dtors_aux"
+            ],
+            "imported": false,
+            "current_name": "FUN_001022b0"
+        },
+        "FUN_00102c98": {
+            "renaming": {
+                "FUN_00102c98": "handle_unhandled_data_length_00102c98",
+                "unaff_EBX": "errorParameter",
+                "uVar1": "errorMessage",
+                "dcgettext": "getErrorMessage",
+                "error": "showErrorMessage"
+            },
+            "code": "\nvoid handleUnhandledDataLength_00102c98(void)\n\n{\n  undefined8 errorMessage;\n  undefined4 errorParameter;\n  \n  errorMessage = getErrorMessage(0,\"Unhandled data length: %d\\n\",5);\n  showErrorMessage(errorMessage,errorParameter);\n                    \n  abort();\n}\n\n",
+            "called": [
+                "dcgettext",
+                "abort",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102c98",
+            "calling": [
+                "byte_put_little_endian"
+            ],
+            "imported": false,
+            "current_name": "handle_unhandled_data_length_00102c98"
+        },
+        "FUN_0010a138": {
+            "renaming": {},
+            "code": "\n\n\n\nint vfprintf(FILE *__s,char *__format,__gnuc_va_list __arg)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* vfprintf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a138",
+            "calling": [
+                "vfprintf"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a138"
+        },
+        "FUN_0010a018": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid abort(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* abort@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a018",
+            "calling": [
+                "abort"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a018"
+        },
+        "FUN_00102170": {
+            "renaming": {},
+            "code": "\n\n\nlong ftell(FILE *__stream)\n\n{\n  long lVar1;\n  \n  lVar1 = ftell(__stream);\n  return lVar1;\n}\n\n",
+            "called": [
+                "ftell"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102170",
+            "calling": [
+                "main",
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102170"
+        },
+        "FUN_00102290": {
+            "renaming": {},
+            "code": "\n\n\nint fstat(int __fd,stat *__buf)\n\n{\n  int iVar1;\n  \n  iVar1 = fstat(__fd,__buf);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fstat"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102290",
+            "calling": [
+                "main",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102290"
+        },
+        "FUN_0010a130": {
+            "renaming": {},
+            "code": "\n\n\n\nFILE * fopen(char *__filename,char *__modes)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fopen@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a130",
+            "calling": [
+                "fopen"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a130"
+        },
+        "FUN_0010a010": {
+            "renaming": {},
+            "code": "\n\n\nvoid __libc_start_main(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __libc_start_main@GLIBC_2.34 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a010",
+            "calling": [
+                "_start"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a010"
+        },
+        "FUN_0010a098": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid rewind(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* rewind@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a098",
+            "calling": [
+                "rewind"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a098"
+        },
+        "FUN_001024ec": {
+            "renaming": {
+                "FUN_001024ec": "update_elf_header_failure_001024ec",
+                "piVar1": "errnoLocation",
+                "uVar2": "errorString"
+            },
+            "code": "\nundefined8 updateELFHeaderFailure_001024ec(void)\n\n{\n  int *errnoLocation;\n  undefined8 errorString;\n  \n  errnoLocation = __errno_location();\n  strerror(*errnoLocation);\n  errorString = dcgettext(0,\"%s: Failed to update ELF header: %s\\n\",5);\n  error(errorString);\n  return 1;\n}\n\n",
+            "called": [
+                "dcgettext",
+                "error",
+                "strerror",
+                "__errno_location"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001024ec",
+            "calling": [
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "update_elf_header_failure_001024ec"
+        },
+        "FUN_00102210": {
+            "renaming": {},
+            "code": "\n\n\nvoid * memmove(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memmove(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "memmove"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102210",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102210"
+        },
+        "FUN_00102050": {
+            "renaming": {},
+            "code": "\n\n\nvoid abort(void)\n\n{\n                    \n  abort();\n}\n\n",
+            "called": [
+                "abort"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102050",
+            "calling": [
+                "byte_put_big_endian",
+                "byte_get_big_endian",
+                "byte_put_little_endian.cold",
+                "process_object",
+                "caseD_0"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102050"
+        },
+        "FUN_00103bf0": {
+            "renaming": {
+                "FUN_00103bf0": "parse_command_line_00103bf0",
+                "param_1": "argc",
+                "param_2": "argv",
+                "cVar1": "charVar1",
+                "bVar2": "byteVar2",
+                "uVar3": "ulongVar3",
+                "bVar4": "boolVar4",
+                "bVar5": "boolVar5",
+                "bVar6": "boolVar6",
+                "bVar7": "boolVar7",
+                "iVar8": "index",
+                "uVar9": "result",
+                "iVar10": "status",
+                "iVar32": "opt",
+                "__addr": "mmapAddr",
+                "__ptr": "ptr",
+                "uVar11": "ulongVar11",
+                "plVar12": "longVar12",
+                "uVar13": "ulongVar13",
+                "uVar14": "ulongVar14",
+                "uVar15": "ulongVar15",
+                "uVar16": "ulongVar16",
+                "pFVar17": "filePtr",
+                "sVar18": "readSize",
+                "__s": "buffer",
+                "sVar19": "readResult",
+                "piVar20": "errorNumberPtr",
+                "lVar21": "loopVar1",
+                "plVar22": "fileList",
+                "pbVar23": "bytePtr",
+                "lVar24": "loopVar2",
+                "plVar25": "updatedFileList",
+                "uVar26": "stringValue",
+                "uVar27": "ulongVar27",
+                "pbVar28": "bytePtr2",
+                "uVar29": "uintVar29",
+                "lVar30": "loopVar3",
+                "uVar31": "flags",
+                "puVar33": "options",
+                "uVar34": "uintVar34",
+                "pcVar35": "stringVar35",
+                "uVar36": "ulongVar36",
+                "pcVar37": "stringVar37",
+                "uVar39": "ulongVar39",
+                "local_138": "fileListCopy",
+                "local_120": "localVar120",
+                "local_d8": "localStringVar",
+                "local_d0": "localByteVar",
+                "local_c8": "fileStat"
+            },
+            "code": "\n/* WARNING: Type propagation algorithm not settling */\n\n\nuint parseCommandLine_00103bf0(int argc,long *argv)\n\n{\n  char charVar1;\n  byte byteVar2;\n  ulong ulongVar3;\n  bool boolVar4;\n  bool boolVar5;\n  bool boolVar6;\n  bool boolVar7;\n  int index;\n  uint result;\n  int status;\n  void *mmapAddr;\n  void *ptr;\n  undefined8 ulongVar11;\n  long *longVar12;\n  ulong ulongVar13;\n  ulong ulongVar14;\n  ulong ulongVar15;\n  ulong ulongVar16;\n  FILE *filePtr;\n  size_t readSize;\n  byte *buffer;\n  size_t readResult;\n  int *errorNumberPtr;\n  long loopVar1;\n  long *fileList;\n  byte *bytePtr;\n  long loopVar2;\n  long *updatedFileList;\n  undefined8 stringValue;\n  ulong ulongVar27;\n  byte *bytePtr2;\n  uint uintVar29;\n  long loopVar3;\n  uint flags;\n  int opt;\n  undefined1 *options;\n  uint uintVar34;\n  char *stringVar35;\n  ulong ulongVar36;\n  char *stringVar37;\n  undefined8 *pulongVar38;\n  ulong ulongVar39;\n  undefined8 *fileListCopy;\n  ulong localVar120;\n  char *localStringVar;\n  byte *localByteVar;\n  stat fileStat;\n  \n  index = 0;\n  opt = 2000;\n  setlocale(5,\"\");\n  setlocale(0,\"\");\n  bindtextdomain(\"binutils\",\"/usr/share/locale\");\n  textdomain(\"binutils\");\n  fileList = argv;\nLAB_00103c54:\n  loopVar3 = (long)(index + 1);\n  do {\n    index = (int)loopVar3;\n    if (argc <= index) {\n      options = options;\n      break;\n    }\n    if (*(char *)fileList[loopVar3] == '@') {\n      opt = opt + -1;\n      if (opt == 0) {\n        loopVar3 = *fileList;\n        stringVar37 = \"%s: error: too many @-files encountered\\n\";\n        goto LAB_00104739;\n      }\n      stringVar37 = (char *)fileList[loopVar3] + 1;\n      status = stat(stringVar37,&fileStat);\n      if (-1 < status) {\n        if ((fileStat.st_mode & 0xf000) == 0x4000) {\n          do {\n            loopVar3 = *fileList;\n            stringVar37 = \"%s: error: @-file refers to a directory\\n\";\nLAB_00104739:\n            fprintf(_stderr,stringVar37,loopVar3);\n            xexit_constprop_0();\n          } while( true );\n        }\n        filePtr = fopen(stringVar37,\"r\");\n        if (filePtr != (FILE *)0x0) goto code_r0x00104650;\n      }\n    }\n    loopVar3 = loopVar3 + 1;\n  } while( true );\nLAB_00103c87:\n  index = getopt_long(argc,fileList,&DAT_0010604c,options,0);\n  if (index == -1) {\n    if ((_optind == argc) ||\n       (((enable_x86_features | disable_x86_features) == 0 &&\n        (options = (undefined1 *)0x0,\n        (output_elf_machine & output_elf_type & output_elf_osabi & output_elf_abiversion) ==\n        0xffffffff)))) goto switchD_00103cba_caseD_69;\n    flags = 0;\n    goto LAB_00103d1c;\n  }\n  switch(index) {\n  case 0x68:\n    usage(_stdout,0);\n  default:\nswitchD_00103cba_caseD_69:\n    usage(_stderr,1);\n    goto switchD_00103cba_caseD_9a;\n  case 0x76:\n    printf(\"GNU %s %s\\n\",\"elfedit\",\"(GNU Binutils for Debian) 2.40\");\n    stringVar37 = (char *)dcgettext(0,\"Copyright (C) 2023 Free Software Foundation, Inc.\\n\",5);\n    printf(stringVar37);\n    stringVar37 = (char *)dcgettext(0,\n                                \"This program is free software; you may redistribute it under the terms of\\nthe GNU General Public License version 3 or (at your option) any later version.\\nThis program has absolutely no warranty.\\n\"\n                                ,5);\n    printf(stringVar37);\n                    \n    exit(0);\n  case 0x96:\n    input_elf_machine = elf_machine(_optarg);\n    if (input_elf_machine < 0) {\n      return 1;\n    }\n    if (input_elf_machine == 6) {\n      input_elf_class = 1;\n    }\n    else if (input_elf_machine < 7) {\n      input_elf_class = (input_elf_machine != 3) + 1 + (uint)(input_elf_machine != 3);\n    }\n    else {\n      input_elf_class = 3 - (uint)(input_elf_machine - 0xb4U < 2);\n    }\n    goto LAB_00103c87;\n  case 0x97:\n    output_elf_machine = elf_machine(_optarg);\n    if ((int)output_elf_machine < 0) {\n      return 1;\n    }\n    if ((int)output_elf_machine < 0xb6) {\n      output_elf_class = 2;\n      if (((int)output_elf_machine < 0xb4) && (output_elf_class = 1, output_elf_machine != 3)) {\n        output_elf_class = (output_elf_machine != 6) + 1 + (uint)(output_elf_machine != 6);\n      }\n    }\n    else {\n      output_elf_class = 3;\n    }\n    goto LAB_00103c87;\n  case 0x98:\n    input_elf_type = elf_type(_optarg);\n    flags = input_elf_type;\n    break;\n  case 0x99:\n    output_elf_type = elf_type(_optarg);\n    flags = output_elf_type;\n    break;\n  case 0x9a:\n    goto switchD_00103cba_caseD_9a;\n  case 0x9b:\n    output_elf_osabi = elf_osabi(_optarg);\n    flags = output_elf_osabi;\n    break;\n  case 0x9c:\n    ulongVar16 = strtoul(_optarg,&localStringVar,0);\n    flags = (uint)ulongVar16;\n    charVar1 = *localStringVar;\n    input_elf_abiversion = flags;\n    stringVar37 = _optarg;\n    goto joined_r0x00104334;\n  case 0x9d:\n    ulongVar16 = strtoul(_optarg,&localStringVar,0);\n    flags = (uint)ulongVar16;\n    charVar1 = *localStringVar;\n    output_elf_abiversion = flags;\n    stringVar37 = _optarg;\njoined_r0x00104334:\n    _optarg = stringVar37;\n    if ((charVar1 != '\\0') || (0xff < flags)) {\n      stringValue = dcgettext(0,\"Invalid ABIVERSION: %s\\n\",5);\n      error(stringValue,stringVar37);\n      return 1;\n    }\n    goto LAB_00103c87;\n  case 0x9e:\n    stringValue = 1;\n    goto LAB_00103e9d;\n  case 0x9f:\n    stringValue = 0;\nLAB_00103e9d:\n    flags = elf_x86_feature(_optarg,stringValue);\n  }\njoined_r0x00103eae:\n  if ((int)flags < 0) {\n    return 1;\n  }\n  goto LAB_00103c87;\nLAB_00103d1c:\n  loopVar3 = (long)_optind;\n  if (argc <= _optind) {\n    return flags;\n  }\n  _optind = _optind + 1;\n  stringVar37 = (char *)fileList[loopVar3];\n  index = stat(stringVar37,&fileStat);\n  if (index < 0) {\n    errorNumberPtr = __errno_location();\n    stringVar35 = \"\\'%s\\': No such file\\n\";\n    if (*errorNumberPtr == 2) goto LAB_00104497;\n    stringVar35 = strerror(*errorNumberPtr);\n    stringValue = dcgettext(0,\"Could not locate \\'%s\\'.  System error message: %s\\n\",5);\n    error(stringValue,stringVar37,stringVar35);\nLAB_001044ab:\n    result = 1;\n  }\n  else {\n    if ((fileStat.st_mode & 0xf000) != 0x8000) {\n      stringVar35 = \"\\'%s\\' is not an ordinary file\\n\";\nLAB_00104497:\n      stringValue = dcgettext(0,stringVar35,5);\n      error(stringValue,stringVar37);\n      goto LAB_001044ab;\n    }\n    filePtr = fopen(stringVar37,\"r+b\");\n    if (filePtr == (FILE *)0x0) {\n      stringVar35 = \"Input file \\'%s\\' is not readable\\n\";\n      goto LAB_00104497;\n    }\n    readSize = fread(&localByteVar,8,1,filePtr);\n    if (readSize != 1) {\n      stringValue = dcgettext(0,\"%s: Failed to read file\\'s magic number\\n\",5);\n      error(stringValue,stringVar37);\n      fclose(filePtr);\n      goto LAB_001044ab;\n    }\n    if (localByteVar == (byte *)0xa3e686372613c21) {\n      result = process_archive(stringVar37,filePtr,0);\n    }\n    else if (localByteVar == (byte *)0xa3e6e6968743c21) {\n      result = process_archive(stringVar37,filePtr,1);\n    }\n    else {\n      rewind(filePtr);\n      archive_file_size = 0;\n      result = process_object(stringVar37,filePtr);\n      if (((result == 0) && ((ushort)(elf_header._56_2_ - 2) < 2)) &&\n         ((enable_x86_features | disable_x86_features) != 0)) {\n        if ((elf_header._58_2_ == 3) ||\n           (stringVar35 = \"%s: Not an i386 nor x86-64 ELF file\\n\", elf_header._58_2_ == 0x3e)) {\n          index = fileno(filePtr);\n          index = fstat(index,&fileStat);\n          if (index < 0) {\n            stringValue = dcgettext(0,\"%s: stat () failed\\n\",5);\n            error(stringValue,stringVar37);\n            result = 1;\n          }\n          else {\n            index = fileno(filePtr);\n            mmapAddr = mmap((void *)0x0,fileStat.st_size,3,1,index,0);\n            if (mmapAddr == (void *)0xffffffffffffffff) {\n              stringVar35 = \"%s: mmap () failed\\n\";\n              goto LAB_0010438d;\n            }\n            ptr = (void *)xmalloc((ulong)(uint)elf_header._68_4_ << 6);\n            stringValue = elf_header._24_8_;\n            if (elf_header[4] == '\\x01') {\n              for (ulongVar16 = 0; (uint)ulongVar16 < (uint)elf_header._68_4_;\n                  ulongVar16 = (ulong)((uint)ulongVar16 + 1)) {\n                loopVar3 = ulongVar16 * 0x20 + stringValue + (long)mmapAddr;\n                pulongVar38 = (undefined8 *)((long)ptr + ulongVar16 * 0x40);\n                ulongVar11 = (*byte_get)(loopVar3,4);\n                *pulongVar38 = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 4,4);\n                pulongVar38[2] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 8,4);\n                pulongVar38[3] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0xc,4);\n                pulongVar38[4] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x10,4);\n                pulongVar38[5] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x14,4);\n                pulongVar38[6] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x18,4);\n                pulongVar38[1] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x1c,4);\n                pulongVar38[7] = ulongVar11;\n              }\n            }\n            else {\n              for (uintVar29 = 0; uintVar29 < (uint)elf_header._68_4_; uintVar29 = uintVar29 + 1) {\n                loopVar3 = (ulong)uintVar29 * 0x38 + stringValue + (long)mmapAddr;\n                pulongVar38 = (undefined8 *)((ulong)uintVar29 * 0x40 + (long)ptr);\n                ulongVar11 = (*byte_get)(loopVar3,4);\n                *pulongVar38 = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 8,8);\n                pulongVar38[2] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x10,8);\n                pulongVar38[3] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x18,8);\n                pulongVar38[4] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x20,8);\n                pulongVar38[5] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x28,8);\n                pulongVar38[6] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 4,4);\n                pulongVar38[1] = ulongVar11;\n                ulongVar11 = (*byte_get)(loopVar3 + 0x30,8);\n                pulongVar38[7] = ulongVar11;\n              }\n            }\n            for (ulongVar16 = 0; (uint)ulongVar16 < (uint)elf_header._68_4_;\n                ulongVar16 = (ulong)((uint)ulongVar16 + 1)) {\n              longVar12 = (long *)(ulongVar16 * 0x40 + (long)ptr);\n              if (*longVar12 == 4) {\n                loopVar3 = longVar12[5];\n                ulongVar3 = longVar12[7];\n                ulongVar36 = (long)mmapAddr + longVar12[2];\n                for (localVar120 = ulongVar36; localVar120 < ulongVar36 + loopVar3;\n                    localVar120 = localVar120 + ((ulongVar3 - 1) + ulongVar15 + ulongVar14 & ulongVar27)) {\n                  if ((ulongVar36 - localVar120) + loopVar3 < 0xc) {\nLAB_001044cb:\n                    stringValue = dcgettext(0,\"%s: Invalid PT_NOTE segment\\n\",5);\n                    error(stringValue,stringVar37);\n                    result = 1;\n                    goto LAB_001042bf;\n                  }\n                  loopVar1 = (*byte_get)(localVar120 + 8,4);\n                  ulongVar13 = (*byte_get)(localVar120,4);\n                  if ((ulongVar36 - (long)(char *)(localVar120 + 0xc)) + loopVar3 < ulongVar13)\n                  goto LAB_001044cb;\n                  ulongVar14 = (*byte_get)(localVar120 + 4,4);\n                  ulongVar27 = -ulongVar3;\n                  ulongVar15 = ulongVar3 + 0xb + ulongVar13 & ulongVar27;\n                  ulongVar39 = localVar120 + ulongVar15;\n                  if ((ulongVar14 != 0) &&\n                     ((ulongVar36 + loopVar3 <= ulongVar39 || ((ulongVar36 - ulongVar39) + loopVar3 < ulongVar14))))\n                  goto LAB_001044cb;\n                  if ((ulongVar13 == 4) &&\n                     ((index = strcmp((char *)(localVar120 + 0xc),\"GNU\"), index == 0 && (loopVar1 == 5))\n                     )) {\n                    if ((ulongVar14 < 8) || (ulongVar14 % ulongVar3 != 0)) goto LAB_001044cb;\n                    ulongVar13 = ulongVar39 + ulongVar14;\n                    do {\n                      index = (*byte_get)(ulongVar39,4);\n                      uintVar29 = (*byte_get)(ulongVar39 + 4,4);\n                      loopVar1 = ulongVar39 + 8;\n                      if (ulongVar13 < loopVar1 + (ulong)uintVar29) goto LAB_001044cb;\n                      if (index == -0x3ffffffe) {\n                        if (uintVar29 != 4) goto LAB_001044cb;\n                        uintVar29 = (*byte_get)(loopVar1,4);\n                        if (enable_x86_features == 0) {\n                          uintVar34 = uintVar29;\n                          if (disable_x86_features == 0) goto LAB_001042bf;\nLAB_001042ac:\n                          uintVar34 = uintVar34 & ~disable_x86_features;\n                        }\n                        else {\n                          uintVar34 = enable_x86_features | uintVar29;\n                          if (disable_x86_features != 0) goto LAB_001042ac;\n                        }\n                        if (uintVar29 != uintVar34) {\n                          (*byte_put)(loopVar1,uintVar34,4);\n                        }\n                        goto LAB_001042bf;\n                      }\n                      ulongVar39 = loopVar1 + ((ulong)uintVar29 + (ulongVar3 - 1) & ulongVar27);\n                    } while (7 < (long)(ulongVar13 - ulongVar39));\n                  }\n                }\n              }\n            }\nLAB_001042bf:\n            free(ptr);\n            munmap(mmapAddr,fileStat.st_size);\n          }\n        }\n        else {\nLAB_0010438d:\n          stringValue = dcgettext(0,stringVar35,5);\n          error(stringValue,stringVar37);\n        }\n      }\n    }\n    fclose(filePtr);\n  }\n  flags = flags | result;\n  goto LAB_00103d1c;\nswitchD_00103cba_caseD_9a:\n  input_elf_osabi = elf_osabi(_optarg);\n  flags = input_elf_osabi;\n  goto joined_r0x00103eae;\ncode_r0x00104650:\n  status = fseek(filePtr,0,2);\n  if (((status != -1) && (readSize = ftell(filePtr), readSize != 0xffffffffffffffff)) &&\n     (status = fseek(filePtr,0,0), status != -1)) {\n    buffer = (byte *)xmalloc(readSize + 1);\n    readResult = fread(buffer,1,readSize,filePtr);\n    if ((readSize == readResult) || (status = ferror(filePtr), status == 0)) {\n      buffer[readResult] = 0;\n      bytePtr2 = buffer;\nLAB_001046fc:\n      if (*bytePtr2 == 0) {\n        fileListCopy = (undefined8 *)xmalloc(8);\n        *fileListCopy = 0;\n      }\n      else {\n        if ((_sch_istable[(ulong)*bytePtr2 * 2] & 0x40) != 0) goto code_r0x00104718;\n        localByteVar = buffer;\n        strlen((char *)buffer);\n        bytePtr2 = (byte *)xmalloc();\n        fileListCopy = (undefined8 *)0x0;\n        status = 0;\n        boolVar6 = false;\n        boolVar5 = false;\n        boolVar7 = false;\n        loopVar1 = 0;\n        do {\n          consume_whitespace(&localByteVar);\n          bytePtr = bytePtr2;\n          if ((status == 0) || (status + -1 <= (int)loopVar1)) {\n            if (fileListCopy == (undefined8 *)0x0) {\n              status = 8;\n              fileListCopy = (undefined8 *)xmalloc(0x40);\n            }\n            else {\n              status = status * 2;\n              fileListCopy = (undefined8 *)xrealloc(fileListCopy,(long)status << 3);\n            }\n            fileListCopy[loopVar1] = 0;\n          }\n          for (; byteVar2 = *localByteVar, byteVar2 != 0; localByteVar = localByteVar + 1) {\n            if (((_sch_istable[(ulong)byteVar2 * 2] & 0x40) != 0) &&\n               (boolVar4 = (bool)(boolVar5 | boolVar7 | boolVar6), !boolVar4)) {\n              boolVar6 = false;\n              boolVar7 = false;\n              boolVar5 = boolVar4;\n              break;\n            }\n            if (boolVar6) {\n              *bytePtr = byteVar2;\n              boolVar6 = false;\n              bytePtr = bytePtr + 1;\n            }\n            else if (byteVar2 == 0x5c) {\n              boolVar6 = true;\n            }\n            else if (boolVar5) {\n              if (byteVar2 == 0x27) {\n                boolVar5 = false;\n              }\n              else {\nLAB_00104c08:\n                *bytePtr = byteVar2;\n                bytePtr = bytePtr + 1;\n              }\n            }\n            else if (boolVar7) {\n              if (byteVar2 != 0x22) goto LAB_00104c08;\n              boolVar7 = false;\n            }\n            else if (byteVar2 == 0x27) {\n              boolVar5 = true;\n            }\n            else {\n              if (byteVar2 != 0x22) goto LAB_00104c08;\n              boolVar7 = true;\n            }\n          }\n          *bytePtr = 0;\n          stringValue = xstrdup();\n          fileListCopy[loopVar1] = stringValue;\n          fileListCopy[loopVar1 + 1] = 0;\n          consume_whitespace(&localByteVar);\n          loopVar1 = loopVar1 + 1;\n        } while (*localByteVar != 0);\n        free(bytePtr2);\n      }\n      if (fileList == argv) {\n        loopVar1 = 1;\n        do {\n          loopVar2 = loopVar1;\n          loopVar1 = loopVar2 + 1;\n        } while (fileList[loopVar2 + -1] != 0);\n        updatedFileList = (long *)xmalloc((long)(int)loopVar2 << 3);\n        longVar12 = updatedFileList;\n        while (loopVar1 = *fileList, fileList = fileList + 1, loopVar1 != 0) {\n          loopVar1 = xstrdup();\n          *longVar12 = loopVar1;\n          longVar12 = longVar12 + 1;\n        }\n        *longVar12 = 0;\n        loopVar1 = 0;\n      }\n      else {\n        loopVar1 = 0;\n        updatedFileList = fileList;\n      }\n      for (; fileListCopy[loopVar1] != 0; loopVar1 = loopVar1 + 1) {\n      }\n      free((void *)updatedFileList[loopVar3]);\n      fileList = (long *)xrealloc(updatedFileList,(loopVar1 + 1 + (long)argc) * 8);\n      memmove(fileList + loopVar3 + loopVar1,fileList + loopVar3 + 1,(long)(argc - index) << 3);\n      argc = argc + -1 + (int)loopVar1;\n      memcpy(fileList + loopVar3,fileListCopy,loopVar1 * 8);\n      free(fileListCopy);\n      free(buffer);\n      index = index + -1;\n    }\n    else {\n      free(buffer);\n    }\n  }\n  fclose(filePtr);\n  goto LAB_00103c54;\ncode_r0x00104718:\n  bytePtr2 = bytePtr2 + 1;\n  goto LAB_001046fc;\n}\n\n",
+            "called": [
+                "setlocale",
+                "strcmp",
+                "strtoul",
+                "stat",
+                "elf_osabi",
+                "fread",
+                "error",
+                "fseek",
+                "fprintf",
+                "munmap",
+                "dcgettext",
+                "xstrdup",
+                "printf",
+                "mmap",
+                "usage",
+                "__errno_location",
+                "consume_whitespace",
+                "memmove",
+                "fopen",
+                "textdomain",
+                "bindtextdomain",
+                "ftell",
+                "fileno",
+                "xmalloc",
+                "elf_type",
+                "elf_x86_feature",
+                "xexit.constprop.0",
+                "free",
+                "rewind",
+                "exit",
+                "fstat",
+                "elf_machine",
+                "strlen",
+                "fclose",
+                "getopt_long",
+                "ferror",
+                "process_object",
+                "strerror",
+                "memcpy",
+                "process_archive",
+                "xrealloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103bf0",
+            "calling": [
+                "_start"
+            ],
+            "imported": false,
+            "current_name": "parse_command_line_00103bf0"
+        },
+        "FUN_00103ad0": {
+            "renaming": {
+                "FUN_00103ad0": "copy_data_00103ad0",
+                "param_1": "destination",
+                "param_2": "data",
+                "param_3": "length",
+                "uVar1": "errorMessage",
+                "uVar2": "counter"
+            },
+            "code": "\nvoid copyData_00103ad0(long destination,ulong data,uint length)\n\n{\n  undefined8 errorMessage;\n  ulong counter;\n  \n  if (length < 9) {\n    for (counter = 0; length != counter; counter = counter + 1) {\n      *(char *)(destination + counter) = (char)data;\n      data = data >> 8;\n    }\n    return;\n  }\n  errorMessage = dcgettext(0,\"Unhandled data length: %d\\n\",5);\n  error(errorMessage,length);\n                    \n  abort();\n}\n\n",
+            "called": [
+                "byte_put_little_endian.cold"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00103ad0",
+            "calling": [
+                "process_object"
+            ],
+            "imported": false,
+            "current_name": "copy_data_00103ad0"
+        },
+        "FUN_00104ce0": {
+            "renaming": {
+                "FUN_00104ce0": "identify_osabi_00104ce0",
+                "param_1": "osabiName",
+                "param_2": "var2",
+                "param_3": "var3",
+                "param_4": "var4",
+                "iVar1": "comparisonResult",
+                "uVar2": "translation",
+                "uVar3": "index",
+                "uVar4": "nextIndex",
+                "puVar5": "osabiPointer",
+                "auVar6": "result"
+            },
+            "code": "\nundefined  [16] identifyOSABI_00104ce0(char *osabiName,undefined8 var2,undefined8 var3,undefined8 var4)\n\n{\n  int comparisonResult;\n  undefined8 translation;\n  ulong index;\n  uint nextIndex;\n  undefined4 *osabiPointer;\n  undefined result [16];\n  \n  osabiPointer = &osabis;\n  index = 0;\n  do {\n    comparisonResult = strcasecmp(osabiName,*(char **)(osabiPointer + 2));\n    if (comparisonResult == 0) {\n      index = (ulong)(uint)(&osabis)[index * 4];\n      goto LAB_00104d20;\n    }\n    nextIndex = (int)index + 1;\n    index = (ulong)nextIndex;\n    osabiPointer = osabiPointer + 4;\n  } while (nextIndex != 0x10);\n  translation = dcgettext(0,\"Unknown OSABI: %s\\n\",5);\n  error(translation,osabiName);\n  index = 0xffffffff;\nLAB_00104d20:\n  result._8_8_ = var4;\n  result._0_8_ = index;\n  return result;\n}\n\n",
+            "called": [
+                "strcasecmp",
+                "elf_osabi.cold"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00104ce0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "identify_osabi_00104ce0"
+        },
+        "FUN_0010a090": {
+            "renaming": {},
+            "code": "\n\n\n\nint printf(char *__format,...)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* printf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a090",
+            "calling": [
+                "printf"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a090"
+        },
+        "FUN_00102cc4": {
+            "renaming": {
+                "FUN_00102cc4": "extract_file_name_00102cc4",
+                "param_1": "filePath",
+                "param_2": "sourceString",
+                "param_3": "stringLength",
+                "pcVar3": "currentChar",
+                "pcVar4": "lastSlashPos",
+                "uVar5": "translation",
+                "uVar6": "remainingCharacters",
+                "uVar7": "filenameLength",
+                "bVar8": "backwards"
+            },
+            "code": "\nchar * extractFileName_00102cc4(char *filePath,char *sourceString,ulong stringLength)\n\n{\n  ulong __size;\n  long lVar1;\n  char cVar2;\n  char *currentChar;\n  char *lastSlashPos;\n  undefined8 translation;\n  ulong remainingCharacters;\n  ulong filenameLength;\n  byte backwards;\n  \n  backwards = 0;\n  currentChar = filePath;\n  lastSlashPos = filePath;\n  while (cVar2 = *currentChar, cVar2 != '\\0') {\n    currentChar = currentChar + 1;\n    if (cVar2 == '/') {\n      lastSlashPos = currentChar;\n    }\n  }\n  if ((*sourceString == '/') || (filePath == lastSlashPos)) {\n    if (stringLength + 1 == 0) {\n      return (char *)0x0;\n    }\n    lastSlashPos = (char *)malloc(stringLength + 1);\n    remainingCharacters = stringLength;\n    currentChar = lastSlashPos;\n    if (lastSlashPos != (char *)0x0) {\n      for (; remainingCharacters != 0; remainingCharacters = remainingCharacters - 1) {\n        *currentChar = *sourceString;\n        sourceString = sourceString + (ulong)backwards * -2 + 1;\n        currentChar = currentChar + (ulong)backwards * -2 + 1;\n      }\n      lastSlashPos[stringLength] = '\\0';\n      return lastSlashPos;\n    }\n  }\n  else {\n    filenameLength = (long)lastSlashPos - (long)filePath;\n    lVar1 = filenameLength + stringLength;\n    remainingCharacters = stringLength;\n    if (stringLength <= filenameLength) {\n      remainingCharacters = filenameLength;\n    }\n    __size = lVar1 + 1;\n    if (__size < remainingCharacters) {\n      translation = dcgettext(0,\"Abnormal length of thin archive member name: %lx\\n\",5);\n      error(translation,stringLength);\n      return (char *)0x0;\n    }\n    lastSlashPos = (char *)malloc(__size);\n    currentChar = lastSlashPos;\n    if (lastSlashPos != (char *)0x0) {\n      for (; filenameLength != 0; filenameLength = filenameLength - 1) {\n        *currentChar = *filePath;\n        filePath = filePath + (ulong)backwards * -2 + 1;\n        currentChar = currentChar + (ulong)backwards * -2 + 1;\n      }\n      for (; stringLength != 0; stringLength = stringLength - 1) {\n        *currentChar = *sourceString;\n        sourceString = sourceString + (ulong)backwards * -2 + 1;\n        currentChar = currentChar + (ulong)backwards * -2 + 1;\n      }\n      lastSlashPos[lVar1] = '\\0';\n      return lastSlashPos;\n    }\n  }\n  translation = dcgettext(0,\"Out of memory\\n\",5);\n  error(translation);\n  return (char *)0x0;\n}\n\n",
+            "called": [
+                "malloc",
+                "dcgettext",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102cc4",
+            "calling": [
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "extract_file_name_00102cc4"
+        },
+        "FUN_001023ce": {
+            "renaming": {
+                "FUN_001023ce": "check_success_001023ce"
+            },
+            "code": "\nundefined8 check_success_001023ce(void)\n\n{\n  return 1;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001023ce",
+            "calling": [
+                "elf_type"
+            ],
+            "imported": false,
+            "current_name": "check_success_001023ce"
+        },
+        "FUN_00102fa0": {
+            "renaming": {
+                "FUN_00102fa0": "skip_non_alphabetic_characters_00102fa0",
+                "param_1": "stringPointer",
+                "_sch_istable": "characterTable"
+            },
+            "code": "\nvoid skipNonAlphabeticCharacters_00102fa0(byte **stringPointer)\n\n{\n  while ((characterTable[(ulong)**stringPointer * 2] & 0x40) != 0) {\n    *stringPointer = *stringPointer + 1;\n  }\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102fa0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "skip_non_alphabetic_characters_00102fa0"
+        },
+        "FUN_001021a0": {
+            "renaming": {},
+            "code": "\n\n\nint fileno(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fileno(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fileno"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021a0",
+            "calling": [
+                "main",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021a0"
+        },
+        "FUN_001022c0": {
+            "renaming": {
+                "FUN_001022c0": "update_x86_features_001022c0",
+                "unaff_RBX": "feature_name",
+                "unaff_EBP": "disable_flag",
+                "iVar1": "strcasecmp_result",
+                "uVar2": "feature_value",
+                "uVar3": "error_msg",
+                "auVar4": "return_value"
+            },
+            "code": "\nundefined  [16] update_x86_features_001022c0(void)\n\n{\n  int strcasecmp_result;\n  uint feature_value;\n  undefined8 error_msg;\n  char *feature_name;\n  int disable_flag;\n  undefined return_value [16];\n  undefined8 unaff_retaddr;\n  \n  strcasecmp_result = strcasecmp(feature_name,\"lam_u48\");\n  if (strcasecmp_result == 0) {\n    feature_value = 4;\n  }\n  else {\n    strcasecmp_result = strcasecmp(feature_name,\"lam_u57\");\n    feature_value = 8;\n    if (strcasecmp_result != 0) {\n      error_msg = dcgettext(0,\"Unknown x86 feature: %s\\n\",5);\n      error(error_msg);\n      error_msg = 0xffffffff;\n      goto LAB_00104ca5;\n    }\n  }\n  if (disable_flag == 0) {\n    disable_x86_features = feature_value | disable_x86_features;\n    enable_x86_features = ~feature_value & enable_x86_features;\n  }\n  else {\n    enable_x86_features = feature_value | enable_x86_features;\n    disable_x86_features = disable_x86_features & ~feature_value;\n  }\n  error_msg = 0;\nLAB_00104ca5:\n  return_value._8_8_ = unaff_retaddr;\n  return_value._0_8_ = error_msg;\n  return return_value;\n}\n\n",
+            "called": [
+                "dcgettext",
+                "strcasecmp",
+                "error"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001022c0",
+            "calling": [
+                "elf_x86_feature"
+            ],
+            "imported": false,
+            "current_name": "update_x86_features_001022c0"
+        },
+        "FUN_0010a028": {
+            "renaming": {},
+            "code": "\n\n\n\nint strncmp(char *__s1,char *__s2,size_t __n)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strncmp@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a028",
+            "calling": [
+                "strncmp"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a028"
+        },
+        "FUN_0010a140": {
+            "renaming": {},
+            "code": "\n\n\n\nulong strtoul(char *__nptr,char **__endptr,int __base)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strtoul@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a140",
+            "calling": [
+                "strtoul"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a140"
+        },
+        "FUN_00102060": {
+            "renaming": {},
+            "code": "\n\n\nint * __errno_location(void)\n\n{\n  int *piVar1;\n  \n  piVar1 = __errno_location();\n  return piVar1;\n}\n\n",
+            "called": [
+                "__errno_location"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102060",
+            "calling": [
+                "main",
+                "FUN_001024ec"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102060"
+        },
+        "FUN_00102180": {
+            "renaming": {},
+            "code": "\n\n\nint stat(char *__file,stat *__buf)\n\n{\n  int iVar1;\n  \n  iVar1 = stat(__file,__buf);\n  return iVar1;\n}\n\n",
+            "called": [
+                "stat"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102180",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102180"
+        },
+        "FUN_00102cbc": {
+            "renaming": {
+                "FUN_00102cbc": "extract_file_name_00102cbc",
+                "param_1": "param",
+                "param_2": "filePath",
+                "__size": "size",
+                "lVar1": "length",
+                "cVar2": "currentChar",
+                "pcVar3": "ptr1",
+                "pcVar4": "ptr2",
+                "uVar5": "errorMsg",
+                "uVar6": "remainingSize",
+                "uVar7": "offset",
+                "extraout_RDX": "filePathSize",
+                "unaff_RBX": "ptr",
+                "bVar8": "isNegative"
+            },
+            "code": "\nchar * extractFileName_00102cbc(undefined8 param,char *filePath)\n\n{\n  ulong size;\n  long length;\n  char currentChar;\n  char *ptr1;\n  char *ptr2;\n  undefined8 errorMsg;\n  ulong remainingSize;\n  ulong filePathSize;\n  char *ptr;\n  ulong offset;\n  byte isNegative;\n  \n  isNegative = 0;\n  xmalloc_failed();\n  ptr1 = ptr;\n  ptr2 = ptr;\n  while (currentChar = *ptr1, currentChar != '\\0') {\n    ptr1 = ptr1 + 1;\n    if (currentChar == '/') {\n      ptr2 = ptr1;\n    }\n  }\n  if ((*filePath == '/') || (ptr == ptr2)) {\n    if (filePathSize + 1 == 0) {\n      return (char *)0x0;\n    }\n    ptr2 = (char *)malloc(filePathSize + 1);\n    remainingSize = filePathSize;\n    ptr1 = ptr2;\n    if (ptr2 != (char *)0x0) {\n      for (; remainingSize != 0; remainingSize = remainingSize - 1) {\n        *ptr1 = *filePath;\n        filePath = filePath + (ulong)isNegative * -2 + 1;\n        ptr1 = ptr1 + (ulong)isNegative * -2 + 1;\n      }\n      ptr2[filePathSize] = '\\0';\n      return ptr2;\n    }\n  }\n  else {\n    offset = (long)ptr2 - (long)ptr;\n    length = offset + filePathSize;\n    remainingSize = filePathSize;\n    if (filePathSize <= offset) {\n      remainingSize = offset;\n    }\n    size = length + 1;\n    if (size < remainingSize) {\n      errorMsg = dcgettext(0,\"Abnormal length of thin archive member name: %lx\\n\",5);\n      error(errorMsg,filePathSize);\n      return (char *)0x0;\n    }\n    ptr2 = (char *)malloc(size);\n    ptr1 = ptr2;\n    if (ptr2 != (char *)0x0) {\n      for (; remainingSize = filePathSize, offset != 0; offset = offset - 1) {\n        *ptr1 = *ptr;\n        ptr = ptr + (ulong)isNegative * -2 + 1;\n        ptr1 = ptr1 + (ulong)isNegative * -2 + 1;\n      }\n      for (; remainingSize != 0; remainingSize = remainingSize - 1) {\n        *ptr1 = *filePath;\n        filePath = filePath + (ulong)isNegative * -2 + 1;\n        ptr1 = ptr1 + (ulong)isNegative * -2 + 1;\n      }\n      ptr2[length] = '\\0';\n      return ptr2;\n    }\n  }\n  errorMsg = dcgettext(0,\"Out of memory\\n\",5);\n  error(errorMsg);\n  return (char *)0x0;\n}\n\n",
+            "called": [
+                "xmalloc_failed"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102cbc",
+            "calling": [
+                "xmalloc"
+            ],
+            "imported": false,
+            "current_name": "extract_file_name_00102cbc"
+        },
+        "FUN_0010a020": {
+            "renaming": {},
+            "code": "\n\n\n\nint * __errno_location(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __errno_location@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a020",
+            "calling": [
+                "__errno_location"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a020"
+        },
+        "FUN_00102220": {
+            "renaming": {},
+            "code": "\n\n\nFILE * fopen(char *__filename,char *__modes)\n\n{\n  FILE *pFVar1;\n  \n  pFVar1 = fopen(__filename,__modes);\n  return pFVar1;\n}\n\n",
+            "called": [
+                "fopen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102220",
+            "calling": [
+                "main",
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102220"
+        },
+        "FUN_0010a0c8": {
+            "renaming": {},
+            "code": "\n\n\n\nlong ftell(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* ftell@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010a0c8",
+            "calling": [
+                "ftell"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010a0c8"
+        },
+        "FUN_00102100": {
+            "renaming": {},
+            "code": "\nvoid getopt_long(void)\n\n{\n  getopt_long();\n  return;\n}\n\n",
+            "called": [
+                "getopt_long"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102100",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102100"
+        },
+        "FUN_001029a5": {
+            "renaming": {
+                "FUN_001029a5": "extract_file_from_archive_001029a5",
+                "param_1": "fileInfoPtr",
+                "param_2": "archiveInfoPtr",
+                "uVar1": "tempValue",
+                "uVar2": "result",
+                "uVar3": "fileIndex",
+                "uVar4": "dataOffset",
+                "uVar5": "dataSize",
+                "iVar6": "status",
+                "uVar7": "longNameIndex",
+                "uVar8": "longNameTableSize",
+                "uVar9": "nameLength",
+                "uVar10": "errorMessage",
+                "__stream": "file",
+                "sVar11": "bytesRead",
+                "puVar12": "resultPtr",
+                "lVar13": "index",
+                "pcVar14": "filename",
+                "pcVar15": "errorMessage",
+                "pcVar16": "errorMessage",
+                "local_c0": "tempBuffer",
+                "local_b8": "fileStat"
+            },
+            "code": "\nundefined4 * extractFileFromArchive_001029a5(undefined8 *fileInfoPtr,char **archiveInfoPtr)\n\n{\n  undefined tempValue;\n  undefined4 result;\n  undefined4 fileIndex;\n  undefined4 dataOffset;\n  undefined4 dataSize;\n  int status;\n  ulong longNameIndex;\n  ulong longNameTableSize;\n  ulong nameLength;\n  undefined8 errorMessage;\n  FILE *file;\n  size_t bytesRead;\n  undefined4 *resultPtr;\n  long index;\n  char *filename;\n  char *errorMessage;\n  char *errorMessage;\n  char *tempBuffer;\n  stat fileStat;\n  \n  if (*(char *)(fileInfoPtr + 0xb) != '/') {\n    index = 0;\n    do {\n      if (*(char *)((long)fileInfoPtr + index + 0x58) == '/') {\n        *(undefined *)((long)fileInfoPtr + index + 0x58) = 0;\n        resultPtr = (undefined4 *)xstrdup(fileInfoPtr + 0xb);\n        return resultPtr;\n      }\n      index = index + 1;\n    } while (index != 0x10);\n    resultPtr = (undefined4 *)xmalloc(0x11);\n    result = *(undefined4 *)(fileInfoPtr + 0xb);\n    fileIndex = *(undefined4 *)((long)fileInfoPtr + 0x5c);\n    dataOffset = *(undefined4 *)(fileInfoPtr + 0xc);\n    dataSize = *(undefined4 *)((long)fileInfoPtr + 100);\n    *(undefined *)(resultPtr + 4) = 0;\n    *resultPtr = result;\n    resultPtr[1] = fileIndex;\n    resultPtr[2] = dataOffset;\n    resultPtr[3] = dataSize;\n    return resultPtr;\n  }\n  if ((fileInfoPtr[6] == 0) || (fileInfoPtr[7] == 0)) {\n    errorMessage = \"Archive member uses long names, but no longname table found\\n\";\nLAB_00102acd:\n    errorMessage = dcgettext(0,errorMessage,5);\n    error(errorMessage);\n    return (undefined4 *)0x0;\n  }\n  tempValue = *(undefined *)((long)fileInfoPtr + 0x92);\n  fileInfoPtr[8] = 0;\n  *(undefined *)((long)fileInfoPtr + 0x92) = 0;\n  longNameIndex = strtoul((char *)((long)fileInfoPtr + 0x59),&tempBuffer,10);\n  if (((*(int *)(fileInfoPtr + 10) != 0) && (tempBuffer != (char *)0x0)) && (*tempBuffer == ':')) {\n    longNameTableSize = strtoul(tempBuffer + 1,(char **)0x0,10);\n    fileInfoPtr[8] = longNameTableSize;\n  }\n  longNameTableSize = fileInfoPtr[7];\n  *(undefined *)((long)fileInfoPtr + 0x92) = tempValue;\n  if (longNameTableSize < longNameIndex) {\n    errorMessage = dcgettext(0,\"Found long name index (%ld) beyond end of long name table\\n\",5);\n    error(errorMessage,longNameIndex);\n    return (undefined4 *)0x0;\n  }\n  index = fileInfoPtr[6];\n  for (nameLength = longNameIndex;\n      ((longNameTableSize != nameLength && (*(char *)(index + nameLength) != '\\0')) &&\n      (*(char *)(index + nameLength) != '\\n')); nameLength = nameLength + 1) {\n  }\n  if ((nameLength != 0) && (*(char *)(index + -1 + nameLength) == '/')) {\n    nameLength = nameLength - 1;\n  }\n  if (nameLength < longNameTableSize) {\n    longNameTableSize = nameLength;\n  }\n  *(undefined *)(index + longNameTableSize) = 0;\n  if ((*(int *)(fileInfoPtr + 10) == 0) || (fileInfoPtr[8] == 0)) goto LAB_00102c2d;\n  if (longNameTableSize <= longNameIndex) {\n    errorMessage = \"Invalid Thin archive member name\\n\";\n    goto LAB_00102acd;\n  }\n  errorMessage = (char *)adjust_relative_path(*fileInfoPtr,fileInfoPtr[6] + longNameIndex,longNameTableSize - longNameIndex);\n  if (errorMessage != (char *)0x0) {\n    if ((*archiveInfoPtr == (char *)0x0) || (status = strcmp(*archiveInfoPtr,errorMessage), status != 0)) {\n      if ((FILE *)archiveInfoPtr[1] != (FILE *)0x0) {\n        fclose((FILE *)archiveInfoPtr[1]);\n        archiveInfoPtr[1] = (char *)0x0;\n      }\n      release_archive(archiveInfoPtr);\n      file = fopen(errorMessage,\"rb\");\n      if (file != (FILE *)0x0) {\n        status = fileno(file);\n        status = fstat(status,&fileStat);\n        if ((-1 < status) &&\n           (status = setup_archive_constprop_0(archiveInfoPtr,errorMessage,file,fileStat.st_size,0),\n           status == 0)) goto LAB_00102b84;\n      }\n    }\n    else {\nLAB_00102b84:\n      status = fseek((FILE *)archiveInfoPtr[1],fileInfoPtr[8],0);\n      if (status == 0) {\n        bytesRead = fread(archiveInfoPtr + 0xb,1,0x3c,(FILE *)archiveInfoPtr[1]);\n        if (bytesRead == 0x3c) {\n          if (*(short *)((long)archiveInfoPtr + 0x92) == 0xa60) {\n            resultPtr = (undefined4 *)extractFileFromArchive_001029a5(archiveInfoPtr,0);\n            if (resultPtr != (undefined4 *)0x0) {\n              free(errorMessage);\n              return resultPtr;\n            }\n            goto LAB_00102c25;\n          }\n          filename = *archiveInfoPtr;\n          errorMessage = \"%s: did not find a valid archive header\\n\";\n        }\n        else {\n          filename = *archiveInfoPtr;\n          errorMessage = \"%s: failed to read archive header\\n\";\n        }\n      }\n      else {\n        filename = *archiveInfoPtr;\n        errorMessage = \"%s: failed to seek to next file name\\n\";\n      }\n      errorMessage = dcgettext(0,errorMessage,5);\n      error(errorMessage,filename);\n    }\n  }\nLAB_00102c25:\n  free(errorMessage);\nLAB_00102c2d:\n  resultPtr = (undefined4 *)xstrdup(fileInfoPtr[6] + longNameIndex);\n  return resultPtr;\n}\n\n",
+            "called": [
+                "strcmp",
+                "fopen",
+                "strtoul",
+                "adjust_relative_path",
+                "fread",
+                "fseek",
+                "error",
+                "fileno",
+                "xmalloc",
+                "free",
+                "release_archive",
+                "fstat",
+                "dcgettext",
+                "fclose",
+                "xstrdup",
+                "setup_archive.constprop.0",
+                "get_archive_member_name"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001029a5",
+            "calling": [
+                "process_archive",
+                "get_archive_member_name"
+            ],
+            "imported": false,
+            "current_name": "extract_file_from_archive_001029a5"
+        }
+    },
+    "used_tokens": 37278,
+    "layers": [
+        [
+            "FUN_00103160",
+            "FUN_0010354e",
+            "FUN_00104da0",
+            "FUN_00103449",
+            "FUN_00102fc7",
+            "FUN_001025ab",
+            "FUN_00102e85",
+            "FUN_0010234b",
+            "FUN_00104c60",
+            "FUN_00102fbc",
+            "FUN_00102000",
+            "FUN_00103ba0",
+            "FUN_001027fd",
+            "FUN_00103b00",
+            "FUN_00103186",
+            "FUN_00102da5",
+            "FUN_00105370",
+            "FUN_00102020",
+            "FUN_0010289a",
+            "FUN_0010358d",
+            "FUN_00104d30",
+            "FUN_00102825",
+            "FUN_001028be",
+            "FUN_001032de",
+            "FUN_00102558",
+            "FUN_00103a90",
+            "FUN_00103006",
+            "FUN_0010347f",
+            "FUN_00102f65",
+            "FUN_00102323",
+            "FUN_00102c98",
+            "FUN_001024ec",
+            "FUN_00103bf0",
+            "FUN_00103ad0",
+            "FUN_00104ce0",
+            "FUN_00102cc4",
+            "FUN_001023ce",
+            "FUN_00102fa0",
+            "FUN_001022c0",
+            "FUN_00102cbc"
+        ],
+        [
+            "FUN_00104de0",
+            "FUN_00102434"
+        ],
+        [
+            "FUN_001029a5"
+        ]
+    ],
+    "locked_functions": []
+}

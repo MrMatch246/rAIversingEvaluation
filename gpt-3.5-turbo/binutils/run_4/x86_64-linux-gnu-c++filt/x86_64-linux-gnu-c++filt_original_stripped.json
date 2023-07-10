@@ -1,0 +1,1232 @@
+{
+    "functions": {
+        "FUN_0010e0e8": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid * memcpy(void *__dest,void *__src,size_t __n)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* memcpy@GLIBC_2.14 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e0e8",
+            "calling": [
+                "memcpy"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e0e8"
+        },
+        "FUN_001021b0": {
+            "renaming": {},
+            "code": "\nvoid bfd_set_error_program_name(void)\n\n{\n  bfd_set_error_program_name();\n  return;\n}\n\n",
+            "called": [
+                "bfd_set_error_program_name"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021b0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021b0"
+        },
+        "FUN_0010e0e0": {
+            "renaming": {},
+            "code": "\n\n\n\nint stat(char *__file,stat *__buf)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* stat@GLIBC_2.33 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e0e0",
+            "calling": [
+                "stat"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e0e0"
+        },
+        "FUN_0010225e": {
+            "renaming": {
+                "FUN_0010225e": "print_usage_0010225e",
+                "param_1": "outputFile",
+                "param_2": "exitCode",
+                "__format": "bugReportFormat",
+                "puVar1": "demanglersPointer"
+            },
+            "code": "\n\n\nvoid printUsage_0010225e(FILE *outputFile,int exitCode)\n\n{\n  char *bugReportFormat;\n  undefined8 *demanglersPointer;\n  \n  fprintf(outputFile,\"Usage: %s [options] [mangled names]\\n\",program_name);\n  fprintf(outputFile,\"Options are:\\n  [-_|--strip-underscore]     Ignore first leading underscore%s\\n\",\n          \"\");\n  fprintf(outputFile,\"  [-n|--no-strip-underscore]  Do not ignore a leading underscore%s\\n\",\n          \" (default)\");\n  fwrite(\"  [-p|--no-params]            Do not display function arguments\\n  [-i|--no-verbose]           Do not show implementation details (if any)\\n  [-R|--recurse-limit]        Enable a limit on recursion whilst demangling.  [Default]\\n  ]-r|--no-recurse-limit]     Disable a limit on recursion whilst demangling\\n  [-t|--types]                Also attempt to demangle type encodings\\n  [-s|--format \"\n         ,1,0x184,outputFile);\n  fprintf(outputFile,\"{%s\",_libiberty_demanglers);\n  demanglersPointer = (undefined8 *)&libiberty_demanglers;\n  while (*(int *)(demanglersPointer + 4) != 0) {\n    fprintf(outputFile,\",%s\",demanglersPointer[3]);\n    demanglersPointer = demanglersPointer + 3;\n  }\n  fputc(0x7d,outputFile);\n  fwrite(&DAT_001035e8,1,2,outputFile);\n  fwrite(\"  [@<file>]                   Read extra options from <file>\\n  [-h|--help]                 Display this information\\n  [-v|--version]              Show the version information\\nDemangled names are displayed to stdout.\\nIf a name cannot be demangled it is just echoed to stdout.\\nIf no names are provided on the command line, stdin is read.\\n\"\n         ,1,0x150,outputFile);\n  if (exitCode == 0) {\n    bugReportFormat = (char *)dcgettext(0,\"Report bugs to %s.\\n\",5);\n    fprintf(outputFile,bugReportFormat,\"<https://sourceware.org/bugzilla/>\");\n  }\n                    \n  exit(exitCode);\n}\n\n",
+            "called": [
+                "memmove",
+                "exit",
+                "fputc",
+                "fwrite",
+                "fprintf",
+                "bfd_set_error_program_name",
+                "dcgettext",
+                "exit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010225e",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "print_usage_0010225e"
+        },
+        "FUN_001020d0": {
+            "renaming": {},
+            "code": "\n\n\nint printf(char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = printf(__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "printf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020d0",
+            "calling": [
+                "main",
+                "demangle_it"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020d0"
+        },
+        "FUN_001021f0": {
+            "renaming": {},
+            "code": "\n\n\nvoid exit(int __status)\n\n{\n                    \n  exit(__status);\n}\n\n",
+            "called": [
+                "exit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021f0",
+            "calling": [
+                "usage",
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021f0"
+        },
+        "FUN_0010e118": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid * memmove(void *__dest,void *__src,size_t __n)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* memmove@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e118",
+            "calling": [
+                "usage",
+                "memmove"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e118"
+        },
+        "FUN_00102190": {
+            "renaming": {},
+            "code": "\n\n\nint fseek(FILE *__stream,long __off,int __whence)\n\n{\n  int iVar1;\n  \n  iVar1 = fseek(__stream,__off,__whence);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fseek"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102190",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102190"
+        },
+        "FUN_0010e158": {
+            "renaming": {},
+            "code": "\n\n\nvoid __cxa_finalize(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __cxa_finalize@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e158",
+            "calling": [
+                "__cxa_finalize"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e158"
+        },
+        "FUN_00102070": {
+            "renaming": {},
+            "code": "\nvoid cplus_demangle_set_style(void)\n\n{\n  cplus_demangle_set_style();\n  return;\n}\n\n",
+            "called": [
+                "cplus_demangle_set_style"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102070",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102070"
+        },
+        "FUN_0010e038": {
+            "renaming": {},
+            "code": "\n\n\n\nsize_t fread(void *__ptr,size_t __size,size_t __n,FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fread@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e038",
+            "calling": [
+                "fread"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e038"
+        },
+        "FUN_0010e078": {
+            "renaming": {},
+            "code": "\n\n\n\nchar * strchr(char *__s,int __c)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strchr@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e078",
+            "calling": [
+                "strchr"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e078"
+        },
+        "FUN_00102110": {
+            "renaming": {},
+            "code": "\nvoid xstrdup(void)\n\n{\n  xstrdup();\n  return;\n}\n\n",
+            "called": [
+                "xstrdup"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102110",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102110"
+        },
+        "FUN_00102230": {
+            "renaming": {
+                "FUN_00102230": "print_symbol_name_00102230",
+                "param_1": "index",
+                "in_AL": "byteValue",
+                "__ptr": "demangledName",
+                "unaff_RBX": "symbolName"
+            },
+            "code": "\n\n\nvoid printSymbolName_00102230(ulong index)\n\n{\n  byte byteValue;\n  void *demangledName;\n  char *symbolName;\n  \n  if (symbolName[byteValue] == '_') {\n    index = (ulong)((int)index + 1);\n  }\n  demangledName = (void *)cplus_demangle(symbolName + index,flags);\n  if (demangledName != (void *)0x0) {\n    if (*symbolName == '.') {\n      putc(0x2e,_stdout);\n    }\n    printf(\"%s\",demangledName);\n    free(demangledName);\n    return;\n  }\n  printf(\"%s\");\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102230",
+            "calling": [
+                "demangle_it"
+            ],
+            "imported": false,
+            "current_name": "print_symbol_name_00102230"
+        },
+        "FUN_00102430": {
+            "renaming": {
+                "FUN_00102430": "FUNC_00102430"
+            },
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00102443) */\n/* WARNING: Removing unreachable block (ram,0x0010244f) */\n\nvoid FUNC_00102430(void)\n\n{\n  return;\n}\n\n",
+            "called": [
+                "_ITM_deregisterTMCloneTable"
+            ],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00102430",
+            "calling": [
+                "__do_global_dtors_aux"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00102430"
+        },
+        "FUN_0010e030": {
+            "renaming": {},
+            "code": "\n\n\n\nint ferror(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* ferror@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e030",
+            "calling": [
+                "ferror"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e030"
+        },
+        "FUN_00102150": {
+            "renaming": {},
+            "code": "\n\n\nlong ftell(FILE *__stream)\n\n{\n  long lVar1;\n  \n  lVar1 = ftell(__stream);\n  return lVar1;\n}\n\n",
+            "called": [
+                "ftell"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102150",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102150"
+        },
+        "FUN_00102030": {
+            "renaming": {},
+            "code": "\nvoid cplus_demangle_name_to_style(void)\n\n{\n  cplus_demangle_name_to_style();\n  return;\n}\n\n",
+            "called": [
+                "cplus_demangle_name_to_style"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102030",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102030"
+        },
+        "FUN_0010e070": {
+            "renaming": {},
+            "code": "\n\n\nvoid getopt_long(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* getopt_long@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e070",
+            "calling": [
+                "getopt_long"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e070"
+        },
+        "FUN_0010e0b0": {
+            "renaming": {},
+            "code": "\n\n\n\nint fputc(int __c,FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fputc@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e0b0",
+            "calling": [
+                "fputc"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e0b0"
+        },
+        "FUN_0010e0f0": {
+            "renaming": {},
+            "code": "\n\n\n\nint fflush(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fflush@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e0f0",
+            "calling": [
+                "fflush"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e0f0"
+        },
+        "FUN_001020a0": {
+            "renaming": {},
+            "code": "\n\n\nsize_t strlen(char *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = strlen(__s);\n  return sVar1;\n}\n\n",
+            "called": [
+                "strlen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020a0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020a0"
+        },
+        "FUN_001024e0": {
+            "renaming": {},
+            "code": "\nvoid register_tm_clones(void)\n\n{\n  register_tm_clones();\n  return;\n}\n\n",
+            "called": [
+                "register_tm_clones"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001024e0",
+            "calling": [],
+            "imported": false,
+            "current_name": "FUN_001024e0"
+        },
+        "FUN_001020e0": {
+            "renaming": {},
+            "code": "\nvoid xrealloc(void)\n\n{\n  xrealloc();\n  return;\n}\n\n",
+            "called": [
+                "xrealloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020e0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020e0"
+        },
+        "FUN_001021c0": {
+            "renaming": {},
+            "code": "\n\n\nvoid * memmove(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memmove(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "memmove"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021c0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021c0"
+        },
+        "FUN_0010e008": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid free(void *__ptr)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* free@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e008",
+            "calling": [
+                "free"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e008"
+        },
+        "FUN_00102080": {
+            "renaming": {},
+            "code": "\n\n\nint fclose(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fclose(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fclose"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102080",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102080"
+        },
+        "FUN_001024a0": {
+            "renaming": {
+                "FUN_001024a0": "initialize_program_001024a0",
+                "completed_0": "isInitialized",
+                "__cxa_finalize": "cleanUpResources",
+                "__dso_handle": "dynamicSharedObjectHandle",
+                "deregister_tm_clones": "removeTMClones"
+            },
+            "code": "\nvoid initializeProgram_001024a0(void)\n\n{\n  if (isInitialized != '\\0') {\n    return;\n  }\n  cleanUpResources(dynamicSharedObjectHandle);\n  removeTMClones();\n  isInitialized = 1;\n  return;\n}\n\n",
+            "called": [
+                "deregister_tm_clones",
+                "__cxa_finalize"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001024a0",
+            "calling": [],
+            "imported": false,
+            "current_name": "initialize_program_001024a0"
+        },
+        "FUN_0010e120": {
+            "renaming": {},
+            "code": "\n\n\n\nFILE * fopen(char *__filename,char *__modes)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fopen@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e120",
+            "calling": [
+                "fopen"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e120"
+        },
+        "FUN_00102000": {
+            "renaming": {
+                "FUN_00102000": "initialize_monitoring_00102000",
+                "ctx": "context",
+                "iVar1": "startResult"
+            },
+            "code": "\nint initializeMonitoring_00102000(EVP_PKEY_CTX *context)\n\n{\n  int startResult;\n  \n  startResult = __gmon_start__();\n  return startResult;\n}\n\n",
+            "called": [
+                "__gmon_start__"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102000",
+            "calling": [],
+            "imported": false,
+            "current_name": "initialize_monitoring_00102000"
+        },
+        "FUN_00102120": {
+            "renaming": {},
+            "code": "\n\n\nint fputc(int __c,FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fputc(__c,__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fputc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102120",
+            "calling": [
+                "usage"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102120"
+        },
+        "FUN_00102200": {
+            "renaming": {},
+            "code": "\n\n\nsize_t fwrite(void *__ptr,size_t __size,size_t __n,FILE *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fwrite(__ptr,__size,__n,__s);\n  return sVar1;\n}\n\n",
+            "called": [
+                "fwrite"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102200",
+            "calling": [
+                "usage",
+                "fatal.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102200"
+        },
+        "FUN_00102040": {
+            "renaming": {},
+            "code": "\n\n\nvoid free(void *__ptr)\n\n{\n  free(__ptr);\n  return;\n}\n\n",
+            "called": [
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102040",
+            "calling": [
+                "main",
+                "demangle_it"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102040"
+        },
+        "FUN_00102160": {
+            "renaming": {},
+            "code": "\n\n\nint stat(char *__file,stat *__buf)\n\n{\n  int iVar1;\n  \n  iVar1 = stat(__file,__buf);\n  return iVar1;\n}\n\n",
+            "called": [
+                "stat"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102160",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102160"
+        },
+        "FUN_0010e080": {
+            "renaming": {},
+            "code": "\n\n\n\nint printf(char *__format,...)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* printf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e080",
+            "calling": [
+                "printf"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e080"
+        },
+        "FUN_001020f0": {
+            "renaming": {},
+            "code": "\nvoid xmalloc(void)\n\n{\n  xmalloc();\n  return;\n}\n\n",
+            "called": [
+                "xmalloc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020f0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020f0"
+        },
+        "FUN_0010e0c8": {
+            "renaming": {},
+            "code": "\n\n\n\nint fprintf(FILE *__stream,char *__format,...)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fprintf@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e0c8",
+            "calling": [
+                "fprintf"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e0c8"
+        },
+        "FUN_00102400": {
+            "renaming": {
+                "FUN_00102400": "start_main_loop_00102400",
+                "param_1": "arg1",
+                "param_2": "arg2",
+                "auStack_8": "stack_array"
+            },
+            "code": "\nvoid processEntry start_main_loop_00102400(undefined8 arg1,undefined8 arg2)\n\n{\n  undefined stack_array [8];\n  \n  __libc_start_main(main,arg2,&stack0x00000008,0,0,arg1,stack_array);\n  do {\n                    /* WARNING: Do nothing block with infinite loop */\n  } while( true );\n}\n\n",
+            "called": [
+                "main",
+                "__libc_start_main"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102400",
+            "calling": [],
+            "imported": false,
+            "current_name": "start_main_loop_00102400"
+        },
+        "FUN_0010e138": {
+            "renaming": {},
+            "code": "\n\n\n\nsize_t fwrite(void *__ptr,size_t __size,size_t __n,FILE *__s)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fwrite@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e138",
+            "calling": [
+                "fwrite"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e138"
+        },
+        "FUN_001020b0": {
+            "renaming": {},
+            "code": "\nvoid getopt_long(void)\n\n{\n  getopt_long();\n  return;\n}\n\n",
+            "called": [
+                "getopt_long"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020b0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020b0"
+        },
+        "FUN_001024f0": {
+            "renaming": {
+                "FUN_001024f0": "demangle_symbols_001024f0",
+                "param_1": "argc",
+                "param_2": "argv",
+                "pbVar1": "bytePtr1",
+                "bVar2": "byteVar2",
+                "bVar3": "boolVar1",
+                "bVar4": "boolVar2",
+                "bVar5": "boolVar3",
+                "bVar6": "byteVar4",
+                "iVar7": "intVar1",
+                "uVar8": "uintVar1",
+                "iVar9": "intVar2",
+                "__stream": "filePtr",
+                "__n": "size_tVar1",
+                "__s": "bytePtr2",
+                "sVar10": "size_tVar2",
+                "__ptr": "bytePtr3",
+                "lVar11": "longVar1",
+                "plVar12": "paramPtr",
+                "__src": "longPtr1",
+                "plVar13": "paramPtr2",
+                "uVar14": "uintVar2",
+                "pcVar15": "charPtr",
+                "pbVar16": "bytePtr4",
+                "lVar17": "longVar2",
+                "puVar18": "ptrToUndefined1",
+                "lVar19": "longVar3",
+                "pbVar20": "bytePtr5",
+                "unaff_R13": "ulongVar1",
+                "local_110": "intVar3",
+                "local_10c": "intVar4",
+                "local_108": "size_tVar3",
+                "local_100": "longVar4",
+                "local_c8": "statVar",
+                "program_name": "programName",
+                "xmalloc_set_program_name": "setProgramName",
+                "bfd_set_error_program_name": "setErrorProgramName",
+                "local_c8.st_mode": "localStatMode",
+                "_stderr": "stderr",
+                "fprintf": "printFormatted",
+                "xexit": "exitProgram",
+                "fopen": "openFile",
+                "fclose": "closeFile",
+                "fseek": "fileSeek",
+                "ftell": "fileTell",
+                "fread": "readFile",
+                "ferror": "fileError",
+                "xmalloc": "allocateMemory",
+                "xstrdup": "duplicateString",
+                "xrealloc": "reallocateMemory",
+                "memmove": "moveMemory",
+                "memcpy": "copyMemory",
+                "optind": "optionIndex",
+                "_stdout": "stdout",
+                "putc": "putCharacter",
+                "fflush": "flushBuffer",
+                "getc": "getCharacterFromFile2",
+                "usage": "displayUsage",
+                "strip_underscore": "stripUnderscore",
+                "_optarg": "optionArgument",
+                "cplus_demangle_name_to_style": "demangleNameToStyle",
+                "cplus_demangle_set_style": "setDemangleStyle",
+                "fatal_constprop_0": "fatalError"
+            },
+            "code": "\n\n\nundefined8 demangleSymbols_001024f0(int argc,long *argv)\n\n{\n  byte *bytePtr1;\n  byte byteVar2;\n  bool boolVar1;\n  bool boolVar2;\n  bool boolVar3;\n  byte byteVar4;\n  int intVar1;\n  uint uintVar1;\n  int intVar2;\n  FILE *filePtr;\n  size_t size_tVar1;\n  byte *bytePtr2;\n  size_t size_tVar2;\n  byte *bytePtr3;\n  long longVar1;\n  long *paramPtr;\n  long *longPtr1;\n  long *paramPtr2;\n  undefined8 uintVar2;\n  char *charPtr;\n  byte *bytePtr4;\n  long longVar2;\n  undefined1 *ptrToUndefined1;\n  long longVar3;\n  byte *bytePtr5;\n  ulong ulongVar1;\n  int intVar3;\n  int intVar4;\n  size_t size_tVar3;\n  long longVar4;\n  stat statVar;\n  \n  programName = *argv;\n  setProgramName();\n  setErrorProgramName(programName);\n  paramPtr = argv;\n  if (1 < argc) {\n    intVar4 = 2000;\n    ulongVar1 = 1;\n    intVar3 = 0;\n    do {\n      intVar2 = (int)ulongVar1;\n      longVar2 = (long)intVar2;\n      if (*(char *)paramPtr[longVar2] == '@') {\n        intVar4 = intVar4 + -1;\n        if (intVar4 == 0) goto LAB_00102bdd;\n        charPtr = (char *)paramPtr[longVar2] + 1;\n        intVar1 = stat(charPtr,&statVar);\n        if (intVar1 < 0) goto LAB_00102900;\n        if ((localStatMode & 0xf000) == 0x4000) {\n          longVar2 = *paramPtr;\n          charPtr = \"%s: error: @-file refers to a directory\\n\";\n          do {\n            printFormatted(stderr,charPtr,longVar2);\n            exitProgram(1);\nLAB_00102bdd:\n            longVar2 = *paramPtr;\n            charPtr = \"%s: error: too many @-files encountered\\n\";\n          } while( true );\n        }\n        filePtr = openFile(charPtr,\"r\");\n        if (filePtr == (FILE *)0x0) goto LAB_00102900;\n        intVar1 = fileSeek(filePtr,0,2);\n        if (((intVar1 == -1) || (size_tVar1 = fileTell(filePtr), size_tVar1 == 0xffffffffffffffff)) ||\n           (intVar1 = fileSeek(filePtr,0,0), intVar1 == -1)) {\nLAB_001029a0:\n          closeFile(filePtr);\n          if (intVar2 + 1 < argc) goto LAB_0010290d;\n          break;\n        }\n        bytePtr2 = (byte *)allocateMemory(size_tVar1 + 1);\n        size_tVar2 = readFile(bytePtr2,1,size_tVar1,filePtr);\n        if ((size_tVar1 != size_tVar2) && (intVar1 = fileError(filePtr), intVar1 != 0)) {\n          free(bytePtr2);\n          goto LAB_001029a0;\n        }\n        bytePtr2[size_tVar2] = 0;\n        byteVar4 = *bytePtr2;\n        bytePtr4 = bytePtr2;\n        if (byteVar4 != 0) {\nLAB_00102680:\n          if (((&_sch_istable)[(ulong)byteVar4 * 2] & 0x40) != 0) goto LAB_00102670;\n          strlen((char *)bytePtr2);\n          bytePtr3 = (byte *)allocateMemory();\n          longPtr1 = (long *)0x0;\n          intVar1 = 0;\n          boolVar1 = false;\n          boolVar3 = false;\n          boolVar2 = false;\n          longVar4 = 0;\n          bytePtr4 = bytePtr2;\n          do {\n            while (((&_sch_istable)[(ulong)*bytePtr4 * 2] & 0x40) != 0) {\n              bytePtr4 = bytePtr4 + 1;\n            }\n            if ((intVar1 == 0) || (intVar1 + -1 <= (int)longVar4)) {\n              if (longPtr1 == (long *)0x0) {\n                intVar1 = 8;\n                longPtr1 = (long *)allocateMemory(0x40);\n              }\n              else {\n                intVar1 = intVar1 * 2;\n                longPtr1 = (long *)reallocateMemory(longPtr1,(long)intVar1 << 3);\n              }\n              paramPtr2 = longPtr1 + longVar4;\n              *paramPtr2 = 0;\n            }\n            else {\n              paramPtr2 = longPtr1 + longVar4;\n            }\n            byteVar4 = *bytePtr4;\n            bytePtr5 = bytePtr3;\n            while (byteVar4 != 0) {\n              while( true ) {\n                if ((((&_sch_istable)[(ulong)byteVar4 * 2] & 0x40) != 0) &&\n                   (!(bool)(boolVar3 | boolVar2 | boolVar1))) {\n                  boolVar2 = false;\n                  boolVar1 = false;\n                  boolVar3 = false;\n                  goto LAB_0010276f;\n                }\n                if (!boolVar2) break;\n                bytePtr4 = bytePtr4 + 1;\n                *bytePtr5 = byteVar4;\n                bytePtr5 = bytePtr5 + 1;\n                boolVar2 = false;\n                byteVar4 = *bytePtr4;\n                if (byteVar4 == 0) goto LAB_0010276f;\n              }\n              if (byteVar4 == 0x5c) {\n                boolVar2 = true;\n              }\n              else if (boolVar3) {\n                if (byteVar4 == 0x27) {\n                  boolVar3 = false;\n                }\n                else {\nLAB_001028e1:\n                  *bytePtr5 = byteVar4;\n                  bytePtr5 = bytePtr5 + 1;\n                }\n              }\n              else if (boolVar1) {\n                if (byteVar4 != 0x22) goto LAB_001028e1;\n                boolVar1 = false;\n              }\n              else if (byteVar4 == 0x27) {\n                boolVar3 = true;\n              }\n              else {\n                if (byteVar4 != 0x22) goto LAB_001028e1;\n                boolVar1 = true;\n              }\n              bytePtr1 = bytePtr4 + 1;\n              bytePtr4 = bytePtr4 + 1;\n              byteVar4 = *bytePtr1;\n            }\nLAB_0010276f:\n            *bytePtr5 = 0;\n            longVar1 = duplicateString(bytePtr3);\n            *paramPtr2 = longVar1;\n            longPtr1[longVar4 + 1] = 0;\n            byteVar4 = *bytePtr4;\n            byteVar2 = (&_sch_istable)[(ulong)byteVar4 * 2];\n            while ((byteVar2 & 0x40) != 0) {\n              byteVar4 = bytePtr4[1];\n              bytePtr4 = bytePtr4 + 1;\n              byteVar2 = (&_sch_istable)[(ulong)byteVar4 * 2];\n            }\n            longVar4 = longVar4 + 1;\n          } while (byteVar4 != 0);\n          free(bytePtr3);\n          paramPtr2 = paramPtr;\n          if (argv == paramPtr) goto LAB_00102adb;\n          goto LAB_00102807;\n        }\nLAB_00102abe:\n        longPtr1 = (long *)allocateMemory(8);\n        *longPtr1 = 0;\n        if (argv == paramPtr) {\nLAB_00102adb:\n          if (*paramPtr == 0) {\n            intVar1 = 0;\n          }\n          else {\n            longVar1 = 1;\n            do {\n              intVar1 = (int)longVar1;\n              paramPtr2 = paramPtr + longVar1;\n              longVar1 = longVar1 + 1;\n            } while (*paramPtr2 != 0);\n          }\n          longVar3 = 0;\n          paramPtr2 = (long *)allocateMemory((long)(intVar1 + 1) << 3);\n          longVar1 = *paramPtr;\n          while (longVar1 != 0) {\n            uintVar2 = duplicateString();\n            *(undefined8 *)((long)paramPtr2 + longVar3) = uintVar2;\n            longVar3 = longVar3 + 8;\n            longVar1 = *(long *)((long)paramPtr + longVar3);\n          }\n          *(undefined8 *)((long)paramPtr2 + longVar3) = 0;\nLAB_00102807:\n          paramPtr = paramPtr2;\n          if (*longPtr1 == 0) goto LAB_00102ba3;\n          longVar1 = 0;\n          do {\n            longVar1 = longVar1 + 1;\n          } while (longPtr1[longVar1] != 0);\n          size_tVar3 = longVar1 * 8;\n        }\n        else {\nLAB_00102ba3:\n          longVar1 = 0;\n          size_tVar3 = 0;\n        }\n        free((void *)paramPtr[longVar2]);\n        paramPtr = (long *)reallocateMemory(paramPtr,(longVar1 + 1 + (long)argc) * 8);\n        intVar1 = argc + -1 + (int)longVar1;\n        moveMemory(paramPtr + longVar2 + longVar1,paramPtr + longVar2 + 1,(long)(argc - intVar2) << 3);\n        copyMemory(paramPtr + longVar2,longPtr1,size_tVar3);\n        free(longPtr1);\n        free(bytePtr2);\n        closeFile(filePtr);\n        uintVar1 = intVar3 + 1;\n        ulongVar1 = longVar2 * 8;\n        argc = intVar1;\n        if (intVar1 <= (int)uintVar1) break;\n      }\n      else {\nLAB_00102900:\n        if (argc <= intVar2 + 1) break;\nLAB_0010290d:\n        uintVar1 = intVar2 + 1;\n        intVar3 = intVar2;\n      }\n      ulongVar1 = (ulong)uintVar1;\n    } while( true );\n  }\n  ptrToUndefined1 = long_options;\n  while (intVar2 = getopt_long(argc,paramPtr,\"_hinprRs:tv\",long_options,0), intVar2 != -1) {\n    switch(intVar2) {\n    case 0x3f:\nswitchD_001029f9_caseD_3f:\n      displayUsage(stderr,1);\n    case 0x5f:\nswitchD_001029f9_caseD_5f:\n      stripUnderscore = 1;\n      break;\n    default:\n      do {\n        intVar2 = getopt_long(argc,paramPtr,\"_hinprRs:tv\",long_options,0);\n        if (intVar2 == -1) goto LAB_00102a6c;\n        switch(intVar2) {\n        case 0x3f:\n          goto switchD_001029f9_caseD_3f;\n        case 0x52:\n          goto switchD_001029f9_caseD_52;\n        case 0x5f:\n          goto switchD_001029f9_caseD_5f;\n        case 0x68:\n          goto switchD_001029f9_caseD_68;\n        case 0x69:\n          goto switchD_001029f9_caseD_69;\n        case 0x6e:\n          goto switchD_001029f9_caseD_6e;\n        case 0x70:\n          goto switchD_001029f9_caseD_70;\n        case 0x72:\n          goto switchD_001029f9_caseD_72;\n        case 0x73:\n          goto switchD_001029f9_caseD_73;\n        case 0x74:\n          goto switchD_001029f9_caseD_74;\n        case 0x76:\n          goto switchD_001029f9_caseD_76;\n        }\n      } while( true );\n    case 0x52:\nswitchD_001029f9_caseD_52:\n      flags = flags & 0xfffbffff;\n      break;\n    case 0x68:\nswitchD_001029f9_caseD_68:\n      displayUsage(stdout,0);\n    case 0x74:\nswitchD_001029f9_caseD_74:\n      flags = flags | 0x10;\n      break;\n    case 0x69:\nswitchD_001029f9_caseD_69:\n      flags = flags & 0xfffffff7;\n      break;\n    case 0x6e:\nswitchD_001029f9_caseD_6e:\n      stripUnderscore = 0;\n      break;\n    case 0x70:\nswitchD_001029f9_caseD_70:\n      flags = flags & 0xfffffffe;\n      break;\n    case 0x72:\nswitchD_001029f9_caseD_72:\n      flags = flags | 0x40000;\n      break;\n    case 0x73:\nswitchD_001029f9_caseD_73:\n      intVar2 = demangleNameToStyle(optionArgument);\n      if (intVar2 == 0) {\n        printFormatted(stderr,\"%s: unknown demangling style `%s\\'\\n\",programName,optionArgument);\n        return 1;\n      }\n      setDemangleStyle(intVar2);\n      break;\n    case 0x76:\nswitchD_001029f9_caseD_76:\n      printf(\"GNU %s %s\\n\",\"c++filt\",\"(GNU Binutils for Debian) 2.40\");\n      charPtr = (char *)dcgettext(0,\"Copyright (C) 2023 Free Software Foundation, Inc.\\n\",5);\n      printf(charPtr);\n      charPtr = (char *)dcgettext(0,\n                                  \"This program is free software; you may redistribute it under the terms of\\nthe GNU General Public License version 3 or (at your option) any later version.\\nThis program has absolutely no warranty.\\n\"\n                                  ,5);\n      printf(charPtr);\n                    \n      exit(0);\n    }\n  }\nLAB_00102a6c:\n  if (_optionIndex < argc) {\n    do {\n      demangle_it(paramPtr[_optionIndex]);\n      putCharacter(10,stdout);\n      _optionIndex = _optionIndex + 1;\n    } while (_optionIndex < argc);\n  }\n  else {\n    if (_current_demangling_style == 0x8000) {\nLAB_00102c76:\n      ptrToUndefined1 = &stdout;\n      do {\n        ulongVar1 = 0;\n        uintVar1 = getCharacterFromFile2(_stdin);\n        while( true ) {\n          paramPtr = (long *)(ulongVar1 & 0xffffffff);\n          if (uintVar1 == 0xffffffff) goto LAB_00102d0d;\n          if ((((&_sch_istable)[(ulong)(uintVar1 & 0xff) * 2] & 0x8c) == 0) &&\n             (charPtr = strchr(\"_$.\",uintVar1), charPtr == (char *)0x0)) {\n            if ((int)paramPtr != 0) goto LAB_00102d6f;\n            goto LAB_00102d47;\n          }\n          if (ulongVar1 == 0x7ffe) break;\n          (&mbuffer_0)[ulongVar1] = (char)uintVar1;\n          ulongVar1 = ulongVar1 + 1;\n          uintVar1 = getCharacterFromFile2(_stdin);\n        }\n        paramPtr = (long *)0x7ffe;\nLAB_00102d6f:\n        *(undefined *)(paramPtr + 0x20a28) = 0;\n        demangle_it(&mbuffer_0);\nLAB_00102d47:\n        putCharacter(uintVar1,stdout);\n        if (uintVar1 == 10) {\n          flushBuffer(stdout);\n        }\n      } while( true );\n    }\n    if (_current_demangling_style < 0x8001) {\n      if (((_current_demangling_style == 0x100) || (_current_demangling_style == 0x4000)) ||\n         (_current_demangling_style == 4)) goto LAB_00102c76;\n    }\n    else if ((_current_demangling_style - 0x10000U & 0xfffeffff) == 0) goto LAB_00102c76;\n    fatalError(\"Internal error: no symbol alphabet for current style\");\nLAB_00102d0d:\n    if ((int)ulongVar1 != 0) {\n      *(undefined *)(paramPtr + 0x20a28) = 0;\n      demangle_it();\n    }\n    flushBuffer(*(FILE **)ptrToUndefined1);\n  }\n  return 0;\nLAB_00102670:\n  byteVar4 = bytePtr4[1];\n  bytePtr4 = bytePtr4 + 1;\n  if (byteVar4 == 0) goto LAB_00102abe;\n  goto LAB_00102680;\n}\n\n",
+            "called": [
+                "memcpy",
+                "bfd_set_error_program_name",
+                "fseek",
+                "ftell",
+                "fatal.constprop.0",
+                "dcgettext",
+                "usage",
+                "xexit",
+                "demangle_it",
+                "stat",
+                "putc",
+                "exit",
+                "fopen",
+                "getc",
+                "fprintf",
+                "xrealloc",
+                "memmove",
+                "cplus_demangle_set_style",
+                "strchr",
+                "strlen",
+                "fclose",
+                "fread",
+                "getopt_long",
+                "xstrdup",
+                "printf",
+                "xmalloc",
+                "ferror",
+                "cplus_demangle_name_to_style",
+                "free",
+                "fflush",
+                "xmalloc_set_program_name"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001024f0",
+            "calling": [
+                "_start"
+            ],
+            "imported": false,
+            "current_name": "demangle_symbols_001024f0"
+        },
+        "FUN_001021d0": {
+            "renaming": {},
+            "code": "\n\n\nFILE * fopen(char *__filename,char *__modes)\n\n{\n  FILE *pFVar1;\n  \n  pFVar1 = fopen(__filename,__modes);\n  return pFVar1;\n}\n\n",
+            "called": [
+                "fopen"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021d0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021d0"
+        },
+        "FUN_00102090": {
+            "renaming": {},
+            "code": "\nvoid dcgettext(void)\n\n{\n  dcgettext();\n  return;\n}\n\n",
+            "called": [
+                "dcgettext"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102090",
+            "calling": [
+                "usage",
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102090"
+        },
+        "FUN_00102170": {
+            "renaming": {},
+            "code": "\n\n\nvoid * memcpy(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memcpy(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "called": [
+                "memcpy"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102170",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102170"
+        },
+        "FUN_0010e130": {
+            "renaming": {},
+            "code": "\n\n\n\nvoid exit(int __status)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* exit@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e130",
+            "calling": [
+                "exit",
+                "usage"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e130"
+        },
+        "FUN_0010e010": {
+            "renaming": {},
+            "code": "\n\n\nvoid __libc_start_main(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* __libc_start_main@GLIBC_2.34 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e010",
+            "calling": [
+                "_start"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e010"
+        },
+        "FUN_0010e050": {
+            "renaming": {},
+            "code": "\n\n\n\nint fclose(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fclose@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e050",
+            "calling": [
+                "fclose"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e050"
+        },
+        "FUN_00102210": {
+            "renaming": {},
+            "code": "\n\n\nint getc(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = getc(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "getc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102210",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102210"
+        },
+        "FUN_0010e0b8": {
+            "renaming": {},
+            "code": "\n\n\n\nint putc(int __c,FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* putc@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e0b8",
+            "calling": [
+                "putc"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e0b8"
+        },
+        "FUN_00102050": {
+            "renaming": {},
+            "code": "\n\n\nint ferror(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = ferror(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "ferror"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102050",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102050"
+        },
+        "FUN_00102130": {
+            "renaming": {},
+            "code": "\n\n\nint putc(int __c,FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = putc(__c,__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "putc"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102130",
+            "calling": [
+                "main",
+                "demangle_it",
+                "fatal.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102130"
+        },
+        "FUN_001021a0": {
+            "renaming": {},
+            "code": "\nvoid cplus_demangle(void)\n\n{\n  cplus_demangle();\n  return;\n}\n\n",
+            "called": [
+                "cplus_demangle"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021a0",
+            "calling": [
+                "demangle_it"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021a0"
+        },
+        "FUN_0010e0d0": {
+            "renaming": {},
+            "code": "\n\n\n\nlong ftell(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* ftell@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e0d0",
+            "calling": [
+                "ftell"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e0d0"
+        },
+        "FUN_001021e0": {
+            "renaming": {},
+            "code": "\nvoid xexit(void)\n\n{\n  xexit();\n  return;\n}\n\n",
+            "called": [
+                "xexit"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001021e0",
+            "calling": [
+                "main",
+                "fatal.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "FUN_001021e0"
+        },
+        "FUN_001020c0": {
+            "renaming": {},
+            "code": "\n\n\nchar * strchr(char *__s,int __c)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strchr(__s,__c);\n  return pcVar1;\n}\n\n",
+            "called": [
+                "strchr"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x001020c0",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_001020c0"
+        },
+        "FUN_0010e068": {
+            "renaming": {},
+            "code": "\n\n\n\nsize_t strlen(char *__s)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* strlen@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e068",
+            "calling": [
+                "strlen"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e068"
+        },
+        "FUN_00102060": {
+            "renaming": {},
+            "code": "\n\n\nsize_t fread(void *__ptr,size_t __size,size_t __n,FILE *__stream)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fread(__ptr,__size,__n,__stream);\n  return sVar1;\n}\n\n",
+            "called": [
+                "fread"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102060",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102060"
+        },
+        "FUN_00102180": {
+            "renaming": {},
+            "code": "\n\n\nint fflush(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fflush(__stream);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fflush"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102180",
+            "calling": [
+                "main",
+                "fatal.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102180"
+        },
+        "FUN_0010e148": {
+            "renaming": {},
+            "code": "\n\n\n\nint getc(FILE *__stream)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* getc@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e148",
+            "calling": [
+                "getc"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e148"
+        },
+        "FUN_00102e20": {
+            "renaming": {
+                "FUN_00102e20": "report_internal_error_00102e20",
+                "_stdout": "stdoutBuffer",
+                "_stderr": "stderrStream",
+                "program_name": "programName",
+                "xexit": "exitWithError"
+            },
+            "code": "\n\n\nvoid reportInternalError_00102e20(void)\n\n{\n  fflush(stdoutBuffer);\n  fprintf(stderrStream,\"%s: \",programName);\n  fwrite(\"Internal error: no symbol alphabet for current style\",1,0x34,stderrStream);\n  putc(10,stderrStream);\n  exitWithError(1);\n  return;\n}\n\n",
+            "called": [
+                "putc",
+                "xexit",
+                "fwrite",
+                "fprintf",
+                "fflush"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102e20",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "report_internal_error_00102e20"
+        },
+        "FUN_00102f00": {
+            "renaming": {
+                "FUN_00102f00": "FUNC_00102f00"
+            },
+            "code": "\nvoid FUNC_00102f00(void)\n\n{\n  return;\n}\n\n",
+            "called": [],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00102f00",
+            "calling": [],
+            "imported": false,
+            "current_name": "FUNC_00102f00"
+        },
+        "FUN_0010e100": {
+            "renaming": {},
+            "code": "\n\n\n\nint fseek(FILE *__stream,long __off,int __whence)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* fseek@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e100",
+            "calling": [
+                "fseek"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e100"
+        },
+        "FUN_00102220": {
+            "renaming": {},
+            "code": "\nvoid __cxa_finalize(void)\n\n{\n  __cxa_finalize();\n  return;\n}\n\n",
+            "called": [
+                "__cxa_finalize"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102220",
+            "calling": [
+                "__do_global_dtors_aux"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102220"
+        },
+        "FUN_0010e060": {
+            "renaming": {},
+            "code": "\n\n\nvoid dcgettext(void)\n\n{\n                    /* WARNING: Bad instruction - Truncating control flow here */\n                    /* dcgettext@GLIBC_2.2.5 */\n  halt_baddata();\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x0010e060",
+            "calling": [
+                "dcgettext"
+            ],
+            "imported": false,
+            "current_name": "FUN_0010e060"
+        },
+        "FUN_00102100": {
+            "renaming": {},
+            "code": "\nvoid xmalloc_set_program_name(void)\n\n{\n  xmalloc_set_program_name();\n  return;\n}\n\n",
+            "called": [
+                "xmalloc_set_program_name"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102100",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102100"
+        },
+        "FUN_00102380": {
+            "renaming": {
+                "FUN_00102380": "print_identifier_00102380",
+                "param_1": "identifier",
+                "param_2": "arg1",
+                "param_3": "arg2",
+                "param_4": "arg3",
+                "uVar1": "startsWithDotOrDollar",
+                "__ptr": "demangledIdentifier",
+                "uVar2": "startIndex",
+                "strip_underscore": "shouldStripUnderscore"
+            },
+            "code": "\n\n\nvoid printIdentifier_00102380(char *identifier,undefined8 arg1,undefined8 arg2,undefined8 arg3)\n\n{\n  uint startsWithDotOrDollar;\n  void *demangledIdentifier;\n  ulong startIndex;\n  \n  startsWithDotOrDollar = (uint)(*identifier == '.' || *identifier == '$');\n  startIndex = (ulong)startsWithDotOrDollar;\n  if ((shouldStripUnderscore != 0) && (identifier[startsWithDotOrDollar] == '_')) {\n    startIndex = (ulong)(startsWithDotOrDollar + 1);\n  }\n  demangledIdentifier = (void *)cplus_demangle(identifier + startIndex,flags);\n  if (demangledIdentifier != (void *)0x0) {\n    if (*identifier == '.') {\n      putc(0x2e,_stdout);\n    }\n    printf(\"%s\",demangledIdentifier);\n    free(demangledIdentifier);\n    return;\n  }\n  printf(\"%s\",identifier,arg3);\n  return;\n}\n\n",
+            "called": [
+                "putc",
+                "demangle_it.cold",
+                "printf",
+                "cplus_demangle",
+                "free"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102380",
+            "calling": [
+                "main"
+            ],
+            "imported": false,
+            "current_name": "print_identifier_00102380"
+        },
+        "FUN_00102020": {
+            "renaming": {
+                "FUN_00102020": "call_external_function_00102020"
+            },
+            "code": "\nvoid callExternalFunction_00102020(void)\n\n{\n                    /* WARNING: Treating indirect jump as call */\n  (*(code *)(undefined *)0x0)();\n  return;\n}\n\n",
+            "called": [],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102020",
+            "calling": [],
+            "imported": false,
+            "current_name": "call_external_function_00102020"
+        },
+        "FUN_00102460": {
+            "renaming": {
+                "FUN_00102460": "FUNC_00102460"
+            },
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00102484) */\n/* WARNING: Removing unreachable block (ram,0x00102490) */\n\nvoid FUNC_00102460(void)\n\n{\n  return;\n}\n\n",
+            "called": [
+                "_ITM_registerTMCloneTable"
+            ],
+            "skipped": true,
+            "tags": [],
+            "improved": false,
+            "entrypoint": "0x00102460",
+            "calling": [
+                "frame_dummy"
+            ],
+            "imported": false,
+            "current_name": "FUNC_00102460"
+        },
+        "FUN_00102140": {
+            "renaming": {},
+            "code": "\n\n\nint fprintf(FILE *__stream,char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = fprintf(__stream,__format);\n  return iVar1;\n}\n\n",
+            "called": [
+                "fprintf"
+            ],
+            "skipped": false,
+            "tags": [],
+            "improved": true,
+            "entrypoint": "0x00102140",
+            "calling": [
+                "usage",
+                "main",
+                "fatal.constprop.0"
+            ],
+            "imported": false,
+            "current_name": "FUN_00102140"
+        }
+    },
+    "used_tokens": 11694,
+    "layers": [
+        [
+            "FUN_0010225e",
+            "FUN_00102230",
+            "FUN_001024a0",
+            "FUN_00102000",
+            "FUN_00102400",
+            "FUN_001024f0",
+            "FUN_00102e20",
+            "FUN_00102380",
+            "FUN_00102020"
+        ]
+    ],
+    "locked_functions": []
+}
