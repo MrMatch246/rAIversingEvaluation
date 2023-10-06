@@ -75,11 +75,6 @@
             "predicted": "get_exception_number_00000d2a",
             "score": 0.7543859649122806
         },
-        "0x00001d08": {
-            "original": "bitband_addr",
-            "predicted": "calculate_offset_00001d08",
-            "score": 0.6686507936507936
-        },
         "0x00000dcc": {
             "original": "wdog_disable",
             "predicted": "initialize_memory_00000dcc",
@@ -90,15 +85,10 @@
             "predicted": "calculate_offset_000010a0",
             "score": 0.6354166666666666
         },
-        "0x00002714": {
-            "original": "NVIC_EnableIRQ",
-            "predicted": "set_bit_in_memory_00002714",
-            "score": 0.4
-        },
         "0x000015d0": {
             "original": "uart_write",
             "predicted": "copy_data_000015d0",
-            "score": 0.6030769230769231
+            "score": 0.6030769230769232
         },
         "0x00001748": {
             "original": "kinetis_mcg_set_fll_factor",
@@ -109,6 +99,11 @@
             "original": "kinetis_mcg_set_pee",
             "predicted": "initialize_data_00001ad4",
             "score": 0.37772893772893773
+        },
+        "0x00001d08": {
+            "original": "bitband_addr",
+            "predicted": "calculate_offset_00001d08",
+            "score": 0.6686507936507936
         },
         "0x00001d5e": {
             "original": "port",
@@ -170,15 +165,20 @@
             "predicted": "update_pointer_0000240c",
             "score": 0.6408730158730159
         },
-        "0x00002744": {
-            "original": "NVIC_SetPriority",
-            "predicted": "update_data_00002744",
-            "score": 0.5666666666666667
-        },
         "0x000026f0": {
             "original": "rtc_cb",
             "predicted": "execute_callback_000026f0",
             "score": 1.0
+        },
+        "0x00002714": {
+            "original": "NVIC_EnableIRQ",
+            "predicted": "set_bit_in_memory_00002714",
+            "score": 0.4
+        },
+        "0x00002744": {
+            "original": "NVIC_SetPriority",
+            "predicted": "update_data_00002744",
+            "score": 0.5666666666666667
         },
         "0x0000281c": {
             "original": "rtt_get_counter",
@@ -233,7 +233,7 @@
         "0x000039e8": {
             "original": "saul_class_to_str",
             "predicted": "get_class_name_000039e8",
-            "score": 0.8000000000000002
+            "score": 0.7999999999999999
         },
         "0x00003d24": {
             "original": "saul_reg_find_nth",
@@ -432,20 +432,10 @@
             "predicted": "infinite_loop_00000e58",
             "score": 0.5
         },
-        "0x00002798": {
-            "original": "cortexm_isr_end",
-            "predicted": "check_and_set_flag_00002798",
-            "score": 0.672979797979798
-        },
-        "0x00001d3a": {
-            "original": "bit_set32",
-            "predicted": "set_offset_to_value_00001d3a",
-            "score": 0.7456140350877193
-        },
         "0x000014c4": {
             "original": "uart_init_uart",
             "predicted": "update_configuration_000014c4",
-            "score": 0.31142857142857144
+            "score": 0.3114285714285714
         },
         "0x000016ec": {
             "original": "bit_set8",
@@ -456,6 +446,11 @@
             "original": "bit_clear8",
             "predicted": "clear_memory_00001710",
             "score": 0.8333333333333333
+        },
+        "0x00001d3a": {
+            "original": "bit_set32",
+            "predicted": "set_offset_to_value_00001d3a",
+            "score": 0.7456140350877193
         },
         "0x00001ec4": {
             "original": "ctx_clear",
@@ -501,6 +496,11 @@
             "original": "rtc_poweroff",
             "predicted": "clear_interrupt_flag_000026e4",
             "score": 0.6029411764705883
+        },
+        "0x00002798": {
+            "original": "cortexm_isr_end",
+            "predicted": "check_and_set_flag_00002798",
+            "score": 0.672979797979798
         },
         "0x000027b0": {
             "original": "rtt_init",
@@ -637,7 +637,7 @@
         "0x000018bc": {
             "original": "kinetis_mcg_set_fei",
             "predicted": "initialize_memory_000018bc",
-            "score": 0.4102564102564103
+            "score": 0.41025641025641024
         },
         "0x00001960": {
             "original": "kinetis_mcg_set_fbi",
@@ -647,12 +647,12 @@
         "0x00001a60": {
             "original": "kinetis_mcg_set_pbe",
             "predicted": "initialize_memory_00001a60",
-            "score": 0.4102564102564103
+            "score": 0.41025641025641024
         },
         "0x00001bb8": {
             "original": "kinetis_mcg_set_safe_mode",
             "predicted": "clear_memory_and_update_flags_00001bb8",
-            "score": 0.5885782833151254
+            "score": 0.5885782833151253
         },
         "0x00001ddc": {
             "original": "clk_en",
@@ -721,6 +721,71 @@
         }
     },
     "3": {
+        "0x00000db0": {
+            "original": "pre_startup",
+            "predicted": "initialize_and_clear_memory_00000db0",
+            "score": 0.35294117647058826
+        },
+        "0x000012b4": {
+            "original": "isrpipe_write_one",
+            "predicted": "update_and_handle_interrupt_000012b4",
+            "score": 0.49375
+        },
+        "0x00001688": {
+            "original": "isr_uart0_rx_tx",
+            "predicted": "execute_flagged_function_00001688",
+            "score": 0.39
+        },
+        "0x0000191c": {
+            "original": "kinetis_mcg_set_fee",
+            "predicted": "initialize_memory_0000191c",
+            "score": 0.39487179487179486
+        },
+        "0x000019c0": {
+            "original": "kinetis_mcg_set_fbe",
+            "predicted": "initialize_memory_000019c0",
+            "score": 0.41025641025641024
+        },
+        "0x00001a18": {
+            "original": "kinetis_mcg_set_blpi",
+            "predicted": "initialize_memory_00001a18",
+            "score": 0.41025641025641024
+        },
+        "0x00001a3c": {
+            "original": "kinetis_mcg_set_blpe",
+            "predicted": "initialize_memory_00001a3c",
+            "score": 0.41025641025641024
+        },
+        "0x00001f80": {
+            "original": "gpio_init_port",
+            "predicted": "update_data_00001f80",
+            "score": 0.48809523809523814
+        },
+        "0x000020b8": {
+            "original": "isr_porta",
+            "predicted": "initialize_data_processing_000020b8",
+            "score": 0.4
+        },
+        "0x000020cc": {
+            "original": "isr_portb",
+            "predicted": "process_data_000020cc",
+            "score": 0.3666666666666667
+        },
+        "0x000020e0": {
+            "original": "isr_portc",
+            "predicted": "process_data_000020e0",
+            "score": 0.3666666666666667
+        },
+        "0x000020f4": {
+            "original": "isr_portd",
+            "predicted": "process_data_000020f4",
+            "score": 0.3666666666666667
+        },
+        "0x00002108": {
+            "original": "isr_porte",
+            "predicted": "process_data_00002108",
+            "score": 0.3666666666666667
+        },
         "0x00002396": {
             "original": "periph_init",
             "predicted": "initialize_system_00002396",
@@ -755,71 +820,6 @@
             "original": "__ssvfiscanf_r",
             "predicted": "process_data_000061cc",
             "score": 0.7058823529411765
-        },
-        "0x00000db0": {
-            "original": "pre_startup",
-            "predicted": "initialize_and_clear_memory_00000db0",
-            "score": 0.35294117647058826
-        },
-        "0x000012b4": {
-            "original": "isrpipe_write_one",
-            "predicted": "update_and_handle_interrupt_000012b4",
-            "score": 0.4937499999999999
-        },
-        "0x00001688": {
-            "original": "isr_uart0_rx_tx",
-            "predicted": "execute_flagged_function_00001688",
-            "score": 0.39
-        },
-        "0x0000191c": {
-            "original": "kinetis_mcg_set_fee",
-            "predicted": "initialize_memory_0000191c",
-            "score": 0.3948717948717949
-        },
-        "0x000019c0": {
-            "original": "kinetis_mcg_set_fbe",
-            "predicted": "initialize_memory_000019c0",
-            "score": 0.4102564102564103
-        },
-        "0x00001a18": {
-            "original": "kinetis_mcg_set_blpi",
-            "predicted": "initialize_memory_00001a18",
-            "score": 0.4102564102564103
-        },
-        "0x00001a3c": {
-            "original": "kinetis_mcg_set_blpe",
-            "predicted": "initialize_memory_00001a3c",
-            "score": 0.4102564102564103
-        },
-        "0x00001f80": {
-            "original": "gpio_init_port",
-            "predicted": "update_data_00001f80",
-            "score": 0.4880952380952381
-        },
-        "0x000020b8": {
-            "original": "isr_porta",
-            "predicted": "initialize_data_processing_000020b8",
-            "score": 0.4
-        },
-        "0x000020cc": {
-            "original": "isr_portb",
-            "predicted": "process_data_000020cc",
-            "score": 0.3666666666666667
-        },
-        "0x000020e0": {
-            "original": "isr_portc",
-            "predicted": "process_data_000020e0",
-            "score": 0.3666666666666667
-        },
-        "0x000020f4": {
-            "original": "isr_portd",
-            "predicted": "process_data_000020f4",
-            "score": 0.3666666666666667
-        },
-        "0x00002108": {
-            "original": "isr_porte",
-            "predicted": "process_data_00002108",
-            "score": 0.3666666666666667
         }
     },
     "4": {
@@ -831,7 +831,7 @@
         "0x00001b10": {
             "original": "kinetis_mcg_set_mode",
             "predicted": "initialize_components_00001b10",
-            "score": 0.4678787878787878
+            "score": 0.4678787878787879
         },
         "0x00001eea": {
             "original": "gpio_init",
@@ -853,7 +853,7 @@
         "0x00001c84": {
             "original": "kinetis_mcg_init",
             "predicted": "initialize_system_00001c84",
-            "score": 0.5166666666666667
+            "score": 0.5166666666666666
         },
         "0x00005100": {
             "original": "_tzset_unlocked",
@@ -1071,7 +1071,7 @@
         "0x00002b10": {
             "original": "handle_input_line",
             "predicted": "process_command_00002b10",
-            "score": 0.7948051948051948
+            "score": 0.7948051948051947
         }
     },
     "20": {
@@ -1104,7 +1104,7 @@
         "0x00000cc0": {
             "original": "dummy_handler_default",
             "predicted": "handle_irq_interrupts_00000cc0",
-            "score": 0.3873015873015873
+            "score": 0.38730158730158726
         },
         "0x00000fec": {
             "original": "cib_init",
@@ -1119,7 +1119,7 @@
         "0x000013b8": {
             "original": "uart_init",
             "predicted": "update_configuration_000013b8",
-            "score": 0.31142857142857144
+            "score": 0.3114285714285714
         },
         "0x00003ec4": {
             "original": "fmt_s32_dfp",
@@ -1136,7 +1136,7 @@
         "0x00000df4": {
             "original": "uart_stdio_init",
             "predicted": "initialize_configuration_00000df4",
-            "score": 0.46747474747474743
+            "score": 0.4674747474747475
         },
         "0x000010d4": {
             "original": "thread_create",
