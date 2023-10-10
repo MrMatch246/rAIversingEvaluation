@@ -1,0 +1,3845 @@
+{
+    "functions": {
+        "FUN_00102020": {
+            "additional_data": {
+                "DAT_": {
+                    "": 1
+                },
+                "FUN_00102020": {
+                    "call_function_at_address_zero": 1,
+                    "call_function_from_address": 1,
+                    "call_indirect_jump": 1,
+                    "execute_external_function": 1,
+                    "execute_function": 1,
+                    "execute_function_at_address": 2,
+                    "execute_indirect_call": 5,
+                    "execute_indirect_function": 5,
+                    "execute_indirect_jump": 13,
+                    "initialize_function": 1
+                },
+                "PTR_": {
+                    "": 1
+                },
+                "PTR_00102020": {
+                    "indirect_function_pointer": 1
+                },
+                "PTR_FUN_00102020": {
+                    "indirect_function_pointer": 1
+                },
+                "code": {
+                    "function_pointer": 2,
+                    "indirect_function": 1,
+                    "indirect_jump_func": 1,
+                    "jump_function": 1
+                },
+                "original_parameter_name_1": {
+                    "parameter1": 1
+                },
+                "original_variable_name_1": {
+                    "variable1": 1
+                },
+                "undefined": {
+                    "address": 2,
+                    "func_ptr": 1,
+                    "function_address": 2,
+                    "function_pointer": 4,
+                    "indirect_function_pointer": 2,
+                    "jump_target": 1,
+                    "pointer": 1,
+                    "target_address": 1
+                }
+            },
+            "called": [],
+            "calling": [],
+            "code": "\nvoid execute_indirect_jump_00102020(void)\n\n{\n                    /* WARNING: Treating indirect jump as call */\n  (*(function_pointer *)(function_pointer *)0x0)();\n  return;\n}\n\n",
+            "current_name": "execute_indirect_jump_00102020",
+            "entrypoint": "0x00102020",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_00102020": "execute_indirect_jump_00102020",
+                "code": "function_pointer",
+                "undefined": "function_pointer"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "FUN_001023a0": {
+            "additional_data": {
+                "FUN_001023a0": {
+                    "handle_error": 1,
+                    "log_error": 1,
+                    "print_error": 5,
+                    "print_error_message": 24
+                },
+                "_stderr": {
+                    "standard_error": 1
+                },
+                "_stdout": {
+                    "standard_output": 1
+                },
+                "dcgettext": {
+                    "get_localized_message": 1
+                },
+                "uVar1": {
+                    "err_message": 1,
+                    "error_cause": 1,
+                    "error_message": 18,
+                    "error_msg": 3,
+                    "error_string": 1
+                },
+                "unaff_RBX": {
+                    "error_cause": 2,
+                    "error_code": 21,
+                    "error_flag": 6,
+                    "error_type": 1,
+                    "is_error_unknown": 1
+                },
+                "unaff_retaddr": {
+                    "return_address": 31
+                }
+            },
+            "called": [
+                "fprintf",
+                "fflush",
+                "dcgettext"
+            ],
+            "calling": [
+                "FUN_00103c70"
+            ],
+            "code": "\n\n\nvoid print_error_message_001023a0(void)\n\n{\n  undefined8 error_message;\n  long error_code;\n  undefined8 return_address;\n  \n  error_message = dcgettext(0,\"cause of error unknown\",5);\n  fflush(standard_output);\n  if (error_code != 0) {\n    fprintf(standard_error,\"%s: %s: %s\\n\",DAT_00106438);\n    return;\n  }\n  fprintf(standard_error,\"%s: %s\\n\",DAT_00106438,error_message,return_address);\n  return;\n}\n\n",
+            "current_name": "print_error_message_001023a0",
+            "entrypoint": "0x001023a0",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_001023a0": "print_error_message_001023a0",
+                "_stderr": "standard_error",
+                "_stdout": "standard_output",
+                "dcgettext": "get_localized_message",
+                "uVar1": "error_message",
+                "unaff_RBX": "error_code",
+                "unaff_retaddr": "return_address"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "FUN_001023e1": {
+            "additional_data": {
+                "FUN_001023e1": {
+                    "print_help_message": 1,
+                    "print_usage": 23,
+                    "print_usage_and_exit": 2,
+                    "print_usage_info": 5
+                },
+                "__ptr": {
+                    "bfd_target_list": 1,
+                    "ptr_list": 1,
+                    "target_list": 27
+                },
+                "bfd_target_list": {
+                    "list_supported_targets": 1
+                },
+                "dcgettext": {
+                    "get_locale_text": 1,
+                    "get_localized_message": 1,
+                    "get_message": 1,
+                    "get_translated_string": 1,
+                    "get_translated_text": 1,
+                    "gettext": 1,
+                    "translate_string": 1,
+                    "translate_text": 1
+                },
+                "exit": {
+                    "exit_program": 2,
+                    "terminate_execution": 1,
+                    "terminate_program": 3
+                },
+                "fprintf": {
+                    "print_formatted": 1,
+                    "print_message": 1,
+                    "print_to_output": 1,
+                    "write_formatted": 4,
+                    "write_to_output": 2
+                },
+                "fputc": {
+                    "put_char": 1,
+                    "put_character": 1,
+                    "write_char": 1,
+                    "write_char_to_output": 1,
+                    "write_character": 4
+                },
+                "free": {
+                    "free_memory": 1,
+                    "release_memory": 5
+                },
+                "lVar1": {
+                    "default_target": 5,
+                    "language": 3,
+                    "language_code": 2,
+                    "language_id": 1,
+                    "language_variable1": 1,
+                    "language_version": 3,
+                    "supported_targets": 4,
+                    "supported_targets_message": 1,
+                    "supported_targets_msg": 1,
+                    "target": 3,
+                    "target_name": 5,
+                    "target_string": 1
+                },
+                "param_1": {
+                    "file": 7,
+                    "output_file": 22,
+                    "output_stream": 1
+                },
+                "param_2": {
+                    "error": 1,
+                    "exit_code": 29
+                },
+                "pcVar2": {
+                    "localized_string": 3,
+                    "localized_text": 1,
+                    "message": 19,
+                    "msg": 1,
+                    "text": 5,
+                    "translation": 1
+                },
+                "plVar3": {
+                    "current_target": 9,
+                    "list_pointer": 1,
+                    "list_ptr": 1,
+                    "ptr": 7,
+                    "ptr_entry": 1,
+                    "target": 4,
+                    "target_ptr": 6
+                }
+            },
+            "called": [
+                "exit",
+                "fprintf",
+                "bfd_target_list",
+                "free",
+                "dcgettext",
+                "fputc"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid print_usage_info_001023e1(FILE *output_file,int exit_code)\n\n{\n  long default_target;\n  char *message;\n  long *target_list;\n  long *current_target;\n  \n  default_target = DAT_00106438;\n  message = (char *)dcgettext(0,\"Usage: %s [option(s)] [addr(s)]\\n\",5);\n  fprintf(output_file,message,default_target);\n  message = (char *)dcgettext(0,\" Convert addresses into line number/file name pairs.\\n\",5);\n  fprintf(output_file,message);\n  message = (char *)dcgettext(0,\n                             \" If no addresses are specified on the command line, they will be read from stdin\\n\"\n                             ,5);\n  fprintf(output_file,message);\n  message = (char *)dcgettext(0,\n                             \" The options are:\\n  @<file>                Read options from <file>\\n  -a --addresses         Show addresses\\n  -b --target=<bfdname>  Set the binary file format\\n  -e --exe=<executable>  Set the input file name (default is a.out)\\n  -i --inlines           Unwind inlined functions\\n  -j --section=<name>    Read section-relative offsets instead of addresses\\n  -p --pretty-print      Make the output easier to read for humans\\n  -s --basenames         Strip directory names\\n  -f --functions         Show function names\\n  -C --demangle[=style]  Demangle function names\\n  -R --recurse-limit     Enable a limit on recursion whilst demangling.  [Default]\\n  -r --no-recurse-limit  Disable a limit on recursion whilst demangling\\n  -h --help              Display this information\\n  -v --version           Display the program\\'s version\\n\\n\"\n                             ,5);\n  fprintf(output_file,message);\n  default_target = DAT_00106438;\n  if (DAT_00106438 == 0) {\n    message = (char *)dcgettext(0,\"Supported targets:\",5);\n    fprintf(output_file,message);\n  }\n  else {\n    message = (char *)dcgettext(0,\"%s: supported targets:\",5);\n    fprintf(output_file,message,default_target);\n  }\n  target_list = (long *)bfd_target_list();\n  current_target = target_list;\n  while( true ) {\n    default_target = *current_target;\n    current_target = current_target + 1;\n    if (default_target == 0) break;\n    fprintf(output_file,\" %s\");\n  }\n  fputc(10,output_file);\n  free(target_list);\n  if (exit_code == 0) {\n    message = (char *)dcgettext(0,\"Report bugs to %s\\n\",5);\n    fprintf(output_file,message,\"<https://sourceware.org/bugzilla/>\");\n  }\n                    \n  terminate_program(exit_code);\n}\n\n",
+            "current_name": "print_usage_info_001023e1",
+            "entrypoint": "0x001023e1",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_001023e1": "print_usage_info_001023e1",
+                "__ptr": "target_list",
+                "bfd_target_list": "list_supported_targets",
+                "dcgettext": "translate_text",
+                "exit": "terminate_program",
+                "fprintf": "write_formatted",
+                "fputc": "write_character",
+                "free": "release_memory",
+                "lVar1": "default_target",
+                "param_1": "output_file",
+                "param_2": "exit_code",
+                "pcVar2": "message",
+                "plVar3": "current_target"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "FUN_00102540": {
+            "additional_data": {
+                "DAT_001063f0": {
+                    "data4": 1,
+                    "param4": 1,
+                    "ptr4": 1,
+                    "var3": 1,
+                    "var4": 1
+                },
+                "DAT_001063f4": {
+                    "data3": 1,
+                    "param3": 1,
+                    "ptr3": 1,
+                    "var2": 1,
+                    "var3": 1
+                },
+                "DAT_001063f8": {
+                    "data1": 1,
+                    "output1": 1,
+                    "output_data1": 1,
+                    "param1": 1,
+                    "param2": 1,
+                    "ptr1": 1,
+                    "var1": 1,
+                    "var4": 1
+                },
+                "DAT_00106400": {
+                    "data2": 1,
+                    "param2": 1,
+                    "ptr2": 1,
+                    "var1": 1,
+                    "var2": 1
+                },
+                "DAT_00106408": {
+                    "executed_flag": 1,
+                    "flag": 7,
+                    "has_processed": 1,
+                    "has_processed_data": 1,
+                    "is_data_processed": 1,
+                    "is_data_updated": 1,
+                    "is_initialized": 1
+                },
+                "DAT_00106410": {
+                    "comparison_value": 1,
+                    "data_end": 1,
+                    "data_limit": 1,
+                    "data_size_limit": 1,
+                    "data_threshold": 1,
+                    "ending_address": 1,
+                    "limit": 3,
+                    "max_offset": 2,
+                    "threshold": 1,
+                    "upper_limit": 1
+                },
+                "DAT_00106418": {
+                    "additional_data": 2,
+                    "additional_param": 1,
+                    "data1": 2,
+                    "extra_data": 2,
+                    "param1": 1,
+                    "param_3": 1,
+                    "result": 1,
+                    "result_ptr": 1,
+                    "unknown_data": 1
+                },
+                "FUN_00102540": {
+                    "check_and_execute_function": 1,
+                    "check_and_update_data": 2,
+                    "execute_data_processing": 1,
+                    "execute_function": 6,
+                    "execute_reverse_logic": 1,
+                    "handle_data": 2,
+                    "perform_action_if_needed": 1,
+                    "perform_action_on_data": 1,
+                    "process_data": 11
+                },
+                "PTR_DAT_001063f0": {
+                    "data_pointer4": 1
+                },
+                "PTR_DAT_001063f4": {
+                    "data_pointer3": 1
+                },
+                "PTR_DAT_001063f8": {
+                    "data_pointer1": 1
+                },
+                "PTR_DAT_00106400": {
+                    "data_pointer2": 1
+                },
+                "PTR_FUN_001064": {
+                    "function_pointer": 1
+                },
+                "PTR_param_1_plus_8": {
+                    "function_pointer_ptr": 1
+                },
+                "byte_24": {
+                    "flag": 1
+                },
+                "code_ptr": {
+                    "function_pointer": 1
+                },
+                "long_40": {
+                    "offset": 1
+                },
+                "param_1": {
+                    "arg1": 2,
+                    "argument1": 1,
+                    "data": 1,
+                    "data_handler": 1,
+                    "data_pointer": 2,
+                    "data_processor": 1,
+                    "data_ptr": 2,
+                    "data_struct": 1,
+                    "input1": 4,
+                    "input_address": 1,
+                    "input_data": 7,
+                    "input_data_param": 1,
+                    "input_function": 1,
+                    "input_one": 1,
+                    "input_param": 2,
+                    "input_param1": 2,
+                    "input_parameter": 1
+                },
+                "param_2": {
+                    "arg2": 2,
+                    "argument2": 1,
+                    "buffer": 4,
+                    "buffer_ptr": 1,
+                    "data": 2,
+                    "data_address": 1,
+                    "data_block": 1,
+                    "data_info": 1,
+                    "data_param": 2,
+                    "data_parameter": 1,
+                    "data_pointer": 1,
+                    "data_ptr": 1,
+                    "entry_ptr": 1,
+                    "info": 1,
+                    "info_pointer": 1,
+                    "input2": 4,
+                    "input_param2": 2,
+                    "input_two": 1,
+                    "memory_address_param": 1,
+                    "memory_pointer": 1,
+                    "structure_data": 1
+                },
+                "uVar1": {
+                    "address": 1,
+                    "buffer_offset": 2,
+                    "buffer_size": 2,
+                    "data_length": 1,
+                    "data_offset": 6,
+                    "data_size": 3,
+                    "data_var1": 1,
+                    "entry_size": 1,
+                    "offset": 4,
+                    "start_address": 1,
+                    "temp1": 1,
+                    "temp_value": 3,
+                    "temp_var1": 2,
+                    "value": 2,
+                    "value_one": 1
+                }
+            },
+            "called": [],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid process_data_00102540(long input_data,long input2)\n\n{\n  ulong data_offset;\n  \n  if ((DAT_00106408 == '\\0') && ((*(byte *)(input2 + 0x24) & 1) != 0)) {\n    data_offset = *(ulong *)(input2 + 0x30);\n    if ((data_offset <= DAT_00106410) && (DAT_00106410 < *(long *)(input2 + 0x40) + data_offset)) {\n      DAT_00106408 = (**(code **)(*(long *)(input_data + 8) + 0x240))\n                               (input_data,DAT_00106418,input2,DAT_00106410 - data_offset,&DAT_001063f8,\n                                &DAT_00106400,&DAT_001063f4,&DAT_001063f0);\n      return;\n    }\n  }\n  return;\n}\n\n",
+            "current_name": "process_data_00102540",
+            "entrypoint": "0x00102540",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_00102540": "process_data_00102540",
+                "param_1": "input_data",
+                "param_2": "input2",
+                "uVar1": "data_offset"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "FUN_001025c0": {
+            "additional_data": {
+                "10": {
+                    "newline": 1
+                },
+                "DAT_00106438": {
+                    "error_message_prefix": 1
+                },
+                "FUN_001025c0": {
+                    "print_error": 1,
+                    "print_error_message": 27,
+                    "print_formatted_error": 1,
+                    "print_formatted_message": 2
+                },
+                "PTR_DAT_00106438": {
+                    "error_prefix": 1
+                },
+                "__gnuc_va_list": {
+                    "arguments": 2
+                },
+                "_stderr": {
+                    "error_output": 1,
+                    "standard_error": 14,
+                    "stderr": 4,
+                    "stderr_buffer": 1,
+                    "stderr_file": 1,
+                    "stderr_stream": 3
+                },
+                "_stdout": {
+                    "standard_output": 15,
+                    "stdout": 4,
+                    "stdout_buffer": 1,
+                    "stdout_file": 1,
+                    "stdout_stream": 3
+                },
+                "fflush": {
+                    "flush_output_buffer": 1,
+                    "flush_standard_output": 1
+                },
+                "fprintf": {
+                    "format_error_message": 1,
+                    "print_formatted": 1,
+                    "print_to_standard_error": 1
+                },
+                "param_1": {
+                    "error_message": 14,
+                    "format_string": 5,
+                    "message": 9,
+                    "message_format": 3
+                },
+                "param_2": {
+                    "args": 10,
+                    "arguments": 14,
+                    "format_args": 2,
+                    "format_arguments": 1,
+                    "message_args": 2,
+                    "variable_arguments": 1
+                },
+                "putc": {
+                    "print_character": 1,
+                    "print_new_line": 1,
+                    "put_character": 2,
+                    "write_char": 1,
+                    "write_character": 2
+                },
+                "vfprintf": {
+                    "print_formatted_variable_arguments": 1
+                }
+            },
+            "called": [
+                "fprintf",
+                "fflush",
+                "vfprintf",
+                "putc"
+            ],
+            "calling": [
+                "FUN_00102620",
+                "FUN_00103bd0"
+            ],
+            "code": "\n\n\nvoid print_error_message_001025c0(char *error_message,arguments arguments)\n\n{\n  fflush(standard_output);\n  fprintf(standard_error,\"%s: \",DAT_00106438);\n  vfprintf(standard_error,error_message,arguments);\n  putc(10,standard_error);\n  return;\n}\n\n",
+            "current_name": "print_error_message_001025c0",
+            "entrypoint": "0x001025c0",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_001025c0": "print_error_message_001025c0",
+                "__gnuc_va_list": "arguments",
+                "_stderr": "standard_error",
+                "_stdout": "standard_output",
+                "fflush": "flush_standard_output",
+                "fprintf": "print_to_standard_error",
+                "param_1": "error_message",
+                "param_2": "arguments",
+                "putc": "write_character",
+                "vfprintf": "print_formatted_variable_arguments"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "FUN_00102620": {
+            "additional_data": {
+                "FUN_00102620": {
+                    "print_error": 1,
+                    "print_error_and_params": 1,
+                    "print_error_message": 29
+                },
+                "in_AL": {
+                    "check_flag": 1,
+                    "condition_flag": 4,
+                    "debug_mode": 1,
+                    "enable_condition": 1,
+                    "error_flag": 1,
+                    "flag": 12,
+                    "input_flag": 1,
+                    "is_enabled": 1,
+                    "is_error": 7,
+                    "should_print_error": 1
+                },
+                "local_18": {
+                    "arg8_copy": 2,
+                    "copy_param8": 1,
+                    "data2_copy": 1,
+                    "data4_copy": 1,
+                    "error_code8_copy": 2,
+                    "error_code8_value": 1,
+                    "error_detail2_copy": 1,
+                    "error_detail_copy": 1,
+                    "error_value3": 1,
+                    "local_18": 1,
+                    "local_param8": 1,
+                    "local_var15": 1,
+                    "local_var_10": 1,
+                    "local_variable15": 1,
+                    "param8": 3,
+                    "param8_copy": 7,
+                    "param8_local": 1,
+                    "param_8": 1,
+                    "param_8_copy": 1
+                },
+                "local_28": {
+                    "arg7_copy": 2,
+                    "copy_param7": 1,
+                    "data1_copy": 1,
+                    "data3_copy": 1,
+                    "error_code7_copy": 2,
+                    "error_code7_value": 1,
+                    "error_detail1_copy": 1,
+                    "error_reason_copy": 1,
+                    "error_value2": 1,
+                    "local_28": 1,
+                    "local_param7": 1,
+                    "local_var14": 1,
+                    "local_var_9": 1,
+                    "local_variable14": 1,
+                    "param7": 3,
+                    "param7_copy": 7,
+                    "param7_local": 1,
+                    "param_7": 1,
+                    "param_7_copy": 1
+                },
+                "local_38": {
+                    "arg6_copy": 2,
+                    "copy_param6": 1,
+                    "data2_copy": 1,
+                    "error_action_copy": 1,
+                    "error_code6_copy": 2,
+                    "error_code6_value": 1,
+                    "error_location_copy": 1,
+                    "error_value1": 1,
+                    "local_38": 1,
+                    "local_param6": 1,
+                    "local_var13": 1,
+                    "local_var_8": 1,
+                    "local_variable13": 1,
+                    "param6": 3,
+                    "param6_copy": 7,
+                    "param6_local": 1,
+                    "param_6": 1,
+                    "param_6_copy": 1,
+                    "timestamp_copy": 1
+                },
+                "local_48": {
+                    "arg5_copy": 2,
+                    "copy_param5": 1,
+                    "data1_copy": 1,
+                    "error_code5_copy": 2,
+                    "error_code5_value": 1,
+                    "error_flag": 1,
+                    "error_location_copy": 1,
+                    "error_source_copy": 1,
+                    "function_copy": 1,
+                    "local_48": 1,
+                    "local_param5": 1,
+                    "local_var12": 1,
+                    "local_var_7": 1,
+                    "local_variable12": 1,
+                    "param5": 3,
+                    "param5_copy": 7,
+                    "param5_local": 1,
+                    "param_5": 1,
+                    "param_5_copy": 1
+                },
+                "local_58": {
+                    "arg4_copy": 2,
+                    "copy_param4": 1,
+                    "error_code4_copy": 2,
+                    "error_code4_value": 1,
+                    "error_location": 1,
+                    "error_severity_copy": 2,
+                    "file_copy": 1,
+                    "local_58": 1,
+                    "local_param4": 1,
+                    "local_var11": 1,
+                    "local_var_6": 1,
+                    "local_variable11": 1,
+                    "message_copy": 1,
+                    "param4": 3,
+                    "param4_copy": 7,
+                    "param4_local": 1,
+                    "param_4": 1,
+                    "param_4_copy": 1
+                },
+                "local_68": {
+                    "arg3_copy": 2,
+                    "copy_param3": 1,
+                    "error_category_copy": 1,
+                    "error_code3_copy": 2,
+                    "error_code3_value": 1,
+                    "error_severity": 1,
+                    "error_type_copy": 1,
+                    "line_number_copy": 2,
+                    "local_68": 1,
+                    "local_param3": 1,
+                    "local_var10": 1,
+                    "local_var_5": 1,
+                    "local_variable10": 1,
+                    "param3": 3,
+                    "param3_copy": 7,
+                    "param3_local": 1,
+                    "param_3": 1,
+                    "param_3_copy": 1
+                },
+                "local_78": {
+                    "arg2_copy": 2,
+                    "copy_param2": 1,
+                    "error_category_copy": 1,
+                    "error_code2_copy": 2,
+                    "error_code2_value": 1,
+                    "error_msg_copy": 1,
+                    "error_type": 1,
+                    "error_type_copy": 1,
+                    "local_78": 1,
+                    "local_param2": 1,
+                    "local_var9": 1,
+                    "local_var_4": 1,
+                    "local_variable9": 1,
+                    "message_type_copy": 1,
+                    "param2": 3,
+                    "param2_copy": 6,
+                    "param2_local": 1,
+                    "param_2": 1,
+                    "param_2_copy": 1,
+                    "source_code_copy": 1
+                },
+                "local_88": {
+                    "copy_param1": 1,
+                    "error_code": 4,
+                    "error_code1_copy": 2,
+                    "error_code1_value": 1,
+                    "error_code_copy": 13,
+                    "error_code_local": 1,
+                    "local_88": 1,
+                    "local_param1": 1,
+                    "local_var8": 1,
+                    "local_var_3": 1,
+                    "local_variable8": 1,
+                    "param_1": 1,
+                    "param_1_copy": 1
+                },
+                "local_90": {
+                    "buffer5": 1,
+                    "error_message5": 1,
+                    "error_param5": 1,
+                    "error_param6": 1,
+                    "local_param14": 1,
+                    "local_var7": 1,
+                    "local_variable7": 1,
+                    "message_param_5": 1,
+                    "param14": 3,
+                    "param14_copy": 14,
+                    "param_14": 1,
+                    "param_e_copy": 1,
+                    "param_e_value": 1,
+                    "print_flag10": 1,
+                    "value5": 2
+                },
+                "local_98": {
+                    "buffer4": 1,
+                    "error_message4": 1,
+                    "error_param4": 1,
+                    "error_param5": 1,
+                    "local_param13": 1,
+                    "local_var6": 1,
+                    "local_variable6": 1,
+                    "message_param_4": 1,
+                    "param13": 3,
+                    "param13_copy": 14,
+                    "param_13": 1,
+                    "param_d_copy": 1,
+                    "param_d_value": 1,
+                    "print_flag9": 1,
+                    "value4": 2
+                },
+                "local_a0": {
+                    "buffer3": 1,
+                    "error_message3": 1,
+                    "error_param3": 1,
+                    "error_param4": 1,
+                    "local_param12": 1,
+                    "local_var5": 1,
+                    "local_variable5": 1,
+                    "message_param_3": 1,
+                    "param12": 3,
+                    "param12_copy": 14,
+                    "param_12": 1,
+                    "param_c_copy": 1,
+                    "param_c_value": 1,
+                    "print_flag8": 1,
+                    "value3": 2
+                },
+                "local_a8": {
+                    "buffer2": 1,
+                    "error_message2": 1,
+                    "error_param2": 1,
+                    "error_param3": 1,
+                    "local_param11": 1,
+                    "local_var4": 1,
+                    "local_variable4": 1,
+                    "message_param_2": 1,
+                    "param11": 3,
+                    "param11_copy": 14,
+                    "param_11": 1,
+                    "param_b_copy": 1,
+                    "param_b_value": 1,
+                    "print_flag7": 1,
+                    "value2": 2
+                },
+                "local_b0": {
+                    "buffer1": 1,
+                    "error_message1": 1,
+                    "error_param1": 1,
+                    "error_param2": 1,
+                    "local_param10": 1,
+                    "local_var3": 1,
+                    "local_variable3": 1,
+                    "message_param_1": 1,
+                    "param10": 3,
+                    "param10_copy": 14,
+                    "param_10": 1,
+                    "param_a_copy": 1,
+                    "param_a_value": 1,
+                    "print_flag6": 1,
+                    "value1": 2
+                },
+                "local_b8": {
+                    "buffer": 2,
+                    "char_buffer": 1,
+                    "data_buffer": 1,
+                    "error_array": 2,
+                    "error_buffer": 2,
+                    "error_message": 1,
+                    "local_array": 5,
+                    "local_array2": 1,
+                    "local_b8": 1,
+                    "local_buffer": 6,
+                    "local_data": 1,
+                    "message_buffer": 1,
+                    "stack_buffer": 1,
+                    "temp_buffer": 3,
+                    "temporary_array": 1,
+                    "temporary_buffer": 2
+                },
+                "local_c8": {
+                    "array_pointer": 1,
+                    "buffer": 2,
+                    "error_buffer": 1,
+                    "local_array": 1,
+                    "local_array_pointer": 1,
+                    "local_buffer": 12,
+                    "local_buffer_pointer": 1,
+                    "local_buffer_ptr": 2,
+                    "local_c8": 1,
+                    "local_pointer2": 2,
+                    "local_ptr": 1,
+                    "local_var2": 1,
+                    "local_var_2": 1,
+                    "pointer2": 1,
+                    "string": 1
+                },
+                "local_d0": {
+                    "buffer": 7,
+                    "buffer_pointer": 5,
+                    "buffer_ptr": 3,
+                    "local_array": 2,
+                    "local_buffer_address": 1,
+                    "local_pointer": 1,
+                    "local_pointer1": 1,
+                    "local_ptr": 1,
+                    "local_variable_pointer": 1,
+                    "local_variable_ptr": 1,
+                    "message_buffer": 1,
+                    "pointer1": 1,
+                    "pointer_to_stack": 1,
+                    "stack_pointer": 4
+                },
+                "local_d4": {
+                    "array_size": 3,
+                    "buffer_length": 1,
+                    "buffer_size": 1,
+                    "int_variable": 1,
+                    "length": 2,
+                    "local_d4": 1,
+                    "local_size": 1,
+                    "local_var1": 2,
+                    "local_var2": 1,
+                    "local_var_1": 1,
+                    "local_variable1": 1,
+                    "local_variable2": 2,
+                    "local_variable_size": 2,
+                    "max_buffer_size": 1,
+                    "memory_size": 1,
+                    "offset": 1,
+                    "string_size": 1
+                },
+                "local_d8": {
+                    "array_size": 1,
+                    "buffer_size": 17,
+                    "error_code_size": 1,
+                    "length": 1,
+                    "local_buffer_size": 1,
+                    "local_var1": 1,
+                    "local_variable1": 2,
+                    "message_length": 1,
+                    "size": 4,
+                    "stack_size": 1
+                },
+                "param_1": {
+                    "error_code": 26,
+                    "error_code1": 3,
+                    "error_type": 1
+                },
+                "param_10": {
+                    "error_message": 2,
+                    "error_message1": 1,
+                    "error_param1": 1,
+                    "message1": 1,
+                    "message_param_1": 1,
+                    "param10": 19,
+                    "param2": 1,
+                    "param_10": 1,
+                    "param_a": 3,
+                    "print_flag1": 1
+                },
+                "param_11": {
+                    "error_message2": 1,
+                    "error_param2": 1,
+                    "message2": 1,
+                    "message_param_2": 1,
+                    "param11": 21,
+                    "param3": 1,
+                    "param_11": 1,
+                    "param_b": 3,
+                    "print_flag2": 1
+                },
+                "param_12": {
+                    "error_message3": 1,
+                    "error_param3": 1,
+                    "message3": 1,
+                    "message_param_3": 1,
+                    "param12": 21,
+                    "param4": 1,
+                    "param_12": 1,
+                    "param_c": 3,
+                    "print_flag3": 1
+                },
+                "param_13": {
+                    "error_message4": 1,
+                    "error_param4": 1,
+                    "message4": 1,
+                    "message_param_4": 1,
+                    "param13": 21,
+                    "param5": 1,
+                    "param_13": 1,
+                    "param_d": 3,
+                    "print_flag4": 1
+                },
+                "param_14": {
+                    "error_message5": 1,
+                    "error_param5": 1,
+                    "message5": 1,
+                    "message_param_5": 1,
+                    "param14": 21,
+                    "param6": 1,
+                    "param_14": 1,
+                    "param_e": 3,
+                    "print_flag5": 1
+                },
+                "param_2": {
+                    "arg2": 2,
+                    "error_category": 1,
+                    "error_code": 1,
+                    "error_code2": 3,
+                    "error_msg": 1,
+                    "error_type": 2,
+                    "message_type": 1,
+                    "param2": 16,
+                    "param_2": 2,
+                    "source_code": 1
+                },
+                "param_3": {
+                    "arg3": 2,
+                    "error_category": 1,
+                    "error_code3": 3,
+                    "error_severity": 1,
+                    "error_type": 1,
+                    "line_number": 2,
+                    "param3": 18,
+                    "param_3": 2
+                },
+                "param_4": {
+                    "arg4": 2,
+                    "error_code4": 3,
+                    "error_location": 1,
+                    "error_severity": 2,
+                    "file": 1,
+                    "message": 1,
+                    "param4": 18,
+                    "param_4": 2
+                },
+                "param_5": {
+                    "arg5": 2,
+                    "data1": 1,
+                    "error_code5": 3,
+                    "error_flag": 1,
+                    "error_location": 1,
+                    "error_source": 1,
+                    "function": 1,
+                    "param5": 18,
+                    "param_5": 2
+                },
+                "param_6": {
+                    "arg6": 2,
+                    "data2": 1,
+                    "error_action": 1,
+                    "error_code6": 3,
+                    "error_location": 1,
+                    "error_value1": 1,
+                    "param6": 18,
+                    "param_6": 2,
+                    "timestamp": 1
+                },
+                "param_7": {
+                    "arg7": 2,
+                    "data1": 1,
+                    "data3": 1,
+                    "error_code7": 3,
+                    "error_detail1": 1,
+                    "error_reason": 1,
+                    "error_value2": 1,
+                    "param7": 18,
+                    "param_7": 2
+                },
+                "param_8": {
+                    "arg8": 2,
+                    "data2": 1,
+                    "data4": 1,
+                    "error_code8": 3,
+                    "error_detail": 1,
+                    "error_detail2": 1,
+                    "error_value3": 1,
+                    "param8": 18,
+                    "param_8": 2
+                },
+                "param_9": {
+                    "error_address": 1,
+                    "error_context": 1,
+                    "error_info": 1,
+                    "error_message": 15,
+                    "error_string": 2,
+                    "file_descriptor": 1,
+                    "message": 1,
+                    "param1": 1,
+                    "param9": 6,
+                    "param_9": 1,
+                    "stack_pointer": 1
+                }
+            },
+            "called": [
+                "FUN_001025c0"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid print_error_message_00102620(undefined4 error_code,undefined4 param2,undefined4 param3,undefined4 param4,\n                 undefined4 param5,undefined4 param6,undefined4 param7,undefined4 param8,\n                 undefined8 error_message,undefined8 param10,undefined8 param11,undefined8 param12,\n                 undefined8 param13,undefined8 param14)\n\n{\n  char flag;\n  undefined4 buffer_size;\n  undefined4 array_size;\n  undefined *buffer;\n  undefined *local_buffer;\n  undefined local_buffer [8];\n  undefined8 param10_copy;\n  undefined8 param11_copy;\n  undefined8 param12_copy;\n  undefined8 param13_copy;\n  undefined8 param14_copy;\n  undefined4 error_code_copy;\n  undefined4 param2_copy;\n  undefined4 param3_copy;\n  undefined4 param4_copy;\n  undefined4 param5_copy;\n  undefined4 param6_copy;\n  undefined4 param7_copy;\n  undefined4 param8_copy;\n  \n  if (flag != '\\0') {\n    error_code_copy = error_code;\n    param2_copy = param2;\n    param3_copy = param3;\n    param4_copy = param4;\n    param5_copy = param5;\n    param6_copy = param6;\n    param7_copy = param7;\n    param8_copy = param8;\n  }\n  buffer = &stack0x00000008;\n  buffer_size = 8;\n  local_buffer = local_buffer;\n  array_size = 0x30;\n  param10_copy = param10;\n  param11_copy = param11;\n  param12_copy = param12;\n  param13_copy = param13;\n  param14_copy = param14;\n  print_error_message_00102620_001025c0(error_message,&buffer_size);\n  return;\n}\n\n",
+            "current_name": "print_error_message_00102620",
+            "entrypoint": "0x00102620",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_00102620": "print_error_message_00102620",
+                "in_AL": "flag",
+                "local_18": "param8_copy",
+                "local_28": "param7_copy",
+                "local_38": "param6_copy",
+                "local_48": "param5_copy",
+                "local_58": "param4_copy",
+                "local_68": "param3_copy",
+                "local_78": "param2_copy",
+                "local_88": "error_code_copy",
+                "local_90": "param14_copy",
+                "local_98": "param13_copy",
+                "local_a0": "param12_copy",
+                "local_a8": "param11_copy",
+                "local_b0": "param10_copy",
+                "local_b8": "local_buffer",
+                "local_c8": "local_buffer",
+                "local_d0": "buffer",
+                "local_d4": "array_size",
+                "local_d8": "buffer_size",
+                "param_1": "error_code",
+                "param_10": "param10",
+                "param_11": "param11",
+                "param_12": "param12",
+                "param_13": "param13",
+                "param_14": "param14",
+                "param_2": "param2",
+                "param_3": "param3",
+                "param_4": "param4",
+                "param_5": "param5",
+                "param_6": "param6",
+                "param_7": "param7",
+                "param_8": "param8",
+                "param_9": "error_message"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "FUN_001026f0": {
+            "called": [
+                "_ITM_deregisterTMCloneTable"
+            ],
+            "calling": [
+                "_FINI_0"
+            ],
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00102703) */\n/* WARNING: Removing unreachable block (ram,0x0010270f) */\n\nvoid FUNC_001026f0(void)\n\n{\n  return;\n}\n\n",
+            "current_name": "FUNC_001026f0",
+            "entrypoint": "0x001026f0",
+            "imported": false,
+            "improved": false,
+            "renaming": {
+                "FUN_001026f0": "FUNC_001026f0"
+            },
+            "skipped": true,
+            "tags": []
+        },
+        "FUN_00102720": {
+            "called": [
+                "_ITM_registerTMCloneTable"
+            ],
+            "calling": [
+                "_INIT_0"
+            ],
+            "code": "\n/* WARNING: Removing unreachable block (ram,0x00102744) */\n/* WARNING: Removing unreachable block (ram,0x00102750) */\n\nvoid FUNC_00102720(void)\n\n{\n  return;\n}\n\n",
+            "current_name": "FUNC_00102720",
+            "entrypoint": "0x00102720",
+            "imported": false,
+            "improved": false,
+            "renaming": {
+                "FUN_00102720": "FUNC_00102720"
+            },
+            "skipped": true,
+            "tags": []
+        },
+        "FUN_001027b0": {
+            "additional_data": {
+                "FUN_001027b0": {
+                    "addr2line": 1,
+                    "analyze_binary": 2,
+                    "analyze_file": 2,
+                    "get_addresses": 1,
+                    "get_addresses_from_file": 1,
+                    "parse_and_process_file": 1,
+                    "parse_command_line_arguments": 1,
+                    "parse_file": 1,
+                    "parse_input": 2,
+                    "parse_input_file": 1,
+                    "process_binary_file": 2,
+                    "process_file": 1,
+                    "process_input_file": 1,
+                    "read_and_process_file": 1
+                },
+                "__ptr": {
+                    "allocated_pointer": 1,
+                    "buffer_pointer": 1,
+                    "byte_pointer": 3,
+                    "byte_pointer2": 2,
+                    "byte_pointer3": 3,
+                    "byte_ptr": 6,
+                    "byte_ptr3": 2,
+                    "byte_ptr_3": 1,
+                    "content_ptr": 1,
+                    "current_line": 1,
+                    "new_buffer": 1,
+                    "ptr": 1,
+                    "ptr_byte": 2,
+                    "ptr_byte2": 1,
+                    "ptr_byte3": 1,
+                    "str": 1,
+                    "str_ptr2": 1,
+                    "var_byte_pointer2": 1
+                },
+                "__s": {
+                    "buf": 1,
+                    "buffer": 2,
+                    "byte_arr": 2,
+                    "byte_array": 3,
+                    "byte_pointer2": 3,
+                    "byte_pointer_s": 1,
+                    "byte_ptr": 2,
+                    "byte_ptr2": 2,
+                    "byte_ptr_2": 1,
+                    "byte_stream": 1,
+                    "bytes": 1,
+                    "file_content": 2,
+                    "file_contents": 1,
+                    "ptr_byte": 1,
+                    "ptr_byte2": 1,
+                    "ptr_byte_s": 2,
+                    "str_ptr1": 1,
+                    "var_byte_pointer": 1
+                },
+                "__s_00": {
+                    "buffer2": 1,
+                    "byte_pointer3": 1,
+                    "byte_ptr1": 1,
+                    "byte_ptr2": 1,
+                    "byte_ptr4": 1,
+                    "byte_ptr_4": 1,
+                    "byte_stream2": 1,
+                    "bytes1": 1,
+                    "current_string": 1,
+                    "file_section": 1,
+                    "ptr_byte4": 1,
+                    "ptr_byte_s00": 1,
+                    "ptr_byte_s_00": 1,
+                    "ptr_stat": 1,
+                    "stat_pointer": 1,
+                    "stat_pointer2": 2,
+                    "stat_ptr": 1,
+                    "stat_ptr2": 2,
+                    "stat_struct_ptr2": 1,
+                    "stat_var2": 1,
+                    "struct_ptr": 1,
+                    "var_byte_pointer3": 1
+                },
+                "__s_01": {
+                    "byte_ptr_7": 1
+                },
+                "__stream": {
+                    "file_pointer1": 1,
+                    "file_ptr1": 1,
+                    "file_ptr2": 1,
+                    "file_stream": 9,
+                    "file_stream1": 1,
+                    "fp": 1,
+                    "stream": 15,
+                    "stream_ptr": 1
+                },
+                "__stream_00": {
+                    "file_stream_1": 1
+                },
+                "bVar10": {
+                    "byte_10": 1,
+                    "byte_val2": 1,
+                    "byte_value2": 2,
+                    "byte_var": 2,
+                    "byte_var1": 2,
+                    "byte_var10": 7,
+                    "byte_var2": 8,
+                    "byte_var_2": 1,
+                    "ch": 1,
+                    "current_char": 2,
+                    "var7": 1,
+                    "var_byte2": 2
+                },
+                "bVar29": {
+                    "byte_pointer4": 1
+                },
+                "bVar3": {
+                    "bit_var": 1,
+                    "bool_var1": 1,
+                    "byte_3": 1,
+                    "byte_val": 1,
+                    "byte_value": 3,
+                    "byte_var": 7,
+                    "byte_var1": 3,
+                    "byte_var3": 7,
+                    "byte_var_1": 1,
+                    "current_byte_value": 1,
+                    "var1": 1,
+                    "var_byte": 1,
+                    "var_byte1": 1
+                },
+                "bVar6": {
+                    "bool_6": 1,
+                    "bool_val1": 1,
+                    "bool_value1": 2,
+                    "bool_var1": 13,
+                    "bool_var2": 1,
+                    "bool_var6": 5,
+                    "bool_var_1": 1,
+                    "in_double_quotes": 1,
+                    "is_escaped": 1,
+                    "is_single_quote": 1,
+                    "var4": 1,
+                    "var_bool1": 2
+                },
+                "bVar7": {
+                    "bool_7": 1,
+                    "bool_val2": 1,
+                    "bool_value2": 2,
+                    "bool_var2": 13,
+                    "bool_var3": 1,
+                    "bool_var7": 5,
+                    "bool_var_2": 1,
+                    "in_single_quotes": 1,
+                    "is_double_quote": 1,
+                    "is_single_quote": 1,
+                    "var5": 1,
+                    "var_bool2": 2
+                },
+                "bVar8": {
+                    "bool_8": 1,
+                    "bool_val3": 1,
+                    "bool_value3": 2,
+                    "bool_var3": 13,
+                    "bool_var4": 1,
+                    "bool_var8": 5,
+                    "bool_var_3": 1,
+                    "is_double_quote": 1,
+                    "is_escape_char": 1,
+                    "is_escaping": 1,
+                    "var6": 1,
+                    "var_bool3": 2
+                },
+                "cVar11": {
+                    "char_11": 1,
+                    "char_val": 1,
+                    "char_val1": 1,
+                    "char_value": 2,
+                    "char_var": 9,
+                    "char_var1": 5,
+                    "char_var11": 5,
+                    "char_var_1": 1,
+                    "check_result": 1,
+                    "result": 1,
+                    "var8": 1,
+                    "var_char": 1,
+                    "var_char1": 1
+                },
+                "cVar__stream": {
+                    "char_var_stream": 1
+                },
+                "iVar12": {
+                    "i": 1,
+                    "index": 1,
+                    "int_12": 1,
+                    "int_val1": 1,
+                    "int_value": 1,
+                    "int_value1": 1,
+                    "int_var": 7,
+                    "int_var1": 7,
+                    "int_var12": 5,
+                    "int_var_1": 1,
+                    "length": 1,
+                    "var9": 1,
+                    "var_int": 1,
+                    "var_int1": 1
+                },
+                "iVar14": {
+                    "int_14": 1,
+                    "int_val2": 1,
+                    "int_value2": 2,
+                    "int_var14": 5,
+                    "int_var2": 12,
+                    "int_var_2": 1,
+                    "limit": 1,
+                    "loop_counter": 1,
+                    "result": 1,
+                    "status": 1,
+                    "var11": 1,
+                    "var_int2": 2
+                },
+                "iVar15": {
+                    "error_value": 1
+                },
+                "iVar34": {
+                    "current_file_index": 1,
+                    "i": 1,
+                    "int_34": 1,
+                    "int_val3": 1,
+                    "int_value3": 1,
+                    "int_var2": 1,
+                    "int_var3": 11,
+                    "int_var34": 4,
+                    "int_var_3": 1,
+                    "var17": 1,
+                    "var_int3": 2
+                },
+                "iVar36": {
+                    "file_count": 1,
+                    "int_36": 1,
+                    "int_val4": 1,
+                    "int_value3": 1,
+                    "int_value4": 1,
+                    "int_var3": 2,
+                    "int_var36": 4,
+                    "int_var4": 10,
+                    "num_files": 1,
+                    "var18": 1,
+                    "var_int4": 2
+                },
+                "iVar37": {
+                    "int_var4": 1
+                },
+                "iVar__stream": {
+                    "int_var_stream": 1
+                },
+                "lVar20": {
+                    "count": 1,
+                    "iteration": 1,
+                    "len_var20": 1,
+                    "length": 1,
+                    "long_20": 1,
+                    "long_val2": 1,
+                    "long_value2": 2,
+                    "long_var2": 13,
+                    "long_var20": 4,
+                    "long_var6": 1,
+                    "long_var_2": 1,
+                    "var13": 1,
+                    "var_long2": 2
+                },
+                "lVar26": {
+                    "long_var3": 1
+                },
+                "lVar30": {
+                    "current_long_value": 1,
+                    "long_30": 1,
+                    "long_val3": 1,
+                    "long_value3": 1,
+                    "long_var3": 11,
+                    "long_var30": 4,
+                    "long_var4": 1,
+                    "long_var_3": 1,
+                    "symbol_index": 1,
+                    "var16": 1,
+                    "var_long3": 1
+                },
+                "lVar5": {
+                    "current_long_value": 1,
+                    "current_section": 1,
+                    "long_5": 1,
+                    "long_val1": 1,
+                    "long_value": 2,
+                    "long_var": 9,
+                    "long_var1": 4,
+                    "long_var5": 6,
+                    "long_var_1": 1,
+                    "size": 1,
+                    "var3": 1,
+                    "var_long": 1,
+                    "var_long1": 1
+                },
+                "local_118": {
+                    "arg_index": 1,
+                    "input_length": 1,
+                    "local_long": 1,
+                    "local_long118": 1,
+                    "local_long_var1": 1,
+                    "local_var118": 1,
+                    "local_var_long": 1,
+                    "long_118": 1,
+                    "long_val4": 1,
+                    "long_value4": 1,
+                    "long_var118": 2,
+                    "long_var4": 9,
+                    "long_var5": 1,
+                    "long_var7": 1,
+                    "long_var_4": 1,
+                    "loop_index": 1,
+                    "string_index": 2,
+                    "var_long3": 1
+                },
+                "local_120": {
+                    "content_size": 1,
+                    "file_size": 1,
+                    "input_size": 1,
+                    "local_size": 2,
+                    "local_size120": 1,
+                    "local_var120": 1,
+                    "local_var_size": 1,
+                    "path_size": 1,
+                    "size_t_120": 1,
+                    "size_t_var": 5,
+                    "size_t_var1": 3,
+                    "size_t_var120": 1,
+                    "size_val2": 1,
+                    "size_value": 1,
+                    "size_var1": 1,
+                    "size_var2": 3,
+                    "size_var_1": 1,
+                    "str_len": 1,
+                    "var_size": 1
+                },
+                "local_140": {
+                    "arg_files": 1,
+                    "argument_array": 1,
+                    "current_options": 1,
+                    "file_path": 1,
+                    "input_pointer_array": 1,
+                    "local_ptr140": 1,
+                    "local_ptr_ptr_void140": 1,
+                    "local_ptr_void2": 1,
+                    "local_var_pointer2": 1,
+                    "ppu_var17": 1,
+                    "ptr_array2": 1,
+                    "ptr_ptr5": 1,
+                    "ptr_ptr_140": 1,
+                    "ptr_ptr_undef5": 1,
+                    "ptr_ptr_undefined4": 1,
+                    "ptr_ptr_void5": 1,
+                    "ptr_undef6": 1,
+                    "undefined_pointer4": 1,
+                    "undefined_pointer6": 1,
+                    "undefined_pointer8": 1,
+                    "undefined_pointer_pointer4": 1,
+                    "undefined_pointer_pointer5": 1,
+                    "undefined_ptr3": 1,
+                    "undefined_ptr_ptr4": 1,
+                    "undefined_ptr_ptr6": 1,
+                    "undefined_ptr_ptr_5": 1,
+                    "undefined_ref_ptr140": 1,
+                    "void_ptr_ptr4": 1
+                },
+                "local_148": {
+                    "at_files": 1,
+                    "current_args": 1,
+                    "file_list": 1,
+                    "local_ptr_ptr_void148": 1,
+                    "local_ptr_void1": 1,
+                    "local_var_pointer": 1,
+                    "output_pointer_array": 1,
+                    "ppu_var16": 1,
+                    "ptr_array1": 1,
+                    "ptr_ptr4": 1,
+                    "ptr_ptr_148": 1,
+                    "ptr_ptr_undef4": 1,
+                    "ptr_ptr_undefined3": 1,
+                    "ptr_ptr_void4": 1,
+                    "ptr_undef5": 1,
+                    "result_array": 1,
+                    "undefined_pointer3": 1,
+                    "undefined_pointer5": 1,
+                    "undefined_pointer7": 1,
+                    "undefined_pointer_pointer3": 1,
+                    "undefined_pointer_pointer4": 1,
+                    "undefined_ptr2": 1,
+                    "undefined_ptr_ptr3": 1,
+                    "undefined_ptr_ptr5": 1,
+                    "undefined_ptr_ptr_4": 1,
+                    "undefined_ref_ptr148": 1,
+                    "void_ptr_ptr3": 1
+                },
+                "local_c8": {
+                    "current_stat": 1,
+                    "file_info": 1,
+                    "input_struct": 1,
+                    "local_stat": 1,
+                    "local_stat1": 1,
+                    "local_stat_c8": 2,
+                    "local_var_stat2": 1,
+                    "stat": 1,
+                    "stat1": 1,
+                    "stat_1": 1,
+                    "stat_struct1": 1,
+                    "stat_struct2": 1,
+                    "stat_struct3": 1,
+                    "stat_value2": 1,
+                    "stat_var": 6,
+                    "stat_var1": 2,
+                    "stat_var2": 1,
+                    "stat_var5": 1,
+                    "stat_var_c8": 1
+                },
+                "local_d0": {
+                    "current_stat": 1,
+                    "local_ptr": 1,
+                    "local_ptr_long1": 1,
+                    "local_ptr_stat_d0": 1,
+                    "local_var_d0": 1,
+                    "local_var_stat": 1,
+                    "long_array": 1,
+                    "long_pointer1": 1,
+                    "long_pointer2": 1,
+                    "long_ptr2": 3,
+                    "long_var_d0": 1,
+                    "output_struct": 1,
+                    "ptr_array3": 1,
+                    "ptr_long1": 1,
+                    "ptr_long2": 2,
+                    "ptr_var5": 1,
+                    "sections": 1,
+                    "stat_buffer": 1,
+                    "stat_local": 1,
+                    "stat_struct1": 1,
+                    "stat_value": 1,
+                    "stat_var": 1,
+                    "stat_var4": 1,
+                    "stat_var_1": 1
+                },
+                "pFVar19": {
+                    "file": 1,
+                    "file2": 1,
+                    "file_pointer": 4,
+                    "file_pointer1": 1,
+                    "file_pointer2": 1,
+                    "file_pointer_1": 1,
+                    "file_ptr": 6,
+                    "file_ptr1": 3,
+                    "file_ptr19": 1,
+                    "file_ptr2": 1,
+                    "file_stream2": 1,
+                    "file_var": 3,
+                    "file_var19": 2,
+                    "input_file": 2,
+                    "output_file": 2
+                },
+                "pFVar27": {
+                    "current_file": 1,
+                    "file": 1,
+                    "file2": 1,
+                    "file3": 1,
+                    "file_pointer2": 4,
+                    "file_pointer3": 1,
+                    "file_pointer_2": 1,
+                    "file_ptr1": 1,
+                    "file_ptr2": 4,
+                    "file_ptr3": 2,
+                    "file_stream3": 1,
+                    "file_var2": 1,
+                    "file_var27": 2,
+                    "input_file": 1,
+                    "new_file": 1
+                },
+                "param_1": {
+                    "argc": 17,
+                    "binary_size": 1,
+                    "file_descriptor": 1,
+                    "num": 2,
+                    "param1": 8,
+                    "param_size": 1,
+                    "uint_value": 1
+                },
+                "param_1_new": {
+                    "argc": 1
+                },
+                "param_2": {
+                    "argv": 17,
+                    "file": 3,
+                    "file_pointer": 2,
+                    "input_file": 1,
+                    "param2": 8
+                },
+                "param_2_new": {
+                    "argv": 1
+                },
+                "pbVar1": {
+                    "byte_pointer": 3,
+                    "byte_pointer1": 6,
+                    "byte_ptr": 1,
+                    "byte_ptr1": 3,
+                    "byte_ptr_1": 1,
+                    "current_byte": 2,
+                    "ptr1": 3,
+                    "ptr_byte": 2,
+                    "ptr_byte1": 7,
+                    "ptr_byte_1": 1,
+                    "ptr_var1": 1
+                },
+                "pbVar29": {
+                    "byte_pointer29": 1,
+                    "byte_pointer3": 1,
+                    "byte_pointer4": 3,
+                    "byte_ptr": 2,
+                    "byte_ptr2": 2,
+                    "byte_ptr3": 1,
+                    "byte_ptr4": 1,
+                    "byte_ptr5": 1,
+                    "byte_ptr_5": 1,
+                    "current_byte_ptr": 1,
+                    "ptr": 1,
+                    "ptr_byte2": 4,
+                    "ptr_byte29": 2,
+                    "ptr_byte3": 1,
+                    "ptr_byte5": 1,
+                    "ptr_byte_29": 1
+                },
+                "pbVar31": {
+                    "byte_pointer31": 1,
+                    "byte_pointer4": 1,
+                    "byte_pointer5": 3,
+                    "byte_ptr": 1,
+                    "byte_ptr2": 1,
+                    "byte_ptr3": 2,
+                    "byte_ptr4": 1,
+                    "byte_ptr5": 1,
+                    "byte_ptr6": 1,
+                    "byte_ptr_6": 1,
+                    "current_byte_ptr": 1,
+                    "line_pointer": 1,
+                    "ptr_byte3": 4,
+                    "ptr_byte31": 2,
+                    "ptr_byte4": 1,
+                    "ptr_byte6": 1
+                },
+                "pcVar28": {
+                    "char_array": 1,
+                    "char_pointer": 3,
+                    "char_pointer1": 2,
+                    "char_ptr": 2,
+                    "char_ptr1": 3,
+                    "char_ptr_1": 1,
+                    "char_var28": 1,
+                    "filename": 1,
+                    "ptr_char": 1,
+                    "ptr_char1": 1,
+                    "ptr_char28": 1,
+                    "str": 2,
+                    "str_var1": 1,
+                    "str_var28": 1,
+                    "string": 1,
+                    "string_ptr": 1,
+                    "var_char_pointer": 1
+                },
+                "pcVar32": {
+                    "char_pointer": 1,
+                    "char_pointer2": 3,
+                    "char_pointer3": 2,
+                    "char_pointer4": 1,
+                    "char_ptr3": 5,
+                    "char_ptr_3": 1,
+                    "char_var32": 1,
+                    "error_message": 2,
+                    "ptr_char2": 1,
+                    "ptr_char3": 2,
+                    "ptr_char32": 1,
+                    "str2": 1,
+                    "str_var2": 1,
+                    "str_var32": 1,
+                    "string_32": 1,
+                    "string_ptr2": 1,
+                    "var_char_pointer3": 1
+                },
+                "piVar23": {
+                    "errno_ptr": 4,
+                    "error_var": 1,
+                    "int_pointer": 3,
+                    "int_pointer1": 2,
+                    "int_pointer23": 1,
+                    "int_ptr": 5,
+                    "int_ptr1": 3,
+                    "int_ptr23": 1,
+                    "int_ptr_1": 1,
+                    "ptr_int": 2,
+                    "ptr_int1": 2,
+                    "ptr_int23": 1,
+                    "ptr_int_23": 1,
+                    "ptr_int_var23": 1,
+                    "var_int_ptr": 1
+                },
+                "plVar26": {
+                    "long_pointer": 5,
+                    "long_ptr": 4,
+                    "long_ptr1": 2,
+                    "long_ptr_1": 1,
+                    "ptr4": 1,
+                    "ptr_long": 2,
+                    "ptr_long1": 2,
+                    "ptr_long26": 1,
+                    "ptr_long_26": 1,
+                    "ptr_long_var26": 1,
+                    "symbols": 1,
+                    "temp_pointer": 1,
+                    "var_long_pointer": 1
+                },
+                "ppuVar16": {
+                    "file_lines": 1,
+                    "pointer_array": 1,
+                    "pptr_void1": 1,
+                    "ptr_ptr_uint": 1,
+                    "ptr_ptr_var16": 1,
+                    "ptr_ptr_void1": 1,
+                    "ptr_ptr_void16": 1,
+                    "undefined_pointer": 1,
+                    "undefined_pointer1": 1,
+                    "undefined_pointer16": 1,
+                    "undefined_pointer_pointer1": 1,
+                    "undefined_ptr_ptr": 1,
+                    "undefined_ptr_ptr_1": 1,
+                    "var_pointer_pointer": 1
+                },
+                "ppuVar24": {
+                    "demangled_symbol_result": 1,
+                    "new_pointer_array": 1,
+                    "pptr_void2": 1,
+                    "ptr5": 1,
+                    "ptr_ptr": 1,
+                    "ptr_ptr1": 2,
+                    "ptr_ptr_24": 1,
+                    "ptr_ptr_undef1": 1,
+                    "ptr_ptr_undefined": 1,
+                    "ptr_ptr_var24": 1,
+                    "ptr_ptr_void": 1,
+                    "ptr_ptr_void24": 1,
+                    "ptr_undef2": 1,
+                    "result_array": 1,
+                    "undefined_pointer2": 1,
+                    "undefined_pointer24": 1,
+                    "undefined_pointer3": 1,
+                    "undefined_pointer4": 1,
+                    "undefined_pointer_pointer": 1,
+                    "undefined_pointer_pointer2": 1,
+                    "undefined_ptr": 1,
+                    "undefined_ptr_ptr": 2,
+                    "undefined_ptr_ptr2": 1,
+                    "undefined_ptr_ptr_2": 1,
+                    "undefined_ref_ptr24": 1,
+                    "var_pointer_pointer2": 1,
+                    "void_ptr_ptr1": 1
+                },
+                "ppuVar33": {
+                    "demangle_result": 1,
+                    "new_pointer_array2": 1,
+                    "pptr_void3": 1,
+                    "ptr_ptr2": 2,
+                    "ptr_ptr_33": 1,
+                    "ptr_ptr_undef2": 1,
+                    "ptr_ptr_undefined2": 1,
+                    "ptr_ptr_var33": 1,
+                    "ptr_ptr_void2": 1,
+                    "ptr_ptr_void33": 1,
+                    "ptr_undef3": 1,
+                    "result_array": 1,
+                    "undefined_pointer2": 1,
+                    "undefined_pointer3": 1,
+                    "undefined_pointer33": 1,
+                    "undefined_pointer4": 1,
+                    "undefined_pointer6": 1,
+                    "undefined_pointer_pointer2": 1,
+                    "undefined_pointer_pointer3": 1,
+                    "undefined_ptr": 1,
+                    "undefined_ptr_ptr2": 1,
+                    "undefined_ptr_ptr3": 1,
+                    "undefined_ptr_ptr_3": 1,
+                    "var_pointer_pointer3": 1,
+                    "void_ptr_ptr2": 1
+                },
+                "psVar21": {
+                    "current_stat": 1,
+                    "file_stat": 3,
+                    "ptr_stat": 2,
+                    "ptr_stat1": 2,
+                    "ptr_stat21": 1,
+                    "ptr_struct": 1,
+                    "stat_pointer": 1,
+                    "stat_pointer1": 1,
+                    "stat_pointer_1": 1,
+                    "stat_ptr": 4,
+                    "stat_ptr1": 3,
+                    "stat_ptr21": 2,
+                    "stat_struct": 2,
+                    "stat_struct_ptr1": 1,
+                    "stat_var": 2,
+                    "stat_var21": 1,
+                    "var_stat": 1
+                },
+                "psVar35": {
+                    "current_stat": 1,
+                    "file_stat2": 1,
+                    "ptr_stat": 1,
+                    "ptr_stat2": 2,
+                    "ptr_stat3": 1,
+                    "ptr_stat35": 1,
+                    "ptr_struct2": 1,
+                    "section_stat": 1,
+                    "stat_pointer3": 2,
+                    "stat_ptr2": 4,
+                    "stat_ptr3": 2,
+                    "stat_ptr35": 1,
+                    "stat_struct2": 2,
+                    "stat_struct_ptr3": 1,
+                    "stat_var2": 1,
+                    "stat_var3": 1,
+                    "stat_var35": 1,
+                    "var_stat2": 1
+                },
+                "puVar18": {
+                    "current_string": 1,
+                    "new_pointer": 1,
+                    "ptr4": 2,
+                    "ptr_undef1": 2,
+                    "ptr_undefined": 2,
+                    "ptr_var18": 1,
+                    "ptr_var4": 1,
+                    "ptr_void18": 1,
+                    "ptr_void2": 2,
+                    "str_ptr": 1,
+                    "strdup_result": 1,
+                    "undefined_pointer": 3,
+                    "undefined_pointer1": 2,
+                    "undefined_pointer18": 1,
+                    "undefined_pointer2": 2,
+                    "undefined_ptr": 3,
+                    "undefined_ptr18": 1,
+                    "undefined_ptr_1": 1,
+                    "var_pointer2": 1,
+                    "void_ptr2": 1
+                },
+                "puVar2": {
+                    "current_address": 1,
+                    "current_u_int_ptr": 1,
+                    "ptr2": 3,
+                    "ptr_u_int1": 1,
+                    "ptr_uint": 3,
+                    "ptr_uint1": 2,
+                    "ptr_uint2": 3,
+                    "ptr_uint_2": 1,
+                    "ptr_var2": 1,
+                    "uint_pointer": 6,
+                    "uint_pointer1": 2,
+                    "uint_pointer2": 1,
+                    "uint_ptr": 2,
+                    "uint_ptr1": 1,
+                    "uint_ptr2": 1,
+                    "uint_ptr_1": 1
+                },
+                "puVar36": {
+                    "undefined_pointer6": 1
+                },
+                "pvVar9": {
+                    "demangled_symbol": 1,
+                    "pointer_value": 1,
+                    "pointer_value1": 1,
+                    "ptr3": 3,
+                    "ptr_var3": 1,
+                    "ptr_void": 3,
+                    "ptr_void1": 3,
+                    "ptr_void9": 2,
+                    "ptr_void_9": 1,
+                    "temp_pointer": 1,
+                    "var_pointer": 1,
+                    "void_pointer": 5,
+                    "void_pointer1": 1,
+                    "void_pointer9": 1,
+                    "void_ptr": 2,
+                    "void_ptr1": 1,
+                    "void_ptr9": 1,
+                    "void_ptr_1": 1
+                },
+                "sVar17": {
+                    "file_size": 1,
+                    "size": 5,
+                    "size_t_var17": 1,
+                    "size_val1": 1,
+                    "size_var": 4,
+                    "size_var17": 2,
+                    "var_size": 1
+                },
+                "uVar13": {
+                    "count": 1,
+                    "file_count": 1,
+                    "section_index": 1,
+                    "uint_13": 1,
+                    "uint_val1": 1,
+                    "uint_value": 1,
+                    "uint_value2": 1,
+                    "uint_var": 8,
+                    "uint_var1": 6,
+                    "uint_var13": 5,
+                    "uint_var_1": 1,
+                    "var10": 1,
+                    "var_uint": 1,
+                    "var_uint1": 1
+                },
+                "uVar15": {
+                    "format_result": 1,
+                    "result": 1,
+                    "uint_15": 1,
+                    "uint_val2": 1,
+                    "uint_value2": 1,
+                    "uint_var15": 5,
+                    "uint_var2": 11,
+                    "uint_var_2": 1,
+                    "undefined4_value": 1,
+                    "undefined4_var": 1,
+                    "undefined4_var1": 1,
+                    "var12": 1,
+                    "var_uint2": 2
+                },
+                "uVar22": {
+                    "err_msg": 1,
+                    "error_message": 2,
+                    "new_var22": 1,
+                    "return_value": 1,
+                    "uint_var22": 2,
+                    "uint_var3": 2,
+                    "ulong_22": 1,
+                    "ulong_val1": 1,
+                    "ulong_var": 1,
+                    "ulong_var1": 2,
+                    "ulong_var22": 2,
+                    "undefined8_value": 1,
+                    "undefined8_var": 3,
+                    "undefined8_var1": 2,
+                    "undefined8_var_1": 1,
+                    "undefined_pointer3": 1,
+                    "undefined_var1": 1,
+                    "unknown_error": 1,
+                    "var14": 1,
+                    "var_uint3": 1,
+                    "var_ulong1": 1
+                },
+                "uVar25": {
+                    "current_char_index": 1,
+                    "ptr_stat2": 1,
+                    "symbol_offset": 1,
+                    "ulong_25": 1,
+                    "ulong_val2": 1,
+                    "ulong_value1": 1,
+                    "ulong_var": 7,
+                    "ulong_var1": 3,
+                    "ulong_var25": 4,
+                    "ulong_var_1": 1,
+                    "var15": 1,
+                    "var_ulong": 1,
+                    "var_ulong2": 1
+                },
+                "uVar37": {
+                    "index": 1,
+                    "max_files": 1,
+                    "uint_37": 1,
+                    "uint_value3": 2,
+                    "uint_var2": 2,
+                    "uint_var3": 7,
+                    "uint_var37": 2,
+                    "uint_var4": 2,
+                    "uint_var_3": 1,
+                    "var19": 1,
+                    "var_uint4": 1
+                },
+                "uVar4": {
+                    "current_u_int16_value": 1,
+                    "section_flags": 1,
+                    "ushort_4": 1,
+                    "ushort_val": 1,
+                    "ushort_value": 2,
+                    "ushort_var": 9,
+                    "ushort_var1": 4,
+                    "ushort_var4": 6,
+                    "ushort_var_1": 1,
+                    "var2": 1,
+                    "var_u_short": 1,
+                    "var_ushort1": 1
+                },
+                "uVar__stat": {
+                    "uint_var_stat": 1
+                },
+                "uVar__stream": {
+                    "uint_var_stream": 1
+                },
+                "unaff_R12": {
+                    "flags_array": 1,
+                    "input_files": 1,
+                    "pointer_ptr": 1,
+                    "pptr_void4": 1,
+                    "ptr_ptr3": 1,
+                    "ptr_ptr_undef3": 1,
+                    "ptr_ptr_void3": 1,
+                    "ptr_ptr_void_r12": 1,
+                    "ptr_undef4": 1,
+                    "ptr_undefined": 1,
+                    "ptr_undefined2": 1,
+                    "unaffined_r12": 1,
+                    "undefined_pointer2": 2,
+                    "undefined_pointer4": 1,
+                    "undefined_pointer5": 1,
+                    "undefined_pointer_r12": 1,
+                    "undefined_ptr": 1,
+                    "undefined_ptr1": 1,
+                    "undefined_ptr2": 1,
+                    "undefined_ptr_ptr4": 1,
+                    "var_pointer4": 1
+                },
+                "unaff_RBP": {
+                    "char_pointer": 1,
+                    "char_pointer2": 2,
+                    "char_pointer_rbp": 1,
+                    "char_ptr": 2,
+                    "char_ptr1": 1,
+                    "char_ptr2": 5,
+                    "char_ptr_2": 1,
+                    "char_var": 1,
+                    "current_file_pointer": 1,
+                    "file": 1,
+                    "ptr_byte": 1,
+                    "ptr_char1": 2,
+                    "ptr_char2": 2,
+                    "ptr_char_rbp": 1,
+                    "unaffined_rbp": 1,
+                    "var_char_pointer2": 1
+                }
+            },
+            "called": [
+                "setlocale",
+                "printf",
+                "strcmp",
+                "bfd_get_section_by_name",
+                "bfd_fprintf_vma",
+                "stat",
+                "cplus_demangle_set_style",
+                "bfd_demangle",
+                "cplus_demangle_name_to_style",
+                "exit",
+                "bfd_openr",
+                "FUN_00103bd0",
+                "bfd_check_format_matches",
+                "strchr",
+                "ftell",
+                "fputc",
+                "getopt_long",
+                "bindtextdomain",
+                "bfd_errmsg",
+                "ferror",
+                "xmalloc_set_program_name",
+                "FUN_00103c70",
+                "strerror",
+                "FUN_00102540",
+                "bfd_set_error_program_name",
+                "bfd_scan_vma",
+                "fseek",
+                "strrchr",
+                "FUN_00102620",
+                "putchar",
+                "bfd_init",
+                "fflush",
+                "xstrdup",
+                "xexit",
+                "bfd_map_over_sections",
+                "memcpy",
+                "fprintf",
+                "fread",
+                "puts",
+                "xmalloc",
+                "bfd_close",
+                "fopen",
+                "xrealloc",
+                "__errno_location",
+                "textdomain",
+                "bfd_get_error",
+                "memmove",
+                "strtoul",
+                "free",
+                "dcgettext",
+                "fgets",
+                "bfd_set_default_target",
+                "fclose",
+                "strlen",
+                "FUN_001023e1",
+                "bfd_check_format"
+            ],
+            "calling": [
+                "entry"
+            ],
+            "code": "\n/* WARNING: Type propagation algorithm not settling */\n\n\nundefined8 parse_input_file_001027b0(uint argc,FILE *argv)\n\n{\n  byte *ptr_byte1;\n  uint *uint_pointer;\n  byte byte_var3;\n  ushort ushort_var;\n  long long_var;\n  bool bool_var1;\n  bool bool_var2;\n  bool bool_var3;\n  void *void_pointer;\n  byte byte_var2;\n  char char_var;\n  int int_var;\n  uint uint_var;\n  int int_var2;\n  undefined4 uint_var2;\n  FILE *stream;\n  byte *byte_array;\n  undefined **undefined_pointer;\n  size_t size;\n  byte *byte_ptr;\n  undefined *undefined_ptr;\n  FILE *file_ptr;\n  long long_var2;\n  stat *stat_ptr;\n  undefined8 undefined8_var;\n  int *int_ptr;\n  undefined **ptr_ptr1;\n  stat *stat_pointer2;\n  ulong ulong_var;\n  long *long_pointer;\n  FILE *file_pointer2;\n  char *char_pointer;\n  byte *ptr_byte2;\n  char *char_ptr2;\n  long long_var3;\n  byte *ptr_byte3;\n  char *char_ptr3;\n  undefined **ptr_ptr2;\n  int int_var3;\n  undefined **undefined_pointer2;\n  stat *stat_ptr2;\n  int int_var4;\n  uint uint_var3;\n  undefined **ptr_ptr_void4;\n  undefined **ptr_ptr_undef5;\n  size_t size_t_var;\n  long long_var4;\n  long *long_ptr2;\n  stat stat_var;\n  \n  file_pointer2 = (FILE *)(ulong)argc;\n  setlocale(5,\"\");\n  char_pointer = \"binutils\";\n  setlocale(0,\"\");\n  bindtextdomain(\"binutils\",\"/usr/share/locale\");\n  textdomain(\"binutils\");\n  DAT_00106438 = *(long **)argv;\n  xmalloc_set_program_name();\n  bfd_set_error_program_name(DAT_00106438);\n  file_ptr = argv;\n  stream = argv;\n  if (1 < (int)argc) {\n    int_var2 = 2000;\n    undefined_pointer2 = (undefined **)0x1;\n    ptr_ptr_undef5 = (undefined **)0x0;\n    do {\n      int_var3 = (int)undefined_pointer2;\n      char_ptr2 = (char *)(long)int_var3;\n      ptr_ptr_void4 = (undefined **)((long)char_ptr2 * 8);\n      int_var4 = (int)file_pointer2;\n      if (**(char **)(&file_ptr->_flags + (long)char_ptr2 * 2) == '@') {\n        int_var2 = int_var2 + -1;\n        if (int_var2 == 0) {\n          long_pointer = *(long **)file_ptr;\n          char_pointer = \"%s: error: too many @-files encountered\\n\";\n          goto LAB_00103239;\n        }\n        char_pointer = *(char **)(&file_ptr->_flags + (long)char_ptr2 * 2) + 1;\n        int_var = stat(char_pointer,&stat_var);\n        if (int_var < 0) goto LAB_00102c30;\n        if ((stat_var.st_mode & 0xf000) == 0x4000) {\n          do {\n            long_pointer = *(long **)file_ptr;\n            char_pointer = \"%s: error: @-file refers to a directory\\n\";\nLAB_00103239:\n            fprintf(_stderr,char_pointer,long_pointer);\n            xexit(1);\n          } while( true );\n        }\n        stream = fopen(char_pointer,\"r\");\n        if (stream == (FILE *)0x0) goto LAB_00102c30;\n        int_var = fseek(stream,0,2);\n        if (((int_var == -1) ||\n            (char_pointer = (char *)ftell(stream),\n            (undefined **)char_pointer == (undefined **)0xffffffffffffffff)) ||\n           (int_var = fseek(stream,0,0), int_var == -1)) {\nLAB_00102c90:\n          fclose(stream);\n          if (int_var3 + 1 < int_var4) goto LAB_00102c3a;\n          break;\n        }\n        byte_array = (byte *)xmalloc((long)char_pointer + 1);\n        undefined_pointer = (undefined **)fread(byte_array,1,(size_t)char_pointer,stream);\n        if (((undefined **)char_pointer != undefined_pointer) && (int_var = ferror(stream), int_var != 0)) {\n          free(byte_array);\n          goto LAB_00102c90;\n        }\n        byte_array[(long)undefined_pointer] = 0;\n        byte_var2 = *byte_array;\n        ptr_byte2 = byte_array;\n        if (byte_var2 != 0) {\nLAB_00102980:\n          if (((&_sch_istable)[(ulong)byte_var2 * 2] & 0x40) != 0) goto LAB_00102970;\n          size = strlen((char *)byte_array);\n          byte_ptr = (byte *)xmalloc(size + 1);\n          undefined_pointer = (undefined **)0x0;\n          int_var = 0;\n          bool_var1 = false;\n          bool_var2 = false;\n          bool_var3 = false;\n          long_var4 = 0;\n          ptr_byte2 = byte_array;\n          do {\n            while (((&_sch_istable)[(ulong)*ptr_byte2 * 2] & 0x40) != 0) {\n              ptr_byte2 = ptr_byte2 + 1;\n            }\n            if ((int_var == 0) || (ptr_ptr1 = undefined_pointer + long_var4, int_var + -1 <= (int)long_var4)) {\n              if (undefined_pointer == (undefined **)0x0) {\n                undefined_pointer = (undefined **)xmalloc(0x40);\n                int_var = 8;\n                ptr_ptr1 = undefined_pointer + long_var4;\n                *ptr_ptr1 = (undefined *)0x0;\n              }\n              else {\n                int_var = int_var * 2;\n                undefined_pointer = (undefined **)xrealloc(undefined_pointer,(long)int_var << 3);\n                ptr_ptr1 = undefined_pointer + long_var4;\n                *ptr_ptr1 = (undefined *)0x0;\n              }\n            }\n            byte_var2 = *ptr_byte2;\n            ptr_byte3 = byte_ptr;\n            while (byte_var2 != 0) {\n              while( true ) {\n                if ((((&_sch_istable)[(ulong)byte_var2 * 2] & 0x40) != 0) &&\n                   (!(bool)(bool_var3 | bool_var2 | bool_var1))) {\n                  bool_var3 = false;\n                  bool_var1 = false;\n                  bool_var2 = false;\n                  goto LAB_00102a9e;\n                }\n                if (!bool_var3) break;\n                ptr_byte2 = ptr_byte2 + 1;\n                *ptr_byte3 = byte_var2;\n                ptr_byte3 = ptr_byte3 + 1;\n                bool_var3 = false;\n                byte_var2 = *ptr_byte2;\n                if (byte_var2 == 0) goto LAB_00102a9e;\n              }\n              if (byte_var2 == 0x5c) {\n                bool_var3 = true;\n              }\n              else if (bool_var2) {\n                if (byte_var2 == 0x27) {\n                  bool_var2 = false;\n                }\n                else {\nLAB_00102c0d:\n                  *ptr_byte3 = byte_var2;\n                  ptr_byte3 = ptr_byte3 + 1;\n                }\n              }\n              else if (bool_var1) {\n                if (byte_var2 != 0x22) goto LAB_00102c0d;\n                bool_var1 = false;\n              }\n              else if (byte_var2 == 0x27) {\n                bool_var2 = true;\n              }\n              else {\n                if (byte_var2 != 0x22) goto LAB_00102c0d;\n                bool_var1 = true;\n              }\n              ptr_byte1 = ptr_byte2 + 1;\n              ptr_byte2 = ptr_byte2 + 1;\n              byte_var2 = *ptr_byte1;\n            }\nLAB_00102a9e:\n            *ptr_byte3 = 0;\n            undefined_ptr = (undefined *)xstrdup(byte_ptr);\n            *ptr_ptr1 = undefined_ptr;\n            undefined_pointer[long_var4 + 1] = (undefined *)0x0;\n            byte_var2 = *ptr_byte2;\n            byte_var3 = (&_sch_istable)[(ulong)byte_var2 * 2];\n            while ((byte_var3 & 0x40) != 0) {\n              byte_var2 = ptr_byte2[1];\n              ptr_byte2 = ptr_byte2 + 1;\n              byte_var3 = (&_sch_istable)[(ulong)byte_var2 * 2];\n            }\n            long_var4 = long_var4 + 1;\n          } while (byte_var2 != 0);\n          free(byte_ptr);\n          file_pointer2 = file_ptr;\n          if (argv == file_ptr) goto LAB_001030d9;\n          goto LAB_00102b38;\n        }\nLAB_001030bb:\n        undefined_pointer = (undefined **)xmalloc(8);\n        *undefined_pointer = (undefined *)0x0;\n        if (argv == file_ptr) {\nLAB_001030d9:\n          if (*(long **)file_ptr == (long *)0x0) {\n            int_var = 0;\n          }\n          else {\n            long_var2 = 1;\n            do {\n              int_var = (int)long_var2;\n              long_var3 = long_var2 * 2;\n              long_var2 = long_var2 + 1;\n            } while (*(long *)(&file_ptr->_flags + long_var3) != 0);\n          }\n          file_pointer2 = (FILE *)xmalloc((long)(int_var + 1) << 3);\n          long_pointer = *(long **)file_ptr;\n          long_var2 = 0;\n          while (long_pointer != (long *)0x0) {\n            undefined8_var = xstrdup();\n            *(undefined8 *)((long)&file_pointer2->_flags + long_var2) = undefined8_var;\n            long_pointer = *(long **)(file_ptr->_shortbuf + long_var2 + -0x7b);\n            long_var2 = long_var2 + 8;\n          }\n          *(undefined8 *)((long)&file_pointer2->_flags + long_var2) = 0;\nLAB_00102b38:\n          file_ptr = file_pointer2;\n          if (*undefined_pointer == (undefined *)0x0) goto LAB_0010318e;\n          char_pointer = (char *)0x0;\n          do {\n            char_pointer = (char *)((long)char_pointer + 1);\n          } while (undefined_pointer[(long)char_pointer] != (undefined *)0x0);\n          size_t_var = (long)char_pointer * 8;\n        }\n        else {\nLAB_0010318e:\n          char_pointer = (char *)0x0;\n          size_t_var = 0;\n        }\n        free(*(void **)(&file_ptr->_flags + (long)char_ptr2 * 2));\n        file_ptr = (FILE *)xrealloc(file_ptr,((long)char_pointer + (long)int_var4 + 1) * 8);\n        uint_var3 = int_var4 + -1 + (int)char_pointer;\n        file_pointer2 = (FILE *)(ulong)uint_var3;\n        memmove(&file_ptr->_flags + (long)(FILE **)((long)char_ptr2 + (long)char_pointer) * 2,\n                &file_ptr->_IO_read_ptr + (long)char_ptr2,(long)(int_var4 - int_var3) << 3);\n        memcpy(&file_ptr->_flags + (long)char_ptr2 * 2,undefined_pointer,size_t_var);\n        free(undefined_pointer);\n        free(byte_array);\n        fclose(stream);\n        uint_var = (int)ptr_ptr_undef5 + 1;\n        char_ptr2 = (char *)(FILE **)((long)char_ptr2 + (long)char_pointer);\n        undefined_pointer2 = ptr_ptr_void4;\n        ptr_ptr_void4 = undefined_pointer;\n        if ((int)uint_var3 <= (int)uint_var) break;\n      }\n      else {\nLAB_00102c30:\n        if (int_var4 <= int_var3 + 1) break;\nLAB_00102c3a:\n        uint_var = int_var3 + 1;\n        ptr_ptr_undef5 = undefined_pointer2;\n      }\n      undefined_pointer2 = (undefined **)(ulong)uint_var;\n    } while( true );\n  }\n  int_var2 = bfd_init();\n  if (int_var2 != 0x118) {\n    undefined8_var = dcgettext(0,\"fatal error: libbfd ABI mismatch\",5);\n    print_error_and_exit_00103bd0(undefined8_var);\n    goto switchD_00102d16_caseD_43;\n  }\n  char_pointer = \"x86_64-pc-linux-gnu\";\n  char_var = bfd_set_default_target();\n  if (char_var == '\\0') {\n    uint_var2 = bfd_get_error();\n    char_ptr2 = (char *)bfd_errmsg(uint_var2);\n    undefined8_var = dcgettext(0,\"can\\'t set BFD default target to `%s\\': %s\",5);\n    print_error_and_exit_00103bd0(undefined8_var,\"x86_64-pc-linux-gnu\",char_ptr2);\n    goto switchD_00102d16_caseD_61;\n  }\n  undefined_pointer2 = &PTR_s_addresses_001061e0;\n  ptr_ptr_undef5 = (undefined **)0x0;\n  char_ptr2 = \"ab:Ce:rRsfHhij:pVv\";\n  ptr_ptr_void4 = (undefined **)0x0;\n  char_pointer = (char *)(undefined **)0x0;\nswitchD_00102d16_caseD_0:\n  do {\n    uint_var2 = getopt_long(file_pointer2,file_ptr,char_ptr2,undefined_pointer2,0);\n    switch(uint_var2) {\n    case 1:\n    case 2:\n    case 3:\n    case 4:\n    case 5:\n    case 6:\n    case 7:\n    case 8:\n    case 9:\n    case 10:\n    case 0xb:\n    case 0xc:\n    case 0xd:\n    case 0xe:\n    case 0xf:\n    case 0x10:\n    case 0x11:\n    case 0x12:\n    case 0x13:\n    case 0x14:\n    case 0x15:\n    case 0x16:\n    case 0x17:\n    case 0x18:\n    case 0x19:\n    case 0x1a:\n    case 0x1b:\n    case 0x1c:\n    case 0x1d:\n    case 0x1e:\n    case 0x1f:\n    case 0x20:\n    case 0x21:\n    case 0x22:\n    case 0x23:\n    case 0x24:\n    case 0x25:\n    case 0x26:\n    case 0x27:\n    case 0x28:\n    case 0x29:\n    case 0x2a:\n    case 0x2b:\n    case 0x2c:\n    case 0x2d:\n    case 0x2e:\n    case 0x2f:\n    case 0x30:\n    case 0x31:\n    case 0x32:\n    case 0x33:\n    case 0x34:\n    case 0x35:\n    case 0x36:\n    case 0x37:\n    case 0x38:\n    case 0x39:\n    case 0x3a:\n    case 0x3b:\n    case 0x3c:\n    case 0x3d:\n    case 0x3e:\n    case 0x3f:\n    case 0x40:\n    case 0x41:\n    case 0x42:\n    case 0x44:\n    case 0x45:\n    case 0x46:\n    case 0x47:\n    case 0x49:\n    case 0x4a:\n    case 0x4b:\n    case 0x4c:\n    case 0x4d:\n    case 0x4e:\n    case 0x4f:\n    case 0x50:\n    case 0x51:\n    case 0x53:\n    case 0x54:\n    case 0x55:\n    case 0x57:\n    case 0x58:\n    case 0x59:\n    case 0x5a:\n    case 0x5b:\n    case 0x5c:\n    case 0x5d:\n    case 0x5e:\n    case 0x5f:\n    case 0x60:\n    case 99:\n    case 100:\n    case 0x67:\n    case 0x6b:\n    case 0x6c:\n    case 0x6d:\n    case 0x6e:\n    case 0x6f:\n    case 0x71:\n    case 0x74:\n    case 0x75:\n      print_usage_info_001023e1(_stderr,1);\n    case 0x6a:\n      ptr_ptr_void4 = _optarg;\n      break;\n    case 0x43:\nswitchD_00102d16_caseD_43:\n      stream = (FILE *)&optarg;\n      DAT_00106434 = '\\x01';\n      if (_optarg != (undefined **)0x0) {\n        int_var2 = cplus_demangle_name_to_style();\n        if (int_var2 == 0) goto LAB_0010339f;\n        cplus_demangle_set_style();\n      }\n      break;\n    case 0x48:\n    case 0x68:\n      print_usage_info_001023e1(_stdout,0);\nLAB_0010339f:\n      char_pointer = *(char **)stream;\n      char_ptr3 = \"unknown demangling style `%s\\'\";\nLAB_001033ae:\n      undefined8_var = dcgettext(0,char_ptr3,5);\n      print_error_and_exit_00103bd0(undefined8_var,char_pointer);\nswitchD_00102d16_caseD_72:\n      DAT_001061d0 = DAT_001061d0 | 0x40000;\n      break;\n    case 0x52:\n      DAT_001061d0 = DAT_001061d0 & 0xfffbffff;\n      break;\n    case 0x56:\n    case 0x76:\n      printf(\"GNU %s %s\\n\",\"addr2line\",\"(GNU Binutils for Debian) 2.40\");\n      char_pointer = (char *)dcgettext(0,\"Copyright (C) 2023 Free Software Foundation, Inc.\\n\",5);\n      printf(char_pointer);\n      char_pointer = (char *)dcgettext(0,\n                                  \"This program is free software; you may redistribute it under the terms of\\nthe GNU General Public License version 3 or (at your option) any later version.\\nThis program has absolutely no warranty.\\n\"\n                                  ,5);\n      printf(char_pointer);\n                    \n      exit(0);\n    case 0x61:\nswitchD_00102d16_caseD_61:\n      DAT_00106435 = '\\x01';\n      break;\n    case 0x62:\n      ptr_ptr_undef5 = _optarg;\n      break;\n    case 0x65:\n      char_pointer = (char *)_optarg;\n      break;\n    case 0x66:\n      DAT_00106432 = '\\x01';\n      break;\n    case 0x69:\n      DAT_00106430 = '\\x01';\n      break;\n    case 0x70:\n      DAT_00106431 = '\\x01';\n      break;\n    case 0x72:\n      goto switchD_00102d16_caseD_72;\n    case 0x73:\n      goto switchD_00102d16_caseD_73;\n    default:\n      DAT_00106428 = (char **)(&file_ptr->_flags + (long)_optind * 2);\n      DAT_00106420 = (int)file_pointer2 - _optind;\n      if ((undefined **)char_pointer == (undefined **)0x0) {\n        char_pointer = \"a.out\";\n      }\n      int_var2 = stat(char_pointer,&stat_var);\n      if (int_var2 < 0) {\n        int_ptr = __errno_location();\n        char_ptr3 = \"\\'%s\\': No such file\";\n        if (*int_ptr != 2) {\n          char_ptr3 = strerror(*int_ptr);\n          undefined8_var = dcgettext(0,\"Warning: could not locate \\'%s\\'.  reason: %s\",5);\n          print_error_message_00102620(undefined8_var,char_pointer,char_ptr3);\n          return 1;\n        }\nLAB_001039cd:\n        undefined8_var = dcgettext(0,char_ptr3,5);\n        print_error_message_00102620(undefined8_var,char_pointer);\n        return 1;\n      }\n      if ((stat_var.st_mode & 0xf000) == 0x4000) {\n        char_ptr3 = \"Warning: \\'%s\\' is a directory\";\n        goto LAB_001039cd;\n      }\n      char_ptr3 = \"Warning: \\'%s\\' is not an ordinary file\";\n      if ((stat_var.st_mode & 0xf000) != 0x8000) goto LAB_001039cd;\n      char_ptr3 = \"Warning: \\'%s\\' has negative size, probably it is too large\";\n      if (stat_var.st_size < 0) goto LAB_001039cd;\n      if (stat_var.st_size == 0) {\n        return 1;\n      }\n      file_ptr = (FILE *)bfd_openr(char_pointer,ptr_ptr_undef5);\n      if (file_ptr == (FILE *)0x0) {\n        print_bfd_error_message_00103c70(char_pointer);\n        xexit(1);\n        goto LAB_00103a85;\n      }\n      uint_pointer = (uint *)((long)&file_ptr->_IO_buf_end + 4);\n      *uint_pointer = *uint_pointer | 0x8000;\n      char_var = bfd_check_format(file_ptr,2);\n      if (char_var != '\\0') {\n        char_ptr3 = \"%s: cannot get addresses from archive\";\n        goto LAB_001033ae;\n      }\n      char_var = bfd_check_format_matches(file_ptr,1,&long_ptr2);\n      if (char_var == '\\0') {\n        print_bfd_error_message_00103c70(*(long **)file_ptr);\n        int_var2 = bfd_get_error();\n        if (int_var2 == 0xd) {\n          file_ptr = (FILE *)0x1040e1;\n          fflush(_stdout);\n          long_pointer = DAT_00106438;\n          char_pointer = (char *)dcgettext(0,\"%s: Matching formats:\",5);\n          fprintf(_stderr,char_pointer,long_pointer);\n          for (long_pointer = long_ptr2; *long_pointer != 0; long_pointer = long_pointer + 1) {\n            fprintf(_stderr,\" %s\");\n          }\n          free(long_ptr2);\n          fputc(10,_stderr);\n        }\n        goto LAB_00103801;\n      }\n      undefined_pointer = ptr_ptr_void4;\n      if ((ptr_ptr_void4 != (undefined **)0x0) &&\n         (undefined_pointer = (undefined **)bfd_get_section_by_name(file_ptr), undefined_pointer == (undefined **)0x0))\n      {\n        undefined8_var = dcgettext(0,\"%s: cannot find section %s\",5);\n        print_error_and_exit_00103bd0(undefined8_var,char_pointer,ptr_ptr_void4);\n        goto LAB_0010399c;\n      }\n      ptr_ptr_void4 = undefined_pointer;\n      if ((*(byte *)((long)&file_ptr->_IO_buf_end + 4) & 0x10) == 0) goto LAB_00102ecd;\n      long_var2 = (**(code **)(file_ptr->_IO_read_ptr + 0x1f8))(file_ptr);\n      if (long_var2 == 0) {\n        long_var2 = (**(code **)(file_ptr->_IO_read_ptr + 0x350))(file_ptr);\n        if (-1 < long_var2) {\n          DAT_00106418 = (void *)xmalloc(long_var2);\n          DAT_001063e8 = (**(code **)(file_ptr->_IO_read_ptr + 0x358))(file_ptr);\n          if (-1 < DAT_001063e8) goto LAB_00102ebf;\n        }\n      }\n      else if (-1 < long_var2) {\n        DAT_00106418 = (void *)xmalloc(long_var2);\n        DAT_001063e8 = (**(code **)(file_ptr->_IO_read_ptr + 0x200))(file_ptr);\n        if (-1 < DAT_001063e8) {\n          if (DAT_001063e8 == 0) goto LAB_0010380b;\n          goto LAB_00102ebf;\n        }\n      }\n      print_bfd_error_message_00103c70(*(long **)file_ptr);\nLAB_00103801:\n      xexit(1);\nLAB_0010380b:\n      long_var2 = (**(code **)(file_ptr->_IO_read_ptr + 0x350))(file_ptr);\n      if (0 < long_var2) {\n        free(DAT_00106418);\n        DAT_00106418 = (void *)xmalloc(long_var2);\n        DAT_001063e8 = (**(code **)(file_ptr->_IO_read_ptr + 0x358))(file_ptr);\n      }\nLAB_00102ebf:\n      if (DAT_001063e8 < 1) {\n        free(DAT_00106418);\n        DAT_00106418 = (void *)0x0;\n      }\nLAB_00102ecd:\n      undefined_pointer2 = (undefined **)(ulong)DAT_00106420;\n      stream = (FILE *)&DAT_0010400a;\n      if (DAT_00106420 == 0) goto LAB_00103065;\nLAB_00102ee7:\n      if ((int)DAT_00106420 < 1) {\nLAB_0010308a:\n        free(DAT_00106418);\n        DAT_00106418 = (void *)0x0;\n        bfd_close(file_ptr);\n        return 0;\n      }\n      DAT_00106420 = DAT_00106420 - 1;\n      stat_ptr = (stat *)*DAT_00106428;\n      DAT_00106428 = DAT_00106428 + 1;\n      do {\n        byte_var2 = *(byte *)&stat_ptr->st_dev;\n        ulong_var = (ulong)byte_var2;\n        ushort_var = *(ushort *)(&_sch_istable + ulong_var * 2);\n        stat_pointer2 = stat_ptr;\n        while ((ushort_var & 0x40) != 0) {\n          byte_var2 = *(byte *)((long)&stat_pointer2->st_dev + 1);\n          ulong_var = (ulong)byte_var2;\n          stat_pointer2 = (stat *)((long)&stat_pointer2->st_dev + 1);\n          ushort_var = *(ushort *)(&_sch_istable + ulong_var * 2);\n        }\n        if ((((ushort_var & 4) == 0) && (byte_var2 != 0)) &&\n           ((stat_ptr2 = stat_pointer2, 5 < (byte)((&_sch_toupper)[ulong_var] + 0xbf) ||\n            (char_pointer = strchr((char *)stat_pointer2,0x2b), char_pointer != (char *)0x0)))) {\n          while( true ) {\n            byte_var2 = *(byte *)&stat_ptr2->st_dev;\n            stat_ptr = stat_ptr2;\n            if (((byte_var2 == 0) || ((*(ushort *)(&_sch_istable + (ulong)byte_var2 * 2) & 0x40) != 0)) ||\n               (byte_var2 == 0x2b)) break;\n            stat_ptr2 = (stat *)((long)&stat_ptr2->st_dev + 1);\n          }\n          while (((&_sch_istable)[(ulong)*(byte *)&stat_ptr->st_dev * 2] & 0x40) != 0) {\n            stat_ptr = (stat *)((long)&stat_ptr->st_dev + 1);\n          }\n          ulong_var = 0;\n          if (*(byte *)&stat_ptr->st_dev == 0x2b) {\n            ulong_var = strtoul((char *)((long)&stat_ptr->st_dev + 1),(char **)0x0,0);\n          }\n          void_pointer = DAT_00106418;\n          long_var2 = DAT_001063e8;\n          *(undefined *)&stat_ptr2->st_dev = 0;\n          for (long_var3 = 0; long_var3 < long_var2; long_var3 = long_var3 + 1) {\n            long_var = *(long *)((long)void_pointer + long_var3 * 8);\n            int_var2 = strcmp(*(char **)(long_var + 8),(char *)stat_pointer2);\n            if (int_var2 == 0) {\n              undefined_pointer2 = (undefined **)((ulong)undefined_pointer2 & 0xffffffff);\n              DAT_00106410 = (undefined *)\n                             (ulong_var + *(long *)(long_var + 0x10) +\n                             *(long *)(*(long *)(long_var + 0x20) + 0x30));\n              goto LAB_00102f4b;\n            }\n          }\n          undefined_pointer2 = (undefined **)((ulong)undefined_pointer2 & 0xffffffff);\n          for (long_var2 = 0; long_var2 < DAT_001063e8; long_var2 = long_var2 + 1) {\n            char_pointer = (char *)bfd_demangle(file_ptr,*(undefined8 *)\n                                                    (*(long *)((long)DAT_00106418 + long_var2 * 8) + 8)\n                                           ,DAT_001061d0);\n            if ((char_pointer != (char *)0x0) && (int_var2 = strcmp(char_pointer,(char *)stat_pointer2), int_var2 == 0))\n            {\n              free(char_pointer);\n              long_var2 = *(long *)((long)DAT_00106418 + long_var2 * 8);\n              DAT_00106410 = (undefined *)\n                             (*(long *)(long_var2 + 0x10) + ulong_var +\n                             *(long *)(*(long *)(long_var2 + 0x20) + 0x30));\n              goto LAB_00102f4b;\n            }\n            free(char_pointer);\n          }\n          DAT_00106410 = (undefined *)0x0;\n        }\n        else {\n          DAT_00106410 = (undefined *)bfd_scan_vma(stat_ptr,0,0x10);\n        }\nLAB_00102f4b:\n        if (*(int *)(file_ptr->_IO_read_ptr + 8) == 5) {\n          long_var2 = *(long *)(file_ptr->_IO_read_ptr + 0x380);\n          ulong_var = 1L << (*(char *)(*(long *)(long_var2 + 0x340) + 10) - 1U & 0x3f);\n          DAT_00106410 = (undefined *)((ulong)DAT_00106410 & ulong_var * 2 - 1);\n          if ((*(byte *)(long_var2 + 0x3f1) & 1) != 0) {\n            DAT_00106410 = (undefined *)(((ulong)DAT_00106410 ^ ulong_var) - ulong_var);\n          }\n        }\n        if (DAT_00106435 != '\\0') {\n          printf(\"0x\");\n          bfd_fprintf_vma(file_ptr,_stdout,DAT_00106410);\n          if (DAT_00106431 == '\\0') {\n            putchar(10);\n          }\n          else {\n            printf(\": \");\n          }\n        }\n        char_ptr2 = &stdout;\n        DAT_00106408 = '\\0';\n        if (ptr_ptr_void4 == (undefined **)0x0) {\n          bfd_map_over_sections(file_ptr,process_data_00102540,0);\nLAB_00102fcf:\n          if (DAT_00106408 != '\\0') {\n            do {\n              if (DAT_00106432 != '\\0') {\n                undefined_pointer = DAT_00106400;\n                if (DAT_00106400 == (undefined **)0x0) {\nLAB_00103a4a:\n                  ptr_ptr1 = (undefined **)&DAT_0010400a;\n                }\n                else {\n                  if (*(char *)DAT_00106400 == '\\0') {\n                    undefined_pointer = (undefined **)0x0;\n                    goto LAB_00103a4a;\n                  }\n                  char_pointer = (char *)DAT_00106400;\n                  file_pointer2 = file_ptr;\n                  if (DAT_00106434 == '\\0') {\nLAB_001031f4:\n                    undefined_pointer = (undefined **)0x0;\n                    ptr_ptr1 = (undefined **)char_pointer;\n                    file_ptr = file_pointer2;\n                  }\n                  else {\nLAB_0010399c:\n                    undefined_pointer = (undefined **)bfd_demangle(file_pointer2,char_pointer,DAT_001061d0);\n                    ptr_ptr1 = undefined_pointer;\n                    file_ptr = file_pointer2;\n                    if (undefined_pointer == (undefined **)0x0) goto LAB_001031f4;\n                  }\n                }\n                printf(\"%s\",ptr_ptr1);\n                if (DAT_00106431 == '\\0') {\n                  putchar(10);\n                }\n                else {\n                  char_pointer = (char *)dcgettext(0,&DAT_001040f1,5);\n                  printf(char_pointer);\n                }\n                free(undefined_pointer);\n              }\n              file_pointer2 = DAT_001063f8;\n              if (DAT_00106433 == '\\0') {\n                if (DAT_001063f8 == (FILE *)0x0) {\n                  file_pointer2 = stream;\n                }\n              }\n              else if (DAT_001063f8 == (FILE *)0x0) {\n                file_pointer2 = (FILE *)&DAT_0010400a;\n              }\n              else {\n                char_pointer = strrchr((char *)DAT_001063f8,0x2f);\n                if (char_pointer != (char *)0x0) {\n                  file_pointer2 = (FILE *)(char_pointer + 1);\n                  DAT_001063f8 = file_pointer2;\n                }\n              }\n              printf(\"%s:\",file_pointer2);\n              file_pointer2 = file_ptr;\n              if (DAT_001063f4 == 0) {\nLAB_00103a85:\n                puts(\"?\");\n                file_ptr = file_pointer2;\n              }\n              else if (DAT_001063f0 == 0) {\n                printf(\"%u\\n\");\n              }\n              else {\n                printf(\"%u (discriminator %u)\\n\");\n              }\n              if (DAT_00106430 == '\\0') {\nLAB_0010304c:\n                DAT_00106408 = '\\0';\n                goto LAB_00103053;\n              }\n              DAT_00106408 = (**(code **)(file_ptr->_IO_read_ptr + 600))\n                                       (file_ptr,&DAT_001063f8,&DAT_00106400,&DAT_001063f4);\n              undefined_pointer = DAT_00106400;\n              if (DAT_00106408 == '\\0') goto LAB_00103053;\n              while (DAT_00106400 = undefined_pointer, DAT_00106431 == '\\0') {\n                if (DAT_00106432 != '\\0') {\n                  ptr_ptr1 = undefined_pointer;\n                  if (undefined_pointer == (undefined **)0x0) {\nLAB_00103b7b:\n                    ptr_ptr2 = (undefined **)&DAT_0010400a;\n                  }\n                  else {\n                    if (*(char *)undefined_pointer == '\\0') {\n                      ptr_ptr1 = (undefined **)0x0;\n                      goto LAB_00103b7b;\n                    }\n                    if ((DAT_00106434 == '\\0') ||\n                       (ptr_ptr1 = (undefined **)bfd_demangle(file_ptr,undefined_pointer,DAT_001061d0),\n                       ptr_ptr2 = ptr_ptr1, ptr_ptr1 == (undefined **)0x0)) {\n                      ptr_ptr1 = (undefined **)0x0;\n                      ptr_ptr2 = undefined_pointer;\n                    }\n                  }\n                  printf(\"%s\",ptr_ptr2);\n                  if (DAT_00106431 == '\\0') {\n                    putchar(10);\n                  }\n                  else {\n                    char_pointer = (char *)dcgettext(0,&DAT_001040f1,5);\n                    printf(char_pointer);\n                  }\n                  free(ptr_ptr1);\n                }\n                file_pointer2 = DAT_001063f8;\n                if (DAT_00106433 == '\\0') {\n                  if (DAT_001063f8 == (FILE *)0x0) {\n                    file_pointer2 = (FILE *)&DAT_0010400a;\n                  }\n                }\n                else if (DAT_001063f8 == (FILE *)0x0) {\n                  file_pointer2 = (FILE *)&DAT_0010400a;\n                }\n                else {\n                  char_pointer = strrchr((char *)DAT_001063f8,0x2f);\n                  if (char_pointer != (char *)0x0) {\n                    file_pointer2 = (FILE *)(char_pointer + 1);\n                    DAT_001063f8 = file_pointer2;\n                  }\n                }\n                printf(\"%s:\",file_pointer2);\n                if (DAT_001063f4 == 0) {\n                  puts(\"?\");\n                }\n                else if (DAT_001063f0 == 0) {\n                  printf(\"%u\\n\");\n                }\n                else {\n                  printf(\"%u (discriminator %u)\\n\");\n                }\n                if (DAT_00106430 == '\\0') goto LAB_0010304c;\n                DAT_00106408 = (**(code **)(file_ptr->_IO_read_ptr + 600))\n                                         (file_ptr,&DAT_001063f8,&DAT_00106400,&DAT_001063f4);\n                undefined_pointer = DAT_00106400;\n                if (DAT_00106408 == '\\0') {\n                  DAT_00106408 = '\\0';\n                  goto LAB_00103053;\n                }\n              }\n              char_pointer = (char *)dcgettext(0,\" (inlined by) \",5);\n              printf(char_pointer);\n            } while( true );\n          }\n        }\n        else if (((*(byte *)((long)ptr_ptr_void4 + 0x24) & 1) != 0) && (DAT_00106410 < ptr_ptr_void4[8])) {\n          DAT_00106408 = (**(code **)(file_ptr->_IO_read_ptr + 0x240))\n                                   (file_ptr,DAT_00106418,ptr_ptr_void4,DAT_00106410,&DAT_001063f8,\n                                    &DAT_00106400,&DAT_001063f4,&DAT_001063f0);\n          goto LAB_00102fcf;\n        }\n        if (DAT_00106432 != '\\0') {\n          if (DAT_00106431 == '\\0') {\n            puts(\"??\");\n          }\n          else {\n            printf(\"?? \");\n          }\n        }\n        puts(\"??:0\");\nLAB_00103053:\n        fflush(*(FILE **)char_ptr2);\n        if ((int)undefined_pointer2 != 0) goto LAB_00102ee7;\nLAB_00103065:\n        char_pointer = fgets((char *)&stat_var,100,_stdin);\n        stat_ptr = &stat_var;\n        if (char_pointer == (char *)0x0) goto LAB_0010308a;\n      } while( true );\n    }\n  } while( true );\nLAB_00102970:\n  byte_var2 = ptr_byte2[1];\n  ptr_byte2 = ptr_byte2 + 1;\n  if (byte_var2 == 0) goto LAB_001030bb;\n  goto LAB_00102980;\nswitchD_00102d16_caseD_73:\n  DAT_00106433 = '\\x01';\n  goto switchD_00102d16_caseD_0;\n}\n\n",
+            "current_name": "parse_input_file_001027b0",
+            "entrypoint": "0x001027b0",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_001027b0": "parse_input_file_001027b0",
+                "__ptr": "byte_ptr",
+                "__s": "byte_array",
+                "__s_00": "stat_pointer2",
+                "__stream": "stream",
+                "bVar10": "byte_var2",
+                "bVar29": "byte_pointer4",
+                "bVar3": "byte_var3",
+                "bVar6": "bool_var1",
+                "bVar7": "bool_var2",
+                "bVar8": "bool_var3",
+                "cVar11": "char_var",
+                "iVar12": "int_var",
+                "iVar14": "int_var2",
+                "iVar34": "int_var3",
+                "iVar36": "int_var4",
+                "lVar20": "long_var2",
+                "lVar26": "long_var3",
+                "lVar30": "long_var3",
+                "lVar5": "long_var",
+                "local_118": "long_var4",
+                "local_120": "size_t_var",
+                "local_140": "ptr_ptr_undef5",
+                "local_148": "ptr_ptr_void4",
+                "local_c8": "stat_var",
+                "local_d0": "long_ptr2",
+                "pFVar19": "file_ptr",
+                "pFVar27": "file_pointer2",
+                "param_1": "argc",
+                "param_2": "argv",
+                "pbVar1": "ptr_byte1",
+                "pbVar29": "ptr_byte2",
+                "pbVar31": "ptr_byte3",
+                "pcVar28": "char_pointer",
+                "pcVar32": "char_ptr3",
+                "piVar23": "int_ptr",
+                "plVar26": "long_pointer",
+                "ppuVar16": "undefined_pointer",
+                "ppuVar24": "ptr_ptr1",
+                "ppuVar33": "ptr_ptr2",
+                "psVar21": "stat_ptr",
+                "psVar35": "stat_ptr2",
+                "puVar18": "undefined_ptr",
+                "puVar2": "uint_pointer",
+                "pvVar9": "void_pointer",
+                "sVar17": "size",
+                "uVar13": "uint_var",
+                "uVar15": "uint_var2",
+                "uVar22": "undefined8_var",
+                "uVar25": "ulong_var",
+                "uVar37": "uint_var3",
+                "uVar4": "ushort_var",
+                "unaff_R12": "undefined_pointer2",
+                "unaff_RBP": "char_ptr2"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "FUN_00103bd0": {
+            "additional_data": {
+                "DAT_00106438": {
+                    "error_msg_prefix": 1,
+                    "error_program_name": 1,
+                    "program_name": 1
+                },
+                "FUN_00103bd0": {
+                    "print_error": 1,
+                    "print_error_and_exit": 23,
+                    "print_error_message": 7
+                },
+                "_stderr": {
+                    "standard_error": 2,
+                    "stderr": 2,
+                    "stderr_buffer": 1,
+                    "stderr_stream": 1
+                },
+                "_stdout": {
+                    "standard_output": 2,
+                    "stdout": 2,
+                    "stdout_buffer": 1,
+                    "stdout_stream": 1
+                },
+                "bff_errmsg": {
+                    "bfd_error_message": 1
+                },
+                "dcgettext": {
+                    "get_error": 1
+                },
+                "fprintf": {
+                    "print_error_message": 1,
+                    "print_formatted": 1
+                },
+                "iVar1": {
+                    "bfd_error": 6,
+                    "bfd_error_code": 3,
+                    "error": 10,
+                    "error_check": 1,
+                    "error_code": 2,
+                    "error_code_check": 1,
+                    "error_status": 1
+                },
+                "in_AL": {
+                    "condition": 5,
+                    "condition_flag": 1,
+                    "condition_variable": 1,
+                    "flag": 9,
+                    "input_flag": 1,
+                    "is_error": 4,
+                    "is_error_present": 1,
+                    "is_error_set": 1,
+                    "should_print_error": 1
+                },
+                "in_R10": {
+                    "additional_info": 8,
+                    "additional_param": 1,
+                    "err_message": 1,
+                    "error_info": 1,
+                    "extra_info": 1,
+                    "extra_param": 1,
+                    "param_9": 1,
+                    "param_r10": 2,
+                    "register_value": 1,
+                    "some_info": 1,
+                    "some_register": 1,
+                    "unspecified_argument": 1
+                },
+                "lVar3": {
+                    "cause_of_error": 1,
+                    "error_code": 4,
+                    "error_code_2": 1,
+                    "error_code_check": 1,
+                    "error_code_result": 1,
+                    "error_flag": 3,
+                    "error_line": 2,
+                    "error_msg_length": 1,
+                    "error_occurred": 1,
+                    "error_result": 1,
+                    "error_value": 1,
+                    "exit_code": 5,
+                    "exit_status": 2,
+                    "is_error_unknown": 1,
+                    "line_number": 2,
+                    "result": 2,
+                    "status": 1
+                },
+                "local_18": {
+                    "argument_8": 1,
+                    "error_code8": 1,
+                    "error_code8_copy": 1,
+                    "error_code_8": 1,
+                    "error_code_8_copy": 1,
+                    "error_param_8": 1,
+                    "error_param_8_copy": 1,
+                    "local_18": 2,
+                    "local_error_param_8": 1,
+                    "local_param8": 2,
+                    "local_param_8": 1,
+                    "local_parameter_8": 1,
+                    "local_var13": 1,
+                    "new_param8": 1,
+                    "param8_copy": 2,
+                    "param8_local": 1,
+                    "param_8": 3,
+                    "param_8_copy": 8,
+                    "param_8_name_copy": 1
+                },
+                "local_28": {
+                    "argument_7": 1,
+                    "error_code7": 1,
+                    "error_code7_copy": 1,
+                    "error_code_7": 1,
+                    "error_code_7_copy": 1,
+                    "error_param_7": 1,
+                    "error_param_7_copy": 1,
+                    "local_28": 2,
+                    "local_error_param_7": 1,
+                    "local_param7": 2,
+                    "local_param_7": 1,
+                    "local_parameter_7": 1,
+                    "local_var12": 1,
+                    "new_param7": 1,
+                    "param7_copy": 2,
+                    "param7_local": 1,
+                    "param_7": 3,
+                    "param_7_copy": 8,
+                    "param_7_name_copy": 1
+                },
+                "local_38": {
+                    "argument_6": 1,
+                    "error_code6": 1,
+                    "error_code6_copy": 1,
+                    "error_code_6": 1,
+                    "error_code_6_copy": 1,
+                    "error_param_6": 1,
+                    "error_param_6_copy": 1,
+                    "local_38": 2,
+                    "local_error_param_6": 1,
+                    "local_param6": 2,
+                    "local_param_6": 1,
+                    "local_parameter_6": 1,
+                    "local_var11": 1,
+                    "new_param6": 1,
+                    "param6_copy": 2,
+                    "param6_local": 1,
+                    "param_6": 3,
+                    "param_6_copy": 8,
+                    "param_6_name_copy": 1
+                },
+                "local_48": {
+                    "argument_5": 1,
+                    "error_code5": 1,
+                    "error_code5_copy": 1,
+                    "error_code_5": 1,
+                    "error_code_5_copy": 1,
+                    "error_param_5": 1,
+                    "error_param_5_copy": 1,
+                    "local_48": 2,
+                    "local_error_param_5": 1,
+                    "local_param5": 2,
+                    "local_param_5": 1,
+                    "local_parameter_5": 1,
+                    "local_var10": 1,
+                    "new_param5": 1,
+                    "param5_copy": 2,
+                    "param5_local": 1,
+                    "param_5": 3,
+                    "param_5_copy": 8,
+                    "param_5_name_copy": 1
+                },
+                "local_58": {
+                    "argument_4": 1,
+                    "error_code4": 1,
+                    "error_code4_copy": 1,
+                    "error_code_4": 1,
+                    "error_code_4_copy": 1,
+                    "error_param_4": 1,
+                    "error_param_4_copy": 1,
+                    "local_58": 2,
+                    "local_error_param_4": 1,
+                    "local_param4": 2,
+                    "local_param_4": 1,
+                    "local_parameter_4": 1,
+                    "local_var9": 1,
+                    "new_param4": 1,
+                    "param4_copy": 2,
+                    "param4_local": 1,
+                    "param_4": 3,
+                    "param_4_copy": 8,
+                    "param_4_name_copy": 1
+                },
+                "local_68": {
+                    "argument_3": 1,
+                    "error_code3": 1,
+                    "error_code3_copy": 1,
+                    "error_code_3": 1,
+                    "error_code_3_copy": 1,
+                    "error_param_3": 1,
+                    "error_param_3_copy": 1,
+                    "local_68": 2,
+                    "local_error_param_3": 1,
+                    "local_param3": 2,
+                    "local_param_3": 1,
+                    "local_parameter_3": 1,
+                    "local_var8": 1,
+                    "new_param3": 1,
+                    "param3_copy": 2,
+                    "param3_local": 1,
+                    "param_3": 3,
+                    "param_3_copy": 8,
+                    "param_3_name_copy": 1
+                },
+                "local_78": {
+                    "argument_2": 1,
+                    "error_code2": 1,
+                    "error_code2_copy": 1,
+                    "error_code_2": 1,
+                    "error_code_2_copy": 1,
+                    "error_param_2": 1,
+                    "error_param_2_copy": 1,
+                    "local_78": 2,
+                    "local_error_param_2": 1,
+                    "local_param2": 2,
+                    "local_param_2": 1,
+                    "local_parameter_2": 1,
+                    "local_var7": 1,
+                    "new_param2": 1,
+                    "param2_copy": 2,
+                    "param2_local": 1,
+                    "param_2": 3,
+                    "param_2_copy": 8,
+                    "param_2_name_copy": 1
+                },
+                "local_88": {
+                    "argument_1": 1,
+                    "error_code": 1,
+                    "error_code1": 1,
+                    "error_code1_copy": 1,
+                    "error_code_1": 1,
+                    "error_code_1_copy": 1,
+                    "error_code_copy": 4,
+                    "error_code_local": 1,
+                    "error_param_1": 1,
+                    "error_param_1_copy": 1,
+                    "local_88": 2,
+                    "local_error_param_1": 1,
+                    "local_param1": 2,
+                    "local_param_1": 1,
+                    "local_parameter_1": 1,
+                    "local_var6": 1,
+                    "new_param1": 1,
+                    "param1_copy": 1,
+                    "param_1": 2,
+                    "param_1_copy": 6
+                },
+                "local_90": {
+                    "arg_14_copy": 1,
+                    "error_param_14": 1,
+                    "local_90": 2,
+                    "local_param14": 2,
+                    "local_param_14": 2,
+                    "local_parameter_14": 1,
+                    "local_var5": 1,
+                    "local_variable_8": 1,
+                    "param14": 1,
+                    "param14_copy": 3,
+                    "param14_local": 1,
+                    "param_14": 5,
+                    "param_14_copy": 9,
+                    "val5": 1
+                },
+                "local_98": {
+                    "arg_13_copy": 1,
+                    "error_param_13": 1,
+                    "local_98": 2,
+                    "local_param13": 2,
+                    "local_param_13": 2,
+                    "local_parameter_13": 1,
+                    "local_var4": 1,
+                    "local_variable_7": 1,
+                    "param13": 1,
+                    "param13_copy": 3,
+                    "param13_local": 1,
+                    "param_13": 5,
+                    "param_13_copy": 9,
+                    "val4": 1
+                },
+                "local_a0": {
+                    "arg_12_copy": 1,
+                    "error_param_12": 1,
+                    "local_a0": 2,
+                    "local_param12": 2,
+                    "local_param_12": 2,
+                    "local_parameter_12": 1,
+                    "local_var3": 1,
+                    "local_variable_6": 1,
+                    "param12": 1,
+                    "param12_copy": 3,
+                    "param12_local": 1,
+                    "param_12": 5,
+                    "param_12_copy": 9,
+                    "val3": 1
+                },
+                "local_a8": {
+                    "arg_11_copy": 1,
+                    "error_param_11": 1,
+                    "local_a8": 2,
+                    "local_param11": 2,
+                    "local_param_11": 2,
+                    "local_parameter_11": 1,
+                    "local_var2": 1,
+                    "local_variable_5": 1,
+                    "param11": 1,
+                    "param11_copy": 3,
+                    "param11_local": 1,
+                    "param_11": 5,
+                    "param_11_copy": 9,
+                    "val2": 1
+                },
+                "local_b0": {
+                    "arg_10_copy": 1,
+                    "error_param_10": 1,
+                    "local_b0": 2,
+                    "local_param10": 2,
+                    "local_param_10": 2,
+                    "local_parameter_10": 1,
+                    "local_var1": 1,
+                    "local_variable_4": 1,
+                    "param10": 1,
+                    "param10_copy": 3,
+                    "param10_local": 1,
+                    "param_10": 5,
+                    "param_10_copy": 9,
+                    "val1": 1
+                },
+                "local_b8": {
+                    "another_buffer": 1,
+                    "buffer": 2,
+                    "buffer_storage": 1,
+                    "error_buffer": 2,
+                    "filename": 1,
+                    "local_array": 3,
+                    "local_b8": 1,
+                    "local_b8_buffer": 1,
+                    "local_buffer": 6,
+                    "local_buffer_1": 1,
+                    "local_data": 2,
+                    "message": 1,
+                    "message_buffer": 1,
+                    "result_buffer": 1,
+                    "temporary_buffer": 1,
+                    "unused_buffer": 2
+                },
+                "local_c8": {
+                    "buffer": 5,
+                    "buffer_ptr": 1,
+                    "error_message": 1,
+                    "error_message_buf": 1,
+                    "local_b8_pointer": 1,
+                    "local_buffer": 14,
+                    "local_c8": 3,
+                    "local_error_buffer": 1,
+                    "local_pointer_2": 1,
+                    "local_variable_2": 2,
+                    "output_buffer": 1
+                },
+                "local_d0": {
+                    "buffer": 7,
+                    "buffer_pointer": 3,
+                    "buffer_ptr": 7,
+                    "data_pointer": 1,
+                    "error_message_buffer": 1,
+                    "local_buffer": 2,
+                    "local_pointer": 1,
+                    "local_pointer_1": 1,
+                    "stack_pointer": 1
+                },
+                "local_d4": {
+                    "buffer_length": 3,
+                    "buffer_size_limit": 1,
+                    "local_b8_size": 1,
+                    "local_buffer_size": 1,
+                    "local_d4": 3,
+                    "local_var_1": 1,
+                    "local_variable_3": 1,
+                    "max_buffer_size": 1,
+                    "param_14": 1
+                },
+                "local_d8": {
+                    "buffer_size": 22,
+                    "error_code_ptr": 1,
+                    "error_message_length": 1,
+                    "length": 1,
+                    "local_error_code": 1,
+                    "local_variable_1": 2,
+                    "num_bytes": 2,
+                    "stack_size": 1
+                },
+                "param_1": {
+                    "argument_1": 1,
+                    "err_param1": 1,
+                    "error_code": 20,
+                    "error_code1": 2,
+                    "error_code_1": 4,
+                    "error_param_1": 3
+                },
+                "param_10": {
+                    "arg_10": 1,
+                    "err_val2": 1,
+                    "error_param_10": 2,
+                    "file_name": 1,
+                    "param10": 10,
+                    "param_10": 16
+                },
+                "param_11": {
+                    "arg_11": 1,
+                    "err_val3": 1,
+                    "error_param_11": 2,
+                    "param11": 10,
+                    "param_11": 17
+                },
+                "param_12": {
+                    "arg_12": 1,
+                    "err_val4": 1,
+                    "error_param_12": 2,
+                    "param12": 10,
+                    "param_12": 17
+                },
+                "param_13": {
+                    "arg_13": 1,
+                    "err_val5": 1,
+                    "error_param_13": 2,
+                    "param13": 10,
+                    "param_13": 17
+                },
+                "param_14": {
+                    "arg_14": 1,
+                    "err_val6": 1,
+                    "error_param_14": 2,
+                    "param14": 10,
+                    "param_14": 17
+                },
+                "param_2": {
+                    "argument_2": 1,
+                    "err_param2": 1,
+                    "error_code2": 2,
+                    "error_code_2": 4,
+                    "error_param_2": 3,
+                    "param2": 8,
+                    "param_2": 11,
+                    "param_2_name": 1
+                },
+                "param_3": {
+                    "argument_3": 1,
+                    "err_param3": 1,
+                    "error_code3": 2,
+                    "error_code_3": 4,
+                    "error_param_3": 3,
+                    "param3": 8,
+                    "param_3": 11,
+                    "param_3_name": 1
+                },
+                "param_4": {
+                    "argument_4": 1,
+                    "err_param4": 1,
+                    "error_code4": 2,
+                    "error_code_4": 4,
+                    "error_param_4": 3,
+                    "param4": 8,
+                    "param_4": 11,
+                    "param_4_name": 1
+                },
+                "param_5": {
+                    "argument_5": 1,
+                    "err_param5": 1,
+                    "error_code5": 2,
+                    "error_code_5": 4,
+                    "error_param_5": 3,
+                    "param5": 8,
+                    "param_5": 11,
+                    "param_5_name": 1
+                },
+                "param_6": {
+                    "argument_6": 1,
+                    "err_param6": 1,
+                    "error_code6": 2,
+                    "error_code_6": 4,
+                    "error_param_6": 3,
+                    "param6": 8,
+                    "param_6": 11,
+                    "param_6_name": 1
+                },
+                "param_7": {
+                    "argument_7": 1,
+                    "err_param7": 1,
+                    "error_code7": 2,
+                    "error_code_7": 4,
+                    "error_param_7": 3,
+                    "param7": 8,
+                    "param_7": 11,
+                    "param_7_name": 1
+                },
+                "param_8": {
+                    "argument_8": 1,
+                    "err_param8": 1,
+                    "error_code8": 2,
+                    "error_code_8": 4,
+                    "error_param_8": 3,
+                    "param8": 8,
+                    "param_8": 11,
+                    "param_8_name": 1
+                },
+                "param_9": {
+                    "err_val1": 1,
+                    "error_code": 1,
+                    "error_message": 6,
+                    "error_message_param": 1,
+                    "error_msg": 1,
+                    "error_param_9": 2,
+                    "error_string": 2,
+                    "file": 2,
+                    "file_descriptor": 7,
+                    "file_handle": 1,
+                    "file_ptr": 1,
+                    "file_stream": 1,
+                    "message": 1,
+                    "message_address": 1,
+                    "param9": 1,
+                    "param_9": 2
+                },
+                "print_error_message_001025c0": {
+                    "print_error_message": 1,
+                    "print_error_message_001025c0": 1
+                },
+                "uVar2": {
+                    "error_description": 1,
+                    "error_message": 23,
+                    "error_message_2": 1,
+                    "error_message_get": 1,
+                    "error_msg": 2,
+                    "error_string": 1
+                }
+            },
+            "called": [
+                "FUN_001025c0",
+                "xexit"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nvoid print_error_and_exit_00103bd0(undefined4 error_code,undefined4 param_2,undefined4 param_3,undefined4 param_4,\n                 undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8,\n                 undefined8 file_descriptor,undefined8 error_code0,undefined8 error_code1,undefined8 error_code2,\n                 undefined8 error_code3,undefined8 error_code4)\n\n{\n  char flag;\n  int error;\n  undefined8 error_message;\n  long exit_code;\n  undefined8 additional_info;\n  undefined4 buffer_size;\n  undefined4 buffer_length;\n  undefined *buffer;\n  undefined *local_buffer;\n  undefined local_buffer [8];\n  undefined8 param_10_copy;\n  undefined8 param_11_copy;\n  undefined8 param_12_copy;\n  undefined8 param_13_copy;\n  undefined8 param_14_copy;\n  undefined4 param_1_copy;\n  undefined4 param_2_copy;\n  undefined4 param_3_copy;\n  undefined4 param_4_copy;\n  undefined4 param_5_copy;\n  undefined4 param_6_copy;\n  undefined4 param_7_copy;\n  undefined4 param_8_copy;\n  \n  if (flag != '\\0') {\n    param_1_copy = error_code;\n    param_2_copy = param_2;\n    param_3_copy = param_3;\n    param_4_copy = param_4;\n    param_5_copy = param_5;\n    param_6_copy = param_6;\n    param_7_copy = param_7;\n    param_8_copy = param_8;\n  }\n  buffer = &stack0x00000008;\n  buffer_size = 8;\n  local_buffer = local_buffer;\n  buffer_length = 0x30;\n  param_10_copy = error_code0;\n  param_11_copy = error_code1;\n  param_12_copy = error_code2;\n  param_13_copy = error_code3;\n  param_14_copy = error_code4;\n  fprintf(file_descriptor,&buffer_size);\n  exit_code = 1;\n  xexit();\n  error = bfd_dcgettext();\n  if (error == 0) {\n    error_message = dcgettext(0,\"cause of error unknown\",5);\n  }\n  else {\n    error_message = bfd_errmsg(error);\n  }\n  fflush(stdout);\n  if (exit_code != 0) {\n    print_error_message(stderr,\"%s: %s: %s\\n\",DAT_00106438,exit_code,error_message,additional_info);\n    return;\n  }\n  print_error_message(stderr,\"%s: %s\\n\",DAT_00106438,error_message,additional_info);\n  return;\n}\n\n",
+            "current_name": "print_error_and_exit_00103bd0",
+            "entrypoint": "0x00103bd0",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_00103bd0": "print_error_and_exit_00103bd0",
+                "_stderr": "stderr",
+                "_stdout": "stdout",
+                "dcgettext": "get_error",
+                "fprintf": "print_error_message",
+                "iVar1": "error",
+                "in_AL": "flag",
+                "in_R10": "additional_info",
+                "lVar3": "exit_code",
+                "local_18": "param_8_copy",
+                "local_28": "param_7_copy",
+                "local_38": "param_6_copy",
+                "local_48": "param_5_copy",
+                "local_58": "param_4_copy",
+                "local_68": "param_3_copy",
+                "local_78": "param_2_copy",
+                "local_88": "param_1_copy",
+                "local_90": "param_14_copy",
+                "local_98": "param_13_copy",
+                "local_a0": "param_12_copy",
+                "local_a8": "param_11_copy",
+                "local_b0": "param_10_copy",
+                "local_b8": "local_buffer",
+                "local_c8": "local_buffer",
+                "local_d0": "buffer",
+                "local_d4": "buffer_length",
+                "local_d8": "buffer_size",
+                "param_1": "error_code",
+                "param_9": "file_descriptor",
+                "print_error_message_001025c0": "print_error_message",
+                "uVar2": "error_message"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "FUN_00103c70": {
+            "additional_data": {
+                "FUN_00103c70": {
+                    "print_bfd_error_message": 2,
+                    "print_error": 3,
+                    "print_error_info": 1,
+                    "print_error_message": 25
+                },
+                "_stderr": {
+                    "standard_error": 2
+                },
+                "_stdout": {
+                    "standard_output": 2
+                },
+                "iVar1": {
+                    "bfd_error": 2,
+                    "error": 15,
+                    "error_code": 4,
+                    "error_flag": 1,
+                    "error_num": 1,
+                    "error_status": 8
+                },
+                "in_R10": {
+                    "additional_info": 8,
+                    "unknown": 1,
+                    "unknown_cause": 1,
+                    "unused_variable": 3
+                },
+                "param_1": {
+                    "error": 1,
+                    "error_cause": 1,
+                    "error_code": 5,
+                    "error_description": 7,
+                    "error_identifier": 1,
+                    "error_message": 9,
+                    "error_param": 1,
+                    "error_string": 1,
+                    "error_type": 3,
+                    "file_name": 1,
+                    "filename": 1
+                },
+                "stderr": {
+                    "standard_error": 1
+                },
+                "uVar2": {
+                    "errmsg": 1,
+                    "error_message": 20,
+                    "error_message_text": 1,
+                    "error_message_translation": 1,
+                    "error_msg": 2,
+                    "error_string": 5,
+                    "error_text": 1
+                }
+            },
+            "called": [
+                "bfd_errmsg",
+                "FUN_001023a0",
+                "bfd_get_error"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nvoid print_bfd_error_message_00103c70(long error_message)\n\n{\n  int error;\n  undefined8 error_message;\n  undefined8 additional_info;\n  \n  error = bfd_get_error();\n  if (error == 0) {\n    error_message = dcgettext(0,\"cause of error unknown\",5);\n  }\n  else {\n    error_message = bfd_errmsg(error);\n  }\n  fflush(standard_output);\n  if (error_message != 0) {\n    fprintf(standard_error,\"%s: %s: %s\\n\",DAT_00106438,error_message,error_message,additional_info);\n    return;\n  }\n  fprintf(standard_error,\"%s: %s\\n\",DAT_00106438,error_message,additional_info);\n  return;\n}\n\n",
+            "current_name": "print_bfd_error_message_00103c70",
+            "entrypoint": "0x00103c70",
+            "imported": false,
+            "improved": true,
+            "renaming": {
+                "FUN_00103c70": "print_bfd_error_message_00103c70",
+                "_stderr": "standard_error",
+                "_stdout": "standard_output",
+                "iVar1": "error",
+                "in_R10": "additional_info",
+                "param_1": "error_message",
+                "stderr": "standard_error",
+                "uVar2": "error_message"
+            },
+            "skipped": false,
+            "tags": []
+        },
+        "_DT_FINI": {
+            "called": [],
+            "calling": [],
+            "code": "\nvoid _DT_FINI(void)\n\n{\n  return;\n}\n\n",
+            "current_name": "_DT_FINI",
+            "entrypoint": "0x00103cd0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "_DT_INIT": {
+            "called": [
+                "__gmon_start__"
+            ],
+            "calling": [],
+            "code": "\nvoid _DT_INIT(void)\n\n{\n  __gmon_start__();\n  return;\n}\n\n",
+            "current_name": "_DT_INIT",
+            "entrypoint": "0x00102000",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "_FINI_0": {
+            "called": [
+                "__cxa_finalize",
+                "FUN_001026f0"
+            ],
+            "calling": [],
+            "code": "\nvoid _FINI_0(void)\n\n{\n  if (DAT_001063e0 != '\\0') {\n    return;\n  }\n  __cxa_finalize(PTR_LOOP_001061c8);\n  FUNC_001026f0();\n  DAT_001063e0 = 1;\n  return;\n}\n\n",
+            "current_name": "_FINI_0",
+            "entrypoint": "0x00102760",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "_INIT_0": {
+            "called": [
+                "FUN_00102720"
+            ],
+            "calling": [],
+            "code": "\nvoid _INIT_0(void)\n\n{\n  FUNC_00102720();\n  return;\n}\n\n",
+            "current_name": "_INIT_0",
+            "entrypoint": "0x001027a0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "__cxa_finalize": {
+            "called": [
+                "__cxa_finalize"
+            ],
+            "calling": [
+                "_FINI_0"
+            ],
+            "code": "\nvoid __cxa_finalize(void)\n\n{\n  __cxa_finalize();\n  return;\n}\n\n",
+            "current_name": "__cxa_finalize",
+            "entrypoint": "0x00102390",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "__errno_location": {
+            "called": [
+                "__errno_location"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint * __errno_location(void)\n\n{\n  int *piVar1;\n  \n  piVar1 = __errno_location();\n  return piVar1;\n}\n\n",
+            "current_name": "__errno_location",
+            "entrypoint": "0x00102070",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_check_format": {
+            "called": [
+                "bfd_check_format"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_check_format(void)\n\n{\n  bfd_check_format();\n  return;\n}\n\n",
+            "current_name": "bfd_check_format",
+            "entrypoint": "0x00102350",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_check_format_matches": {
+            "called": [
+                "bfd_check_format_matches"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_check_format_matches(void)\n\n{\n  bfd_check_format_matches();\n  return;\n}\n\n",
+            "current_name": "bfd_check_format_matches",
+            "entrypoint": "0x00102310",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_close": {
+            "called": [
+                "bfd_close"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_close(void)\n\n{\n  bfd_close();\n  return;\n}\n\n",
+            "current_name": "bfd_close",
+            "entrypoint": "0x001022f0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_demangle": {
+            "called": [
+                "bfd_demangle"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_demangle(void)\n\n{\n  bfd_demangle();\n  return;\n}\n\n",
+            "current_name": "bfd_demangle",
+            "entrypoint": "0x001022c0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_errmsg": {
+            "called": [
+                "bfd_errmsg"
+            ],
+            "calling": [
+                "FUN_00103c70",
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_errmsg(void)\n\n{\n  bfd_errmsg();\n  return;\n}\n\n",
+            "current_name": "bfd_errmsg",
+            "entrypoint": "0x00102330",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_fprintf_vma": {
+            "called": [
+                "bfd_fprintf_vma"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_fprintf_vma(void)\n\n{\n  bfd_fprintf_vma();\n  return;\n}\n\n",
+            "current_name": "bfd_fprintf_vma",
+            "entrypoint": "0x00102360",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_get_error": {
+            "called": [
+                "bfd_get_error"
+            ],
+            "calling": [
+                "FUN_00103c70",
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_get_error(void)\n\n{\n  bfd_get_error();\n  return;\n}\n\n",
+            "current_name": "bfd_get_error",
+            "entrypoint": "0x00102190",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_get_section_by_name": {
+            "called": [
+                "bfd_get_section_by_name"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_get_section_by_name(void)\n\n{\n  bfd_get_section_by_name();\n  return;\n}\n\n",
+            "current_name": "bfd_get_section_by_name",
+            "entrypoint": "0x001021e0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_init": {
+            "called": [
+                "bfd_init"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_init(void)\n\n{\n  bfd_init();\n  return;\n}\n\n",
+            "current_name": "bfd_init",
+            "entrypoint": "0x00102200",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_map_over_sections": {
+            "called": [
+                "bfd_map_over_sections"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_map_over_sections(void)\n\n{\n  bfd_map_over_sections();\n  return;\n}\n\n",
+            "current_name": "bfd_map_over_sections",
+            "entrypoint": "0x00102370",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_openr": {
+            "called": [
+                "bfd_openr"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_openr(void)\n\n{\n  bfd_openr();\n  return;\n}\n\n",
+            "current_name": "bfd_openr",
+            "entrypoint": "0x001020e0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_scan_vma": {
+            "called": [
+                "bfd_scan_vma"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_scan_vma(void)\n\n{\n  bfd_scan_vma();\n  return;\n}\n\n",
+            "current_name": "bfd_scan_vma",
+            "entrypoint": "0x00102050",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_set_default_target": {
+            "called": [
+                "bfd_set_default_target"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_set_default_target(void)\n\n{\n  bfd_set_default_target();\n  return;\n}\n\n",
+            "current_name": "bfd_set_default_target",
+            "entrypoint": "0x001020a0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_set_error_program_name": {
+            "called": [
+                "bfd_set_error_program_name"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bfd_set_error_program_name(void)\n\n{\n  bfd_set_error_program_name();\n  return;\n}\n\n",
+            "current_name": "bfd_set_error_program_name",
+            "entrypoint": "0x001022a0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bfd_target_list": {
+            "called": [
+                "bfd_target_list"
+            ],
+            "calling": [
+                "FUN_001023e1"
+            ],
+            "code": "\nvoid bfd_target_list(void)\n\n{\n  bfd_target_list();\n  return;\n}\n\n",
+            "current_name": "bfd_target_list",
+            "entrypoint": "0x00102180",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "bindtextdomain": {
+            "called": [
+                "bindtextdomain"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid bindtextdomain(void)\n\n{\n  bindtextdomain();\n  return;\n}\n\n",
+            "current_name": "bindtextdomain",
+            "entrypoint": "0x00102100",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "cplus_demangle_name_to_style": {
+            "called": [
+                "cplus_demangle_name_to_style"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid cplus_demangle_name_to_style(void)\n\n{\n  cplus_demangle_name_to_style();\n  return;\n}\n\n",
+            "current_name": "cplus_demangle_name_to_style",
+            "entrypoint": "0x00102030",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "cplus_demangle_set_style": {
+            "called": [
+                "cplus_demangle_set_style"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid cplus_demangle_set_style(void)\n\n{\n  cplus_demangle_set_style();\n  return;\n}\n\n",
+            "current_name": "cplus_demangle_set_style",
+            "entrypoint": "0x001020c0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "dcgettext": {
+            "called": [
+                "dcgettext"
+            ],
+            "calling": [
+                "FUN_001023a0",
+                "FUN_001027b0",
+                "FUN_001023e1"
+            ],
+            "code": "\nvoid dcgettext(void)\n\n{\n  dcgettext();\n  return;\n}\n\n",
+            "current_name": "dcgettext",
+            "entrypoint": "0x00102110",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "entry": {
+            "called": [
+                "FUN_001027b0",
+                "__libc_start_main"
+            ],
+            "calling": [],
+            "code": "\nvoid processEntry entry(undefined8 param_1,undefined8 param_2)\n\n{\n  undefined auStack_8 [8];\n  \n  __libc_start_main(parse_input_file_001027b0,param_2,&stack0x00000008,0,0,param_1,auStack_8);\n  do {\n                    /* WARNING: Do nothing block with infinite loop */\n  } while( true );\n}\n\n",
+            "current_name": "entry",
+            "entrypoint": "0x001026c0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "exit": {
+            "called": [
+                "exit"
+            ],
+            "calling": [
+                "FUN_001027b0",
+                "FUN_001023e1"
+            ],
+            "code": "\n\n\nvoid exit(int __status)\n\n{\n                    \n  exit(__status);\n}\n\n",
+            "current_name": "exit",
+            "entrypoint": "0x00102340",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "fclose": {
+            "called": [
+                "fclose"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint fclose(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fclose(__stream);\n  return iVar1;\n}\n\n",
+            "current_name": "fclose",
+            "entrypoint": "0x001020f0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "ferror": {
+            "called": [
+                "ferror"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint ferror(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = ferror(__stream);\n  return iVar1;\n}\n\n",
+            "current_name": "ferror",
+            "entrypoint": "0x00102090",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "fflush": {
+            "called": [
+                "fflush"
+            ],
+            "calling": [
+                "FUN_001023a0",
+                "FUN_001025c0",
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint fflush(FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fflush(__stream);\n  return iVar1;\n}\n\n",
+            "current_name": "fflush",
+            "entrypoint": "0x00102270",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "fgets": {
+            "called": [
+                "fgets"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nchar * fgets(char *__s,int __n,FILE *__stream)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = fgets(__s,__n,__stream);\n  return pcVar1;\n}\n\n",
+            "current_name": "fgets",
+            "entrypoint": "0x001021f0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "fopen": {
+            "called": [
+                "fopen"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nFILE * fopen(char *__filename,char *__modes)\n\n{\n  FILE *pFVar1;\n  \n  pFVar1 = fopen(__filename,__modes);\n  return pFVar1;\n}\n\n",
+            "current_name": "fopen",
+            "entrypoint": "0x001022d0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "fprintf": {
+            "called": [
+                "fprintf"
+            ],
+            "calling": [
+                "FUN_001023a0",
+                "FUN_001025c0",
+                "FUN_001027b0",
+                "FUN_001023e1"
+            ],
+            "code": "\n\n\nint fprintf(FILE *__stream,char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = fprintf(__stream,__format);\n  return iVar1;\n}\n\n",
+            "current_name": "fprintf",
+            "entrypoint": "0x00102230",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "fputc": {
+            "called": [
+                "fputc"
+            ],
+            "calling": [
+                "FUN_001027b0",
+                "FUN_001023e1"
+            ],
+            "code": "\n\n\nint fputc(int __c,FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = fputc(__c,__stream);\n  return iVar1;\n}\n\n",
+            "current_name": "fputc",
+            "entrypoint": "0x001021d0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "fread": {
+            "called": [
+                "fread"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nsize_t fread(void *__ptr,size_t __size,size_t __n,FILE *__stream)\n\n{\n  size_t sVar1;\n  \n  sVar1 = fread(__ptr,__size,__n,__stream);\n  return sVar1;\n}\n\n",
+            "current_name": "fread",
+            "entrypoint": "0x001020b0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "free": {
+            "called": [
+                "free"
+            ],
+            "calling": [
+                "FUN_001027b0",
+                "FUN_001023e1"
+            ],
+            "code": "\n\n\nvoid free(void *__ptr)\n\n{\n  free(__ptr);\n  return;\n}\n\n",
+            "current_name": "free",
+            "entrypoint": "0x00102040",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "fseek": {
+            "called": [
+                "fseek"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint fseek(FILE *__stream,long __off,int __whence)\n\n{\n  int iVar1;\n  \n  iVar1 = fseek(__stream,__off,__whence);\n  return iVar1;\n}\n\n",
+            "current_name": "fseek",
+            "entrypoint": "0x00102280",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "ftell": {
+            "called": [
+                "ftell"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nlong ftell(FILE *__stream)\n\n{\n  long lVar1;\n  \n  lVar1 = ftell(__stream);\n  return lVar1;\n}\n\n",
+            "current_name": "ftell",
+            "entrypoint": "0x00102240",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "getopt_long": {
+            "called": [
+                "getopt_long"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid getopt_long(void)\n\n{\n  getopt_long();\n  return;\n}\n\n",
+            "current_name": "getopt_long",
+            "entrypoint": "0x00102130",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "memcpy": {
+            "called": [
+                "memcpy"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nvoid * memcpy(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memcpy(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "current_name": "memcpy",
+            "entrypoint": "0x00102260",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "memmove": {
+            "called": [
+                "memmove"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nvoid * memmove(void *__dest,void *__src,size_t __n)\n\n{\n  void *pvVar1;\n  \n  pvVar1 = memmove(__dest,__src,__n);\n  return pvVar1;\n}\n\n",
+            "current_name": "memmove",
+            "entrypoint": "0x001022b0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "printf": {
+            "called": [
+                "printf"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint printf(char *__format,...)\n\n{\n  int iVar1;\n  \n  iVar1 = printf(__format);\n  return iVar1;\n}\n\n",
+            "current_name": "printf",
+            "entrypoint": "0x00102150",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "putc": {
+            "called": [
+                "putc"
+            ],
+            "calling": [
+                "FUN_001025c0"
+            ],
+            "code": "\n\n\nint putc(int __c,FILE *__stream)\n\n{\n  int iVar1;\n  \n  iVar1 = putc(__c,__stream);\n  return iVar1;\n}\n\n",
+            "current_name": "putc",
+            "entrypoint": "0x00102220",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "putchar": {
+            "called": [
+                "putchar"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint putchar(int __c)\n\n{\n  int iVar1;\n  \n  iVar1 = putchar(__c);\n  return iVar1;\n}\n\n",
+            "current_name": "putchar",
+            "entrypoint": "0x00102060",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "puts": {
+            "called": [
+                "puts"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint puts(char *__s)\n\n{\n  int iVar1;\n  \n  iVar1 = puts(__s);\n  return iVar1;\n}\n\n",
+            "current_name": "puts",
+            "entrypoint": "0x00102080",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "setlocale": {
+            "called": [
+                "setlocale"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nchar * setlocale(int __category,char *__locale)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = setlocale(__category,__locale);\n  return pcVar1;\n}\n\n",
+            "current_name": "setlocale",
+            "entrypoint": "0x00102290",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "stat": {
+            "called": [
+                "stat"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint stat(char *__file,stat *__buf)\n\n{\n  int iVar1;\n  \n  iVar1 = stat(__file,__buf);\n  return iVar1;\n}\n\n",
+            "current_name": "stat",
+            "entrypoint": "0x00102250",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "strchr": {
+            "called": [
+                "strchr"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nchar * strchr(char *__s,int __c)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strchr(__s,__c);\n  return pcVar1;\n}\n\n",
+            "current_name": "strchr",
+            "entrypoint": "0x00102140",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "strcmp": {
+            "called": [
+                "strcmp"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nint strcmp(char *__s1,char *__s2)\n\n{\n  int iVar1;\n  \n  iVar1 = strcmp(__s1,__s2);\n  return iVar1;\n}\n\n",
+            "current_name": "strcmp",
+            "entrypoint": "0x00102210",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "strerror": {
+            "called": [
+                "strerror"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nchar * strerror(int __errnum)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strerror(__errnum);\n  return pcVar1;\n}\n\n",
+            "current_name": "strerror",
+            "entrypoint": "0x00102380",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "strlen": {
+            "called": [
+                "strlen"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nsize_t strlen(char *__s)\n\n{\n  size_t sVar1;\n  \n  sVar1 = strlen(__s);\n  return sVar1;\n}\n\n",
+            "current_name": "strlen",
+            "entrypoint": "0x00102120",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "strrchr": {
+            "called": [
+                "strrchr"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nchar * strrchr(char *__s,int __c)\n\n{\n  char *pcVar1;\n  \n  pcVar1 = strrchr(__s,__c);\n  return pcVar1;\n}\n\n",
+            "current_name": "strrchr",
+            "entrypoint": "0x00102170",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "strtoul": {
+            "called": [
+                "strtoul"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\n\n\nulong strtoul(char *__nptr,char **__endptr,int __base)\n\n{\n  ulong uVar1;\n  \n  uVar1 = strtoul(__nptr,__endptr,__base);\n  return uVar1;\n}\n\n",
+            "current_name": "strtoul",
+            "entrypoint": "0x00102320",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "textdomain": {
+            "called": [
+                "textdomain"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid textdomain(void)\n\n{\n  textdomain();\n  return;\n}\n\n",
+            "current_name": "textdomain",
+            "entrypoint": "0x001020d0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "vfprintf": {
+            "called": [
+                "vfprintf"
+            ],
+            "calling": [
+                "FUN_001025c0"
+            ],
+            "code": "\n\n\nint vfprintf(FILE *__s,char *__format,__gnuc_va_list __arg)\n\n{\n  int iVar1;\n  \n  iVar1 = vfprintf(__s,__format,__arg);\n  return iVar1;\n}\n\n",
+            "current_name": "vfprintf",
+            "entrypoint": "0x00102300",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "xexit": {
+            "called": [
+                "xexit"
+            ],
+            "calling": [
+                "FUN_00103bd0",
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid xexit(void)\n\n{\n  xexit();\n  return;\n}\n\n",
+            "current_name": "xexit",
+            "entrypoint": "0x001022e0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "xmalloc": {
+            "called": [
+                "xmalloc"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid xmalloc(void)\n\n{\n  xmalloc();\n  return;\n}\n\n",
+            "current_name": "xmalloc",
+            "entrypoint": "0x001021a0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "xmalloc_set_program_name": {
+            "called": [
+                "xmalloc_set_program_name"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid xmalloc_set_program_name(void)\n\n{\n  xmalloc_set_program_name();\n  return;\n}\n\n",
+            "current_name": "xmalloc_set_program_name",
+            "entrypoint": "0x001021b0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "xrealloc": {
+            "called": [
+                "xrealloc"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid xrealloc(void)\n\n{\n  xrealloc();\n  return;\n}\n\n",
+            "current_name": "xrealloc",
+            "entrypoint": "0x00102160",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        },
+        "xstrdup": {
+            "called": [
+                "xstrdup"
+            ],
+            "calling": [
+                "FUN_001027b0"
+            ],
+            "code": "\nvoid xstrdup(void)\n\n{\n  xstrdup();\n  return;\n}\n\n",
+            "current_name": "xstrdup",
+            "entrypoint": "0x001021c0",
+            "imported": false,
+            "improved": true,
+            "renaming": {},
+            "skipped": false,
+            "tags": []
+        }
+    },
+    "layers": [
+        [
+            "FUN_00102020",
+            "FUN_001023a0",
+            "FUN_001023e1",
+            "FUN_00102540",
+            "FUN_001025c0",
+            "FUN_00103c70"
+        ],
+        [
+            "FUN_00102620",
+            "FUN_00103bd0"
+        ],
+        [
+            "FUN_001027b0"
+        ]
+    ],
+    "locked_functions": [],
+    "used_tokens": 71665
+}
